@@ -1,5 +1,4 @@
-﻿using System;
-//+
+﻿//+
 using Nalarium.Client.Configuration;
 //+
 namespace Nalarium.Client.Register

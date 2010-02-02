@@ -7,8 +7,6 @@
 //+ Microsoft Permissive License (Ms-PL) which can be found at
 //+ http://www.microsoft.com/opensource/licenses.mspx.
 #endregion
-using System;
-using Nalarium.Client;
 //+
 namespace Nalarium.Client.Mvc
 {

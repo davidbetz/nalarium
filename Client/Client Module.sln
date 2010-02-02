@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Client", "Nalarium
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Client.Register", "Nalarium.Client.Register\Nalarium.Client.Register.csproj", "{10985E84-5D4C-41A0-B838-D8113A50E284}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{105B79D0-B493-4282-950D-9DBC89C3A07A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Client.Mvc", "Nalarium.Client.Mvc\Nalarium.Client.Mvc.csproj", "{80821F2D-EFB3-4A7A-AD36-F485574D9125}"
 EndProject
 Global

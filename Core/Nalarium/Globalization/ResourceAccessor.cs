@@ -36,16 +36,6 @@ namespace Nalarium.Globalization
         public const String DefaultPattern = "{AssemblyName}.{Code}";
 
         //+
-        //- @LoadResourceManager -//
-        ///// <summary>
-        ///// Loads a registered resource manager for a specific assembly.
-        ///// </summary>
-        ///// <param name="baseAssemblyName">Assembly name.</param>
-        ///// <returns>Resouce manager for assembly; null if not found.</returns>
-        //public static ResourceManager LoadResourceManager(String baseAssemblyName)
-        //{
-        //    return LoadResourceManager(baseAssemblyName, null);
-        //}
         /// <summary>
         /// Loads a registered resource manager for a specific assembly.
         /// </summary>

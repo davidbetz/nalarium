@@ -3,9 +3,7 @@
 //+ Copyright © Jampad Technology, Inc. 2008-2010
 #endregion
 using System;
-using System.Resources;
 //+
-using Nalarium.Data.Cached;
 //+
 namespace Nalarium.Data.Common
 {

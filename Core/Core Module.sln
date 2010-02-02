@@ -8,15 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Data.Common", "Nalarium.Data.Common\Nalarium.Data.Common.csproj", "{289CD872-8683-4B86-8E9A-951016E05B2B}"
 EndProject
 Global
-	GlobalSection(VaultVsipSolution-v1) = preSolution
-		VaultHost = http://jampadtechnology.com:8192/VaultService
-		VaultRepositoryID = 3
-		VaultRepositoryGUID = adee010a-65f3-4c72-b153-b7bb0e3ae789
-		ProjectCount = 3
-		ProjectRelativeDiskPath1 = Nalarium\Nalarium.csproj
-		ProjectRelativeDiskPath2 = Nalarium.ServiceModel\Nalarium.ServiceModel.csproj
-		ProjectRelativeDiskPath3 = Nalarium.Data.Common\Nalarium.Data.Common.csproj
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

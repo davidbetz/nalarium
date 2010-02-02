@@ -7,7 +7,6 @@ using System.Resources;
 //+
 using Nalarium.Data.Cached;
 using Nalarium.Globalization;
-using Nalarium.Configuration;
 //+
 namespace Nalarium.Data.Common
 {
