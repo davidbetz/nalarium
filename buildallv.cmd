@@ -1,10 +1,10 @@
 @echo off
 ::+
 echo Building Core
-msbuild "Core\Core Module.sln"
+%windir%\Microsoft.NET\Framework\v3.5\msbuild "Core\Core Module.sln"
 ::+
 echo Building Web
-msbuild "Web\Web Module.sln"
+%windir%\Microsoft.NET\Framework\v3.5\msbuild "Web\Web Module.sln"
 ::+
 echo Building Client
-msbuild "Client\Client Module.sln"
+%windir%\Microsoft.NET\Framework\v3.5\msbuild "Client\Client Module.sln"
