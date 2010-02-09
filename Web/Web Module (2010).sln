@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Web", "Nalarium.Web\Nalarium.Web (2010).csproj", "{A0CABB6C-23E0-442E-8DD7-8CC6E01BA288}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Web.Mvc", "Nalarium.Web.Mvc\Nalarium.Web.Mvc (2010).csproj", "{0F0D5188-94AC-4C02-A068-93FD555E21F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Web.Processing", "Nalarium.Web.Processing\Nalarium.Web.Processing (2010).csproj", "{05E20500-AC92-4D80-ADC8-77C05B361999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Web.AccessRule", "Nalarium.Web.AccessRule\Nalarium.Web.AccessRule (2010).csproj", "{BAC35EF1-94B4-4D02-BCBA-3A2A29E98FBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0CABB6C-23E0-442E-8DD7-8CC6E01BA288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0CABB6C-23E0-442E-8DD7-8CC6E01BA288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0CABB6C-23E0-442E-8DD7-8CC6E01BA288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0CABB6C-23E0-442E-8DD7-8CC6E01BA288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0D5188-94AC-4C02-A068-93FD555E21F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0D5188-94AC-4C02-A068-93FD555E21F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0D5188-94AC-4C02-A068-93FD555E21F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0D5188-94AC-4C02-A068-93FD555E21F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E20500-AC92-4D80-ADC8-77C05B361999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E20500-AC92-4D80-ADC8-77C05B361999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E20500-AC92-4D80-ADC8-77C05B361999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E20500-AC92-4D80-ADC8-77C05B361999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC35EF1-94B4-4D02-BCBA-3A2A29E98FBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC35EF1-94B4-4D02-BCBA-3A2A29E98FBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC35EF1-94B4-4D02-BCBA-3A2A29E98FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC35EF1-94B4-4D02-BCBA-3A2A29E98FBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(VaultVsipSolution-v2) = preSolution
+		VaultHost = http://www.jampadtechnology.com:8192/VaultService
+		VaultRepositoryID = 3
+		VaultRepositoryGUID = adee010a-65f3-4c72-b153-b7bb0e3ae789
+		ProjectCount = 1
+		ProjectRelativeDiskPath1 = Nalarium.Web\Nalarium.Web (2010).csproj
+	EndGlobalSection
+EndGlobal

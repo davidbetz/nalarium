@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Client", "Nalarium.Client\Nalarium.Client (2010).csproj", "{297CB31A-C3EF-4834-B7F0-50FAC54B863F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Client.Register", "Nalarium.Client.Register\Nalarium.Client.Register (2010).csproj", "{10985E84-5D4C-41A0-B838-D8113A50E284}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Client.Mvc", "Nalarium.Client.Mvc\Nalarium.Client.Mvc (2010).csproj", "{80821F2D-EFB3-4A7A-AD36-F485574D9125}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Release|.NET.ActiveCfg = Release|Any CPU
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|.NET.ActiveCfg = Release|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Release|.NET.ActiveCfg = Release|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(VaultVsipSolution-v2) = preSolution
+		VaultHost = http://www.jampadtechnology.com:8192/VaultService
+		VaultRepositoryID = 3
+		VaultRepositoryGUID = adee010a-65f3-4c72-b153-b7bb0e3ae789
+		ProjectCount = 4
+		ProjectRelativeDiskPath1 = website\
+		ProjectRelativeDiskPath2 = Client Module.sln
+		ProjectRelativeDiskPath3 = Nalarium.Client\Nalarium.Client (2010).csproj
+		ProjectRelativeDiskPath4 = Nalarium.Client.Register\Nalarium.Client.Register (2010).csproj
+	EndGlobalSection
+EndGlobal
