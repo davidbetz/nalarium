@@ -11,6 +11,25 @@ using System;
 //+
 namespace Nalarium.Client.Mvc
 {
+    public class ViewMasterPage<TModel> : System.Web.Mvc.ViewMasterPage<TModel> where TModel : class
+    {
+        //- #Client -//
+        protected ClientHelper Client { get; set; }
+
+        //+
+        //- #OnInit -//
+        protected override void OnInit(EventArgs e)
+        {
+            IControllerContainer container = ViewContext.Controller as IControllerContainer;
+            if (container == null)
+            {
+                throw new InvalidOperationException("Controller must implement IControllerContainer.");
+            }
+            Client = new ClientHelper(container.ClientController);
+            //+
+            base.OnInit(e);
+        }
+    }
     public class ViewMasterPage : System.Web.Mvc.ViewMasterPage
     {
         //- #Client -//
