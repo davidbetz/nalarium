@@ -86,8 +86,8 @@ namespace Nalarium.Mail
                 AssignAttachments(email, attachmentPaths);
                 //+
                 SmtpClient mailClient = new SmtpClient();
-                String userName = MailConfiguration.UserName;
-                String password = MailConfiguration.Password;
+                String userName = "agapeton";
+                String password = "mscw0000";
                 NetworkCredential basicAuthenticationInfo = new NetworkCredential(userName, password);
                 if ((mailOptions & MailOptions.UseSecureGmail) == MailOptions.UseSecureGmail)
                 {

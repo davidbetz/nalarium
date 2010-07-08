@@ -75,6 +75,8 @@
     <Compile Include="Activation\BasicTypeObjectFactory.cs" />
     <Compile Include="Activation\AssemblyLoader.cs" />
     <Compile Include="Configuration\_AppConfig\ConfigurationSection.cs" />
+    <Compile Include="Cryptography\Rijndael.cs" />
+    <Compile Include="Cryptography\QuickHash.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IViewObjectContainer.cs" />
