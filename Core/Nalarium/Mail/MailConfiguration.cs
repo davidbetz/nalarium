@@ -49,7 +49,15 @@ namespace Nalarium.Mail
         /// <value>The password.</value>
         public static String Password
         {
-            get { return Section.EmailSetup.Password; }
+            get
+            {
+                String password = Section.EmailSetup.Password;
+                if (password.StartsWith("secure:"))
+                {
+                    password = Nalarium.Cryptography.Rijndael.Decrypt(password.Substring("secure:".Length, password.Length - "secure:".Length));
+                }
+                return password;
+            }
         }
 
         //++ parameters

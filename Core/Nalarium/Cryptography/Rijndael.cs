@@ -15,23 +15,56 @@ namespace Nalarium.Cryptography
     {
         public static String Encrypt(String text)
         {
-            var rijndael = System.Security.Cryptography.Rijndael.Create();
+            Byte[] iv = Convert.FromBase64String(Nalarium.Configuration.ConfigAccessor.ApplicationSettings("RijndaelIV"));
+            Byte[] key = Convert.FromBase64String(Nalarium.Configuration.ConfigAccessor.ApplicationSettings("RijndaelKey"));
+            //+
+            return Encrypt(text, iv, key);
+        }
+
+        public static String Encrypt(String text, Byte[] iv, Byte[] key)
+        {
             MemoryStream memoryStream = Nalarium.IO.StreamConverter.CreateStream<MemoryStream>(text);
-            using (CryptoStream cryptoStream = new CryptoStream(memoryStream, rijndael.CreateEncryptor(rijndael.Key, rijndael.IV), CryptoStreamMode.Write))
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            //+
+            MemoryStream output = new MemoryStream();
+            RijndaelManaged symm = new RijndaelManaged();
+            symm.BlockSize = 128;
+            symm.KeySize = 256;
+            symm.IV = iv;
+            symm.Key = key;
+            ICryptoTransform transform = symm.CreateEncryptor();
+            using (CryptoStream cstream = new CryptoStream(output, transform, CryptoStreamMode.Write))
             {
-                String data = String.Empty;
-                new StreamWriter(cryptoStream).Write(data);
-                return data;
+                BinaryReader br = new BinaryReader(memoryStream);
+                cstream.Write(br.ReadBytes((int)memoryStream.Length), 0, (int)memoryStream.Length);
+                cstream.FlushFinalBlock();
+                //+
+                return Convert.ToBase64String(output.ToArray());
             }
         }
 
         public static String Decrypt(String text)
         {
-            var rijndael = System.Security.Cryptography.Rijndael.Create();
-            MemoryStream memoryStream = Nalarium.IO.StreamConverter.CreateStream<MemoryStream>(text);
-            using (CryptoStream cryptoStream = new CryptoStream(memoryStream, rijndael.CreateDecryptor(rijndael.Key, rijndael.IV), CryptoStreamMode.Write))
+            Byte[] iv = Convert.FromBase64String(Nalarium.Configuration.ConfigAccessor.ApplicationSettings("RijndaelIV"));
+            Byte[] key = Convert.FromBase64String(Nalarium.Configuration.ConfigAccessor.ApplicationSettings("RijndaelKey"));
+            //+
+            return Decrypt(text, iv, key);
+        }
+
+        public static String Decrypt(String text, Byte[] iv, Byte[] key)
+        {
+            MemoryStream memoryStream = new MemoryStream(Convert.FromBase64String(text));
+            //+
+            RijndaelManaged symm = new RijndaelManaged();
+            symm.BlockSize = 128;
+            symm.KeySize = 256;
+            symm.IV = iv;
+            symm.Key = key;
+            ICryptoTransform transform = symm.CreateDecryptor();
+            using (CryptoStream cstream = new CryptoStream(memoryStream, transform, CryptoStreamMode.Read))
             {
-                return new StreamReader(cryptoStream).ReadToEnd();
+                String output = new StreamReader(cstream).ReadToEnd();
+                return output.Substring(1, output.Length - 1);
             }
         }
     }

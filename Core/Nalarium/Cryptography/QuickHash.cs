@@ -5,7 +5,7 @@
 using System;
 using System.Security.Cryptography;
 //+
-namespace Nalarium.Mail
+namespace Nalarium.Cryptography
 {
     /// <summary>
     /// Used to create quick MD5 hashes.
