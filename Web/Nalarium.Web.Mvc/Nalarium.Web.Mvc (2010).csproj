@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nalarium.Web.Mvc</RootNamespace>
     <AssemblyName>Nalarium.Web.Mvc</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Nalarium.snk</AssemblyOriginatorKeyFile>
@@ -33,6 +33,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,7 +57,7 @@
   <ItemGroup>
     <Reference Include="Nalarium, Version=3.0.0.0, Culture=neutral, PublicKeyToken=dc6429114df2bd49, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\_REFERENCE\DEBUG\Nalarium.dll</HintPath>
+      <HintPath>C:\_REFERENCE\Debug\Nalarium.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -67,6 +68,7 @@
     <Reference Include="System.Web.Abstractions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Routing">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -93,16 +95,6 @@
     <Compile Include="_Base\VerbHttpHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\_REFERENCE\3RDPARTY\SystemWebMvc\System.Web.Mvc.csproj">
-      <Project>{3D3FFD8A-624D-4E9B-954B-E1C105507975}</Project>
-      <Name>System.Web.Mvc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nalarium.Web\Nalarium.Web.csproj">
-      <Project>{A0CABB6C-23E0-442E-8DD7-8CC6E01BA288}</Project>
-      <Name>Nalarium.Web</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Nalarium.snk" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +113,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nalarium.Web\Nalarium.Web %282010%29.csproj">
+      <Project>{A0CABB6C-23E0-442E-8DD7-8CC6E01BA288}</Project>
+      <Name>Nalarium.Web %282010%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
