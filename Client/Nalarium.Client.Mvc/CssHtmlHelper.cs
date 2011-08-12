@@ -15,14 +15,14 @@ namespace Nalarium.Client.Mvc
     public static class CssHtmlHelper
     {
         //- @CssInclude -//
-        public static String CssInclude(this System.Web.Mvc.HtmlHelper helper, String path)
+        public static System.Web.HtmlString CssInclude(this System.Web.Mvc.HtmlHelper helper, String path)
         {
             TagBuilder link = new TagBuilder("link");
             link.MergeAttribute("type", "text/css");
             link.MergeAttribute("href", new UrlHelper(helper.ViewContext.RequestContext).Content(path));
             link.MergeAttribute("rel", "stylesheet");
             //+
-            return link.ToString(TagRenderMode.SelfClosing);
+            return new System.Web.HtmlString(link.ToString(TagRenderMode.SelfClosing));
         }
     }
 }

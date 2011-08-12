@@ -43,12 +43,12 @@ namespace Nalarium.Web.Mvc
             return this;
         }
 
-        public override String Render()
+        public override System.Web.HtmlString Render()
         {
             System.Text.StringBuilder builder = new System.Text.StringBuilder();
             builder.Append(" " + Name() + "=\"" + Value() + "\"");
             //+
-            return builder.ToString();
+            return new System.Web.HtmlString(builder.ToString());
         }
     }
 }

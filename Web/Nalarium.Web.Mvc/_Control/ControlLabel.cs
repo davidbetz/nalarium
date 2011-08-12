@@ -58,18 +58,18 @@ namespace Nalarium.Web.Mvc
 
         //+
         //- @Render -//
-        public override String Render()
+        public override System.Web.HtmlString Render()
         {
             String forId = ForId();
             if (String.IsNullOrEmpty(forId))
             {
-                return String.Empty;
+                return new System.Web.HtmlString(String.Empty);
             }
             System.Text.StringBuilder builder = new System.Text.StringBuilder("<label for=\"" + forId + "\">");
             builder.Append(Text() + Suffix());
             builder.Append("</label>");
             //+
-            return builder.ToString();
+            return new System.Web.HtmlString(builder.ToString());
         }
     }
 }

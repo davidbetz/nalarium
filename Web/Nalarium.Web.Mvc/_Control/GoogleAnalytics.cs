@@ -47,11 +47,11 @@ namespace Nalarium.Web.Mvc
             return this;
         }
 
-        public override string Render()
+        public override System.Web.HtmlString Render()
         {
             if (String.IsNullOrEmpty(TrackingCode()))
             {
-                return String.Empty;
+                return new System.Web.HtmlString(String.Empty);
             }
             String path = Path();
             if (!String.IsNullOrEmpty(path))
@@ -68,7 +68,7 @@ var pageTracker = _gat._getTracker(""" + TrackingCode() + @""");
 pageTracker._trackPageview(" + path + @");
 } catch(err) {}</script>";
             //+
-            return output;
+            return new System.Web.HtmlString(output);
         }
     }
 }

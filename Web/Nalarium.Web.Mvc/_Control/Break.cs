@@ -16,9 +16,9 @@ namespace Nalarium.Web.Mvc
             return new Break();
         }
 
-        public override string Render()
+        public override System.Web.HtmlString Render()
         {
-            return "<br />";
+            return new System.Web.HtmlString("<br />");
         }
     }
 }

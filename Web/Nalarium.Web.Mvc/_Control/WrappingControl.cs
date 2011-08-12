@@ -87,7 +87,7 @@ namespace Nalarium.Web.Mvc
 
         //+
         //- @Render -//
-        public override String Render()
+        public override System.Web.HtmlString Render()
         {
             System.Text.StringBuilder builder = new System.Text.StringBuilder();
             if (!String.IsNullOrEmpty(TagName()))
@@ -112,7 +112,7 @@ namespace Nalarium.Web.Mvc
                 builder.Append("</" + TagName() + ">");
             }
             //+
-            return builder.ToString();
+            return new System.Web.HtmlString(builder.ToString());
         }
     }
 }

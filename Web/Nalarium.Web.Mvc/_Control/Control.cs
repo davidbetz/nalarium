@@ -13,11 +13,11 @@ namespace Nalarium.Web.Mvc
 {
     public abstract class Control
     {
-        public abstract String Render();
+        public abstract System.Web.HtmlString Render();
 
         public sealed override string ToString()
         {
-            return Render();
+            return Render().ToString();
         }
     }
 }

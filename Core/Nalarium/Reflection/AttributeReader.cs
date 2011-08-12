@@ -105,5 +105,25 @@ namespace Nalarium.Reflection
             //+
             return objectArray;
         }
+
+        //- @ReadPropertyAttributeArray -//
+        public static Object[] ReadPropertyAttributeArray<T>(PropertyInfo propertyInfo)
+        {
+            return ReadPropertyAttributeArray(propertyInfo, typeof(T));
+        }
+        public static Object[] ReadPropertyAttributeArray(PropertyInfo propertyInfo, Type attributeType)
+        {
+            Object[] objectArray;
+            if (attributeType == null)
+            {
+                objectArray = propertyInfo.GetCustomAttributes(true);
+            }
+            else
+            {
+                objectArray = propertyInfo.GetCustomAttributes(attributeType, true);
+            }
+            //+
+            return objectArray;
+        }
     }
 }
