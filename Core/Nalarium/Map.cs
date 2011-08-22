@@ -60,16 +60,17 @@ namespace Nalarium
         }
         public void Add(TKey key, TValue value, MapDuplicateMode mode)
         {
+            if (!Data.ContainsKey(key))
+            {
+                Data.Add(key, value);
+            }
             switch (mode)
             {
                 case MapDuplicateMode.Ignore:
                     Add(key, value);
                     break;
                 case MapDuplicateMode.Replace:
-                    if (Data.ContainsKey(key))
-                    {
-                        Data[key] = value;
-                    }
+                    Data[key] = value;
                     break;
                 case MapDuplicateMode.Throw:
                     Data.Add(key, value);
