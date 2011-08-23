@@ -57,7 +57,7 @@ namespace Nalarium
         }
         public static Value Create(String name, Object value, Modifiers mode)
         {
-            Value v = new Value();
+            var v = new Value { Name = name };
             if ((mode & Modifiers.RetainRawValue) == Modifiers.RetainRawValue)
             {
                 v._nonBasicValue = value;
@@ -336,6 +336,18 @@ namespace Nalarium
                     _nonBasicValue = value;
                     _hasChanged = true;
                 }
+            }
+        }
+
+        public Type Type
+        {
+            get
+            {
+                if (_nonBasicValue == null)
+                {
+                    return typeof(object);
+                }
+                return _nonBasicValue.GetType();
             }
         }
 
