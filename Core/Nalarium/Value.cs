@@ -7,8 +7,10 @@ namespace Nalarium
         [Flags]
         public enum Modifiers
         {
-            Normal = 0,
-            IsDefault = 1
+            None = 0x00,
+            Normal = 0x01,
+            IsDefault = 0x02,
+            RetainRawValue = 0x04
         }
 
         private Object _nonBasicValue;
@@ -43,8 +45,24 @@ namespace Nalarium
 
         public static Value Create(Object value)
         {
+            return Create(String.Empty, value, Modifiers.None);
+        }
+        public static Value Create(Object value, Modifiers mode)
+        {
+            return Create(String.Empty, value, mode);
+        }
+        public static Value Create(String name, Object value)
+        {
+            return Create(name, value, Modifiers.None);
+        }
+        public static Value Create(String name, Object value, Modifiers mode)
+        {
             Value v = new Value();
-            if (value is Int16 ||
+            if ((mode & Modifiers.RetainRawValue) == Modifiers.RetainRawValue)
+            {
+                v._nonBasicValue = value;
+            }
+            else if (value is Int16 ||
                 value is Int32 ||
                 value is Int64 ||
                 value is String ||
@@ -72,34 +90,12 @@ namespace Nalarium
             //+
             return v;
         }
-        public static Value Create(Object value, Modifiers defaultMode)
-        {
-            Value v = Create(value);
-            v._modifier = defaultMode;
-            //+
-            return v;
-        }
-        public static Value Create(String name, Object value)
-        {
-            Value v = Create(value);
-            v.Name = name;
-            //+
-            return v;
-        }
-        public static Value Create(String name, Object value, Modifiers defaultMode)
-        {
-            Value v = Create(name, value);
-            v.Name = name;
-            v._modifier = defaultMode;
-            //+
-            return v;
-        }
 
         public String AsString
         {
             get
             {
-                if (_modifier == Modifiers.IsDefault)
+                if ((_modifier & Modifiers.IsDefault) == Modifiers.IsDefault)
                 {
                     return String.Empty;
                 }
@@ -122,7 +118,7 @@ namespace Nalarium
         {
             get
             {
-                if (_modifier == Modifiers.IsDefault)
+                if ((_modifier & Modifiers.IsDefault) == Modifiers.IsDefault)
                 {
                     return 0;
                 }
@@ -151,7 +147,7 @@ namespace Nalarium
         {
             get
             {
-                if (_modifier == Modifiers.IsDefault)
+                if ((_modifier & Modifiers.IsDefault) == Modifiers.IsDefault)
                 {
                     return 0;
                 }
@@ -180,7 +176,7 @@ namespace Nalarium
         {
             get
             {
-                if (_modifier == Modifiers.IsDefault)
+                if ((_modifier & Modifiers.IsDefault) == Modifiers.IsDefault)
                 {
                     return 0;
                 }
@@ -209,7 +205,7 @@ namespace Nalarium
         {
             get
             {
-                if (_modifier == Modifiers.IsDefault)
+                if ((_modifier & Modifiers.IsDefault) == Modifiers.IsDefault)
                 {
                     return false;
                 }
@@ -238,7 +234,7 @@ namespace Nalarium
         {
             get
             {
-                if (_modifier == Modifiers.IsDefault)
+                if ((_modifier & Modifiers.IsDefault) == Modifiers.IsDefault)
                 {
                     return 0;
                 }
@@ -267,7 +263,7 @@ namespace Nalarium
         {
             get
             {
-                if (_modifier == Modifiers.IsDefault)
+                if ((_modifier & Modifiers.IsDefault) == Modifiers.IsDefault)
                 {
                     return default(DateTime);
                 }
@@ -296,7 +292,7 @@ namespace Nalarium
         {
             get
             {
-                if (_modifier == Modifiers.IsDefault)
+                if ((_modifier & Modifiers.IsDefault) == Modifiers.IsDefault)
                 {
                     return null;
                 }
@@ -309,7 +305,12 @@ namespace Nalarium
             }
             set
             {
-                if (value is Int16 ||
+                if ((_modifier & Modifiers.RetainRawValue) == Modifiers.RetainRawValue)
+                {
+                    _nonBasicValue = value;
+                    _hasChanged = true;
+                }
+                else if (value is Int16 ||
                     value is Int32 ||
                     value is Int64 ||
                     value is String ||
