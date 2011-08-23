@@ -400,5 +400,134 @@ namespace Nalarium
                 return defaultValue;
             }
         }
+
+        //- @ParseUInt16 -//
+        /// <summary>
+        /// Parses the UInt16.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <returns>Parsed value.</returns>
+        public static UInt16 ParseUInt16(Object value)
+        {
+            if (value != null)
+            {
+                return ParseUInt16(value.ToString());
+            }
+            //+
+            return 0;
+        }
+        /// <summary>
+        /// Parses the UInt16.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <returns>Parsed value or 0.</returns>
+        public static UInt16 ParseUInt16(String value)
+        {
+            return ParseUInt16(value, 0);
+        }
+        /// <summary>
+        /// Parses the UInt16 or sets default.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <param name="defaultValue">Default value to return is value is invalid</param>
+        /// <returns>Parsed value or default.</returns>
+        public static UInt16 ParseUInt16(String value, UInt16 defaultValue)
+        {
+            UInt16 UInt16;
+            if (UInt16.TryParse(value, out UInt16))
+            {
+                return UInt16;
+            }
+            else
+            {
+                return defaultValue;
+            }
+        }
+
+        //- @ParseUInt32 -//
+        /// <summary>
+        /// Parses the UInt32.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <returns>Parsed value.</returns>
+        public static UInt32 ParseUInt32(Object value)
+        {
+            if (value != null)
+            {
+                return ParseUInt32(value.ToString());
+            }
+            //+
+            return 0;
+        }
+        /// <summary>
+        /// Parses the UInt32.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <returns>Parsed value or 0.</returns>
+        public static UInt32 ParseUInt32(String value)
+        {
+            return ParseUInt32(value, 0);
+        }
+        /// <summary>
+        /// Parses the UInt32 or sets default.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <param name="defaultValue">Default value to return is value is invalid</param>
+        /// <returns>Parsed value or default.</returns>
+        public static UInt32 ParseUInt32(String value, UInt32 defaultValue)
+        {
+            UInt32 UInt32;
+            if (UInt32.TryParse(value, out UInt32))
+            {
+                return UInt32;
+            }
+            else
+            {
+                return defaultValue;
+            }
+        }
+
+        //- @ParseUInt64 -//
+        /// <summary>
+        /// Parses the UInt64.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <returns>Parsed value.</returns>
+        public static UInt64 ParseUInt64(Object value)
+        {
+            if (value != null)
+            {
+                return ParseUInt64(value.ToString());
+            }
+            //+
+            return 0;
+        }
+        /// <summary>
+        /// Parses the UInt64.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <returns>Parsed value or 0.</returns>
+        public static UInt64 ParseUInt64(String value)
+        {
+            return ParseUInt64(value, 0);
+        }
+        /// <summary>
+        /// Parses the UInt64 or sets default.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <param name="defaultValue">Default value to return is value is invalid</param>
+        /// <returns>Parsed value or default.</returns>
+        public static UInt64 ParseUInt64(String value, UInt64 defaultValue)
+        {
+            UInt64 UInt64;
+            if (UInt64.TryParse(value, out UInt64))
+            {
+                return UInt64;
+            }
+            else
+            {
+                return defaultValue;
+            }
+        }
     }
 }
