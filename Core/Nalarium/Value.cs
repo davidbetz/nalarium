@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
+
 //+
 namespace Nalarium
 {
+    [DebuggerDisplay("{Scope}, {Name}")]
     public class Value
     {
         [Flags]
@@ -23,7 +26,40 @@ namespace Nalarium
         private Boolean _valueBoolean;
 
         public Boolean IsBasicType { get; set; }
-        public String Name { get; set; }
+
+        private String _fullName;
+
+        public String Scope
+        {
+            get
+            {
+                if (!IsScoped)
+                {
+                    return _fullName;
+                }
+                return _fullName.Split(':')[0];
+            }
+        }
+
+        public String Name
+        {
+            get
+            {
+                if (!IsScoped)
+                {
+                    return _fullName;
+                }
+                return _fullName.Split(':')[1];
+            }
+        }
+
+        public Boolean IsScoped
+        {
+            get
+            {
+                return _fullName.Contains(":");
+            }
+        }
 
         private Modifiers _modifier = Modifiers.Normal;
         private Boolean _hasChanged = false;
@@ -57,7 +93,26 @@ namespace Nalarium
         }
         public static Value Create(String name, Object value, Modifiers mode)
         {
-            var v = new Value { Name = name };
+            String scope = String.Empty;
+            if (name.Contains(":"))
+            {
+                var partArray = name.Split(':');
+                scope = name.Split(':')[0];
+                name = name.Split(':')[1];
+            }
+            return Create(scope, name, value, mode);
+        }
+        public static Value Create(String scope, String name, Object value, Modifiers mode)
+        {
+            if (scope.Contains(":") || name.Contains(":"))
+            {
+                throw new InvalidOperationException(Resource.General_ColonNotAllowed);
+            }
+            if (!String.IsNullOrEmpty(scope))
+            {
+                name = scope + ":" + name;
+            }
+            var v = new Value { _fullName = name };
             if ((mode & Modifiers.RetainRawValue) == Modifiers.RetainRawValue)
             {
                 v._nonBasicValue = value;
@@ -71,15 +126,7 @@ namespace Nalarium
                 value is Byte ||
                 value is Decimal)
             {
-                if (value == null)
-                {
-                    v._value = String.Empty;
-                }
-                else
-                {
-                    v._value = value.ToString();
-                    //+
-                }
+                v._value = value.ToString();
                 v.IsBasicType = true;
             }
             else

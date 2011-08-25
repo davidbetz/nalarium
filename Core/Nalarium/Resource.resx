@@ -147,4 +147,7 @@
   <data name="Report_NotValid" xml:space="preserve">
     <value>Configured report {0} is not valid.</value>
   </data>
+  <data name="General_ColonNotAllowed" xml:space="preserve">
+    <value>Colons (":") are not allowed in Value names or scopes.</value>
+  </data>
 </root>
