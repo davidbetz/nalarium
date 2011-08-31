@@ -1,8 +1,12 @@
 ﻿//+
+
+using System.Web;
+using System.Web.Routing;
+
 namespace Nalarium.Web.Mvc
 {
-    public interface IRoutedHttpHandler : System.Web.IHttpHandler, System.Web.Routing.IRouteHandler
+    public interface IRoutedHttpHandler : IHttpHandler, IRouteHandler
     {
-        System.Web.Routing.RequestContext RequestContext { get; set; }
+        RequestContext RequestContext { get; set; }
     }
 }

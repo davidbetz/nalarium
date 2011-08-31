@@ -1,9 +1,12 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium.Reporting
 {
     /// <summary>
@@ -37,6 +40,7 @@ namespace Nalarium.Reporting
         {
             ReportController.Create("String", "Email", "Wiki").SendSingle(message);
         }
+
         /// <summary>
         /// Sends the specified map.
         /// </summary>
@@ -45,6 +49,7 @@ namespace Nalarium.Reporting
         {
             ReportController.Create("Map", "Email", "Wiki").SendSingle(map);
         }
+
         /// <summary>
         /// Sends the specified exception.
         /// </summary>
@@ -53,6 +58,7 @@ namespace Nalarium.Reporting
         {
             ReportController.Create("Exception", "Email", "Wiki").SendSingle(ex);
         }
+
         /// <summary>
         /// Sends the specified object array.
         /// </summary>
@@ -61,6 +67,7 @@ namespace Nalarium.Reporting
         {
             ReportController.Create("ObjectArray", "Email", "Wiki").SendSingle(objectArray);
         }
+
         /// <summary>
         /// Sends the specified report creator type.
         /// </summary>
@@ -80,6 +87,7 @@ namespace Nalarium.Reporting
         {
             ReportController.Create("String", "Email", "Html").SendSingle(message);
         }
+
         /// <summary>
         /// Sends the specified map.
         /// </summary>
@@ -88,6 +96,7 @@ namespace Nalarium.Reporting
         {
             ReportController.Create("Map", "Email", "Wiki").SendSingle(map);
         }
+
         /// <summary>
         /// Sends the specified exception
         /// </summary>
@@ -96,6 +105,7 @@ namespace Nalarium.Reporting
         {
             ReportController.Create("Exception", "Email", "Html").SendSingle(ex);
         }
+
         /// <summary>
         /// Sends the specified object array.
         /// </summary>
@@ -105,6 +115,7 @@ namespace Nalarium.Reporting
         {
             ReportController.Create("ObjectArray", "Email", "Html").SendSingle(objectArray);
         }
+
         /// <summary>
         /// Sends as HTML.
         /// </summary>

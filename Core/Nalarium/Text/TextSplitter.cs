@@ -1,12 +1,16 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//+
+using Nalarium.Globalization;
+
 namespace Nalarium.Text
 {
     /// <summary>
@@ -25,6 +29,7 @@ namespace Nalarium.Text
         {
             return Split(text, QuoteTypes.Both, delimiterArray);
         }
+
         /// <summary>
         /// Splits text.
         /// </summary>
@@ -38,9 +43,9 @@ namespace Nalarium.Text
             {
                 return null;
             }
-            else if(delimiterArray == null || delimiterArray.Length == 0)
+            else if (delimiterArray == null || delimiterArray.Length == 0)
             {
-                throw new ArgumentNullException(Nalarium.Globalization.ResourceAccessor.GetString("Text_DelimiterRequired", AssemblyInfo.AssemblyName, Resource.ResourceManager));
+                throw new ArgumentNullException(ResourceAccessor.GetString("Text_DelimiterRequired", AssemblyInfo.AssemblyName, Resource.ResourceManager));
             }
             //+
             return InternalSplit(text, allowedQuoteTypes, delimiterArray);
@@ -49,8 +54,8 @@ namespace Nalarium.Text
         //- ~InternalSplit -//
         internal static String[] InternalSplit(String text, QuoteTypes allowedQuoteTypes, params Char[] delimiterArray)
         {
-            List<String> splitResult = new List<String>();
-            StringBuilder builder = new StringBuilder();
+            var splitResult = new List<String>();
+            var builder = new StringBuilder();
             Boolean inQuote = false;
             Boolean isLiteral = false;
             foreach (Char c in text)

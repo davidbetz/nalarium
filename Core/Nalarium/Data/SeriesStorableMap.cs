@@ -1,13 +1,16 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Text;
-//+
+
 namespace Nalarium.Data
-{   
+{
     /// <summary>
     /// Represents a map that allows loading and saving of its data as a series of data.
     /// </summary>
@@ -24,6 +27,9 @@ namespace Nalarium.Data
 
         //+
         //- @Load -//
+
+        #region IStorable Members
+
         /// <summary>
         /// Loads the specified query string data.
         /// </summary>
@@ -32,15 +38,15 @@ namespace Nalarium.Data
         {
             if (!String.IsNullOrEmpty(data))
             {
-                String[] itemArray = data.Split(this.ItemSplitter);
+                String[] itemArray = data.Split(ItemSplitter);
                 //+
                 foreach (String item in itemArray)
                 {
-                    String[] keyValueArray = item.Split(this.KeyValueSplitter);
+                    String[] keyValueArray = item.Split(KeyValueSplitter);
                     if (keyValueArray.Length == 2)
                     {
-                        String key = keyValueArray[0].Replace(this.ScopeSplitter, "::");
-                        this.Add(key, DecodeValue(keyValueArray[1]));
+                        String key = keyValueArray[0].Replace(ScopeSplitter, "::");
+                        Add(key, DecodeValue(keyValueArray[1]));
                     }
                 }
             }
@@ -53,23 +59,25 @@ namespace Nalarium.Data
         /// <returns></returns>
         public virtual String Save()
         {
-            StringBuilder data = new StringBuilder();
+            var data = new StringBuilder();
             //+
             Boolean first = true;
-            List<String> keyList = this.GetKeyList();
+            List<String> keyList = GetKeyList();
             foreach (String key in keyList)
             {
                 if (!first)
                 {
-                    data.Append(this.ItemSplitter);
+                    data.Append(ItemSplitter);
                 }
                 first = false;
-                String storableKey = key.Replace("::", this.ScopeSplitter);
-                data.Append(storableKey + this.KeyValueSplitter + EncodeValue(this[key]));
+                String storableKey = key.Replace("::", ScopeSplitter);
+                data.Append(storableKey + KeyValueSplitter + EncodeValue(this[key]));
             }
             //+
             return data.ToString();
         }
+
+        #endregion
 
         //- #DecodeValue -//
         protected virtual String DecodeValue(String data)

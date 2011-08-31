@@ -1,9 +1,12 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium
 {
     /// <summary>
@@ -13,6 +16,14 @@ namespace Nalarium
     public class CitationAttribute : Attribute
     {
         private readonly String _source;
+
+        public CitationAttribute(String Source)
+        {
+            _source = Source;
+            //+
+            DateCulture = "en-US";
+            License = "Custom";
+        }
 
         //+
         //- @Copyright -//
@@ -41,12 +52,5 @@ namespace Nalarium
 
         //+
         //- @Ctor -//
-        public CitationAttribute(String Source)
-        {
-            _source = Source;
-            //+
-            DateCulture = "en-US";
-            License = "Custom";
-        }
     }
 }

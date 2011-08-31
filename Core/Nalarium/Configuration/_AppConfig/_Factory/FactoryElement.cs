@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Configuration;
-//+
+using System.Diagnostics;
+
 namespace Nalarium.Configuration
 {
-    [System.Diagnostics.DebuggerDisplay("{FactoryType}, {Priority}")]
-    public class FactoryElement : Nalarium.Configuration.WithParameterArrayElement
+    [DebuggerDisplay("{FactoryType}, {Priority}")]
+    public class FactoryElement : WithParameterArrayElement
     {
         //- @FactoryType -//
         [ConfigurationProperty("type", IsRequired = true)]

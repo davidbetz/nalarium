@@ -1,15 +1,19 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Reflection;
+
 namespace Nalarium
 {
     public class PropertyReader
     {
-        private Object _object;
-        private Type _type;
+        private readonly Object _object;
+        private readonly Type _type;
 
         //+
         //- @Ctor -//
@@ -36,7 +40,7 @@ namespace Nalarium
             {
                 return String.Empty;
             }
-            System.Reflection.PropertyInfo pi = _type.GetProperty(propertyName);
+            PropertyInfo pi = _type.GetProperty(propertyName);
             if (pi == null)
             {
                 return String.Empty;

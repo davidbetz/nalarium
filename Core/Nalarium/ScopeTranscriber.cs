@@ -1,14 +1,20 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium
 {
     public static class ScopeTranscriber
     {
-        private static String[] ScopeSymbolAsArray = new String[] { "::" };
+        private static readonly String[] ScopeSymbolAsArray = new[]
+                                                              {
+                                                                  "::"
+                                                              };
 
         //+
         //- @Construct -//
@@ -22,6 +28,7 @@ namespace Nalarium
         {
             return scope + "::" + name;
         }
+
         /// <summary>
         /// Constructs a culture aware scoped name based on a scope, a two digit culture code, and a name.
         /// </summary>

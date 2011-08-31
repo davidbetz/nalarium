@@ -1,10 +1,14 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Text;
-//+
+using Nalarium.Globalization;
+
 namespace Nalarium.Data
 {
     /// <summary>
@@ -13,6 +17,15 @@ namespace Nalarium.Data
     public class Base64StorableMap : SeriesStorableMap
     {
         //- @ScopeSplitter -//
+        public Base64StorableMap()
+        {
+        }
+
+        public Base64StorableMap(String base64Data)
+        {
+            Load(base64Data);
+        }
+
         public override String ScopeSplitter
         {
             get
@@ -41,13 +54,6 @@ namespace Nalarium.Data
 
         //+
         //- @Ctor -//
-        public Base64StorableMap()
-        {
-        }
-        public Base64StorableMap(String base64Data)
-        {
-            Load(base64Data);
-        }
 
         //+
         //- @Load -//
@@ -61,11 +67,11 @@ namespace Nalarium.Data
             try
             {
                 Byte[] buffer = Convert.FromBase64String(base64Data);
-                data = UTF8Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+                data = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
             }
             catch
             {
-                throw new FormatException(Nalarium.Globalization.ResourceAccessor.GetString("Base64_InvalidData", AssemblyInfo.AssemblyName, Resource.ResourceManager));
+                throw new FormatException(ResourceAccessor.GetString("Base64_InvalidData", AssemblyInfo.AssemblyName, Resource.ResourceManager));
             }
             //+
             base.Load(data);
@@ -80,7 +86,7 @@ namespace Nalarium.Data
         {
             String data = base.Save();
             //+
-            return Convert.ToBase64String(UTF8Encoding.UTF8.GetBytes(data));
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(data));
         }
     }
 }

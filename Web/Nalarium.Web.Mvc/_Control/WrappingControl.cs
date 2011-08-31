@@ -1,10 +1,15 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
-//+
+using System.Text;
+using System.Web;
+
 namespace Nalarium.Web.Mvc
 {
     /// <summary>
@@ -13,11 +18,15 @@ namespace Nalarium.Web.Mvc
     public abstract class WrappingControl : Control
     {
         private HtmlElement _containerType = HtmlElement.None;
+        private String _content;
+        private Control _control;
 
         protected WrappingControl()
         {
             AttributeList = new List<Attribute>();
         }
+
+        public List<Attribute> AttributeList { get; set; }
 
         //+
         //- @ContainerType -//
@@ -25,6 +34,7 @@ namespace Nalarium.Web.Mvc
         {
             return _containerType;
         }
+
         public WrappingControl ContainerType(HtmlElement type)
         {
             _containerType = type;
@@ -49,30 +59,30 @@ namespace Nalarium.Web.Mvc
         }
 
         //- @Content -//
-        private String _content;
-        private Control _control;
+
         public String Content()
         {
             return _content;
         }
+
         public Control ContentAsControl()
         {
             return _control;
         }
+
         public WrappingControl Content(String value)
         {
             _content = value;
             //+
             return this;
         }
+
         public WrappingControl Content(Control value)
         {
             _control = value;
             //+
             return this;
         }
-
-        public List<Attribute> AttributeList { get; set; }
 
         //- @DefaultContent -//
         public WrappingControl Attribute(Attribute value)
@@ -87,9 +97,9 @@ namespace Nalarium.Web.Mvc
 
         //+
         //- @Render -//
-        public override System.Web.HtmlString Render()
+        public override HtmlString Render()
         {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new StringBuilder();
             if (!String.IsNullOrEmpty(TagName()))
             {
                 builder.Append("<" + TagName());
@@ -112,7 +122,7 @@ namespace Nalarium.Web.Mvc
                 builder.Append("</" + TagName() + ">");
             }
             //+
-            return new System.Web.HtmlString(builder.ToString());
+            return new HtmlString(builder.ToString());
         }
     }
 }

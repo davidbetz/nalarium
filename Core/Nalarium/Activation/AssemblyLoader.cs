@@ -1,10 +1,14 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Reflection;
-//+
+using Nalarium.Configuration;
+
 namespace Nalarium.Activation
 {
     /// <summary>
@@ -28,8 +32,8 @@ namespace Nalarium.Activation
             {
                 if (ObjectInjectionReportController.Reporter.Initialized)
                 {
-                    Map map = new Map();
-                    map.Add("App Name", Nalarium.Configuration.SystemSection.GetConfigSection().AppInfo.Name);
+                    var map = new Map();
+                    map.Add("App Name", SystemSection.GetConfigSection().AppInfo.Name);
                     map.Add("Section", "Resource Injector");
                     map.Add("AssemblyName", assemblyName);
                     map.Add("Message", ex.Message);

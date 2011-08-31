@@ -1,12 +1,16 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
-//+
+using System.Globalization;
 using Nalarium.Activation;
 //+
+
 namespace Nalarium.Reporting
 {
     internal static class SenderActivator
@@ -25,8 +29,8 @@ namespace Nalarium.Reporting
                 List<SenderFactory> processorFactoryList = processorFactoryMap.GetValueList();
                 foreach (SenderFactory factory in processorFactoryList)
                 {
-                    processorType = processorType.ToLower(System.Globalization.CultureInfo.CurrentCulture);
-                    processor = (Sender)factory.Create(processorType);
+                    processorType = processorType.ToLower(CultureInfo.CurrentCulture);
+                    processor = factory.Create(processorType);
                     if (processor != null)
                     {
                         break;

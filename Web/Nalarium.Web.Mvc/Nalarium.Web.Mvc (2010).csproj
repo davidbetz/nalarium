@@ -78,7 +78,7 @@
     <Compile Include="_Control\Attribute.cs" />
     <Compile Include="_Control\Break.cs" />
     <Compile Include="_Control\Control.cs" />
-    <Compile Include="_Control\ControlLabel.cs" />
+    <Compile Include="_Control\Label.cs" />
     <Compile Include="_Control\Div.cs" />
     <Compile Include="_Control\GoogleAnalytics.cs" />
     <Compile Include="_Control\Paragraph.cs" />

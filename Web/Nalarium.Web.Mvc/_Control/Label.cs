@@ -1,13 +1,22 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
-//+
+using System.Text;
+using System.Web;
+
 namespace Nalarium.Web.Mvc
 {
     public class Label : Control
     {
+        private String _forId;
+        private String _suffix;
+        private String _text;
+
         protected Label()
         {
         }
@@ -18,11 +27,12 @@ namespace Nalarium.Web.Mvc
         }
 
         //- @ForId -//
-        private String _forId;
+
         public String ForId()
         {
             return _forId;
         }
+
         public Label ForId(String value)
         {
             _forId = value;
@@ -31,11 +41,12 @@ namespace Nalarium.Web.Mvc
         }
 
         //- @Suffix -//
-        private String _suffix;
+
         public String Suffix()
         {
             return _suffix;
         }
+
         public Label Suffix(String value)
         {
             _suffix = value;
@@ -44,11 +55,12 @@ namespace Nalarium.Web.Mvc
         }
 
         //- @Text -//
-        private String _text;
+
         public String Text()
         {
             return _text;
         }
+
         public Label Text(String value)
         {
             _text = value;
@@ -58,18 +70,18 @@ namespace Nalarium.Web.Mvc
 
         //+
         //- @Render -//
-        public override System.Web.HtmlString Render()
+        public override HtmlString Render()
         {
             String forId = ForId();
             if (String.IsNullOrEmpty(forId))
             {
-                return new System.Web.HtmlString(String.Empty);
+                return new HtmlString(String.Empty);
             }
-            System.Text.StringBuilder builder = new System.Text.StringBuilder("<label for=\"" + forId + "\">");
+            var builder = new StringBuilder("<label for=\"" + forId + "\">");
             builder.Append(Text() + Suffix());
             builder.Append("</label>");
             //+
-            return new System.Web.HtmlString(builder.ToString());
+            return new HtmlString(builder.ToString());
         }
     }
 }

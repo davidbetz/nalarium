@@ -1,9 +1,12 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium.Mail
 {
     /// <summary>
@@ -21,7 +24,7 @@ namespace Nalarium.Mail
         /// <returns>MailOptions flags object with combines values.</returns>
         public static MailOptions Create(Boolean isHtml, Boolean useSecureGmail, Boolean useGmailConversationBreaker)
         {
-            MailOptions option = new MailOptions();
+            var option = new MailOptions();
             if (isHtml)
             {
                 option = option | MailOptions.IsHtml;

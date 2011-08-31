@@ -1,10 +1,13 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
-//+
+
 namespace Nalarium.Web.AccessRule
 {
     internal class Rule
@@ -26,16 +29,16 @@ namespace Nalarium.Web.AccessRule
             {
                 Int32 requiredCount = WhenList.Count;
                 WhenList.ForEach(p =>
-                {
-                    if (p.Check())
-                    {
-                        requiredCount--;
-                        if (requiredCount == 0)
-                        {
-                            execute = true;
-                        }
-                    }
-                });
+                                 {
+                                     if (p.Check())
+                                     {
+                                         requiredCount--;
+                                         if (requiredCount == 0)
+                                         {
+                                             execute = true;
+                                         }
+                                     }
+                                 });
             }
             else if (Condition != null)
             {

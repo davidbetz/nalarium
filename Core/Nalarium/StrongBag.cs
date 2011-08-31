@@ -1,15 +1,17 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium
 {
     public class StrongBag
     {
         //- $Data -//
-        private StringObjectMap Data { get; set; }
 
         //+
         //- @Ctor -//
@@ -17,6 +19,8 @@ namespace Nalarium
         {
             Data = new StringObjectMap();
         }
+
+        private StringObjectMap Data { get; set; }
 
         //+
         //- @Get -//
@@ -35,6 +39,7 @@ namespace Nalarium
             //+
             return default(T);
         }
+
         /// <summary>
         /// Obtains a value.
         /// </summary>
@@ -46,6 +51,7 @@ namespace Nalarium
         {
             return Get<T>(ScopeTranscriber.Construct(scope, name));
         }
+
         //(must be unique; scopes are recommended)
         //- @GetReference -//
         /// <summary>
@@ -58,6 +64,7 @@ namespace Nalarium
         {
             return Data[name] as T;
         }
+
         //- @GetReference -//
         /// <summary>
         /// Obtains an object reference.
@@ -82,6 +89,7 @@ namespace Nalarium
         {
             Data[name] = value;
         }
+
         /// <summary>
         /// Sets and object by name (scoping is highly recommended)
         /// </summary>
@@ -91,7 +99,7 @@ namespace Nalarium
         /// <param name="value">value of the item.</param>
         public void Set<T>(String scope, String name, T value)
         {
-            Set<T>(ScopeTranscriber.Construct(scope, name), value);
+            Set(ScopeTranscriber.Construct(scope, name), value);
         }
     }
 }

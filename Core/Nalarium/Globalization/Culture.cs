@@ -1,10 +1,14 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Globalization;
-//+
+using System.Threading;
+
 namespace Nalarium.Globalization
 {
     public static class Culture
@@ -17,7 +21,7 @@ namespace Nalarium.Globalization
         {
             get
             {
-                return System.Threading.Thread.CurrentThread.CurrentCulture;
+                return Thread.CurrentThread.CurrentCulture;
             }
         }
 
@@ -29,7 +33,7 @@ namespace Nalarium.Globalization
         {
             get
             {
-                return System.Threading.Thread.CurrentThread.CurrentUICulture;
+                return Thread.CurrentThread.CurrentUICulture;
             }
         }
 
@@ -41,7 +45,7 @@ namespace Nalarium.Globalization
         {
             get
             {
-                return System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat;
+                return Thread.CurrentThread.CurrentCulture.DateTimeFormat;
             }
         }
 
@@ -53,7 +57,7 @@ namespace Nalarium.Globalization
         {
             get
             {
-                return System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
+                return Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
             }
         }
     }

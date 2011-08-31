@@ -1,9 +1,12 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System.IO;
-//+
+
 namespace Nalarium.IO
 {
     /// <summary>
@@ -17,7 +20,7 @@ namespace Nalarium.IO
         /// </summary>
         public override void Close()
         {
-            this.Position = 0;
+            Position = 0;
         }
     }
 }

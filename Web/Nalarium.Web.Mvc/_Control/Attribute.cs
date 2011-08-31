@@ -1,13 +1,21 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
-//+
+using System.Text;
+using System.Web;
+
 namespace Nalarium.Web.Mvc
 {
     public class Attribute : Control
     {
+        private String _name;
+        private String _value;
+
         private Attribute()
         {
         }
@@ -18,11 +26,12 @@ namespace Nalarium.Web.Mvc
         }
 
         //- @Name -//
-        private String _name;
+
         public String Name()
         {
             return _name;
         }
+
         public Attribute Name(String value)
         {
             _name = value;
@@ -31,11 +40,12 @@ namespace Nalarium.Web.Mvc
         }
 
         //- @Value -//
-        private String _value;
+
         public String Value()
         {
             return _value;
         }
+
         public Attribute Value(String value)
         {
             _value = value;
@@ -43,12 +53,12 @@ namespace Nalarium.Web.Mvc
             return this;
         }
 
-        public override System.Web.HtmlString Render()
+        public override HtmlString Render()
         {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new StringBuilder();
             builder.Append(" " + Name() + "=\"" + Value() + "\"");
             //+
-            return new System.Web.HtmlString(builder.ToString());
+            return new HtmlString(builder.ToString());
         }
     }
 }

@@ -1,12 +1,15 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium
 {
-    public class StringKeyValueMap: Map<String, StringKeyValue>
+    public class StringKeyValueMap : Map<String, StringKeyValue>
     {
         //- @Ctor -//
         /// <summary>
@@ -15,6 +18,7 @@ namespace Nalarium
         public StringKeyValueMap()
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="StringKeyValue"/> class.
         /// </summary>
@@ -28,8 +32,14 @@ namespace Nalarium
         //- Indexer -//
         public new StringKeyValue this[String key]
         {
-            get { return PeekSafely(key); }
-            set { base[key] = value; }
+            get
+            {
+                return PeekSafely(key);
+            }
+            set
+            {
+                base[key] = value;
+            }
         }
     }
 }

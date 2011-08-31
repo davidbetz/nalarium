@@ -1,15 +1,19 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
-//+
+using Nalarium.Web.AccessRule.Configuration;
+
 namespace Nalarium.Web.AccessRule
 {
     public static class ConfigurationLoader
     {
-        internal static Boolean _isLoaded = false;
+        internal static Boolean _isLoaded;
 
         //+
         //- @Load -//
@@ -22,8 +26,8 @@ namespace Nalarium.Web.AccessRule
                     return;
                 }
                 RuleMap.Current = new RuleMap();
-                Configuration.AccessRuleSection section = Configuration.AccessRuleSection.GetConfigSection();
-                foreach (Nalarium.Web.AccessRule.Configuration.RuleElement ruleElement in section.Rules)
+                AccessRuleSection section = AccessRuleSection.GetConfigSection();
+                foreach (RuleElement ruleElement in section.Rules)
                 {
                     RuleGroup group = RuleMap.Current[ruleElement.Group];
                     if (group == null)
@@ -36,14 +40,14 @@ namespace Nalarium.Web.AccessRule
                     {
                         continue;
                     }
-                    Rule rule = new Rule
-                    {
-                        Action = action
-                    };
+                    var rule = new Rule
+                               {
+                                   Action = action
+                               };
                     if (ruleElement.Composite.Count > 0)
                     {
                         rule.WhenList = new List<Condition>();
-                        foreach (Nalarium.Web.AccessRule.Configuration.MatchElement when in ruleElement.Composite)
+                        foreach (MatchElement when in ruleElement.Composite)
                         {
                             Condition condition = Condition.Create(when.Usage, when.Value);
                             if (condition == null)
@@ -74,9 +78,9 @@ namespace Nalarium.Web.AccessRule
                 foreach (RuleGroup ruleGroup in RuleMap.Current.Values)
                 {
                     ruleGroup.Add(new Rule
-                    {
-                        Action = Action.Create("Block")
-                    });
+                                  {
+                                      Action = Action.Create("Block")
+                                  });
                 }
                 //+
                 _isLoaded = true;

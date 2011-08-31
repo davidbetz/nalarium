@@ -1,24 +1,28 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium.Web.AccessRule
 {
     internal class Action
     {
-        public ActionExecutor _executor = null;
+        public ActionExecutor _executor;
 
         //+
         //- @Value -//
-        public String Value { get; set; }
 
         //+
         //- $Ctor -//
         private Action()
         {
         }
+
+        public String Value { get; set; }
 
         //+
         //- @Check -//
@@ -31,10 +35,10 @@ namespace Nalarium.Web.AccessRule
             }
             //+
             return new Action
-            {
-                Value = value,
-                _executor = executor
-            };
+                   {
+                       Value = value,
+                       _executor = executor
+                   };
         }
 
         public void Execute()

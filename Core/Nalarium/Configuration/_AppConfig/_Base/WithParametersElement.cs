@@ -1,13 +1,17 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
+using System.ComponentModel;
 using System.Configuration;
-//+
+
 namespace Nalarium.Configuration
 {
-    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class WithParametersElement : CommentableElement
     {
         //- @Parameters -//
@@ -28,7 +32,7 @@ namespace Nalarium.Configuration
         //- @GetParameterValue -//
         public String GetParameterValue(String name)
         {
-            return this.Parameters.GetValue(name);
+            return Parameters.GetValue(name);
         }
     }
 }

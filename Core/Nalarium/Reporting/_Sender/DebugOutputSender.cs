@@ -1,9 +1,13 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Diagnostics;
+
 namespace Nalarium.Reporting
 {
     public class DebugOutputSender : Sender
@@ -19,10 +23,10 @@ namespace Nalarium.Reporting
         {
             if (!String.IsNullOrEmpty(data))
             {
-                System.Diagnostics.Debug.WriteLine(data);
+                Debug.WriteLine(data);
                 if (!String.IsNullOrEmpty(data))
                 {
-                    System.Diagnostics.Debug.WriteLine(extra);
+                    Debug.WriteLine(extra);
                 }
             }
         }

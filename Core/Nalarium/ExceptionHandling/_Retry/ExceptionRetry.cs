@@ -1,17 +1,21 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 #region Reference
+
 //+ http://www.netfxharmonics.com/2006/01/Constrainted-try-with-retry-mechanism
+
 #endregion
+
 using System;
-//+
+using System.Threading;
+
 namespace Nalarium.ExceptionHandling
 {
-    public delegate void ExceptionTryBlock();
-    public delegate void ExceptionCatchBlock(Exception ex);
-
     //+
     /// <summary>
     /// Enabled the use of exception retries.
@@ -28,11 +32,11 @@ namespace Nalarium.ExceptionHandling
         /// <param name="tryBlock">The try block.</param>
         /// <param name="catchBlock">The catch block.</param>
         public static void TryWithRetryConstraints(
-               Int32 retryCount,
-               Int32 sleepTime,
-               ExceptionConstraintCollection constraints,
-               ExceptionTryBlock tryBlock,
-               ExceptionCatchBlock catchBlock)
+            Int32 retryCount,
+            Int32 sleepTime,
+            ExceptionConstraintCollection constraints,
+            ExceptionTryBlock tryBlock,
+            ExceptionCatchBlock catchBlock)
         {
             Int32 n = 0;
             while (true)
@@ -70,7 +74,7 @@ namespace Nalarium.ExceptionHandling
                                     {
                                         if (thrownException.GetType().ToString() == constraint.ToString())
                                         {
-                                            System.Threading.Thread.Sleep(sleepTime);
+                                            Thread.Sleep(sleepTime);
                                             //+
                                             continue;
                                         }
@@ -83,7 +87,7 @@ namespace Nalarium.ExceptionHandling
                             {
                                 if (ex.Message.Contains((String)constraint))
                                 {
-                                    System.Threading.Thread.Sleep(sleepTime);
+                                    Thread.Sleep(sleepTime);
                                     //+
                                     continue;
                                 }

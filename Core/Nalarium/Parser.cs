@@ -1,9 +1,14 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Globalization;
+using System.Threading;
+
 namespace Nalarium
 {
     /// <summary>
@@ -23,7 +28,7 @@ namespace Nalarium
     /// </example>
     public static class Parser
     {
-        private static Type _booleanType = typeof(Boolean);
+        private static readonly Type _booleanType = typeof(Boolean);
 
         //+
         //- @Parse -//
@@ -35,8 +40,9 @@ namespace Nalarium
         /// <returns>Parsed value</returns>
         public static T Parse<T>(String data)
         {
-            return Parse<T>(data, default(T));
+            return Parse(data, default(T));
         }
+
         /// <summary>
         /// Parses the string as a generic type
         /// </summary>
@@ -65,7 +71,7 @@ namespace Nalarium
                             break;
                     }
                 }
-                return (T)Convert.ChangeType(data, typeof(T), System.Threading.Thread.CurrentThread.CurrentCulture);
+                return (T)Convert.ChangeType(data, typeof(T), Thread.CurrentThread.CurrentCulture);
             }
             catch
             {
@@ -85,7 +91,7 @@ namespace Nalarium
             {
                 return String.Empty;
             }
-            String valueString = value as String;
+            var valueString = value as String;
             if (valueString != null)
             {
                 return valueString;
@@ -93,6 +99,7 @@ namespace Nalarium
             //+
             return value.ToString();
         }
+
         /// <summary>
         /// Parses the string or sets default.
         /// </summary>
@@ -108,6 +115,7 @@ namespace Nalarium
             //+
             return value;
         }
+
         /// <summary>
         /// Parses the string or, if the string is longer than the max, only returns the portion upto the max.
         /// </summary>
@@ -144,6 +152,7 @@ namespace Nalarium
             //+
             return 0;
         }
+
         /// <summary>
         /// Parses the Byte.
         /// </summary>
@@ -153,6 +162,7 @@ namespace Nalarium
         {
             return ParseByte(value, 0);
         }
+
         /// <summary>
         /// Parses the Byte or sets default.
         /// </summary>
@@ -187,6 +197,7 @@ namespace Nalarium
             //+
             return 0;
         }
+
         /// <summary>
         /// Parses the int32.
         /// </summary>
@@ -196,6 +207,7 @@ namespace Nalarium
         {
             return ParseInt32(value, 0);
         }
+
         /// <summary>
         /// Parses the int32 or sets default.
         /// </summary>
@@ -230,6 +242,7 @@ namespace Nalarium
             //+
             return 0;
         }
+
         /// <summary>
         /// Parses the int64.
         /// </summary>
@@ -239,6 +252,7 @@ namespace Nalarium
         {
             return ParseInt64(value, 0);
         }
+
         /// <summary>
         /// Parses the int64 or sets default.
         /// </summary>
@@ -272,6 +286,7 @@ namespace Nalarium
             }
             return false;
         }
+
         /// <summary>
         /// Parses the boolean.
         /// </summary>
@@ -281,6 +296,7 @@ namespace Nalarium
         {
             return value == 1;
         }
+
         /// <summary>
         /// Parses the boolean.
         /// </summary>
@@ -290,6 +306,7 @@ namespace Nalarium
         {
             return ParseBoolean(value, false);
         }
+
         /// <summary>
         /// Parses the boolean or sets default.
         /// </summary>
@@ -307,7 +324,7 @@ namespace Nalarium
             {
                 if (value != null)
                 {
-                    if (value.ToLower(System.Globalization.CultureInfo.CurrentCulture) == "yes" || value == "1" || value == "1.0" || value == "on" || value == "active")
+                    if (value.ToLower(CultureInfo.CurrentCulture) == "yes" || value == "1" || value == "1.0" || value == "on" || value == "active")
                     {
                         return true;
                     }
@@ -330,6 +347,7 @@ namespace Nalarium
             }
             return 0.0;
         }
+
         /// <summary>
         /// Parses the double.
         /// </summary>
@@ -339,6 +357,7 @@ namespace Nalarium
         {
             return ParseDouble(value, 0.0);
         }
+
         /// <summary>
         /// Parses the double or sets default.
         /// </summary>
@@ -372,6 +391,7 @@ namespace Nalarium
             }
             return DateTime.MinValue;
         }
+
         /// <summary>
         /// Parses the date time.
         /// </summary>
@@ -381,6 +401,7 @@ namespace Nalarium
         {
             return ParseDateTime(value, DateTime.MinValue);
         }
+
         /// <summary>
         /// Parses the date time or sets default.
         /// </summary>
@@ -416,6 +437,7 @@ namespace Nalarium
             //+
             return 0;
         }
+
         /// <summary>
         /// Parses the UInt16.
         /// </summary>
@@ -425,6 +447,7 @@ namespace Nalarium
         {
             return ParseUInt16(value, 0);
         }
+
         /// <summary>
         /// Parses the UInt16 or sets default.
         /// </summary>
@@ -459,6 +482,7 @@ namespace Nalarium
             //+
             return 0;
         }
+
         /// <summary>
         /// Parses the UInt32.
         /// </summary>
@@ -468,6 +492,7 @@ namespace Nalarium
         {
             return ParseUInt32(value, 0);
         }
+
         /// <summary>
         /// Parses the UInt32 or sets default.
         /// </summary>
@@ -502,6 +527,7 @@ namespace Nalarium
             //+
             return 0;
         }
+
         /// <summary>
         /// Parses the UInt64.
         /// </summary>
@@ -511,6 +537,7 @@ namespace Nalarium
         {
             return ParseUInt64(value, 0);
         }
+
         /// <summary>
         /// Parses the UInt64 or sets default.
         /// </summary>

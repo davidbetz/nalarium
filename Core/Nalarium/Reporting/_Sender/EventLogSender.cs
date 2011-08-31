@@ -1,19 +1,18 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Diagnostics;
-//+
+
 namespace Nalarium.Reporting
 {
     public class EventLogSender : Sender
     {
         //- ~Setting -//
-        internal class Setting
-        {
-            public const String Source = "Nalarium";
-        }
 
         //+
         //- @SendCore -//
@@ -35,7 +34,7 @@ namespace Nalarium.Reporting
                 {
                     EventLog.CreateEventSource(Setting.Source, Setting.Source);
                 }
-                EventLog log = new EventLog();
+                var log = new EventLog();
                 log.Source = Setting.Source;
                 if (isException)
                 {
@@ -47,5 +46,14 @@ namespace Nalarium.Reporting
                 }
             }
         }
+
+        #region Nested type: Setting
+
+        internal class Setting
+        {
+            public const String Source = "Nalarium";
+        }
+
+        #endregion
     }
 }

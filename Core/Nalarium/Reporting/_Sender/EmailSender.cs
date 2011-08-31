@@ -1,11 +1,15 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using Nalarium.Configuration;
 using Nalarium.Mail;
 //+
+
 namespace Nalarium.Reporting
 {
     public class EmailSender : Sender
@@ -47,7 +51,7 @@ namespace Nalarium.Reporting
                 }
                 if (givePrefix)
                 {
-                    Nalarium.Configuration.SystemSection section = Nalarium.Configuration.SystemSection.GetConfigSection();
+                    SystemSection section = SystemSection.GetConfigSection();
                     if (section != null && section.AppInfo != null)
                     {
                         String name = section.AppInfo.Name;
@@ -58,7 +62,7 @@ namespace Nalarium.Reporting
                     }
                 }
                 //+
-                Nalarium.Mail.Emailer.Send(from, to, subject, data, MailOptionsCreator.Create(ContentType == "text/html", MailConfiguration.UseSecureGmailByDefault, isException && MailConfiguration.UseGmailConverationBreakerForExceptionReport));
+                Emailer.Send(from, to, subject, data, MailOptionsCreator.Create(ContentType == "text/html", MailConfiguration.UseSecureGmailByDefault, isException && MailConfiguration.UseGmailConverationBreakerForExceptionReport));
             }
         }
     }

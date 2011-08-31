@@ -1,9 +1,12 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium.Reporting
 {
     public class StringReportCreator : ReportCreator
@@ -16,13 +19,13 @@ namespace Nalarium.Reporting
         /// <returns></returns>
         protected override String CreateCore(Object content)
         {
-            String data = content as String;
+            var data = content as String;
             if (data != null)
             {
-                this.Write(data, FormatterType.Normal);
+                Write(data, FormatterType.Normal);
             }
             //+
-            return this.Result.ToString();
+            return Result.ToString();
         }
     }
 }

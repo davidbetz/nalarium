@@ -1,9 +1,12 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium
 {
     public static class PairSplitter
@@ -15,7 +18,7 @@ namespace Nalarium
             {
                 return new Map();
             }
-            Map map = new Map();
+            var map = new Map();
             foreach (String item in pairArray)
             {
                 String trimmed = item.Trim();
@@ -35,6 +38,7 @@ namespace Nalarium
             //+
             return map;
         }
+
         public static void Split(String text, out String first, out String second)
         {
             if (String.IsNullOrEmpty(text))

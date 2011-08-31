@@ -1,10 +1,13 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using Nalarium.Globalization;
-//+
+
 namespace Nalarium.Reporting
 {
     public class Reporter
@@ -98,12 +101,12 @@ namespace Nalarium.Reporting
         internal static Reporter Create(String name, ReportCreator creator, Sender sender, Formatter formatter)
         {
             return new Reporter
-            {
-                Name = name,
-                ReportCreator = creator,
-                ReportSender = sender,
-                Formatter = formatter
-            };
+                   {
+                       Name = name,
+                       ReportCreator = creator,
+                       ReportSender = sender,
+                       Formatter = formatter
+                   };
         }
 
         //- @AddMap -//
@@ -139,7 +142,7 @@ namespace Nalarium.Reporting
         {
             if (ReportCreator != null && ReportSender != null && Formatter != null)
             {
-                this.Initialized = true;
+                Initialized = true;
             }
         }
 
@@ -151,6 +154,7 @@ namespace Nalarium.Reporting
         {
             Send(String.Empty, false);
         }
+
         /// <summary>
         /// Sends the report.
         /// </summary>
@@ -159,6 +163,7 @@ namespace Nalarium.Reporting
         {
             Send(String.Empty, isException);
         }
+
         /// <summary>
         /// Sends the report.
         /// </summary>
@@ -168,7 +173,7 @@ namespace Nalarium.Reporting
         {
             if (!Initialized)
             {
-                throw new ArgumentNullException(Nalarium.Globalization.ResourceAccessor.GetString("Report_NotInitialized", AssemblyInfo.AssemblyName, Resource.ResourceManager));
+                throw new ArgumentNullException(ResourceAccessor.GetString("Report_NotInitialized", AssemblyInfo.AssemblyName, Resource.ResourceManager));
             }
             if (ReportCreator == null)
             {
@@ -187,9 +192,9 @@ namespace Nalarium.Reporting
                 isException = true;
             }
             //+
-            this.ReportSender.ContentType = this.ContentType;
-            this.ReportCreator.Formatter = this.Formatter;
-            this.ReportSender.Send(this.ReportCreator.Create(), extra, isException);
+            ReportSender.ContentType = ContentType;
+            ReportCreator.Formatter = Formatter;
+            ReportSender.Send(ReportCreator.Create(), extra, isException);
         }
 
         //- @SendSingle -//
@@ -201,6 +206,7 @@ namespace Nalarium.Reporting
         {
             SendSingle(data, String.Empty, false);
         }
+
         /// <summary>
         /// Sends a single report item.
         /// </summary>
@@ -226,9 +232,9 @@ namespace Nalarium.Reporting
                 isException = true;
             }
             //+
-            this.ReportSender.ContentType = this.ContentType;
-            this.ReportCreator.Formatter = this.Formatter;
-            this.ReportSender.Send(this.ReportCreator.Create(data), extra, isException);
+            ReportSender.ContentType = ContentType;
+            ReportCreator.Formatter = Formatter;
+            ReportSender.Send(ReportCreator.Create(data), extra, isException);
         }
     }
 }

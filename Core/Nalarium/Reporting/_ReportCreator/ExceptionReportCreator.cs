@@ -1,9 +1,13 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Security.Principal;
+
 namespace Nalarium.Reporting
 {
     public class ExceptionReportCreator : ReportCreator
@@ -26,17 +30,17 @@ namespace Nalarium.Reporting
         /// <returns></returns>
         protected override String CreateCore(Object content)
         {
-            Exception exceptionData = content as Exception;
+            var exceptionData = content as Exception;
             if (exceptionData != null)
             {
                 Write(exceptionData.Message, exceptionData);
             }
             else
             {
-                Object[] data = content as Object[];
+                var data = content as Object[];
                 if (data != null)
                 {
-                    this.Write("Information Report", FormatterType.MainHeading);
+                    Write("Information Report", FormatterType.MainHeading);
                     //+
                     String message;
                     Exception exception;
@@ -47,37 +51,37 @@ namespace Nalarium.Reporting
                 }
             }
             //+
-            return this.Result.ToString();
+            return Result.ToString();
         }
 
         //- $Write -//
         private void Write(String message, Exception exception)
         {
-            this.Write("Message", FormatterType.Heading);
-            this.Write(message, FormatterType.Normal);
-            this.Write(FormatterType.Break);
+            Write("Message", FormatterType.Heading);
+            Write(message, FormatterType.Normal);
+            Write(FormatterType.Break);
             //+
-            String fullname = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-            this.Write("User", FormatterType.SubHeading);
-            this.Write(fullname, FormatterType.Normal);
-            this.Write(FormatterType.Break);
-            this.Write("Time", FormatterType.SubHeading);
-            this.Write(DateTime.Now.ToString(), FormatterType.Normal);
-            this.Write(FormatterType.Break);
-            this.Write("Details", FormatterType.Heading);
-            this.Write("exception.Message", FormatterType.SubHeading);
-            this.Write(exception.Message, FormatterType.Normal);
-            this.Write("exception.StackTrace", FormatterType.SubHeading);
-            this.Write(exception.StackTrace, FormatterType.Normal);
-            this.Write(FormatterType.Break);
+            String fullname = WindowsIdentity.GetCurrent().Name;
+            Write("User", FormatterType.SubHeading);
+            Write(fullname, FormatterType.Normal);
+            Write(FormatterType.Break);
+            Write("Time", FormatterType.SubHeading);
+            Write(DateTime.Now.ToString(), FormatterType.Normal);
+            Write(FormatterType.Break);
+            Write("Details", FormatterType.Heading);
+            Write("exception.Message", FormatterType.SubHeading);
+            Write(exception.Message, FormatterType.Normal);
+            Write("exception.StackTrace", FormatterType.SubHeading);
+            Write(exception.StackTrace, FormatterType.Normal);
+            Write(FormatterType.Break);
             Exception innerException = exception.InnerException;
             while (innerException != null)
             {
-                this.Write("innerException.Message", FormatterType.SubHeading);
-                this.Write(innerException.Message, FormatterType.Normal);
-                this.Write("innerException.StackTrace", FormatterType.SubHeading);
-                this.Write(innerException.StackTrace, FormatterType.Normal);
-                this.Write(FormatterType.Break);
+                Write("innerException.Message", FormatterType.SubHeading);
+                Write(innerException.Message, FormatterType.Normal);
+                Write("innerException.StackTrace", FormatterType.SubHeading);
+                Write(innerException.StackTrace, FormatterType.Normal);
+                Write(FormatterType.Break);
                 innerException = innerException.InnerException;
             }
         }

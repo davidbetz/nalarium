@@ -1,11 +1,17 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+
 //+
 //+
+
 namespace Nalarium.Activation
 {
     public static class TypeFactoryActivator
@@ -21,6 +27,7 @@ namespace Nalarium.Activation
         {
             return Create(objectType, FactoryCache.TypeFactoryCache);
         }
+
         /// <summary>
         /// Used to create a type factory from a specified factory map.
         /// </summary>
@@ -41,7 +48,7 @@ namespace Nalarium.Activation
                 List<IFactory> processorFactoryList = objectFactoryMap.GetValueList();
                 foreach (IFactory factory in processorFactoryList)
                 {
-                    objectType = objectType.ToLower(System.Globalization.CultureInfo.CurrentCulture);
+                    objectType = objectType.ToLower(CultureInfo.CurrentCulture);
                     processor = ((TypeFactory)factory).CreateType(objectType);
                     if (processor != null)
                     {

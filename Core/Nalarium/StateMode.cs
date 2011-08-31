@@ -1,4 +1,5 @@
 ﻿//+
+
 namespace Nalarium
 {
     public enum StateMode

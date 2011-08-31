@@ -1,14 +1,19 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Text;
+
 //++
 //
 // See Map.cs for usage
 //
 //++
+
 namespace Nalarium
 {
     /// <summary>
@@ -17,24 +22,6 @@ namespace Nalarium
     public class Template
     {
         //- @Common -//
-        /// <summary>
-        /// Contains common templates for quick access
-        /// </summary>
-        public class Common
-        {
-            public const String Link = @"<a href=""{Link}"">{Text}</a>";
-            public const String Image = @"<img src=""{Source}"" alt=""{Text}"" />";
-
-            //- #Ctor -//
-            protected Common() { }
-        }
-
-        //- @Value -//
-        /// <summary>
-        /// Gets or sets the value.
-        /// </summary>
-        /// <value>The value.</value>
-        public StringBuilder Value { get; set; }
 
         //+
         //- @Ctor -//
@@ -45,14 +32,21 @@ namespace Nalarium
             : this(String.Empty)
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Template"/> class.
         /// </summary>
         /// <param name="value">The value.</param>
         public Template(String value)
         {
-            this.Value = new StringBuilder(value);
+            Value = new StringBuilder(value);
         }
+
+        /// <summary>
+        /// Gets or sets the value.
+        /// </summary>
+        /// <value>The value.</value>
+        public StringBuilder Value { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Template"/> class.
@@ -61,6 +55,7 @@ namespace Nalarium
         {
             return new Template();
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Template"/> class.
         /// </summary>
@@ -78,7 +73,7 @@ namespace Nalarium
         /// <param name="value">Template text.</param>
         public void AppendText(String text)
         {
-            this.Value.Append(text);
+            Value.Append(text);
         }
 
         //- @Interpolate -//
@@ -99,8 +94,9 @@ namespace Nalarium
                 return String.Empty;
             }
             //+
-            return Template.Create(templateValue).Interpolate(map);
+            return Create(templateValue).Interpolate(map);
         }
+
         /// <summary>
         /// Interpolates the specified pair array.
         /// </summary>
@@ -118,8 +114,9 @@ namespace Nalarium
                 return String.Empty;
             }
             //+
-            return Template.Create(templateValue).Interpolate(new Map(parameterArray));
+            return Create(templateValue).Interpolate(new Map(parameterArray));
         }
+
         /// <summary>
         /// Interpolates the specified map entry array.
         /// </summary>
@@ -134,6 +131,7 @@ namespace Nalarium
             //+
             return Interpolate(new Map(parameterArray));
         }
+
         /// <summary>
         /// Interpolates the specified map.
         /// </summary>
@@ -141,13 +139,14 @@ namespace Nalarium
         /// <returns>Templated result string.</returns>
         public String Interpolate(Map map)
         {
-            String result = this.Value.ToString();
+            String result = Value.ToString();
             foreach (String name in map.GetKeyList())
             {
                 result = result.Replace("{" + name + "}", map[name]);
             }
             return result;
         }
+
         /// <summary>
         /// Interpolates the specified pair array.
         /// </summary>
@@ -188,5 +187,23 @@ namespace Nalarium
             //+
             return result;
         }
+
+        #region Nested type: Common
+
+        /// <summary>
+        /// Contains common templates for quick access
+        /// </summary>
+        public class Common
+        {
+            public const String Link = @"<a href=""{Link}"">{Text}</a>";
+            public const String Image = @"<img src=""{Source}"" alt=""{Text}"" />";
+
+            //- #Ctor -//
+            protected Common()
+            {
+            }
+        }
+
+        #endregion
     }
 }

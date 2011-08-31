@@ -1,9 +1,13 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Globalization;
+
 namespace Nalarium.Reporting
 {
     public class WikiFormatter : Formatter
@@ -14,7 +18,7 @@ namespace Nalarium.Reporting
         /// </summary>
         public WikiFormatter()
         {
-            this.PreferredContentType = "text/plain";
+            PreferredContentType = "text/plain";
         }
 
         //+
@@ -180,7 +184,7 @@ namespace Nalarium.Reporting
                 {
                     String[] partArray = text.Split(',');
                     //+
-                    return String.Format(System.Globalization.CultureInfo.CurrentCulture, "[{0}|{1}]", partArray[0], partArray[1]);
+                    return String.Format(CultureInfo.CurrentCulture, "[{0}|{1}]", partArray[0], partArray[1]);
                 }
                 else
                 {

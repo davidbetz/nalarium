@@ -1,10 +1,15 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
+using System.IO;
+using System.Text;
 using System.Xml;
-//+
+
 namespace Nalarium.Xml
 {
     public static class XmlFormatter
@@ -17,17 +22,17 @@ namespace Nalarium.Xml
         /// <returns></returns>
         public static String Format(String input)
         {
-            System.IO.MemoryStream stream = new System.IO.MemoryStream();
-            XmlDocument doc = new XmlDocument();
+            var stream = new MemoryStream();
+            var doc = new XmlDocument();
             doc.LoadXml(input);
-            XmlTextWriter writer = new XmlTextWriter(stream, null);
+            var writer = new XmlTextWriter(stream, null);
             writer.Formatting = Formatting.Indented;
             writer.IndentChar = ' ';
             writer.Indentation = 2;
             doc.Save(writer);
             //+
             Byte[] buffer = stream.ToArray();
-            String output = System.Text.UTF8Encoding.UTF8.GetString(buffer);
+            String output = Encoding.UTF8.GetString(buffer);
             Int32 lastAngle = output.LastIndexOf(">");
             output = output.Substring(0, lastAngle + 1);
             //+

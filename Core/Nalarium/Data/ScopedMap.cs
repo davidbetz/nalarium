@@ -1,15 +1,18 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium.Data
 {
     /// <summary>
     /// Represents a map with inherent scopes.
     /// </summary>
-    public class ScopedMap : Nalarium.Map
+    public class ScopedMap : Map
     {
         //- @SetScopedEntry -//
         /// <summary>
@@ -20,7 +23,7 @@ namespace Nalarium.Data
         /// <param name="value">The value.</param>
         public void SetScopedEntry(String scope, String key, String value)
         {
-            this.Add(scope + "::" + key, value);
+            Add(scope + "::" + key, value);
         }
 
         //- @GetScopedEntry -//

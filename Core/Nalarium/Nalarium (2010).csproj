@@ -77,6 +77,8 @@
     <Compile Include="Configuration\_AppConfig\ConfigurationSection.cs" />
     <Compile Include="Cryptography\Rijndael.cs" />
     <Compile Include="Cryptography\QuickHash.cs" />
+    <Compile Include="ExceptionHandling\_Retry\ExceptionCatchBlock.cs" />
+    <Compile Include="ExceptionHandling\_Retry\ExceptionTryBlock.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IViewObjectContainer.cs" />
@@ -106,7 +108,7 @@
     <Compile Include="Collection.cs" />
     <Compile Include="CitationAttribute.cs" />
     <Compile Include="ArrayModifier.cs" />
-    <Compile Include="Configuration\_AppConfig\_Resource\ResourceElement.cs" />
+    <Compile Include="Configuration\_AppConfig\_Resource\GlobalizationElement.cs" />
     <Compile Include="Reflection\AttributeReader.cs" />
     <Compile Include="NotDocumentedAttribute.cs" />
     <Compile Include="Mail\MailOptionsCreator.cs" />
@@ -127,9 +129,9 @@
     <Compile Include="Configuration\_AppConfig\_Object\ObjectElement.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\FormatterFactoryCollection.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\ReporterElement.cs" />
-    <Compile Include="Configuration\_AppConfig\_Type\TypeCollection.cs" />
-    <Compile Include="Configuration\_AppConfig\_Type\TypeElement.cs" />
-    <Compile Include="KeyValueMap.cs" />
+    <Compile Include="Configuration\_AppConfig\_Type\TypeParameterCollection.cs" />
+    <Compile Include="Configuration\_AppConfig\_Type\TypeParameterElement.cs" />
+    <Compile Include="StringKeyValueMap.cs" />
     <Compile Include="StringKeyValue.cs" />
     <Compile Include="KeyValue.cs" />
     <Compile Include="Data\Cached\CachedDataFactory.cs" />
@@ -173,10 +175,10 @@
     <Compile Include="_Interface\IFactory.cs" />
     <Compile Include="_Interface\IHasPriority.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\SenderFactoryCollection.cs" />
-    <Compile Include="Configuration\_AppConfig\_Reporting\ReportFactoryCollection.cs" />
+    <Compile Include="Configuration\_AppConfig\_Reporting\ReporterFactoryCollection.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\ReporterCollection.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\ReportingElement.cs" />
-    <Compile Include="Configuration\_AppConfig\IProvidesParameterArray.cs" />
+    <Compile Include="Configuration\_AppConfig\IProvidesParameters.cs" />
     <Compile Include="Configuration\_AppConfig\_Base\CommentableElement.cs" />
     <Compile Include="Configuration\_AppConfig\SystemSection.cs" />
     <Compile Include="Configuration\_AppConfig\_AppInfo\AppInfoElement.cs" />

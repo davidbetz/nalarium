@@ -1,10 +1,13 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
-//+
+
 namespace Nalarium.Reporting
 {
     public class MapReportCreator : ReportCreator
@@ -15,8 +18,8 @@ namespace Nalarium.Reporting
         /// </summary>
         protected override void CreateHeader()
         {
-            this.Write("Information Report", FormatterType.MainHeading);
-            this.Write("Items", FormatterType.Heading);
+            Write("Information Report", FormatterType.MainHeading);
+            Write("Items", FormatterType.Heading);
         }
 
         //- #CreateCore -//
@@ -27,19 +30,19 @@ namespace Nalarium.Reporting
         /// <returns></returns>
         protected override String CreateCore(Object content)
         {
-            Map data = content as Map;
+            var data = content as Map;
             if (data != null)
             {
-                this.Write("Item", FormatterType.SubHeading);
+                Write("Item", FormatterType.SubHeading);
                 List<String> keyList = data.GetKeyList();
                 foreach (String key in keyList)
                 {
-                    this.Write(key + ": " + data[key], FormatterType.Normal);
-                    this.Write(FormatterType.Break);
+                    Write(key + ": " + data[key], FormatterType.Normal);
+                    Write(FormatterType.Break);
                 }
             }
             //+
-            return this.Result.ToString();
+            return Result.ToString();
         }
     }
 }

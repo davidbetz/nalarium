@@ -1,9 +1,49 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Configuration;
+using System.Configuration.Provider;
+using System.Data;
+using System.Data.Common;
+using System.Data.Odbc;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Net;
+using System.Net.Mail;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Reflection;
+using System.Resources;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Runtime.Remoting;
+using System.Runtime.Serialization;
+using System.Security;
+using System.Security.AccessControl;
+using System.Security.Authentication;
+using System.Security.Cryptography;
+using System.Security.Policy;
+using System.Security.Principal;
+using System.Text;
+using System.Threading;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.XPath;
+using System.Xml.Xsl;
+using Microsoft.SqlServer.Server;
+
 namespace Nalarium.Activation
 {
     /// <summary>
@@ -17,328 +57,328 @@ namespace Nalarium.Activation
         /// </summary>
         /// <param name="text">Alias of the type.</param>
         /// <returns>Type of the exception.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
+        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity"), SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
         public override Type CreateType(String text)
         {
             Type ex = null;
             switch (text)
             {
                 case "system":
-                    return TypeCache.InlineRegister(typeof(System.SystemException));
+                    return TypeCache.InlineRegister(typeof(SystemException));
                 case "outofmemory":
-                    return TypeCache.InlineRegister(typeof(System.OutOfMemoryException));
+                    return TypeCache.InlineRegister(typeof(OutOfMemoryException));
                 case "stackoverflow":
-                    return TypeCache.InlineRegister(typeof(System.StackOverflowException));
+                    return TypeCache.InlineRegister(typeof(StackOverflowException));
                 case "datamisaligned":
-                    return TypeCache.InlineRegister(typeof(System.DataMisalignedException));
+                    return TypeCache.InlineRegister(typeof(DataMisalignedException));
                 case "executionengine":
-                    return TypeCache.InlineRegister(typeof(System.ExecutionEngineException));
+                    return TypeCache.InlineRegister(typeof(ExecutionEngineException));
                 case "memberaccess":
-                    return TypeCache.InlineRegister(typeof(System.MemberAccessException));
+                    return TypeCache.InlineRegister(typeof(MemberAccessException));
                 case "accessviolation":
-                    return TypeCache.InlineRegister(typeof(System.AccessViolationException));
+                    return TypeCache.InlineRegister(typeof(AccessViolationException));
                 case "application":
-                    return TypeCache.InlineRegister(typeof(System.ApplicationException));
+                    return TypeCache.InlineRegister(typeof(ApplicationException));
                 case "appdomainunloaded":
-                    return TypeCache.InlineRegister(typeof(System.AppDomainUnloadedException));
+                    return TypeCache.InlineRegister(typeof(AppDomainUnloadedException));
                 case "argument":
-                    return TypeCache.InlineRegister(typeof(System.ArgumentException));
+                    return TypeCache.InlineRegister(typeof(ArgumentException));
                 case "argumentnull":
-                    return TypeCache.InlineRegister(typeof(System.ArgumentNullException));
+                    return TypeCache.InlineRegister(typeof(ArgumentNullException));
                 case "argumentoutofrange":
-                    return TypeCache.InlineRegister(typeof(System.ArgumentOutOfRangeException));
+                    return TypeCache.InlineRegister(typeof(ArgumentOutOfRangeException));
                 case "arithmetic":
-                    return TypeCache.InlineRegister(typeof(System.ArithmeticException));
+                    return TypeCache.InlineRegister(typeof(ArithmeticException));
                 case "arraytypemismatch":
-                    return TypeCache.InlineRegister(typeof(System.ArrayTypeMismatchException));
+                    return TypeCache.InlineRegister(typeof(ArrayTypeMismatchException));
                 case "badimageformat":
-                    return TypeCache.InlineRegister(typeof(System.BadImageFormatException));
+                    return TypeCache.InlineRegister(typeof(BadImageFormatException));
                 case "cannotunloadappdomain":
-                    return TypeCache.InlineRegister(typeof(System.CannotUnloadAppDomainException));
+                    return TypeCache.InlineRegister(typeof(CannotUnloadAppDomainException));
                 case "typeunloaded":
-                    return TypeCache.InlineRegister(typeof(System.TypeUnloadedException));
+                    return TypeCache.InlineRegister(typeof(TypeUnloadedException));
                 case "dividebyzero":
-                    return TypeCache.InlineRegister(typeof(System.DivideByZeroException));
+                    return TypeCache.InlineRegister(typeof(DivideByZeroException));
                 case "duplicatewaitobject":
-                    return TypeCache.InlineRegister(typeof(System.DuplicateWaitObjectException));
+                    return TypeCache.InlineRegister(typeof(DuplicateWaitObjectException));
                 case "typeload":
-                    return TypeCache.InlineRegister(typeof(System.TypeLoadException));
+                    return TypeCache.InlineRegister(typeof(TypeLoadException));
                 case "entrypointnotfound":
-                    return TypeCache.InlineRegister(typeof(System.EntryPointNotFoundException));
+                    return TypeCache.InlineRegister(typeof(EntryPointNotFoundException));
                 case "dllnotfound":
-                    return TypeCache.InlineRegister(typeof(System.DllNotFoundException));
+                    return TypeCache.InlineRegister(typeof(DllNotFoundException));
                 case "fieldaccess":
-                    return TypeCache.InlineRegister(typeof(System.FieldAccessException));
+                    return TypeCache.InlineRegister(typeof(FieldAccessException));
                 case "format":
-                    return TypeCache.InlineRegister(typeof(System.FormatException));
+                    return TypeCache.InlineRegister(typeof(FormatException));
                 case "indexoutofrange":
-                    return TypeCache.InlineRegister(typeof(System.IndexOutOfRangeException));
+                    return TypeCache.InlineRegister(typeof(IndexOutOfRangeException));
                 case "insufficientmemory":
-                    return TypeCache.InlineRegister(typeof(System.InsufficientMemoryException));
+                    return TypeCache.InlineRegister(typeof(InsufficientMemoryException));
                 case "invalidcast":
-                    return TypeCache.InlineRegister(typeof(System.InvalidCastException));
+                    return TypeCache.InlineRegister(typeof(InvalidCastException));
                 case "invalidoperation":
-                    return TypeCache.InlineRegister(typeof(System.InvalidOperationException));
+                    return TypeCache.InlineRegister(typeof(InvalidOperationException));
                 case "invalidprogram":
-                    return TypeCache.InlineRegister(typeof(System.InvalidProgramException));
+                    return TypeCache.InlineRegister(typeof(InvalidProgramException));
                 case "methodaccess":
-                    return TypeCache.InlineRegister(typeof(System.MethodAccessException));
+                    return TypeCache.InlineRegister(typeof(MethodAccessException));
                 case "missingmember":
-                    return TypeCache.InlineRegister(typeof(System.MissingMemberException));
+                    return TypeCache.InlineRegister(typeof(MissingMemberException));
                 case "missingfield":
-                    return TypeCache.InlineRegister(typeof(System.MissingFieldException));
+                    return TypeCache.InlineRegister(typeof(MissingFieldException));
                 case "missingmethod":
-                    return TypeCache.InlineRegister(typeof(System.MissingMethodException));
+                    return TypeCache.InlineRegister(typeof(MissingMethodException));
                 case "multicastnotsupported":
-                    return TypeCache.InlineRegister(typeof(System.MulticastNotSupportedException));
+                    return TypeCache.InlineRegister(typeof(MulticastNotSupportedException));
                 case "notfinitenumber":
-                    return TypeCache.InlineRegister(typeof(System.NotFiniteNumberException));
+                    return TypeCache.InlineRegister(typeof(NotFiniteNumberException));
                 case "notimplemented":
-                    return TypeCache.InlineRegister(typeof(System.NotImplementedException));
+                    return TypeCache.InlineRegister(typeof(NotImplementedException));
                 case "notsupported":
-                    return TypeCache.InlineRegister(typeof(System.NotSupportedException));
+                    return TypeCache.InlineRegister(typeof(NotSupportedException));
                 case "nullreference":
-                    return TypeCache.InlineRegister(typeof(System.NullReferenceException));
+                    return TypeCache.InlineRegister(typeof(NullReferenceException));
                 case "objectdisposed":
-                    return TypeCache.InlineRegister(typeof(System.ObjectDisposedException));
+                    return TypeCache.InlineRegister(typeof(ObjectDisposedException));
                 case "operationcanceled":
-                    return TypeCache.InlineRegister(typeof(System.OperationCanceledException));
+                    return TypeCache.InlineRegister(typeof(OperationCanceledException));
                 case "overflow":
-                    return TypeCache.InlineRegister(typeof(System.OverflowException));
+                    return TypeCache.InlineRegister(typeof(OverflowException));
                 case "platformnotsupported":
-                    return TypeCache.InlineRegister(typeof(System.PlatformNotSupportedException));
+                    return TypeCache.InlineRegister(typeof(PlatformNotSupportedException));
                 case "rank":
-                    return TypeCache.InlineRegister(typeof(System.RankException));
+                    return TypeCache.InlineRegister(typeof(RankException));
                 case "timeout":
-                    return TypeCache.InlineRegister(typeof(System.TimeoutException));
+                    return TypeCache.InlineRegister(typeof(TimeoutException));
                 case "typeinitialization":
-                    return TypeCache.InlineRegister(typeof(System.TypeInitializationException));
+                    return TypeCache.InlineRegister(typeof(TypeInitializationException));
                 case "unauthorizedaccess":
-                    return TypeCache.InlineRegister(typeof(System.UnauthorizedAccessException));
+                    return TypeCache.InlineRegister(typeof(UnauthorizedAccessException));
                 case "abandonedmutex":
-                    return TypeCache.InlineRegister(typeof(System.Threading.AbandonedMutexException));
+                    return TypeCache.InlineRegister(typeof(AbandonedMutexException));
                 case "synchronizationlock":
-                    return TypeCache.InlineRegister(typeof(System.Threading.SynchronizationLockException));
+                    return TypeCache.InlineRegister(typeof(SynchronizationLockException));
                 case "threadabort":
-                    return TypeCache.InlineRegister(typeof(System.Threading.ThreadAbortException));
+                    return TypeCache.InlineRegister(typeof(ThreadAbortException));
                 case "threadinterrupted":
-                    return TypeCache.InlineRegister(typeof(System.Threading.ThreadInterruptedException));
+                    return TypeCache.InlineRegister(typeof(ThreadInterruptedException));
                 case "threadstate":
-                    return TypeCache.InlineRegister(typeof(System.Threading.ThreadStateException));
+                    return TypeCache.InlineRegister(typeof(ThreadStateException));
                 case "threadstart":
-                    return TypeCache.InlineRegister(typeof(System.Threading.ThreadStartException));
+                    return TypeCache.InlineRegister(typeof(ThreadStartException));
                 case "waithandlecannotbeopened":
-                    return TypeCache.InlineRegister(typeof(System.Threading.WaitHandleCannotBeOpenedException));
+                    return TypeCache.InlineRegister(typeof(WaitHandleCannotBeOpenedException));
                 case "keynotfound":
-                    return TypeCache.InlineRegister(typeof(System.Collections.Generic.KeyNotFoundException));
+                    return TypeCache.InlineRegister(typeof(KeyNotFoundException));
                 case "ambiguousmatch":
-                    return TypeCache.InlineRegister(typeof(System.Reflection.AmbiguousMatchException));
+                    return TypeCache.InlineRegister(typeof(AmbiguousMatchException));
                 case "customattributeformat":
-                    return TypeCache.InlineRegister(typeof(System.Reflection.CustomAttributeFormatException));
+                    return TypeCache.InlineRegister(typeof(CustomAttributeFormatException));
                 case "invalidfiltercriteria":
-                    return TypeCache.InlineRegister(typeof(System.Reflection.InvalidFilterCriteriaException));
+                    return TypeCache.InlineRegister(typeof(InvalidFilterCriteriaException));
                 case "reflectiontypeload":
-                    return TypeCache.InlineRegister(typeof(System.Reflection.ReflectionTypeLoadException));
+                    return TypeCache.InlineRegister(typeof(ReflectionTypeLoadException));
                 case "target":
-                    return TypeCache.InlineRegister(typeof(System.Reflection.TargetException));
+                    return TypeCache.InlineRegister(typeof(TargetException));
                 case "targetinvocation":
-                    return TypeCache.InlineRegister(typeof(System.Reflection.TargetInvocationException));
+                    return TypeCache.InlineRegister(typeof(TargetInvocationException));
                 case "targetparametercount":
-                    return TypeCache.InlineRegister(typeof(System.Reflection.TargetParameterCountException));
+                    return TypeCache.InlineRegister(typeof(TargetParameterCountException));
                 case "serialization":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.Serialization.SerializationException));
+                    return TypeCache.InlineRegister(typeof(SerializationException));
                 case "decoderfallback":
-                    return TypeCache.InlineRegister(typeof(System.Text.DecoderFallbackException));
+                    return TypeCache.InlineRegister(typeof(DecoderFallbackException));
                 case "encoderfallback":
-                    return TypeCache.InlineRegister(typeof(System.Text.EncoderFallbackException));
+                    return TypeCache.InlineRegister(typeof(EncoderFallbackException));
                 case "missingmanifestresource":
-                    return TypeCache.InlineRegister(typeof(System.Resources.MissingManifestResourceException));
+                    return TypeCache.InlineRegister(typeof(MissingManifestResourceException));
                 case "missingsatelliteassembly":
-                    return TypeCache.InlineRegister(typeof(System.Resources.MissingSatelliteAssemblyException));
+                    return TypeCache.InlineRegister(typeof(MissingSatelliteAssemblyException));
                 case "policy":
-                    return TypeCache.InlineRegister(typeof(System.Security.Policy.PolicyException));
+                    return TypeCache.InlineRegister(typeof(PolicyException));
                 case "external":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.InteropServices.ExternalException));
+                    return TypeCache.InlineRegister(typeof(ExternalException));
                 case "com":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.InteropServices.COMException));
+                    return TypeCache.InlineRegister(typeof(COMException));
                 case "invalidolevarianttype":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.InteropServices.InvalidOleVariantTypeException));
+                    return TypeCache.InlineRegister(typeof(InvalidOleVariantTypeException));
                 case "marshaldirective":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.InteropServices.MarshalDirectiveException));
+                    return TypeCache.InlineRegister(typeof(MarshalDirectiveException));
                 case "seh":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.InteropServices.SEHException));
+                    return TypeCache.InlineRegister(typeof(SEHException));
                 case "invalidcomobject":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.InteropServices.InvalidComObjectException));
+                    return TypeCache.InlineRegister(typeof(InvalidComObjectException));
                 case "safearrayrankmismatch":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.InteropServices.SafeArrayRankMismatchException));
+                    return TypeCache.InlineRegister(typeof(SafeArrayRankMismatchException));
                 case "safearraytypemismatch":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.InteropServices.SafeArrayTypeMismatchException));
+                    return TypeCache.InlineRegister(typeof(SafeArrayTypeMismatchException));
                 case "io":
-                    return TypeCache.InlineRegister(typeof(System.IO.IOException));
+                    return TypeCache.InlineRegister(typeof(IOException));
                 case "directorynotfound":
-                    return TypeCache.InlineRegister(typeof(System.IO.DirectoryNotFoundException));
+                    return TypeCache.InlineRegister(typeof(DirectoryNotFoundException));
                 case "drivenotfound":
-                    return TypeCache.InlineRegister(typeof(System.IO.DriveNotFoundException));
+                    return TypeCache.InlineRegister(typeof(DriveNotFoundException));
                 case "endofstream":
-                    return TypeCache.InlineRegister(typeof(System.IO.EndOfStreamException));
+                    return TypeCache.InlineRegister(typeof(EndOfStreamException));
                 case "fileload":
-                    return TypeCache.InlineRegister(typeof(System.IO.FileLoadException));
+                    return TypeCache.InlineRegister(typeof(FileLoadException));
                 case "filenotfound":
-                    return TypeCache.InlineRegister(typeof(System.IO.FileNotFoundException));
+                    return TypeCache.InlineRegister(typeof(FileNotFoundException));
                 case "pathtoolong":
-                    return TypeCache.InlineRegister(typeof(System.IO.PathTooLongException));
+                    return TypeCache.InlineRegister(typeof(PathTooLongException));
                 case "runtimewrapped":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.CompilerServices.RuntimeWrappedException));
+                    return TypeCache.InlineRegister(typeof(RuntimeWrappedException));
                 case "xmlsyntax":
-                    return TypeCache.InlineRegister(typeof(System.Security.XmlSyntaxException));
+                    return TypeCache.InlineRegister(typeof(XmlSyntaxException));
                 case "security":
-                    return TypeCache.InlineRegister(typeof(System.Security.SecurityException));
+                    return TypeCache.InlineRegister(typeof(SecurityException));
                 case "hostprotection":
-                    return TypeCache.InlineRegister(typeof(System.Security.HostProtectionException));
+                    return TypeCache.InlineRegister(typeof(HostProtectionException));
                 case "verification":
-                    return TypeCache.InlineRegister(typeof(System.Security.VerificationException));
+                    return TypeCache.InlineRegister(typeof(VerificationException));
                 case "remoting":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.Remoting.RemotingException));
+                    return TypeCache.InlineRegister(typeof(RemotingException));
                 case "server":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.Remoting.ServerException));
+                    return TypeCache.InlineRegister(typeof(ServerException));
                 case "remotingtimeout":
-                    return TypeCache.InlineRegister(typeof(System.Runtime.Remoting.RemotingTimeoutException));
+                    return TypeCache.InlineRegister(typeof(RemotingTimeoutException));
                 case "isolatedstorage":
-                    return TypeCache.InlineRegister(typeof(System.IO.IsolatedStorage.IsolatedStorageException));
+                    return TypeCache.InlineRegister(typeof(IsolatedStorageException));
                 case "cryptographic":
-                    return TypeCache.InlineRegister(typeof(System.Security.Cryptography.CryptographicException));
+                    return TypeCache.InlineRegister(typeof(CryptographicException));
                 case "cryptographicunexpectedoperation":
-                    return TypeCache.InlineRegister(typeof(System.Security.Cryptography.CryptographicUnexpectedOperationException));
+                    return TypeCache.InlineRegister(typeof(CryptographicUnexpectedOperationException));
                 case "privilegenotheld":
-                    return TypeCache.InlineRegister(typeof(System.Security.AccessControl.PrivilegeNotHeldException));
+                    return TypeCache.InlineRegister(typeof(PrivilegeNotHeldException));
                 case "identitynotmapped":
-                    return TypeCache.InlineRegister(typeof(System.Security.Principal.IdentityNotMappedException));
+                    return TypeCache.InlineRegister(typeof(IdentityNotMappedException));
                 case "invalidasynchronousstate":
-                    return TypeCache.InlineRegister(typeof(System.ComponentModel.InvalidAsynchronousStateException));
+                    return TypeCache.InlineRegister(typeof(InvalidAsynchronousStateException));
                 case "invalidenumargument":
-                    return TypeCache.InlineRegister(typeof(System.ComponentModel.InvalidEnumArgumentException));
+                    return TypeCache.InlineRegister(typeof(InvalidEnumArgumentException));
                 case "license":
-                    return TypeCache.InlineRegister(typeof(System.ComponentModel.LicenseException));
+                    return TypeCache.InlineRegister(typeof(LicenseException));
                 case "warning":
-                    return TypeCache.InlineRegister(typeof(System.ComponentModel.WarningException));
+                    return TypeCache.InlineRegister(typeof(WarningException));
                 case "win32":
-                    return TypeCache.InlineRegister(typeof(System.ComponentModel.Win32Exception));
+                    return TypeCache.InlineRegister(typeof(Win32Exception));
                 case "checkout":
-                    return TypeCache.InlineRegister(typeof(System.ComponentModel.Design.CheckoutException));
+                    return TypeCache.InlineRegister(typeof(CheckoutException));
                 case "invaliddata":
-                    return TypeCache.InlineRegister(typeof(System.IO.InvalidDataException));
+                    return TypeCache.InlineRegister(typeof(InvalidDataException));
                 case "semaphorefull":
-                    return TypeCache.InlineRegister(typeof(System.Threading.SemaphoreFullException));
+                    return TypeCache.InlineRegister(typeof(SemaphoreFullException));
                 case "uriformat":
-                    return TypeCache.InlineRegister(typeof(System.UriFormatException));
+                    return TypeCache.InlineRegister(typeof(UriFormatException));
                 case "cookie":
-                    return TypeCache.InlineRegister(typeof(System.Net.CookieException));
+                    return TypeCache.InlineRegister(typeof(CookieException));
                 case "httplistener":
-                    return TypeCache.InlineRegister(typeof(System.Net.HttpListenerException));
+                    return TypeCache.InlineRegister(typeof(HttpListenerException));
                 case "protocolviolation":
-                    return TypeCache.InlineRegister(typeof(System.Net.ProtocolViolationException));
+                    return TypeCache.InlineRegister(typeof(ProtocolViolationException));
                 case "socket":
-                    return TypeCache.InlineRegister(typeof(System.Net.Sockets.SocketException));
+                    return TypeCache.InlineRegister(typeof(SocketException));
                 case "web":
-                    return TypeCache.InlineRegister(typeof(System.Net.WebException));
+                    return TypeCache.InlineRegister(typeof(WebException));
                 case "authentication":
-                    return TypeCache.InlineRegister(typeof(System.Security.Authentication.AuthenticationException));
+                    return TypeCache.InlineRegister(typeof(AuthenticationException));
                 case "invalidcredential":
-                    return TypeCache.InlineRegister(typeof(System.Security.Authentication.InvalidCredentialException));
+                    return TypeCache.InlineRegister(typeof(InvalidCredentialException));
                 case "networkinformation":
-                    return TypeCache.InlineRegister(typeof(System.Net.NetworkInformation.NetworkInformationException));
+                    return TypeCache.InlineRegister(typeof(NetworkInformationException));
                 case "ping":
-                    return TypeCache.InlineRegister(typeof(System.Net.NetworkInformation.PingException));
+                    return TypeCache.InlineRegister(typeof(PingException));
                 case "smtp":
-                    return TypeCache.InlineRegister(typeof(System.Net.Mail.SmtpException));
+                    return TypeCache.InlineRegister(typeof(SmtpException));
                 case "smtpfailedrecipient":
-                    return TypeCache.InlineRegister(typeof(System.Net.Mail.SmtpFailedRecipientException));
+                    return TypeCache.InlineRegister(typeof(SmtpFailedRecipientException));
                 case "smtpfailedrecipients":
-                    return TypeCache.InlineRegister(typeof(System.Net.Mail.SmtpFailedRecipientsException));
+                    return TypeCache.InlineRegister(typeof(SmtpFailedRecipientsException));
                 case "configuration":
-                    return TypeCache.InlineRegister(typeof(System.Configuration.ConfigurationException));
+                    return TypeCache.InlineRegister(typeof(ConfigurationException));
                 case "settingspropertyisreadonly":
-                    return TypeCache.InlineRegister(typeof(System.Configuration.SettingsPropertyIsReadOnlyException));
+                    return TypeCache.InlineRegister(typeof(SettingsPropertyIsReadOnlyException));
                 case "settingspropertynotfound":
-                    return TypeCache.InlineRegister(typeof(System.Configuration.SettingsPropertyNotFoundException));
+                    return TypeCache.InlineRegister(typeof(SettingsPropertyNotFoundException));
                 case "settingspropertywrongtype":
-                    return TypeCache.InlineRegister(typeof(System.Configuration.SettingsPropertyWrongTypeException));
+                    return TypeCache.InlineRegister(typeof(SettingsPropertyWrongTypeException));
                 case "internalbufferoverflow":
-                    return TypeCache.InlineRegister(typeof(System.IO.InternalBufferOverflowException));
+                    return TypeCache.InlineRegister(typeof(InternalBufferOverflowException));
                 case "configurationerrors":
-                    return TypeCache.InlineRegister(typeof(System.Configuration.ConfigurationErrorsException));
+                    return TypeCache.InlineRegister(typeof(ConfigurationErrorsException));
                 case "provider":
-                    return TypeCache.InlineRegister(typeof(System.Configuration.Provider.ProviderException));
+                    return TypeCache.InlineRegister(typeof(ProviderException));
                 case "data":
-                    return TypeCache.InlineRegister(typeof(System.Data.DataException));
+                    return TypeCache.InlineRegister(typeof(DataException));
                 case "constraint":
-                    return TypeCache.InlineRegister(typeof(System.Data.ConstraintException));
+                    return TypeCache.InlineRegister(typeof(ConstraintException));
                 case "deletedrowinaccessible":
-                    return TypeCache.InlineRegister(typeof(System.Data.DeletedRowInaccessibleException));
+                    return TypeCache.InlineRegister(typeof(DeletedRowInaccessibleException));
                 case "duplicatename":
-                    return TypeCache.InlineRegister(typeof(System.Data.DuplicateNameException));
+                    return TypeCache.InlineRegister(typeof(DuplicateNameException));
                 case "inrowchangingevent":
-                    return TypeCache.InlineRegister(typeof(System.Data.InRowChangingEventException));
+                    return TypeCache.InlineRegister(typeof(InRowChangingEventException));
                 case "invalidconstraint":
-                    return TypeCache.InlineRegister(typeof(System.Data.InvalidConstraintException));
+                    return TypeCache.InlineRegister(typeof(InvalidConstraintException));
                 case "missingprimarykey":
-                    return TypeCache.InlineRegister(typeof(System.Data.MissingPrimaryKeyException));
+                    return TypeCache.InlineRegister(typeof(MissingPrimaryKeyException));
                 case "nonullallowed":
-                    return TypeCache.InlineRegister(typeof(System.Data.NoNullAllowedException));
+                    return TypeCache.InlineRegister(typeof(NoNullAllowedException));
                 case "readonly":
-                    return TypeCache.InlineRegister(typeof(System.Data.ReadOnlyException));
+                    return TypeCache.InlineRegister(typeof(ReadOnlyException));
                 case "rownotintable":
-                    return TypeCache.InlineRegister(typeof(System.Data.RowNotInTableException));
+                    return TypeCache.InlineRegister(typeof(RowNotInTableException));
                 case "versionnotfound":
-                    return TypeCache.InlineRegister(typeof(System.Data.VersionNotFoundException));
+                    return TypeCache.InlineRegister(typeof(VersionNotFoundException));
                 case "dbconcurrency":
-                    return TypeCache.InlineRegister(typeof(System.Data.DBConcurrencyException));
+                    return TypeCache.InlineRegister(typeof(DBConcurrencyException));
                 case "operationaborted":
-                    return TypeCache.InlineRegister(typeof(System.Data.OperationAbortedException));
+                    return TypeCache.InlineRegister(typeof(OperationAbortedException));
                 case "strongtyping":
-                    return TypeCache.InlineRegister(typeof(System.Data.StrongTypingException));
+                    return TypeCache.InlineRegister(typeof(StrongTypingException));
                 case "typeddatasetgenerator":
-                    return TypeCache.InlineRegister(typeof(System.Data.TypedDataSetGeneratorException));
+                    return TypeCache.InlineRegister(typeof(TypedDataSetGeneratorException));
                 case "db":
-                    return TypeCache.InlineRegister(typeof(System.Data.Common.DbException));
+                    return TypeCache.InlineRegister(typeof(DbException));
                 case "invalidexpression":
-                    return TypeCache.InlineRegister(typeof(System.Data.InvalidExpressionException));
+                    return TypeCache.InlineRegister(typeof(InvalidExpressionException));
                 case "evaluate":
-                    return TypeCache.InlineRegister(typeof(System.Data.EvaluateException));
+                    return TypeCache.InlineRegister(typeof(EvaluateException));
                 case "syntaxerror":
-                    return TypeCache.InlineRegister(typeof(System.Data.SyntaxErrorException));
+                    return TypeCache.InlineRegister(typeof(SyntaxErrorException));
                 case "odbc":
-                    return TypeCache.InlineRegister(typeof(System.Data.Odbc.OdbcException));
+                    return TypeCache.InlineRegister(typeof(OdbcException));
                 case "oledb":
-                    return TypeCache.InlineRegister(typeof(System.Data.OleDb.OleDbException));
+                    return TypeCache.InlineRegister(typeof(OleDbException));
                 case "invalidudt":
-                    return TypeCache.InlineRegister(typeof(Microsoft.SqlServer.Server.InvalidUdtException));
+                    return TypeCache.InlineRegister(typeof(InvalidUdtException));
                 case "sql":
-                    return TypeCache.InlineRegister(typeof(System.Data.SqlClient.SqlException));
+                    return TypeCache.InlineRegister(typeof(SqlException));
                 case "sqltype":
-                    return TypeCache.InlineRegister(typeof(System.Data.SqlTypes.SqlTypeException));
+                    return TypeCache.InlineRegister(typeof(SqlTypeException));
                 case "sqlnullvalue":
-                    return TypeCache.InlineRegister(typeof(System.Data.SqlTypes.SqlNullValueException));
+                    return TypeCache.InlineRegister(typeof(SqlNullValueException));
                 case "sqltruncate":
-                    return TypeCache.InlineRegister(typeof(System.Data.SqlTypes.SqlTruncateException));
+                    return TypeCache.InlineRegister(typeof(SqlTruncateException));
                 case "sqlnotfilled":
-                    return TypeCache.InlineRegister(typeof(System.Data.SqlTypes.SqlNotFilledException));
+                    return TypeCache.InlineRegister(typeof(SqlNotFilledException));
                 case "sqlalreadyfilled":
-                    return TypeCache.InlineRegister(typeof(System.Data.SqlTypes.SqlAlreadyFilledException));
+                    return TypeCache.InlineRegister(typeof(SqlAlreadyFilledException));
                 case "xml":
-                    return TypeCache.InlineRegister(typeof(System.Xml.XmlException));
+                    return TypeCache.InlineRegister(typeof(XmlException));
                 case "xpath":
-                    return TypeCache.InlineRegister(typeof(System.Xml.XPath.XPathException));
+                    return TypeCache.InlineRegister(typeof(XPathException));
                 case "xslt":
-                    return TypeCache.InlineRegister(typeof(System.Xml.Xsl.XsltException));
+                    return TypeCache.InlineRegister(typeof(XsltException));
                 case "xsltcompile":
-                    return TypeCache.InlineRegister(typeof(System.Xml.Xsl.XsltCompileException));
+                    return TypeCache.InlineRegister(typeof(XsltCompileException));
                 case "xmlschema":
-                    return TypeCache.InlineRegister(typeof(System.Xml.Schema.XmlSchemaException));
+                    return TypeCache.InlineRegister(typeof(XmlSchemaException));
                 case "xmlschemavalidation":
-                    return TypeCache.InlineRegister(typeof(System.Xml.Schema.XmlSchemaValidationException));
+                    return TypeCache.InlineRegister(typeof(XmlSchemaValidationException));
                 case "xmlschemainference":
-                    return TypeCache.InlineRegister(typeof(System.Xml.Schema.XmlSchemaInferenceException));
+                    return TypeCache.InlineRegister(typeof(XmlSchemaInferenceException));
             }
             //+
             return ex;

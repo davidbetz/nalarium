@@ -1,9 +1,13 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Collections;
+
 namespace Nalarium
 {
     public class StringObjectMap : Map<String, Object>
@@ -15,14 +19,16 @@ namespace Nalarium
         public StringObjectMap()
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="StringObjectMap"/> class.
         /// </summary>
         /// <param name="parameterArray">The parameter array.</param>
         public StringObjectMap(params StringObjectMapEntry[] parameterArray)
         {
-            this.AddMapEntrySeries(parameterArray);
+            AddMapEntrySeries(parameterArray);
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="StringObjectMap"/> class.
         /// </summary>
@@ -31,17 +37,18 @@ namespace Nalarium
             : base(initMap)
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="StringObjectMap"/> class.
         /// </summary>
         /// <param name="dictionary">The dictionary.</param>
-        public StringObjectMap(System.Collections.IDictionary dictionary)
+        public StringObjectMap(IDictionary dictionary)
         {
             if (dictionary != null)
             {
                 foreach (String key in dictionary.Keys)
                 {
-                    String k = key as String;
+                    String k = key;
                     Object v = dictionary[key];
                     //+
                     if (k != null && v != null)
@@ -56,8 +63,14 @@ namespace Nalarium
         //- Indexer -//
         public new Object this[String key]
         {
-            get { return PeekSafely(key); }
-            set { base[key] = value; }
+            get
+            {
+                return PeekSafely(key);
+            }
+            set
+            {
+                base[key] = value;
+            }
         }
 
         //+
@@ -72,7 +85,7 @@ namespace Nalarium
             {
                 foreach (StringObjectMapEntry mapEntry in mapEntryArray)
                 {
-                    this.AddMapEntry(mapEntry);
+                    AddMapEntry(mapEntry);
                 }
             }
         }

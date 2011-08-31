@@ -1,10 +1,13 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 //+
 using System;
-//+
+
 namespace Nalarium.Data.Cached
 {
     /// <summary>
@@ -13,8 +16,8 @@ namespace Nalarium.Data.Cached
     public static class CachedDataFactory
     {
         //+ field
-        private static Object _lock = new Object();
-        private static Map<String, Object> cache = new Map<String, Object>();
+        private static readonly Object _lock = new Object();
+        private static readonly Map<String, Object> cache = new Map<String, Object>();
 
         //+
         //- @Exists -//
@@ -31,6 +34,7 @@ namespace Nalarium.Data.Cached
                 return cache.ContainsKey(ScopeTranscriber.Construct(scope, name));
             }
         }
+
         /// <summary>
         /// Checks to see if a particular set of data is cached.
         /// </summary>
@@ -57,8 +61,9 @@ namespace Nalarium.Data.Cached
         /// <returns>True if added, false if it was already present.</returns>
         public static Boolean Register<T>(String scope, String name, T data)
         {
-            return Register<T>(ScopeTranscriber.Construct(scope, name), data);
+            return Register(ScopeTranscriber.Construct(scope, name), data);
         }
+
         /// <summary>
         /// Registers a particular set of data is cached.
         /// </summary>
@@ -70,8 +75,9 @@ namespace Nalarium.Data.Cached
         /// <returns>True if added, false if it was already present.</returns>
         public static Boolean Register<T>(String scope, String culture, String name, T data)
         {
-            return Register<T>(ScopeTranscriber.Construct(scope, culture, name), data);
+            return Register(ScopeTranscriber.Construct(scope, culture, name), data);
         }
+
         /// <summary>
         /// Registers a particular set of data is cached.
         /// </summary>
@@ -83,8 +89,9 @@ namespace Nalarium.Data.Cached
         /// <returns>True if added, false if it was already present.</returns>
         public static Boolean Register<T>(String scope, String name, Func<T> runner)
         {
-            return Register<T>(ScopeTranscriber.Construct(scope, name), runner);
+            return Register(ScopeTranscriber.Construct(scope, name), runner);
         }
+
         /// <summary>
         /// Registers a particular set of data is cached.
         /// </summary>
@@ -97,14 +104,15 @@ namespace Nalarium.Data.Cached
         /// <returns>True if added, false if it was already present.</returns>
         public static Boolean Register<T>(String scope, String culture, String name, Func<T> runner)
         {
-            return Register<T>(ScopeTranscriber.Construct(scope, culture, name), runner);
+            return Register(ScopeTranscriber.Construct(scope, culture, name), runner);
         }
 
         //- $Register -//
         private static Boolean Register<T>(String key, Func<T> runner)
         {
-            return Register<T>(key, runner());
+            return Register(key, runner());
         }
+
         private static Boolean Register<T>(String key, T data)
         {
             lock (_lock)
@@ -134,6 +142,7 @@ namespace Nalarium.Data.Cached
                 return cache.PeekSafely<T>(ScopeTranscriber.Construct(scope, name));
             }
         }
+
         /// <summary>
         /// Gets a set of data from cache by scope and name.
         /// </summary>

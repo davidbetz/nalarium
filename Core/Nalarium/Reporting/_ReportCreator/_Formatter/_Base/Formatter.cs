@@ -1,15 +1,18 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium.Reporting
 {
     public abstract class Formatter
     {
         public const String NewLine = "\r\n";
-        
+
         //+
         //- @PreferredContentType -//
         /// <summary>
@@ -30,6 +33,7 @@ namespace Nalarium.Reporting
         {
             return Format(text, formatterType, StyleTypes.None);
         }
+
         /// <summary>
         /// Formats the specified text.
         /// </summary>

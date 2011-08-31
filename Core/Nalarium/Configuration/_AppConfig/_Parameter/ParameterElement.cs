@@ -1,10 +1,13 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Configuration;
-//+
+
 namespace Nalarium.Configuration
 {
     public class ParameterElement : CommentableElement, IHasPriority
@@ -30,6 +33,9 @@ namespace Nalarium.Configuration
         }
 
         //- @Priority -//
+
+        #region IHasPriority Members
+
         [ConfigurationProperty("priority", DefaultValue = 5, IsRequired = false)]
         public Int32 Priority
         {
@@ -42,5 +48,7 @@ namespace Nalarium.Configuration
                 this["priority"] = value;
             }
         }
+
+        #endregion
     }
 }

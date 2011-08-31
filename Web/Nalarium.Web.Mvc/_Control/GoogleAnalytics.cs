@@ -1,9 +1,13 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
-//+
+using System.Web;
+
 namespace Nalarium.Web.Mvc
 {
     /// <summary>
@@ -11,6 +15,9 @@ namespace Nalarium.Web.Mvc
     /// </summary>
     public class GoogleAnalytics : Control
     {
+        private String _path;
+        private String _trackingCode;
+
         protected GoogleAnalytics(String trackingCode)
         {
             TrackingCode(trackingCode);
@@ -22,11 +29,12 @@ namespace Nalarium.Web.Mvc
         }
 
         //- @TrackingCode -//
-        private String _trackingCode;
+
         public String TrackingCode()
         {
             return _trackingCode;
         }
+
         public GoogleAnalytics TrackingCode(String value)
         {
             _trackingCode = value;
@@ -35,11 +43,12 @@ namespace Nalarium.Web.Mvc
         }
 
         //- @Path -//
-        private String _path;
+
         public String Path()
         {
             return _path;
         }
+
         public GoogleAnalytics Path(String value)
         {
             _path = value;
@@ -47,11 +56,11 @@ namespace Nalarium.Web.Mvc
             return this;
         }
 
-        public override System.Web.HtmlString Render()
+        public override HtmlString Render()
         {
             if (String.IsNullOrEmpty(TrackingCode()))
             {
-                return new System.Web.HtmlString(String.Empty);
+                return new HtmlString(String.Empty);
             }
             String path = Path();
             if (!String.IsNullOrEmpty(path))
@@ -68,7 +77,7 @@ var pageTracker = _gat._getTracker(""" + TrackingCode() + @""");
 pageTracker._trackPageview(" + path + @");
 } catch(err) {}</script>";
             //+
-            return new System.Web.HtmlString(output);
+            return new HtmlString(output);
         }
     }
 }

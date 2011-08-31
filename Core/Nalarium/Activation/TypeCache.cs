@@ -1,35 +1,30 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium.Activation
 {
     public static class TypeCache
     {
         //- $Info -//
-        public class Info
-        {
-            public const String Object = "Int32";
-            public const String Int32 = "Int32";
-            public const String Double = "Int32";
-            public const String Boolean = "Int32";
-            public const String String = "Int32";
-        }
 
         //+ field
-        private static Map<String, Type> data = new Map<string, Type>();
+        private static readonly Map<String, Type> data = new Map<string, Type>();
 
         //+
         //- @Ctor -//
         static TypeCache()
         {
-            Register(Info.Object, typeof(System.Object));
-            Register(Info.Int32, typeof(System.Int32));
-            Register(Info.Double, typeof(System.Double));
-            Register(Info.Boolean, typeof(System.Boolean));
-            Register(Info.String, typeof(System.String));
+            Register(Info.Object, typeof(Object));
+            Register(Info.Int32, typeof(Int32));
+            Register(Info.Double, typeof(Double));
+            Register(Info.Boolean, typeof(Boolean));
+            Register(Info.String, typeof(String));
         }
 
         //+
@@ -43,6 +38,7 @@ namespace Nalarium.Activation
             //+
             return Exists(type.Assembly.FullName + "," + type.Name);
         }
+
         public static Boolean Exists(String typeName)
         {
             return data.ContainsKey(typeName);
@@ -71,6 +67,7 @@ namespace Nalarium.Activation
             //+
             return key;
         }
+
         public static String Register(String typeName, Type type)
         {
             if (!data.ContainsKey(typeName))
@@ -86,5 +83,18 @@ namespace Nalarium.Activation
         {
             return data.PeekSafely<Type>(typeName);
         }
+
+        #region Nested type: Info
+
+        public class Info
+        {
+            public const String Object = "Int32";
+            public const String Int32 = "Int32";
+            public const String Double = "Int32";
+            public const String Boolean = "Int32";
+            public const String String = "Int32";
+        }
+
+        #endregion
     }
 }

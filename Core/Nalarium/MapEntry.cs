@@ -1,9 +1,12 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium
 {
     /// <summary>
@@ -14,6 +17,27 @@ namespace Nalarium
     public class MapEntry<T1, T2>
     {
         //- @Source -//
+
+        //+
+        //- @Ctor -//
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;"/> class.
+        /// </summary>
+        public MapEntry()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;"/> class.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        public MapEntry(T1 key, T2 value)
+        {
+            Key = key;
+            Value = value;
+        }
+
         /// <summary>
         /// Gets or sets the key.
         /// </summary>
@@ -26,25 +50,6 @@ namespace Nalarium
         /// </summary>
         /// <value>The value.</value>
         public T2 Value { get; set; }
-
-        //+
-        //- @Ctor -//
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;"/> class.
-        /// </summary>
-        public MapEntry()
-        {
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;"/> class.
-        /// </summary>
-        /// <param name="key">The key.</param>
-        /// <param name="value">The value.</param>
-        public MapEntry(T1 key, T2 value)
-        {
-            this.Key = key;
-            this.Value = value;
-        }
 
         //- @Create -//
         /// <summary>
@@ -68,6 +73,7 @@ namespace Nalarium
         public MapEntry()
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MapEntry"/> class.
         /// </summary>

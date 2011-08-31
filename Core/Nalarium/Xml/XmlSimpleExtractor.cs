@@ -1,12 +1,16 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Xml;
 using Nalarium.Globalization;
-//+
+
 namespace Nalarium.Xml
 {
     public static class XmlSimpleExtractor
@@ -21,7 +25,7 @@ namespace Nalarium.Xml
         /// <returns></returns>
         public static List<String> ExtractBranch(XmlNode mailRoot, String branchName, Boolean required)
         {
-            List<String> list = new List<String>();
+            var list = new List<String>();
             XmlNode result = mailRoot.SelectSingleNode(branchName);
             if (result != null && result.HasChildNodes)
             {
@@ -34,7 +38,7 @@ namespace Nalarium.Xml
             {
                 if (required)
                 {
-                    throw new XmlException(String.Format(System.Globalization.CultureInfo.CurrentCulture, ResourceAccessor.GetString("General_MissingElement", AssemblyInfo.AssemblyName, Resource.ResourceManager), branchName));
+                    throw new XmlException(String.Format(CultureInfo.CurrentCulture, ResourceAccessor.GetString("General_MissingElement", AssemblyInfo.AssemblyName, Resource.ResourceManager), branchName));
                 }
             }
             //+
@@ -57,7 +61,7 @@ namespace Nalarium.Xml
             }
             else
             {
-                throw new XmlException(String.Format(System.Globalization.CultureInfo.CurrentCulture, ResourceAccessor.GetString("General_MissingElement", AssemblyInfo.AssemblyName, Resource.ResourceManager), nodeName));
+                throw new XmlException(String.Format(CultureInfo.CurrentCulture, ResourceAccessor.GetString("General_MissingElement", AssemblyInfo.AssemblyName, Resource.ResourceManager), nodeName));
             }
         }
     }

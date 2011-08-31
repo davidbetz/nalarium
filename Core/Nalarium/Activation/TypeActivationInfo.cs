@@ -1,9 +1,12 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium.Activation
 {
     public class TypeActivationInfo
@@ -33,10 +36,10 @@ namespace Nalarium.Activation
         public static TypeActivationInfo GetInfo(Type type, params Object[] parameterArray)
         {
             return new TypeActivationInfo
-            {
-                Type = type,
-                ParameterArray = parameterArray
-            };
+                   {
+                       Type = type,
+                       ParameterArray = parameterArray
+                   };
         }
     }
 }

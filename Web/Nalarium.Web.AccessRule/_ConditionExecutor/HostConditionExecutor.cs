@@ -1,15 +1,20 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
-//+
+using System.Net;
+using System.Text;
+
 namespace Nalarium.Web.AccessRule
 {
     public class HostConditionExecutor : ConditionExecutor
     {
-        private Object _lock = new Object();
-        private Map<String, String> addressMap = new Map<String, String>();
+        private readonly Object _lock = new Object();
+        private readonly Map<String, String> addressMap = new Map<String, String>();
 
         //+
         //- @Process -//
@@ -30,13 +35,13 @@ namespace Nalarium.Web.AccessRule
                     }
                     else
                     {
-                        System.Net.IPHostEntry host = System.Net.Dns.GetHostEntry(Http.Domain);
+                        IPHostEntry host = Dns.GetHostEntry(Http.Domain);
                         if (host == null || Collection.IsNullOrEmpty(host.AddressList))
                         {
                             return false;
                         }
                         //+
-                        address = System.Text.UTF8Encoding.UTF8.GetString(host.AddressList[0].GetAddressBytes());
+                        address = Encoding.UTF8.GetString(host.AddressList[0].GetAddressBytes());
                         addressMap[Http.Domain] = address;
                     }
                     //+

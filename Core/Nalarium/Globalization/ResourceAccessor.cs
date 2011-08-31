@@ -1,39 +1,31 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
-//+
 using Nalarium.Activation;
 //+
+
 namespace Nalarium.Globalization
 {
     public static class ResourceAccessor
     {
         //- $ResourceConfig -//
-        internal class ResourceConfig
-        {
-            //- @BuiltInCultureArray -//
-            public String[] BuiltInCultureArray { get; set; }
-
-            //- @WeakReference -//
-            public WeakReference WeakReference { get; set; }
-
-            //- @ResourceManager -//
-            public ResourceManager ResourceManager { get; set; }
-        }
-
-        //+
-        private static Object _lock = new Object();
-        private static Map<String, ResourceConfig> _resourceManagerWeakReferenceRegistry = new Map<String, ResourceConfig>();
-        private static Map<String, ResourceConfig> _resourceManagerRegistry = new Map<String, ResourceConfig>();
 
         //+
         public const String DefaultPattern = "{AssemblyName}.{Code}";
+        private static Object _lock = new Object();
+        private static readonly Map<String, ResourceConfig> _resourceManagerWeakReferenceRegistry = new Map<String, ResourceConfig>();
+        private static readonly Map<String, ResourceConfig> _resourceManagerRegistry = new Map<String, ResourceConfig>();
+
+        //+
 
         //+
         /// <summary>
@@ -48,7 +40,7 @@ namespace Nalarium.Globalization
             KeyValuePair<String, ResourceConfig> kvp = _resourceManagerRegistry.SingleOrDefault(p => p.Key == baseAssemblyName);
             if (kvp.Value != null)
             {
-                ResourceConfig resourceConfig = kvp.Value as ResourceConfig;
+                ResourceConfig resourceConfig = kvp.Value;
                 if (resourceConfig.ResourceManager == null)
                 {
                     if (kvp.Value.BuiltInCultureArray != null && kvp.Value.BuiltInCultureArray.Contains(Culture.TwoCharacterCultureCode))
@@ -110,6 +102,7 @@ namespace Nalarium.Globalization
         {
             RegisterResourceManager(assemblyName, DefaultPattern, null, false);
         }
+
         /// <summary>
         /// Registers a resource manager to an assembly.
         /// </summary>
@@ -119,6 +112,7 @@ namespace Nalarium.Globalization
         {
             RegisterResourceManager(assemblyName, DefaultPattern, null, allowGC);
         }
+
         /// <summary>
         /// Registers a resource manager to an assembly.
         /// </summary>
@@ -128,6 +122,7 @@ namespace Nalarium.Globalization
         {
             RegisterResourceManager(assemblyName, DefaultPattern, builtInCultureArray, false);
         }
+
         /// <summary>
         /// Registers a resource manager to an assembly.
         /// </summary>
@@ -138,6 +133,7 @@ namespace Nalarium.Globalization
         {
             RegisterResourceManager(assemblyName, DefaultPattern, builtInCultureArray, allowGC);
         }
+
         /// <summary>
         /// Registers a resource manager to an assembly.
         /// </summary>
@@ -148,6 +144,7 @@ namespace Nalarium.Globalization
         {
             RegisterResourceManager(assemblyName, assemblyNamePattern, null, false);
         }
+
         /// <summary>
         /// Registers a resource manager to an assembly.
         /// </summary>
@@ -159,6 +156,7 @@ namespace Nalarium.Globalization
         {
             RegisterResourceManager(assemblyName, assemblyNamePattern, null, allowGC);
         }
+
         /// <summary>
         /// Registers a resource manager to an assembly.
         /// </summary>
@@ -169,6 +167,7 @@ namespace Nalarium.Globalization
         {
             RegisterResourceManager(assemblyName, assemblyNamePattern, builtInCultureArray, false);
         }
+
         /// <summary>
         /// Registers a resource manager to an assembly.
         /// </summary>
@@ -180,11 +179,11 @@ namespace Nalarium.Globalization
         {
             if (allowGC)
             {
-                ResourceConfig resourceConfig = new ResourceConfig
-                {
-                    BuiltInCultureArray = builtInCultureArray,
-                    WeakReference = new WeakReference(null)
-                };
+                var resourceConfig = new ResourceConfig
+                                     {
+                                         BuiltInCultureArray = builtInCultureArray,
+                                         WeakReference = new WeakReference(null)
+                                     };
                 if (_resourceManagerWeakReferenceRegistry.ContainsKey(assemblyName))
                 {
                     return;
@@ -193,10 +192,10 @@ namespace Nalarium.Globalization
             }
             else
             {
-                ResourceConfig resourceConfig = new ResourceConfig
-                {
-                    BuiltInCultureArray = builtInCultureArray
-                };
+                var resourceConfig = new ResourceConfig
+                                     {
+                                         BuiltInCultureArray = builtInCultureArray
+                                     };
                 if (_resourceManagerRegistry.ContainsKey(assemblyName))
                 {
                     return;
@@ -210,14 +209,17 @@ namespace Nalarium.Globalization
         {
             return GetString(resourceKey, baseAssemblyName, null, null);
         }
+
         public static String GetString(String resourceKey, String baseAssemblyName, String[] builtInCultureArray)
         {
             return GetString(resourceKey, baseAssemblyName, null, builtInCultureArray);
         }
+
         public static String GetString(String resourceKey, String baseAssemblyName, ResourceManager defaultResourceManager)
         {
             return GetString(resourceKey, baseAssemblyName, defaultResourceManager, null);
         }
+
         public static String GetString(String resourceKey, String baseAssemblyName, ResourceManager defaultResourceManager, String[] builtInCultureArray)
         {
             if (!_resourceManagerRegistry.ContainsKey(baseAssemblyName) && !_resourceManagerWeakReferenceRegistry.ContainsKey(baseAssemblyName))
@@ -232,5 +234,21 @@ namespace Nalarium.Globalization
             //+
             return String.Empty;
         }
+
+        #region Nested type: ResourceConfig
+
+        internal class ResourceConfig
+        {
+            //- @BuiltInCultureArray -//
+            public String[] BuiltInCultureArray { get; set; }
+
+            //- @WeakReference -//
+            public WeakReference WeakReference { get; set; }
+
+            //- @ResourceManager -//
+            public ResourceManager ResourceManager { get; set; }
+        }
+
+        #endregion
     }
 }

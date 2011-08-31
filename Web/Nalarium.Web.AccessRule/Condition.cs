@@ -1,14 +1,21 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
-//+
+
 namespace Nalarium.Web.AccessRule
 {
     internal class Condition
     {
-        public ConditionExecutor _executor = null;
+        public ConditionExecutor _executor;
+
+        private Condition()
+        {
+        }
 
         //+
         //- @Usage -//
@@ -19,9 +26,6 @@ namespace Nalarium.Web.AccessRule
 
         //+
         //- $Ctor -//
-        private Condition()
-        {
-        }
 
         //+
         //- @Create -//
@@ -34,11 +38,11 @@ namespace Nalarium.Web.AccessRule
             }
             //+
             return new Condition
-            {
-                Usage = usage,
-                Value = value,
-                _executor = executor
-            };
+                   {
+                       Usage = usage,
+                       Value = value,
+                       _executor = executor
+                   };
         }
 
         //+

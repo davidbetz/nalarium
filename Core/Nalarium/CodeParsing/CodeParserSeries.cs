@@ -1,13 +1,17 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Nalarium.Globalization;
-//+
+
 namespace Nalarium.CodeParsing
 {
     /// <summary>
@@ -16,6 +20,14 @@ namespace Nalarium.CodeParsing
     public class CodeParserSeries
     {
         //- @CodeParserId -//
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CodeParserSeries"/> class.
+        /// </summary>
+        public CodeParserSeries()
+        {
+            CodeParserList = new List<CodeParser>();
+        }
+
         /// <summary>
         /// Gets or sets the code parser id.
         /// </summary>
@@ -31,13 +43,6 @@ namespace Nalarium.CodeParsing
 
         //+
         //- @Ctor -//
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CodeParserSeries"/> class.
-        /// </summary>
-        public CodeParserSeries()
-        {
-            CodeParserList = new List<CodeParser>();
-        }
 
         //+
         //- @Add -//
@@ -47,7 +52,7 @@ namespace Nalarium.CodeParsing
         /// <param name="codeParser">The code parser.</param>
         public void Add(CodeParser codeParser)
         {
-            this.CodeParserList.Add(codeParser);
+            CodeParserList.Add(codeParser);
         }
 
         //- #ParseCode -//
@@ -58,11 +63,11 @@ namespace Nalarium.CodeParsing
         /// <returns></returns>
         public String ParseCode(String content)
         {
-            if (String.IsNullOrEmpty(this.CodeParserId))
+            if (String.IsNullOrEmpty(CodeParserId))
             {
                 throw new ArgumentNullException(ResourceAccessor.GetString("CodeParser_CodeParserIdRequired", AssemblyInfo.AssemblyName, Resource.ResourceManager));
             }
-            String matchPattern = @"{" + this.CodeParserId + @"{(?<type>[_\-a-z0-9]+){(?<code>[ |;,_\-a-z0-9]+)}}}";
+            String matchPattern = @"{" + CodeParserId + @"{(?<type>[_\-a-z0-9]+){(?<code>[ |;,_\-a-z0-9]+)}}}";
             MatchCollection matchCollection = Regex.Matches(content, matchPattern, RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
             foreach (Match match in matchCollection)
             {
@@ -75,7 +80,7 @@ namespace Nalarium.CodeParsing
                     String parsed = codeParser.ParseCode(codeGroup.Value);
                     if (parsed != null)
                     {
-                        String replacementPattern = String.Format(System.Globalization.CultureInfo.CurrentCulture, "{{{0}{{{1}{{{2}}}}}}}", this.CodeParserId, typeGroup.Value, codeGroup.Value);
+                        String replacementPattern = String.Format(CultureInfo.CurrentCulture, "{{{0}{{{1}{{{2}}}}}}}", CodeParserId, typeGroup.Value, codeGroup.Value);
                         replacementPattern = replacementPattern.Replace("|", "\\|");
                         content = Regex.Replace(content, replacementPattern, parsed, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
                     }
@@ -88,7 +93,7 @@ namespace Nalarium.CodeParsing
         //- $FindCodeParser -//
         private CodeParser FindCodeParser(String codeParserId)
         {
-            return this.CodeParserList.FirstOrDefault(p => p.Id == codeParserId);
+            return CodeParserList.FirstOrDefault(p => p.Id == codeParserId);
         }
     }
 }

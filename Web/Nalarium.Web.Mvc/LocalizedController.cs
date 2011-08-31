@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Resources;
-//+
+using System.Web.Mvc;
+using Nalarium.Globalization;
+using Nalarium.Web.Controls;
+
 namespace Nalarium.Web.Mvc
 {
-    public abstract class LocalizedController : System.Web.Mvc.Controller, Nalarium.Web.Controls.ILocalizedPage
+    public abstract class LocalizedController : Controller, ILocalizedPage
     {
         //- @AssemblyName -//
+
+        #region ILocalizedPage Members
+
         /// <summary>
         /// Represents the name of the assembly from which to pull a resource manager.
         /// </summary>
@@ -27,13 +33,15 @@ namespace Nalarium.Web.Mvc
         /// <summary>
         /// Represents the currently active resource manager.
         /// </summary>
-        public System.Resources.ResourceManager CurrentResourceManager
+        public ResourceManager CurrentResourceManager
         {
             get
             {
-                Nalarium.Globalization.ResourceAccessor.RegisterResourceManager(AssemblyName, BuiltInCultureArray);
-                return Nalarium.Globalization.ResourceAccessor.LoadResourceManager(AssemblyName, DefaultResourceManager);
+                ResourceAccessor.RegisterResourceManager(AssemblyName, BuiltInCultureArray);
+                return ResourceAccessor.LoadResourceManager(AssemblyName, DefaultResourceManager);
             }
         }
+
+        #endregion
     }
 }

@@ -1,18 +1,26 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Collections.Generic;
+using System.ComponentModel;
+
 namespace Nalarium.Configuration
 {
-    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class WithParameterArrayElement : WithParametersElement, IProvidesParameters
     {
         //- @GetParameterArray -//
+
+        #region IProvidesParameters Members
+
         public Object[] GetParameterArray()
         {
-            System.Collections.Generic.List<Object> parameterArray = new System.Collections.Generic.List<Object>();
+            var parameterArray = new List<Object>();
             foreach (ParameterElement element in Parameters)
             {
                 parameterArray.Add(element.Value);
@@ -24,7 +32,7 @@ namespace Nalarium.Configuration
         //- @GetParameterMap -//
         public Map GetParameterMap()
         {
-            Map map = new Map();
+            var map = new Map();
             foreach (ParameterElement element in Parameters)
             {
                 map.Add(element.Name, element.Value);
@@ -32,5 +40,7 @@ namespace Nalarium.Configuration
             //+
             return map;
         }
+
+        #endregion
     }
 }

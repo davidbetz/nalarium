@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 
-//+
 namespace Nalarium
 {
     [DebuggerDisplay("{Scope}, {Name}")]
     public class Value
     {
+        #region Modifiers enum
+
         [Flags]
         public enum Modifiers
         {
@@ -16,18 +17,26 @@ namespace Nalarium
             RetainRawValue = 0x04
         }
 
-        private Object _nonBasicValue;
-        private String _value;
-        private Byte _valueByte;
-        private Int32 _valueInt32;
-        private Int64 _valueInt64;
-        private DateTime _valueDateTime;
-        private Double _valueDouble;
-        private Boolean _valueBoolean;
-
-        public Boolean IsBasicType { get; set; }
+        #endregion
 
         private String _fullName;
+        private Boolean _hasChanged;
+        private Modifiers _modifier = Modifiers.Normal;
+
+        private Object _nonBasicValue;
+        private String _value;
+        private Boolean _valueBoolean;
+        private Byte _valueByte;
+        private DateTime _valueDateTime;
+        private Double _valueDouble;
+        private Int32 _valueInt32;
+        private Int64 _valueInt64;
+
+        private Value()
+        {
+        }
+
+        public Boolean IsBasicType { get; set; }
 
         public String Scope
         {
@@ -61,9 +70,6 @@ namespace Nalarium
             }
         }
 
-        private Modifiers _modifier = Modifiers.Normal;
-        private Boolean _hasChanged = false;
-
         public static Value Blank
         {
             get
@@ -73,69 +79,6 @@ namespace Nalarium
                 //+
                 return v;
             }
-        }
-
-        private Value()
-        {
-        }
-
-        public static Value Create(Object value)
-        {
-            return Create(String.Empty, value, Modifiers.None);
-        }
-        public static Value Create(Object value, Modifiers mode)
-        {
-            return Create(String.Empty, value, mode);
-        }
-        public static Value Create(String name, Object value)
-        {
-            return Create(name, value, Modifiers.None);
-        }
-        public static Value Create(String name, Object value, Modifiers mode)
-        {
-            String scope = String.Empty;
-            if (name.Contains(":"))
-            {
-                var partArray = name.Split(':');
-                scope = name.Split(':')[0];
-                name = name.Split(':')[1];
-            }
-            return Create(scope, name, value, mode);
-        }
-        public static Value Create(String scope, String name, Object value, Modifiers mode)
-        {
-            if (scope.Contains(":") || name.Contains(":"))
-            {
-                throw new InvalidOperationException(Resource.General_ColonNotAllowed);
-            }
-            if (!String.IsNullOrEmpty(scope))
-            {
-                name = scope + ":" + name;
-            }
-            var v = new Value { _fullName = name };
-            if ((mode & Modifiers.RetainRawValue) == Modifiers.RetainRawValue)
-            {
-                v._nonBasicValue = value;
-            }
-            else if (value is Int16 ||
-                value is Int32 ||
-                value is Int64 ||
-                value is String ||
-                value is Double ||
-                value is Single ||
-                value is Byte ||
-                value is Decimal)
-            {
-                v._value = value.ToString();
-                v.IsBasicType = true;
-            }
-            else
-            {
-                v._nonBasicValue = value;
-            }
-            v._hasChanged = true;
-            //+
-            return v;
         }
 
         public String AsString
@@ -358,13 +301,13 @@ namespace Nalarium
                     _hasChanged = true;
                 }
                 else if (value is Int16 ||
-                    value is Int32 ||
-                    value is Int64 ||
-                    value is String ||
-                    value is Double ||
-                    value is Single ||
-                    value is Byte ||
-                    value is Decimal)
+                         value is Int32 ||
+                         value is Int64 ||
+                         value is String ||
+                         value is Double ||
+                         value is Single ||
+                         value is Byte ||
+                         value is Decimal)
                 {
                     if (value != null)
                     {
@@ -398,6 +341,72 @@ namespace Nalarium
             }
         }
 
+        public static Value Create(Object value)
+        {
+            return Create(String.Empty, value, Modifiers.None);
+        }
+
+        public static Value Create(Object value, Modifiers mode)
+        {
+            return Create(String.Empty, value, mode);
+        }
+
+        public static Value Create(String name, Object value)
+        {
+            return Create(name, value, Modifiers.None);
+        }
+
+        public static Value Create(String name, Object value, Modifiers mode)
+        {
+            String scope = String.Empty;
+            if (name.Contains(":"))
+            {
+                string[] partArray = name.Split(':');
+                scope = name.Split(':')[0];
+                name = name.Split(':')[1];
+            }
+            return Create(scope, name, value, mode);
+        }
+
+        public static Value Create(String scope, String name, Object value, Modifiers mode)
+        {
+            if (scope.Contains(":") || name.Contains(":"))
+            {
+                throw new InvalidOperationException(Resource.General_ColonNotAllowed);
+            }
+            if (!String.IsNullOrEmpty(scope))
+            {
+                name = scope + ":" + name;
+            }
+            var v = new Value
+                    {
+                        _fullName = name
+                    };
+            if ((mode & Modifiers.RetainRawValue) == Modifiers.RetainRawValue)
+            {
+                v._nonBasicValue = value;
+            }
+            else if (value is Int16 ||
+                     value is Int32 ||
+                     value is Int64 ||
+                     value is String ||
+                     value is Double ||
+                     value is Single ||
+                     value is Byte ||
+                     value is Decimal)
+            {
+                v._value = value.ToString();
+                v.IsBasicType = true;
+            }
+            else
+            {
+                v._nonBasicValue = value;
+            }
+            v._hasChanged = true;
+            //+
+            return v;
+        }
+
         public override string ToString()
         {
             return _value;
@@ -405,12 +414,12 @@ namespace Nalarium
 
         public static Map<String, Value> ConvertObjectArrayToValueList(Object[] objectArray)
         {
-            Map<String, Value> list = new Map<String, Value>();
+            var list = new Map<String, Value>();
             if (objectArray != null)
             {
                 if (objectArray.Length == 1)
                 {
-                    Value v = objectArray[0] as Value;
+                    var v = objectArray[0] as Value;
                     if (v != null)
                     {
                         list.Add(v.Name, v);
@@ -427,7 +436,7 @@ namespace Nalarium
                 {
                     foreach (Object item in objectArray)
                     {
-                        Value v = item as Value;
+                        var v = item as Value;
                         if (v != null)
                         {
                             list.Add(v.Name, v);
@@ -438,7 +447,7 @@ namespace Nalarium
                             {
                                 continue;
                             }
-                            Value itemAsValue = item as Value;
+                            var itemAsValue = item as Value;
                             String name;
                             if (itemAsValue != null && !String.IsNullOrEmpty(itemAsValue.Name))
                             {

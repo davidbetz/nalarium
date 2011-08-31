@@ -1,16 +1,20 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
+using System.Collections.Generic;
 using System.Text;
-//+
+
 namespace Nalarium.Reporting
 {
     public abstract class ReportCreator : Factory
     {
-        private System.Collections.Generic.List<Object> _list;
-        
+        private List<Object> _list;
+
         //- @Result -//
         /// <summary>
         /// Gets or sets the result.
@@ -30,20 +34,26 @@ namespace Nalarium.Reporting
         /// States whether the report creator is for exception reporting.
         /// </summary>
         /// <value>True if is exception, false if user defined.</value>
-        public virtual Boolean IsException { get { return false; } }
+        public virtual Boolean IsException
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         //- @Data -//
         /// <summary>
         /// Gets or sets the data list .
         /// </summary>
         /// <value>The data list.</value>
-        public System.Collections.Generic.List<Object> Data
+        public List<Object> Data
         {
             get
             {
                 if (_list == null)
                 {
-                    _list = new System.Collections.Generic.List<Object>();
+                    _list = new List<Object>();
                 }
                 //+
                 return _list;
@@ -57,7 +67,7 @@ namespace Nalarium.Reporting
         /// </summary>
         public void Clear()
         {
-            this._list = new System.Collections.Generic.List<Object>();
+            _list = new List<Object>();
         }
 
         //- @AddMap -//
@@ -67,7 +77,7 @@ namespace Nalarium.Reporting
         /// <param name="map">The map to add.</param>
         public void AddMap(Object data)
         {
-            this.Data.Add(data);
+            Data.Add(data);
         }
 
         //- @InsertMap -//
@@ -78,7 +88,7 @@ namespace Nalarium.Reporting
         /// <param name="index">The index at which to insert the map.</param>
         public void InsertMap(Map map, Int32 index)
         {
-            this.Data.Insert(index, map);
+            Data.Insert(index, map);
         }
 
         //- @Create -//
@@ -88,16 +98,17 @@ namespace Nalarium.Reporting
         /// <returns></returns>
         public String Create()
         {
-            return Create(this.Data);
+            return Create(Data);
         }
+
         /// <summary>
         /// Generates a report.
         /// </summary>
         /// <param name="list">The data list on which to base the report creation.</param>
         /// <returns></returns>
-        public String Create(System.Collections.Generic.List<Object> list)
+        public String Create(List<Object> list)
         {
-            this.Result = new StringBuilder();
+            Result = new StringBuilder();
             //+
             if (list.Count > 0)
             {
@@ -108,11 +119,12 @@ namespace Nalarium.Reporting
                 }
                 CreateFooter();
                 //+
-                return this.Result.ToString();
+                return Result.ToString();
             }
             //+
             return String.Empty;
         }
+
         /// <summary>
         /// Generates the report.
         /// </summary>
@@ -120,11 +132,11 @@ namespace Nalarium.Reporting
         /// <returns></returns>
         public String Create(Object data)
         {
-            this.Result = new StringBuilder();
+            Result = new StringBuilder();
             //+
             return CreateCore(data);
         }
-        
+
         //- #CreateCore -//
         /// <summary>
         /// Generates the report.
@@ -137,13 +149,17 @@ namespace Nalarium.Reporting
         /// <summary>
         /// Creates the header.
         /// </summary>
-        protected virtual void CreateHeader() { }
+        protected virtual void CreateHeader()
+        {
+        }
 
         //- #CreateHeader -//
         /// <summary>
         /// Creates the footer.
         /// </summary>
-        protected virtual void CreateFooter() { }
+        protected virtual void CreateFooter()
+        {
+        }
 
         //- #Write -//
         /// <summary>
@@ -152,8 +168,9 @@ namespace Nalarium.Reporting
         /// <param name="formatterType">Type of the formatter.</param>
         protected void Write(FormatterType formatterType)
         {
-            this.Write(String.Empty, formatterType);
+            Write(String.Empty, formatterType);
         }
+
         /// <summary>
         /// Writes the specified text.
         /// </summary>
@@ -161,8 +178,9 @@ namespace Nalarium.Reporting
         /// <param name="formatterType">Type of the formatter.</param>
         protected void Write(String text, FormatterType formatterType)
         {
-            this.Result.Append(this.Formatter.Format(text, formatterType));
+            Result.Append(Formatter.Format(text, formatterType));
         }
+
         /// <summary>
         /// Writes the specified text.
         /// </summary>
@@ -171,7 +189,7 @@ namespace Nalarium.Reporting
         /// <param name="styles">The styles.</param>
         protected void Write(String text, FormatterType formatterType, StyleTypes styles)
         {
-            this.Result.Append(this.Formatter.Format(text, formatterType, styles));
+            Result.Append(Formatter.Format(text, formatterType, styles));
         }
 
         //- @IsValid -//
@@ -186,7 +204,7 @@ namespace Nalarium.Reporting
         /// </returns>
         protected Boolean IsValid<T>(Object[] parameterArray, out T arg1) where T : class
         {
-            if (!Collection.IsNullOrTooSmall<Object>(parameterArray, 1))
+            if (!Collection.IsNullOrTooSmall(parameterArray, 1))
             {
                 arg1 = parameterArray[0] as T;
                 if (arg1 != null)
@@ -198,6 +216,7 @@ namespace Nalarium.Reporting
             arg1 = null;
             return false;
         }
+
         /// <summary>
         /// Determines whether the specified parameter array is valid.
         /// </summary>
@@ -213,7 +232,7 @@ namespace Nalarium.Reporting
             where T1 : class
             where T2 : class
         {
-            if (!Collection.IsNullOrTooSmall<Object>(parameterArray, 2))
+            if (!Collection.IsNullOrTooSmall(parameterArray, 2))
             {
                 arg1 = parameterArray[0] as T1;
                 arg2 = parameterArray[1] as T2;

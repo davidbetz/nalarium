@@ -1,11 +1,14 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-//+
+
 namespace Nalarium.Activation
 {
     /// <summary>
@@ -13,7 +16,7 @@ namespace Nalarium.Activation
     /// </summary>
     public static class ObjectCreator
     {
-        private static Map<String, Type> _scannedTypeMap = new Map<String, Type>();
+        private static readonly Map<String, Type> _scannedTypeMap = new Map<String, Type>();
 
         //- @Create -//
         /// <summary>
@@ -26,6 +29,7 @@ namespace Nalarium.Activation
         {
             return Activator.CreateInstance(type, parameterArray);
         }
+
         /// <summary>
         /// Creates the specified type.
         /// </summary>
@@ -39,13 +43,13 @@ namespace Nalarium.Activation
             List<String> keyList = map.GetKeyList();
             foreach (String key in keyList)
             {
-
                 PropertyInfo pi = type.GetProperty(key);
                 pi.SetValue(obj, map[key], null);
             }
             //+
             return obj;
         }
+
         /// <summary>
         /// Creates as.
         /// </summary>
@@ -62,6 +66,7 @@ namespace Nalarium.Activation
             //+
             return null;
         }
+
         /// <summary>
         /// Creates as.
         /// </summary>
@@ -95,6 +100,7 @@ namespace Nalarium.Activation
         {
             return CreateByAssemblyScanning<Object>(typeName);
         }
+
         /// <summary>
         /// Create a type without knowing assembly name (all assemblies are scanned; the first type matching the name is created).
         /// </summary>
@@ -139,6 +145,7 @@ namespace Nalarium.Activation
         {
             return Activator.CreateInstance(typeof(T), parameterArray) as T;
         }
+
         /// <summary>
         /// Creates as.
         /// </summary>
@@ -149,6 +156,7 @@ namespace Nalarium.Activation
         {
             return Activator.CreateInstance(type) as T;
         }
+
         /// <summary>
         /// Creates as.
         /// </summary>
@@ -164,6 +172,7 @@ namespace Nalarium.Activation
             //+
             return null;
         }
+
         /// <summary>
         /// Creates as.
         /// </summary>
@@ -175,6 +184,7 @@ namespace Nalarium.Activation
         {
             return Activator.CreateInstance(type, parameterArray) as T;
         }
+
         /// <summary>
         /// Creates as.
         /// </summary>
@@ -189,13 +199,13 @@ namespace Nalarium.Activation
             List<String> keyList = map.GetKeyList();
             foreach (String key in keyList)
             {
-
                 PropertyInfo pi = type.GetProperty(key);
                 pi.SetValue(obj, map[key], null);
             }
             //+
             return (T)obj;
         }
+
         /// <summary>
         /// Creates as.
         /// </summary>
@@ -212,6 +222,7 @@ namespace Nalarium.Activation
             //+
             return null;
         }
+
         /// <summary>
         /// Creates as.
         /// </summary>
@@ -247,8 +258,8 @@ namespace Nalarium.Activation
         {
             Assembly assembly = Assembly.Load(assemblyName);
             Type type = assembly.GetType(typeName);
-            ConstructorInfo ci = type.GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, System.Type.EmptyTypes, null);
-            return (T)ci.Invoke(System.Type.EmptyTypes);
+            ConstructorInfo ci = type.GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, Type.EmptyTypes, null);
+            return (T)ci.Invoke(Type.EmptyTypes);
         }
     }
 }

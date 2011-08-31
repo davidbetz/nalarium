@@ -1,10 +1,14 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using Nalarium.Configuration;
-//+
+using Nalarium.Cryptography;
+
 namespace Nalarium.Mail
 {
     /// <summary>
@@ -29,7 +33,10 @@ namespace Nalarium.Mail
         /// <value>The server.</value>
         public static String Server
         {
-            get { return Section.EmailSetup.Server; }
+            get
+            {
+                return Section.EmailSetup.Server;
+            }
         }
 
         //- @UserName -//
@@ -39,7 +46,10 @@ namespace Nalarium.Mail
         /// <value>The name of the user.</value>
         public static String UserName
         {
-            get { return Section.EmailSetup.UserName; }
+            get
+            {
+                return Section.EmailSetup.UserName;
+            }
         }
 
         //- @Password -//
@@ -54,7 +64,7 @@ namespace Nalarium.Mail
                 String password = Section.EmailSetup.Password;
                 if (password.StartsWith("secure:"))
                 {
-                    password = Nalarium.Cryptography.Rijndael.Decrypt(password.Substring("secure:".Length, password.Length - "secure:".Length));
+                    password = Rijndael.Decrypt(password.Substring("secure:".Length, password.Length - "secure:".Length));
                 }
                 return password;
             }
@@ -68,7 +78,10 @@ namespace Nalarium.Mail
         /// <value>The general to email address.</value>
         public static String GeneralToEmailAddress
         {
-            get { return GetParameterOrDefault("GeneralTo", Section.EmailSetup.To); }
+            get
+            {
+                return GetParameterOrDefault("GeneralTo", Section.EmailSetup.To);
+            }
         }
 
         //- @GeneralFromEmailAddress -//
@@ -78,7 +91,10 @@ namespace Nalarium.Mail
         /// <value>The general from email address.</value>
         public static String GeneralFromEmailAddress
         {
-            get { return GetParameterOrDefault("GeneralFrom", Section.EmailSetup.From); }
+            get
+            {
+                return GetParameterOrDefault("GeneralFrom", Section.EmailSetup.From);
+            }
         }
 
         //- @GeneralSubject -//
@@ -88,7 +104,10 @@ namespace Nalarium.Mail
         /// <value>The general subject.</value>
         public static String GeneralSubject
         {
-            get { return GetParameter("GeneralSubject"); }
+            get
+            {
+                return GetParameter("GeneralSubject");
+            }
         }
 
         //- @GeneralPrefixWithSiteName -//
@@ -113,7 +132,10 @@ namespace Nalarium.Mail
         /// <value>The exception to email address.</value>
         public static String ExceptionToEmailAddress
         {
-            get { return GetParameterOrDefault("ExceptionTo", Section.EmailSetup.To); }
+            get
+            {
+                return GetParameterOrDefault("ExceptionTo", Section.EmailSetup.To);
+            }
         }
 
         //- @ExceptionFromEmailAddress -//
@@ -123,7 +145,10 @@ namespace Nalarium.Mail
         /// <value>The exception from email address.</value>
         public static String ExceptionFromEmailAddress
         {
-            get { return GetParameterOrDefault("ExceptionFrom", Section.EmailSetup.From); }
+            get
+            {
+                return GetParameterOrDefault("ExceptionFrom", Section.EmailSetup.From);
+            }
         }
 
         //- @ExceptionSubject -//
@@ -133,7 +158,10 @@ namespace Nalarium.Mail
         /// <value>The exception subject.</value>
         public static String ExceptionSubject
         {
-            get { return GetParameter("ExceptionSubject"); }
+            get
+            {
+                return GetParameter("ExceptionSubject");
+            }
         }
 
         //- @ExceptionPrefixWithSiteName -//
@@ -187,6 +215,7 @@ namespace Nalarium.Mail
         {
             return Section.EmailSetup.GetParameterValue(name);
         }
+
         //- @GetParameterOrDefault -//
         private static String GetParameterOrDefault(String name, String defaultValue)
         {

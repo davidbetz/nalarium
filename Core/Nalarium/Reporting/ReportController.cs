@@ -1,20 +1,23 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Linq;
 using System.Threading;
-//+
 using Nalarium.Activation;
 using Nalarium.Configuration;
 //+
+
 namespace Nalarium.Reporting
 {
     public static class ReportController
     {
-        private static ReaderWriterLockSlim readerWriterLockSlim = new ReaderWriterLockSlim();
-        private static Object _lock = new Object();
+        private static readonly ReaderWriterLockSlim readerWriterLockSlim = new ReaderWriterLockSlim();
+        private static readonly Object _lock = new Object();
 
         //+
         internal static Map<String, ReportCreator> ReportCreatorCache = new Map<String, ReportCreator>();
@@ -27,7 +30,7 @@ namespace Nalarium.Reporting
 
         //+
         //- $ReporterMap -//
-        private static Map<String, Reporter> ReporterMap = new Map<String, Reporter>();
+        private static readonly Map<String, Reporter> ReporterMap = new Map<String, Reporter>();
 
         //+
         //- @Ctor -//
@@ -127,6 +130,7 @@ namespace Nalarium.Reporting
         {
             return Create(String.Empty, reportCreatorType, senderType, formatterType);
         }
+
         /// <summary>
         /// Creates the specified name.
         /// </summary>
@@ -156,7 +160,7 @@ namespace Nalarium.Reporting
         //- $InitFactoryData -//
         private static void InitFactoryData()
         {
-            Nalarium.Configuration.SystemSection section = Nalarium.Configuration.SystemSection.GetConfigSection();
+            SystemSection section = SystemSection.GetConfigSection();
             if (section != null)
             {
                 FactoryCollection collection = section.Reporting.Factories;
@@ -170,7 +174,7 @@ namespace Nalarium.Reporting
         //- $InitReporterData -//
         private static void InitReporterData()
         {
-            Nalarium.Configuration.SystemSection section = Nalarium.Configuration.SystemSection.GetConfigSection();
+            SystemSection section = SystemSection.GetConfigSection();
             if (section != null)
             {
                 ReportingElement reportingElement = section.Reporting;

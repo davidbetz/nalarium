@@ -1,11 +1,16 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 //+
+using System.Web;
+
 namespace Nalarium.Web.Mvc
 {
-    public class Break : Nalarium.Web.Mvc.Control
+    public class Break : Control
     {
         protected Break()
         {
@@ -16,9 +21,9 @@ namespace Nalarium.Web.Mvc
             return new Break();
         }
 
-        public override System.Web.HtmlString Render()
+        public override HtmlString Render()
         {
-            return new System.Web.HtmlString("<br />");
+            return new HtmlString("<br />");
         }
     }
 }

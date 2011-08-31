@@ -1,12 +1,16 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-//+
+
 namespace Nalarium
 {
     /// <summary>
@@ -20,8 +24,32 @@ namespace Nalarium
     {
         private Dictionary<TKey, TValue> _data = new Dictionary<TKey, TValue>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;"/> class with an optional generic MapEntry parameter array
+        /// </summary>
+        /// <param name="parameterArray">The parameter array.</param>
+        public Map(params MapEntry<TKey, TValue>[] parameterArray)
+        {
+            if (parameterArray != null)
+            {
+                foreach (var mapEntry in parameterArray)
+                {
+                    AddMapEntry(mapEntry);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;"/> class with another Map instance.
+        /// </summary>
+        /// <param name="initMap">The initialization map.</param>
+        public Map(Map<TKey, TValue> initMap)
+        {
+            ImportMap(initMap);
+        }
+
         [DataMember]
-        protected System.Collections.Generic.Dictionary<TKey, TValue> Data
+        protected Dictionary<TKey, TValue> Data
         {
             get
             {
@@ -32,6 +60,72 @@ namespace Nalarium
                 _data = value;
             }
         }
+
+        public ICollection<TKey> Keys
+        {
+            get
+            {
+                return Data.Keys;
+            }
+        }
+
+        public ICollection<TValue> Values
+        {
+            get
+            {
+                return Data.Values;
+            }
+        }
+
+        public virtual TValue this[TKey key]
+        {
+            get
+            {
+                if (ContainsKey(key))
+                {
+                    return Data[key];
+                }
+                //+
+                return default(TValue);
+            }
+            set
+            {
+                Data[key] = value;
+            }
+        }
+
+        public Int32 Count
+        {
+            get
+            {
+                return Data.Count;
+            }
+        }
+
+        /// <summary>
+        /// The map data as a property (same as the GetDataSource Method)
+        /// </summary>
+        public List<MapEntry<TKey, TValue>> DataSource
+        {
+            get
+            {
+                return GetDataSource();
+            }
+        }
+
+        #region IEnumerable<KeyValuePair<TKey,TValue>> Members
+
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
+        {
+            return Data.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Data.GetEnumerator();
+        }
+
+        #endregion
 
         //+
         //-  @IsNotNullOrEmpty -//
@@ -58,6 +152,7 @@ namespace Nalarium
                 Data.Add(key, value);
             }
         }
+
         public void Add(TKey key, TValue value, MapDuplicateMode mode)
         {
             if (!Data.ContainsKey(key))
@@ -104,10 +199,6 @@ namespace Nalarium
         }
 
         //- @Keys -//
-        public ICollection<TKey> Keys
-        {
-            get { return Data.Keys; }
-        }
 
         //- @Remove -//
         public Boolean Remove(TKey key)
@@ -122,10 +213,6 @@ namespace Nalarium
         }
 
         //- @Values -//
-        public ICollection<TValue> Values
-        {
-            get { return Data.Values; }
-        }
 
         //- @FindKeyForIndex -//
         public TKey FindKeyForIndex(Int32 index)
@@ -143,22 +230,6 @@ namespace Nalarium
         }
 
         //- @[] -//
-        public virtual TValue this[TKey key]
-        {
-            get
-            {
-                if (ContainsKey(key))
-                {
-                    return Data[key];
-                }
-                //+
-                return default(TValue);
-            }
-            set
-            {
-                Data[key] = value;
-            }
-        }
 
         //- @Clear -//
         public void Clear()
@@ -167,17 +238,6 @@ namespace Nalarium
         }
 
         //- @Count -//
-        public Int32 Count { get { return Data.Count; } }
-
-        //- @GetEnumerator -//
-        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-        {
-            return Data.GetEnumerator();
-        }
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return Data.GetEnumerator();
-        }
 
         //+ static
         //- @IsNullOrEmpty -//
@@ -193,41 +253,6 @@ namespace Nalarium
 
         //+
         //- @Ctor -//
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;"/> class with an optional generic MapEntry parameter array
-        /// </summary>
-        /// <param name="parameterArray">The parameter array.</param>
-        public Map(params MapEntry<TKey, TValue>[] parameterArray)
-        {
-            if (parameterArray != null)
-            {
-                foreach (MapEntry<TKey, TValue> mapEntry in parameterArray)
-                {
-                    this.AddMapEntry(mapEntry);
-                }
-            }
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;"/> class with another Map instance.
-        /// </summary>
-        /// <param name="initMap">The initialization map.</param>
-        public Map(Map<TKey, TValue> initMap)
-        {
-            this.ImportMap(initMap);
-        }
-
-        //+
-        //- @DataSource -//
-        /// <summary>
-        /// The map data as a property (same as the GetDataSource Method)
-        /// </summary>
-        public List<MapEntry<TKey, TValue>> DataSource
-        {
-            get
-            {
-                return GetDataSource();
-            }
-        }
 
         //+
         //- @AddMapEntry -//
@@ -239,7 +264,7 @@ namespace Nalarium
         {
             if (mapEntry != null)
             {
-                this.Add(mapEntry.Key, mapEntry.Value);
+                Add(mapEntry.Key, mapEntry.Value);
             }
         }
 
@@ -285,7 +310,7 @@ namespace Nalarium
                 List<TKey> keyList = map.GetKeyList();
                 foreach (TKey key in keyList)
                 {
-                    this.Add(key, map[key]);
+                    Add(key, map[key]);
                 }
             }
         }
@@ -301,7 +326,7 @@ namespace Nalarium
         {
             if (key != null)
             {
-                if (this.ContainsKey(key))
+                if (ContainsKey(key))
                 {
                     return this[key];
                 }
@@ -322,7 +347,7 @@ namespace Nalarium
         {
             if (key != null)
             {
-                if (this.ContainsKey(key))
+                if (ContainsKey(key))
                 {
                     return (T)this[key];
                 }
@@ -341,7 +366,7 @@ namespace Nalarium
         {
             if (key != null)
             {
-                if (this.ContainsKey(key))
+                if (ContainsKey(key))
                 {
                     return (T)this[key];
                 }
@@ -359,10 +384,10 @@ namespace Nalarium
         {
             if (key != null)
             {
-                if (this.ContainsKey(key))
+                if (ContainsKey(key))
                 {
                     TValue value = this[key];
-                    this.Remove(key);
+                    Remove(key);
                     return value;
                 }
             }
@@ -377,8 +402,8 @@ namespace Nalarium
         /// <returns></returns>
         public List<MapEntry<TKey, TValue>> GetDataSource()
         {
-            List<MapEntry<TKey, TValue>> mapEntryList = new List<MapEntry<TKey, TValue>>();
-            List<TKey> keyList = this.GetKeyList();
+            var mapEntryList = new List<MapEntry<TKey, TValue>>();
+            List<TKey> keyList = GetKeyList();
             foreach (TKey key in keyList)
             {
                 mapEntryList.Add(new MapEntry<TKey, TValue>(key, this[key]));
@@ -416,22 +441,25 @@ namespace Nalarium
         public Map()
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Map"/> class with an optional MapEntry parameter array
         /// </summary>
         /// <param name="parameterArray">An optional MapEntry parameter array.</param>
         public Map(params MapEntry[] parameterArray)
         {
-            this.AddMapEntrySeries(parameterArray);
+            AddMapEntrySeries(parameterArray);
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Map"/> class with an optional pair parameter array
         /// </summary>
         /// <param name="parameterArray">An optional pair (i.e. "a=b") parameter array.</param>
         public Map(params String[] parameterArray)
         {
-            this.AddPairSeries(parameterArray);
+            AddPairSeries(parameterArray);
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Map"/> class with another Map instance.
         /// </summary>
@@ -440,22 +468,23 @@ namespace Nalarium
             : base(initMap)
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Map"/> class with an IDictionary instance
         /// </summary>
         /// <param name="dictionary">The IDictionary instance used to initialize the map</param>
-        public Map(System.Collections.IDictionary dictionary)
+        public Map(IDictionary dictionary)
         {
             if (dictionary != null)
             {
                 foreach (String key in dictionary.Keys)
                 {
-                    String k = key as String;
-                    String v = dictionary[key] as String;
+                    String k = key;
+                    var v = dictionary[key] as String;
                     //+
                     if (k != null && v != null)
                     {
-                        this.Add(k, v);
+                        Add(k, v);
                     }
                 }
             }
@@ -474,7 +503,7 @@ namespace Nalarium
                 String[] parts = queryString.Split('&');
                 if (parts.Length > 0)
                 {
-                    this.AddPairSeries(parts);
+                    AddPairSeries(parts);
                 }
             }
         }
@@ -490,7 +519,7 @@ namespace Nalarium
             {
                 foreach (MapEntry mapEntry in mapEntryArray)
                 {
-                    this.AddMapEntry(mapEntry);
+                    AddMapEntry(mapEntry);
                 }
             }
         }
@@ -506,7 +535,7 @@ namespace Nalarium
             {
                 foreach (String mapping in parameterArray)
                 {
-                    this.AddPair(mapping);
+                    AddPair(mapping);
                 }
             }
         }
@@ -553,6 +582,7 @@ namespace Nalarium
         {
             return Get(key, StringComparison.Ordinal);
         }
+
         /// <summary>
         /// Returns a case insensitive value from the map.
         /// </summary>
@@ -582,7 +612,7 @@ namespace Nalarium
         {
             if (key != null)
             {
-                if (this.ContainsKey(key))
+                if (ContainsKey(key))
                 {
                     return Parser.Parse<T>(this[key]);
                 }

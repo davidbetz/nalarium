@@ -1,9 +1,13 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Reflection;
+
 namespace Nalarium.Activation
 {
     public class TypeData
@@ -18,7 +22,7 @@ namespace Nalarium.Activation
         /// <summary>
         /// Strongly typed name of the assembly.
         /// </summary>
-        public System.Reflection.AssemblyName AssemblyName { get; set; }
+        public AssemblyName AssemblyName { get; set; }
 
         //+
         //- @ToString -//
@@ -26,7 +30,7 @@ namespace Nalarium.Activation
         {
             if (AssemblyName != null)
             {
-                return Name + ", " + AssemblyName.ToString();
+                return Name + ", " + AssemblyName;
             }
             //+
             return String.Empty;

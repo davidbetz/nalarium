@@ -1,11 +1,14 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Reflection;
 using System.Reflection.Emit;
-//+
+
 namespace Nalarium.Activation
 {
     /// <summary>
@@ -14,7 +17,6 @@ namespace Nalarium.Activation
     public class DynamicObjectActivator
     {
         //- $MethodCreator -//
-        private delegate Object MethodCreator();
 
         //+ field
         private static Object _lock = new Object();
@@ -39,6 +41,7 @@ namespace Nalarium.Activation
         {
             return (T)Create(typeName);
         }
+
         /// <summary>
         /// Creates an instance of a type.
         /// </summary>
@@ -56,6 +59,7 @@ namespace Nalarium.Activation
             //+
             return runnerCreator();
         }
+
         /// <summary>
         /// Creates an instance of a type.
         /// </summary>
@@ -66,6 +70,7 @@ namespace Nalarium.Activation
         {
             return (T)Create(type);
         }
+
         /// <summary>
         /// Creates an instance of a type.
         /// </summary>
@@ -86,7 +91,7 @@ namespace Nalarium.Activation
             {
                 _methodCreatorTypeKey = TypeCache.Register(typeof(MethodCreator));
             }
-            DynamicMethod dynamic = new DynamicMethod(string.Empty, TypeCache.Get(TypeCache.Info.Object), Type.EmptyTypes, type);
+            var dynamic = new DynamicMethod(string.Empty, TypeCache.Get(TypeCache.Info.Object), Type.EmptyTypes, type);
             ILGenerator il = dynamic.GetILGenerator();
             il.DeclareLocal(type);
             il.Emit(OpCodes.Newobj, info);
@@ -94,5 +99,11 @@ namespace Nalarium.Activation
             //+
             return dynamic.CreateDelegate(TypeCache.Get(_methodCreatorTypeKey)) as MethodCreator;
         }
+
+        #region Nested type: MethodCreator
+
+        private delegate Object MethodCreator();
+
+        #endregion
     }
 }

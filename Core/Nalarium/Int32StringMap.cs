@@ -1,9 +1,13 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Collections;
+
 namespace Nalarium
 {
     public class Int32StringMap : Map<Int32, String>
@@ -15,22 +19,25 @@ namespace Nalarium
         public Int32StringMap()
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Int32StringMap"/> class.
         /// </summary>
         /// <param name="parameterArray">The parameter array.</param>
         public Int32StringMap(params Int32StringMapEntry[] parameterArray)
         {
-            this.AddMapEntrySeries(parameterArray);
+            AddMapEntrySeries(parameterArray);
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Int32StringMap"/> class.
         /// </summary>
         /// <param name="parameterArray">The parameter array.</param>
         public Int32StringMap(params String[] parameterArray)
         {
-            this.AddPairSeries(parameterArray);
+            AddPairSeries(parameterArray);
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Int32StringMap"/> class.
         /// </summary>
@@ -39,18 +46,19 @@ namespace Nalarium
             : base(initMap)
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Int32StringMap"/> class.
         /// </summary>
         /// <param name="dictionary">The dictionary.</param>
-        public Int32StringMap(System.Collections.IDictionary dictionary)
+        public Int32StringMap(IDictionary dictionary)
         {
             if (dictionary != null)
             {
                 foreach (String key in dictionary.Keys)
                 {
-                    String k = key as String;
-                    String v = dictionary[key] as String;
+                    String k = key;
+                    var v = dictionary[key] as String;
                     //+
                     if (k != null && v != null)
                     {
@@ -68,8 +76,14 @@ namespace Nalarium
         //- Indexer -//
         public new String this[Int32 key]
         {
-            get { return PeekSafely(key); }
-            set { base[key] = value; }
+            get
+            {
+                return PeekSafely(key);
+            }
+            set
+            {
+                base[key] = value;
+            }
         }
 
         //+
@@ -85,7 +99,7 @@ namespace Nalarium
                 String[] parts = seriesMapping.Split(',');
                 if (parts.Length > 0)
                 {
-                    this.AddPairSeries(parts);
+                    AddPairSeries(parts);
                 }
             }
         }
@@ -101,7 +115,7 @@ namespace Nalarium
             {
                 foreach (Int32StringMapEntry mapEntry in mapEntryArray)
                 {
-                    this.AddMapEntry(mapEntry);
+                    AddMapEntry(mapEntry);
                 }
             }
         }
@@ -117,7 +131,7 @@ namespace Nalarium
             {
                 foreach (String mapping in parameterArray)
                 {
-                    this.AddPair(mapping);
+                    AddPair(mapping);
                 }
             }
         }

@@ -1,10 +1,15 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Configuration;
-//+
+using System.Globalization;
+using Nalarium.Globalization;
+
 namespace Nalarium.Configuration
 {
     /// <summary>
@@ -34,6 +39,7 @@ namespace Nalarium.Configuration
             }
             return returnValue;
         }
+
         /// <summary>
         /// Enables quick access to appSettings data as strongly-typed data.
         /// </summary>
@@ -49,7 +55,7 @@ namespace Nalarium.Configuration
             {
                 if (isRequired)
                 {
-                    throw new ConfigurationErrorsException(String.Format(System.Globalization.CultureInfo.CurrentCulture, Nalarium.Globalization.ResourceAccessor.GetString("Config_SettingRequired", AssemblyInfo.AssemblyName, Resource.ResourceManager), key));
+                    throw new ConfigurationErrorsException(String.Format(CultureInfo.CurrentCulture, ResourceAccessor.GetString("Config_SettingRequired", AssemblyInfo.AssemblyName, Resource.ResourceManager), key));
                 }
                 else
                 {
@@ -62,6 +68,7 @@ namespace Nalarium.Configuration
             }
             return returnValue;
         }
+
         /// <summary>
         /// Enables quick access to appSettings data as a String.
         /// </summary>
@@ -73,6 +80,7 @@ namespace Nalarium.Configuration
         {
             return ApplicationSettings<String>(key, isRequired);
         }
+
         /// <summary>
         /// Enables quick access to appSettings data as strongly-typed data.
         /// </summary>
@@ -83,6 +91,7 @@ namespace Nalarium.Configuration
         {
             return ApplicationSettings<T>(key, false);
         }
+
         /// <summary>
         /// Enables quick access to appSettings data as a String.
         /// </summary>
@@ -104,6 +113,7 @@ namespace Nalarium.Configuration
         {
             return ConnectionString(key, false);
         }
+
         /// <summary>
         /// Enables quick access to connectionString data.
         /// </summary>
@@ -115,7 +125,7 @@ namespace Nalarium.Configuration
             ConnectionStringSettings cs = ConfigurationManager.ConnectionStrings[key];
             if (isRequired && (cs == null || String.IsNullOrEmpty(cs.ConnectionString)))
             {
-                throw new ConfigurationErrorsException(String.Format(System.Globalization.CultureInfo.CurrentCulture, Nalarium.Globalization.ResourceAccessor.GetString("Config_SettingRequired", AssemblyInfo.AssemblyName, Resource.ResourceManager), key));
+                throw new ConfigurationErrorsException(String.Format(CultureInfo.CurrentCulture, ResourceAccessor.GetString("Config_SettingRequired", AssemblyInfo.AssemblyName, Resource.ResourceManager), key));
             }
             if ((cs == null || String.IsNullOrEmpty(cs.ConnectionString)))
             {

@@ -1,12 +1,15 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
-//+
+
 namespace Nalarium.Mail
 {
     /// <summary>
@@ -26,6 +29,7 @@ namespace Nalarium.Mail
         {
             Send(from, to, subject, body, new MailOptions());
         }
+
         /// <summary>
         /// Sends an e-mail using current date and time.
         /// </summary>
@@ -38,6 +42,7 @@ namespace Nalarium.Mail
         {
             Send(from, to, subject, body, DateTime.Now, options);
         }
+
         /// <summary>
         /// Sends an e-mail using a specific date and time.
         /// </summary>
@@ -51,6 +56,7 @@ namespace Nalarium.Mail
         {
             Send(from, to, subject, body, datetime, null, null, null, options);
         }
+
         /// <summary>
         /// Sends an e-mail using a specific date and time.
         /// </summary>
@@ -73,9 +79,9 @@ namespace Nalarium.Mail
         {
             if ((mailOptions & MailOptions.UseGmailConversationBreaker) == MailOptions.UseGmailConversationBreaker)
             {
-                subject += " " + Nalarium.GuidCreator.GetNewGuid();
+                subject += " " + GuidCreator.GetNewGuid();
             }
-            using (MailMessage email = new MailMessage(from, to))
+            using (var email = new MailMessage(from, to))
             {
                 email.Subject = subject;
                 email.Body = body;
@@ -85,10 +91,10 @@ namespace Nalarium.Mail
                 AssignBcc(email, bcc);
                 AssignAttachments(email, attachmentPaths);
                 //+
-                SmtpClient mailClient = new SmtpClient();
+                var mailClient = new SmtpClient();
                 String userName = "agapeton";
                 String password = "mscw0000";
-                NetworkCredential basicAuthenticationInfo = new NetworkCredential(userName, password);
+                var basicAuthenticationInfo = new NetworkCredential(userName, password);
                 if ((mailOptions & MailOptions.UseSecureGmail) == MailOptions.UseSecureGmail)
                 {
                     mailClient.Host = "smtp.gmail.com";
@@ -142,6 +148,5 @@ namespace Nalarium.Mail
                 }
             }
         }
-
     }
 }

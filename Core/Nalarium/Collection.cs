@@ -1,9 +1,13 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
-//+
+using System.Collections;
+
 namespace Nalarium
 {
     /// <summary>
@@ -17,7 +21,7 @@ namespace Nalarium
         /// </summary>
         /// <param name="list">The list.</param>
         /// <returns>true if the list is null or empty; otherwise, false.</returns>
-        public static Boolean IsNullOrEmpty(System.Collections.IList list)
+        public static Boolean IsNullOrEmpty(IList list)
         {
             if (list == null || list.Count == 0)
             {
@@ -26,12 +30,13 @@ namespace Nalarium
             //+
             return false;
         }
+
         /// <summary>
         /// Determines whether a collection is null or empty.
         /// </summary>
         /// <param name="list">The collection.</param>
         /// <returns>true if the collection is null or empty; otherwise, false.</returns>
-        public static Boolean IsNullOrEmpty(System.Collections.ICollection collection)
+        public static Boolean IsNullOrEmpty(ICollection collection)
         {
             if (collection == null || collection.Count == 0)
             {
@@ -40,6 +45,7 @@ namespace Nalarium
             //+
             return false;
         }
+
         /// <summary>
         /// Determines whether an array is null or empty.
         /// </summary>
@@ -63,7 +69,7 @@ namespace Nalarium
         /// <param name="list">The list.</param>
         /// <param name="minimum">The minimum.</param>
         /// <returns>true if the list is null or too small; otherwise, false.</returns>
-        public static Boolean IsNullOrTooSmall(System.Collections.IList list, Int32 minimum)
+        public static Boolean IsNullOrTooSmall(IList list, Int32 minimum)
         {
             if (list == null || list.Count < minimum)
             {
@@ -72,13 +78,14 @@ namespace Nalarium
             //+
             return false;
         }
+
         /// <summary>
         /// Determines whether a collection is null or too small,.
         /// </summary>
         /// <param name="list">The collection.</param>
         /// <param name="minimum">The minimum.</param>
         /// <returns>true if the collection is null or too small; otherwise, false.</returns>
-        public static Boolean IsNullOrTooSmall(System.Collections.ICollection collection, Int32 minimum)
+        public static Boolean IsNullOrTooSmall(ICollection collection, Int32 minimum)
         {
             if (collection == null || collection.Count < minimum)
             {
@@ -87,6 +94,7 @@ namespace Nalarium
             //+
             return false;
         }
+
         /// <summary>
         /// Determines whether an array is null or too small,.
         /// </summary>

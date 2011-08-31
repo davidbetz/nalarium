@@ -1,11 +1,12 @@
 ﻿using System;
-//+
+using System.Web;
+using System.Web.Routing;
+using Nalarium.Activation;
+
 namespace Nalarium.Web.Mvc
 {
-    public class HandlerRouteHandler : System.Web.Routing.IRouteHandler
+    public class HandlerRouteHandler : IRouteHandler
     {
-        private Type _httpHandlerType { get; set; }
-
         //+
         //- @Ctor -//
         public HandlerRouteHandler(Type httpHandlerType)
@@ -13,23 +14,31 @@ namespace Nalarium.Web.Mvc
             _httpHandlerType = httpHandlerType;
         }
 
+        private Type _httpHandlerType { get; set; }
+
         //+
         //- @GetHttpHandler -//
-        public System.Web.IHttpHandler GetHttpHandler(System.Web.Routing.RequestContext requestContext)
+
+        #region IRouteHandler Members
+
+        public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
             return GetHttpHandler(_httpHandlerType, requestContext);
         }
 
+        #endregion
+
         //+
         //- @GetHttpHandler -//
-        public static System.Web.IHttpHandler GetHttpHandler<T>(System.Web.Routing.RequestContext requestContext) where T : class
+        public static IHttpHandler GetHttpHandler<T>(RequestContext requestContext) where T : class
         {
             return GetHttpHandler(typeof(T), requestContext);
         }
-        public static System.Web.IHttpHandler GetHttpHandler(Type httpHandlerType, System.Web.Routing.RequestContext requestContext)
+
+        public static IHttpHandler GetHttpHandler(Type httpHandlerType, RequestContext requestContext)
         {
-            System.Web.IHttpHandler handler = Nalarium.Activation.ObjectCreator.CreateAs<System.Web.IHttpHandler>(httpHandlerType);
-            IRoutedHttpHandler routedHttpHandler = handler as IRoutedHttpHandler;
+            var handler = ObjectCreator.CreateAs<IHttpHandler>(httpHandlerType);
+            var routedHttpHandler = handler as IRoutedHttpHandler;
             if (routedHttpHandler != null)
             {
                 routedHttpHandler.RequestContext = requestContext;

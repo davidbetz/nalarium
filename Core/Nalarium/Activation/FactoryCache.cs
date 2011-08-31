@@ -1,17 +1,21 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
+using System.Collections.Generic;
 using System.Linq;
-//+
 using Nalarium.Configuration;
 //+
+
 namespace Nalarium.Activation
 {
     public static class FactoryCache
     {
-        private static Object _lock = new Object();
+        private static readonly Object _lock = new Object();
 
         //+
         public static Map<String, IFactory> ObjectFactoryCache = new Map<String, IFactory>();
@@ -20,17 +24,17 @@ namespace Nalarium.Activation
         //- @Ctor -//
         static FactoryCache()
         {
-            TypeFactoryCache.Add("BasicTypeObjectFactory", new Nalarium.Activation.BasicTypeObjectFactory());
+            TypeFactoryCache.Add("BasicTypeObjectFactory", new BasicTypeObjectFactory());
             //+
             LoadFactoryData();
         }
 
         internal static void LoadFactoryData()
         {
-            Nalarium.Configuration.SystemSection section = Nalarium.Configuration.SystemSection.GetConfigSection();
+            SystemSection section = SystemSection.GetConfigSection();
             if (section != null)
             {
-                System.Collections.Generic.List<FactoryElement> elementList = section.Reporting.Factories.OrderBy(p => p.Priority).ToList();
+                List<FactoryElement> elementList = section.Reporting.Factories.OrderBy(p => p.Priority).ToList();
                 foreach (FactoryElement processorData in elementList)
                 {
                     RegisterFactory(processorData.FactoryType);
@@ -45,7 +49,7 @@ namespace Nalarium.Activation
             {
                 if (!ObjectFactoryCache.ContainsKey(factoryType))
                 {
-                    IFactory factory = ObjectCreator.CreateAs<IFactory>(factoryType);
+                    var factory = ObjectCreator.CreateAs<IFactory>(factoryType);
                     if (factory != null)
                     {
                         if (factory is ObjectFactory)
@@ -58,7 +62,6 @@ namespace Nalarium.Activation
                         }
                     }
                 }
-
             }
         }
     }

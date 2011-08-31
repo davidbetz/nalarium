@@ -1,9 +1,14 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
-//+
+using System.Globalization;
+using System.Text;
+
 namespace Nalarium.Text
 {
     /// <summary>
@@ -19,7 +24,7 @@ namespace Nalarium.Text
         /// <returns></returns>
         public static String GetPascalCase(params String[] parameterArray)
         {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            var builder = new StringBuilder();
             foreach (String text in parameterArray)
             {
                 builder.Append(InternalGetPascalCase(text));
@@ -38,10 +43,10 @@ namespace Nalarium.Text
         {
             if (parameterArray != null && parameterArray.Length > 0)
             {
-                String first = parameterArray[0].ToLower(System.Globalization.CultureInfo.CurrentCulture);
+                String first = parameterArray[0].ToLower(CultureInfo.CurrentCulture);
                 if (parameterArray.Length > 1)
                 {
-                    String[] destinationArray = new String[parameterArray.Length - 1];
+                    var destinationArray = new String[parameterArray.Length - 1];
                     Array.Copy(parameterArray, 1, destinationArray, 0, parameterArray.Length - 1);
                     //+
                     return first + GetPascalCase(destinationArray);
@@ -66,10 +71,10 @@ namespace Nalarium.Text
         {
             if (!String.IsNullOrEmpty(text))
             {
-                text = text.ToLower(System.Globalization.CultureInfo.CurrentCulture);
+                text = text.ToLower(CultureInfo.CurrentCulture);
                 String first = text[0].ToString();
                 //+
-                return first.ToUpper(System.Globalization.CultureInfo.CurrentCulture) + text.Substring(1, text.Length - 1);
+                return first.ToUpper(CultureInfo.CurrentCulture) + text.Substring(1, text.Length - 1);
             }
             //+
             return String.Empty;

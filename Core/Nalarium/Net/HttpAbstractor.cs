@@ -1,11 +1,16 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
-//+
+using System.Text;
+
 namespace Nalarium.Net
 {
     /// <summary>
@@ -31,6 +36,7 @@ namespace Nalarium.Net
         {
             return GetWebText(uri, 0);
         }
+
         /// <summary>
         /// Does an HTTP GET.
         /// </summary>
@@ -39,21 +45,21 @@ namespace Nalarium.Net
         /// <returns></returns>
         public static String GetWebText(Uri uri, Int32 timeout)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            var request = (HttpWebRequest)WebRequest.Create(uri);
             if (timeout > 0)
             {
                 request.Timeout = timeout * 1000;
             }
-            HttpWebResponse httpWebResponse = (HttpWebResponse)request.GetResponse();
-            System.Text.StringBuilder rawResponse = new System.Text.StringBuilder();
+            var httpWebResponse = (HttpWebResponse)request.GetResponse();
+            var rawResponse = new StringBuilder();
             using (Stream streamResponse = httpWebResponse.GetResponseStream())
             {
-                StreamReader streamRead = new StreamReader(streamResponse);
-                Char[] readBuffer = new Char[256];
+                var streamRead = new StreamReader(streamResponse);
+                var readBuffer = new Char[256];
                 Int32 count = streamRead.Read(readBuffer, 0, 256);
                 while (count > 0)
                 {
-                    String resultData = new String(readBuffer, 0, count);
+                    var resultData = new String(readBuffer, 0, count);
                     rawResponse.Append(resultData);
                     count = streamRead.Read(readBuffer, 0, 256);
                 }
@@ -75,6 +81,7 @@ namespace Nalarium.Net
         {
             return PostHttpRequest(uri, text, null, String.Empty, 0);
         }
+
         /// <summary>
         /// Does an HTTP POST.
         /// </summary>
@@ -86,6 +93,7 @@ namespace Nalarium.Net
         {
             return PostHttpRequest(uri, text, null, String.Empty, timeout);
         }
+
         /// <summary>
         /// Does an HTTP POST.
         /// </summary>
@@ -96,6 +104,7 @@ namespace Nalarium.Net
         {
             return PostHttpRequest(uri, String.Empty, headerMap, String.Empty, 0);
         }
+
         /// <summary>
         /// Does an HTTP POST.
         /// </summary>
@@ -107,10 +116,11 @@ namespace Nalarium.Net
         /// <returns></returns>
         public static String PostHttpRequest(Uri uri, String text, Map headerMap, String contentType, Int32 timeout)
         {
-            Byte[] buffer = System.Text.ASCIIEncoding.UTF8.GetBytes(text);
+            Byte[] buffer = Encoding.UTF8.GetBytes(text);
             //+
             return PostHttpRequest(uri, buffer, headerMap, contentType, timeout);
         }
+
         /// <summary>
         /// Does an HTTP POST.
         /// </summary>
@@ -121,6 +131,7 @@ namespace Nalarium.Net
         {
             return PostHttpRequest(uri, buffer, null, String.Empty, 0);
         }
+
         /// <summary>
         /// Does an HTTP POST.
         /// </summary>
@@ -132,6 +143,7 @@ namespace Nalarium.Net
         {
             return PostHttpRequest(uri, buffer, headerMap, String.Empty, 0);
         }
+
         /// <summary>
         /// Posts the HTTP request.
         /// </summary>
@@ -143,7 +155,7 @@ namespace Nalarium.Net
         /// <returns></returns>
         public static String PostHttpRequest(Uri uri, Byte[] buffer, Map headerMap, String contentType, Int32 timeout)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            var request = (HttpWebRequest)WebRequest.Create(uri);
             request.Method = "POST";
             if (timeout > 0)
             {
@@ -155,7 +167,7 @@ namespace Nalarium.Net
             }
             if (headerMap != null)
             {
-                System.Collections.Generic.List<String> keyList = headerMap.GetKeyList();
+                List<String> keyList = headerMap.GetKeyList();
                 foreach (String key in keyList)
                 {
                     request.Headers.Add(key, headerMap[key]);
@@ -167,16 +179,16 @@ namespace Nalarium.Net
                 s.Write(buffer, 0, buffer.Length);
                 s.Close();
             }
-            HttpWebResponse httpWebResponse = (HttpWebResponse)request.GetResponse();
-            System.Text.StringBuilder rawResponse = new System.Text.StringBuilder();
+            var httpWebResponse = (HttpWebResponse)request.GetResponse();
+            var rawResponse = new StringBuilder();
             using (Stream streamResponse = httpWebResponse.GetResponseStream())
             {
-                StreamReader streamRead = new StreamReader(streamResponse);
-                Char[] readBuffer = new Char[256];
+                var streamRead = new StreamReader(streamResponse);
+                var readBuffer = new Char[256];
                 Int32 count = streamRead.Read(readBuffer, 0, 256);
                 while (count > 0)
                 {
-                    String resultData = new String(readBuffer, 0, count);
+                    var resultData = new String(readBuffer, 0, count);
                     rawResponse.Append(resultData);
                     count = streamRead.Read(readBuffer, 0, 256);
                 }
@@ -194,14 +206,14 @@ namespace Nalarium.Net
         /// <returns></returns>
         public static Byte[] GetBinaryData(Uri uri)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            using (HttpWebResponse httpWebResponse = (HttpWebResponse)request.GetResponse())
+            var request = (HttpWebRequest)WebRequest.Create(uri);
+            using (var httpWebResponse = (HttpWebResponse)request.GetResponse())
             {
-                System.Text.StringBuilder rawResponse = new System.Text.StringBuilder();
+                var rawResponse = new StringBuilder();
                 using (Stream streamResponse = httpWebResponse.GetResponseStream())
                 {
                     Int32 b = 0;
-                    Byte[] buffer = new Byte[0];
+                    var buffer = new Byte[0];
                     while ((b = streamResponse.ReadByte()) > -1)
                     {
                         AppendByte(ref buffer, (Byte)b);
@@ -218,7 +230,10 @@ namespace Nalarium.Net
             Byte[] tempBytes = buffer;
             if (tempBytes == null)
             {
-                buffer = new byte[] { b };
+                buffer = new[]
+                         {
+                             b
+                         };
             }
             else
             {

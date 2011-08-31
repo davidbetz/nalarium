@@ -1,25 +1,27 @@
 #region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System;
 using Nalarium.Configuration;
 using Nalarium.Reporting;
-//+
+
 namespace Nalarium.Activation
 {
     public static class InjectionData
     {
-        private static Object _lock = new Object();
+        private static readonly Object _lock = new Object();
 
         //+
-        private static Type _int32Type = typeof(System.Int32);
-        private static Type _doubleType = typeof(System.Double);
-        private static Type _booleanType = typeof(System.Boolean);
-        private static Type _stringType = typeof(System.String);
+        private static readonly Type _int32Type = typeof(Int32);
+        private static readonly Type _doubleType = typeof(Double);
+        private static readonly Type _booleanType = typeof(Boolean);
+        private static readonly Type _stringType = typeof(String);
 
         //- $Map -//
-        private static StringObjectMap Map { get; set; }
 
         //+
         //- @Ctor -//
@@ -34,6 +36,8 @@ namespace Nalarium.Activation
             InitObjectMap();
         }
 
+        private static StringObjectMap Map { get; set; }
+
         //- @GetObject -//
         public static Object GetObject(String name)
         {
@@ -47,6 +51,7 @@ namespace Nalarium.Activation
                 return null;
             }
         }
+
         public static T GetObject<T>(String name)
         {
             lock (_lock)
@@ -83,7 +88,7 @@ namespace Nalarium.Activation
                 {
                     if (ObjectInjectionReportController.Reporter.Initialized)
                     {
-                        Map map = new Map();
+                        var map = new Map();
                         map.Add("Section", "Object Injector");
                         map.Add("Type", element.Type);
                         map.Add("Message", ex.Message);
@@ -99,10 +104,10 @@ namespace Nalarium.Activation
                 Boolean hasDataToSend = ObjectInjectionReportController.Reporter.HasDataToSend;
                 if (hasDataToSend)
                 {
-                    String name = Nalarium.Configuration.SystemSection.GetConfigSection().AppInfo.Name;
+                    String name = SystemSection.GetConfigSection().AppInfo.Name;
                     if (!String.IsNullOrEmpty(name))
                     {
-                        Map map = new Map();
+                        var map = new Map();
                         map.Add("App Name", name);
                         ObjectInjectionReportController.Reporter.InsertMap(map, 0);
                     }

@@ -1,20 +1,23 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System.Threading;
-//+
 using Nalarium.Reporting;
 //+
+
 namespace Nalarium.Activation
 {
     internal static class ObjectInjectionReportController
     {
+        public const string CoreInjectionDebugReporter = "CoreInjectionDebug";
         internal static Reporter reporter;
-        private static ReaderWriterLockSlim readerWriterLockSlim = new ReaderWriterLockSlim();
+        private static readonly ReaderWriterLockSlim readerWriterLockSlim = new ReaderWriterLockSlim();
 
         //+
-        public const string CoreInjectionDebugReporter = "CoreInjectionDebug";
 
         //- $Reporter -//
         internal static Reporter Reporter
@@ -31,7 +34,7 @@ namespace Nalarium.Activation
                         {
                             if (reporter == null)
                             {
-                                reporter = (Reporter)ReportController.GetReporter(ObjectInjectionReportController.CoreInjectionDebugReporter);
+                                reporter = ReportController.GetReporter(CoreInjectionDebugReporter);
                             }
                         }
                         finally

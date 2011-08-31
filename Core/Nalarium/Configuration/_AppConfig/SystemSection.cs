@@ -1,15 +1,18 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Core Module
 //+ Copyright © Jampad Technology, Inc. 2007-2010
+
 #endregion
+
 using System.Configuration;
-//+
+
 namespace Nalarium.Configuration
 {
     /// <summary>
     /// Provides access to the configuration section.
     /// </summary>
-    public class SystemSection : Nalarium.Configuration.ConfigurationSection
+    public class SystemSection : ConfigurationSection
     {
         //- @AppInfo -//
         [ConfigurationProperty("appInfo")]

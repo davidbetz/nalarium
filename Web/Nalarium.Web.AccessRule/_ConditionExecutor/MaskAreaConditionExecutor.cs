@@ -1,14 +1,17 @@
 ﻿#region Copyright
+
 //+ Nalarium Pro 3.0 - Web Module
 //+ Copyright © Jampad Technology, Inc. 2008-2010
+
 #endregion
+
 using System;
-//+
+using System.Net;
+
 namespace Nalarium.Web.AccessRule
 {
     public class MaskAreaConditionExecutor : ConditionExecutor
     {
-
         //- @Process -//
         public override Boolean Process()
         {
@@ -55,9 +58,9 @@ namespace Nalarium.Web.AccessRule
         //- $GetBinary -//
         private Byte[] GetBinary(String text)
         {
-            Byte[] result = new Byte[32];
-            System.Net.IPAddress ipAddress;
-            if (!System.Net.IPAddress.TryParse(text, out ipAddress))
+            var result = new Byte[32];
+            IPAddress ipAddress;
+            if (!IPAddress.TryParse(text, out ipAddress))
             {
                 return null;
             }
@@ -66,10 +69,10 @@ namespace Nalarium.Web.AccessRule
             value += (UInt32)ipAddressByteArray[0] << 24;
             value += (UInt32)ipAddressByteArray[1] << 16;
             value += (UInt32)ipAddressByteArray[2] << 8;
-            value += (UInt32)ipAddressByteArray[3];
+            value += ipAddressByteArray[3];
             for (Int32 i = 0; i < 32; i++)
             {
-                UInt32 position = (UInt32)(1 << i);
+                var position = (UInt32)(1 << i);
                 result[i] = (Byte)((value & position) == position ? 1 : 0);
             }
             //+
