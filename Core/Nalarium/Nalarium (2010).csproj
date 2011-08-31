@@ -74,11 +74,13 @@
   <ItemGroup>
     <Compile Include="Activation\BasicTypeObjectFactory.cs" />
     <Compile Include="Activation\AssemblyLoader.cs" />
+    <Compile Include="Checksum.cs" />
     <Compile Include="Configuration\_AppConfig\ConfigurationSection.cs" />
     <Compile Include="Cryptography\Rijndael.cs" />
     <Compile Include="Cryptography\QuickHash.cs" />
     <Compile Include="ExceptionHandling\_Retry\ExceptionCatchBlock.cs" />
     <Compile Include="ExceptionHandling\_Retry\ExceptionTryBlock.cs" />
+    <Compile Include="PairAndSeriesBuilder.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IViewObjectContainer.cs" />
@@ -172,6 +174,7 @@
     <Compile Include="Text\QuoteTypes.cs" />
     <Compile Include="Text\TextSplitter.cs" />
     <Compile Include="Value.cs" />
+    <Compile Include="Write.cs" />
     <Compile Include="_Interface\IFactory.cs" />
     <Compile Include="_Interface\IHasPriority.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\SenderFactoryCollection.cs" />
