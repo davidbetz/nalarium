@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -15,8 +16,9 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>http://localhost/General/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -29,7 +31,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -43,8 +44,10 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
-    <CodeAnalysisRules>-Microsoft.Naming#CA1702;-Microsoft.Naming#CA1700;-Microsoft.Naming#CA1712;-Microsoft.Naming#CA1713;-Microsoft.Naming#CA1714;-Microsoft.Naming#CA1709;-Microsoft.Naming#CA1704;-Microsoft.Naming#CA1708;-Microsoft.Naming#CA1715;-Microsoft.Naming#CA1710;-Microsoft.Naming#CA1720;-Microsoft.Naming#CA1707;-Microsoft.Naming#CA1722;-Microsoft.Naming#CA1711;-Microsoft.Naming#CA1716;-Microsoft.Naming#CA1717;-Microsoft.Naming#CA1725;-Microsoft.Naming#CA1719;-Microsoft.Naming#CA1721;-Microsoft.Naming#CA1701;-Microsoft.Naming#CA1703;-Microsoft.Naming#CA1724;-Microsoft.Naming#CA1726</CodeAnalysisRules>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>Migrated rules for Nalarium.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,6 +57,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Nalarium.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -70,7 +74,13 @@
   <ItemGroup>
     <Compile Include="Activation\BasicTypeObjectFactory.cs" />
     <Compile Include="Activation\AssemblyLoader.cs" />
+    <Compile Include="Checksum.cs" />
     <Compile Include="Configuration\_AppConfig\ConfigurationSection.cs" />
+    <Compile Include="Cryptography\Rijndael.cs" />
+    <Compile Include="Cryptography\QuickHash.cs" />
+    <Compile Include="ExceptionHandling\_Retry\ExceptionCatchBlock.cs" />
+    <Compile Include="ExceptionHandling\_Retry\ExceptionTryBlock.cs" />
+    <Compile Include="PairAndSeriesBuilder.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IViewObjectContainer.cs" />
@@ -100,7 +110,7 @@
     <Compile Include="Collection.cs" />
     <Compile Include="CitationAttribute.cs" />
     <Compile Include="ArrayModifier.cs" />
-    <Compile Include="Configuration\_AppConfig\_Resource\ResourceElement.cs" />
+    <Compile Include="Configuration\_AppConfig\_Resource\GlobalizationElement.cs" />
     <Compile Include="Reflection\AttributeReader.cs" />
     <Compile Include="NotDocumentedAttribute.cs" />
     <Compile Include="Mail\MailOptionsCreator.cs" />
@@ -121,9 +131,9 @@
     <Compile Include="Configuration\_AppConfig\_Object\ObjectElement.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\FormatterFactoryCollection.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\ReporterElement.cs" />
-    <Compile Include="Configuration\_AppConfig\_Type\TypeCollection.cs" />
-    <Compile Include="Configuration\_AppConfig\_Type\TypeElement.cs" />
-    <Compile Include="KeyValueMap.cs" />
+    <Compile Include="Configuration\_AppConfig\_Type\TypeParameterCollection.cs" />
+    <Compile Include="Configuration\_AppConfig\_Type\TypeParameterElement.cs" />
+    <Compile Include="StringKeyValueMap.cs" />
     <Compile Include="StringKeyValue.cs" />
     <Compile Include="KeyValue.cs" />
     <Compile Include="Data\Cached\CachedDataFactory.cs" />
@@ -164,13 +174,14 @@
     <Compile Include="Text\QuoteTypes.cs" />
     <Compile Include="Text\TextSplitter.cs" />
     <Compile Include="Value.cs" />
+    <Compile Include="Write.cs" />
     <Compile Include="_Interface\IFactory.cs" />
     <Compile Include="_Interface\IHasPriority.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\SenderFactoryCollection.cs" />
-    <Compile Include="Configuration\_AppConfig\_Reporting\ReportFactoryCollection.cs" />
+    <Compile Include="Configuration\_AppConfig\_Reporting\ReporterFactoryCollection.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\ReporterCollection.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\ReportingElement.cs" />
-    <Compile Include="Configuration\_AppConfig\IProvidesParameterArray.cs" />
+    <Compile Include="Configuration\_AppConfig\IProvidesParameters.cs" />
     <Compile Include="Configuration\_AppConfig\_Base\CommentableElement.cs" />
     <Compile Include="Configuration\_AppConfig\SystemSection.cs" />
     <Compile Include="Configuration\_AppConfig\_AppInfo\AppInfoElement.cs" />
@@ -214,6 +225,11 @@
     <Compile Include="_Interface\ISequencedControl.cs" />
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
       <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
@@ -229,6 +245,11 @@
       <ProductName>.NET Framework 3.5</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resource.resx">
@@ -237,6 +258,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Migrated rules for Nalarium.ruleset" />
     <None Include="Nalarium.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

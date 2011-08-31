@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium", "Nalarium\Nalarium.csproj", "{CECBDBAF-879E-4432-9F8D-969E0E69545B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.ServiceModel", "Nalarium.ServiceModel\Nalarium.ServiceModel.csproj", "{BD18A290-64DD-493B-9530-9C206909A480}"
