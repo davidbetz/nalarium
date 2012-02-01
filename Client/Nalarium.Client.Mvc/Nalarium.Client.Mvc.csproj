@@ -88,7 +88,6 @@
     <Compile Include="ClientResourceHandler.cs" />
     <Compile Include="Controller.cs">
     </Compile>
-    <Compile Include="WebViewPage.cs" />
     <Compile Include="UserControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -136,7 +135,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <PostBuildEvent>xcopy $(TargetDir)Nalarium.Client.Mvc* C:\_REFERENCE\$(ConfigurationName)\* /E /C /Q /R /H /Y</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="AfterBuild">
+    <Copy SkipUnchangedFiles="true" SourceFiles="$(OutDir)\$(TargetFileName)" DestinationFiles="$(HomeDrive)\_REFERENCE\$(Configuration)\$(TargetFileName)" />
+  </Target>
 </Project>
