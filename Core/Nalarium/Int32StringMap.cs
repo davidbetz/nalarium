@@ -78,7 +78,7 @@ namespace Nalarium
         {
             get
             {
-                return PeekSafely(key);
+                return base[key];
             }
             set
             {

@@ -218,7 +218,7 @@ namespace Nalarium.Reporting
                 }
                 if (creator == null)
                 {
-                    creator = ReportCreatorCache.PeekSafely<ReportCreator>(reportCreatorType);
+                    creator = ReportCreatorCache.Get<ReportCreator>(reportCreatorType);
                 }
                 //+
                 return creator;
@@ -255,7 +255,7 @@ namespace Nalarium.Reporting
                 }
                 if (sender == null)
                 {
-                    sender = SenderCache.PeekSafely<Sender>(reportCreatorType);
+                    sender = SenderCache.Get<Sender>(reportCreatorType);
                 }
                 //+
                 return sender;
@@ -292,7 +292,7 @@ namespace Nalarium.Reporting
                 }
                 if (formatter == null)
                 {
-                    formatter = FormatterCache.PeekSafely<Formatter>(reportCreatorType);
+                    formatter = FormatterCache.Get<Formatter>(reportCreatorType);
                 }
                 //+
                 return formatter;

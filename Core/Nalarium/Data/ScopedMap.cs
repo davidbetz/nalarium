@@ -35,7 +35,7 @@ namespace Nalarium.Data
         /// <returns></returns>
         public String GetScopedEntry(String scope, String key)
         {
-            return PeekSafely(scope + "::" + key) ?? String.Empty;
+            return Get(scope + "::" + key) ?? String.Empty;
         }
     }
 }

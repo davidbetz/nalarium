@@ -81,7 +81,7 @@ namespace Nalarium.Activation
         //- @Get -//
         public static Type Get(String typeName)
         {
-            return data.PeekSafely<Type>(typeName);
+            return data.Get<Type>(typeName);
         }
 
         #region Nested type: Info

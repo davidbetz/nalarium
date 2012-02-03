@@ -139,7 +139,7 @@ namespace Nalarium.Data.Cached
         {
             lock (_lock)
             {
-                return cache.PeekSafely<T>(ScopeTranscriber.Construct(scope, name));
+                return cache.Get<T>(ScopeTranscriber.Construct(scope, name));
             }
         }
 
@@ -155,7 +155,7 @@ namespace Nalarium.Data.Cached
         {
             lock (_lock)
             {
-                return cache.PeekSafely<T>(ScopeTranscriber.Construct(scope, culture, name));
+                return cache.Get<T>(ScopeTranscriber.Construct(scope, culture, name));
             }
         }
     }
