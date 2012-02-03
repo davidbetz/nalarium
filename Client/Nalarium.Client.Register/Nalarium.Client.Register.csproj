@@ -57,9 +57,14 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nalarium.Web.Processing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dc6429114df2bd49, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\_REFERENCE\DEBUG\Nalarium.Web.Processing.dll</HintPath>
+    <Reference Include="Nalarium">
+      <HintPath>$(HomeDrive)\_REFERENCE\Debug\Nalarium.dll</HintPath>
+    </Reference>
+    <Reference Include="Nalarium.Web">
+      <HintPath>$(HomeDrive)\_REFERENCE\Debug\Nalarium.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Nalarium.Web.Processing">
+      <HintPath>$(HomeDrive)\_REFERENCE\Debug\Nalarium.Web.Processing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -69,14 +74,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-    <Reference Include="Nalarium, Version=2.0.8.1, Culture=neutral, PublicKeyToken=6df6368b508b7412, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\_REFERENCE\DEBUG\Nalarium.dll</HintPath>
-    </Reference>
-    <Reference Include="Nalarium.Web, Version=2.0.8.1, Culture=neutral, PublicKeyToken=dc6429114df2bd49, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\_REFERENCE\DEBUG\Nalarium.Web.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AliasedHandlerFactory.cs" />
@@ -118,6 +115,6 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-		<Copy SkipUnchangedFiles="true" SourceFiles="$(OutDir)\$(TargetFileName)" DestinationFiles="$(HomeDrive)\_REFERENCE\$(Configuration)\$(TargetFileName)" />
+    <Copy SkipUnchangedFiles="true" SourceFiles="$(OutDir)\$(TargetFileName)" DestinationFiles="$(HomeDrive)\_REFERENCE\$(Configuration)\$(TargetFileName)" />
   </Target>
 </Project>
