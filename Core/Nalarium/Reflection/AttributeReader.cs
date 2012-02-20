@@ -13,15 +13,82 @@ namespace Nalarium.Reflection
 {
     public static class AttributeReader
     {
+        //- @ReadAssemblyAttribute -//
+        public static T ReadAssemblyAttribute<T>(Type type) where T : Attribute
+        {
+            return ReadAssemblyAttribute(type, typeof(T)) as T;
+        }
+        public static T ReadAssemblyAttribute<T>(Object obj) where T : Attribute
+        {
+            return ReadAssemblyAttribute(obj, typeof(T)) as T;
+        }
+        public static Attribute ReadAssemblyAttribute(Type type, Type attributeType)
+        {
+            Object[] array = ReadAssemblyAttributeArray(type, attributeType);
+            if (!Collection.IsNullOrEmpty(array))
+            {
+                return array[0] as Attribute;
+            }
+            //+
+            return null;
+        }
+        public static Attribute ReadAssemblyAttribute(Object obj, Type attributeType)
+        {
+            Object[] array = ReadAssemblyAttributeArray(obj, attributeType);
+            if (!Collection.IsNullOrEmpty(array))
+            {
+                return array[0] as Attribute;
+            }
+            //+
+            return null;
+        }
+
+        //- @ReadTypeAttributeArray -//
+        public static Object[] ReadAssemblyAttributeArray<T>(Object obj)
+        {
+            return ReadAssemblyAttributeArray(obj, typeof(T));
+        }
+        public static Object[] ReadAssemblyAttributeArray<T>(Type type)
+        {
+            return ReadAssemblyAttributeArray(type, typeof(T));
+        }
+        public static Object[] ReadAssemblyAttributeArray(Object obj, Type attributeType)
+        {
+            return ReadAssemblyAttributeArray(obj.GetType(), attributeType);
+        }
+        public static Object[] ReadAssemblyAttributeArray(Type type, Type attributeType)
+        {
+            var assembly = type.Assembly;
+            Object[] objectArray;
+            if (attributeType == null)
+            {
+                objectArray = assembly.GetCustomAttributes(true);
+            }
+            else
+            {
+                objectArray = assembly.GetCustomAttributes(attributeType, true);
+            }
+            //+
+            return objectArray;
+        }
+
+
         //- @ReadTypeAttribute -//
+        public static T ReadTypeAttribute<T>(Type type) where T : Attribute
+        {
+            return ReadTypeAttribute(type, type) as T;
+        }
         public static T ReadTypeAttribute<T>(Object obj) where T : Attribute
         {
             return ReadTypeAttribute(obj, typeof(T)) as T;
         }
-
         public static Attribute ReadTypeAttribute(Object obj, Type attributeType)
         {
-            Object[] array = ReadTypeAttributeArray(obj, attributeType);
+            return ReadTypeAttribute(obj.GetType(), attributeType);
+        }
+        public static Attribute ReadTypeAttribute(Type type, Type attributeType)
+        {
+            Object[] array = ReadTypeAttributeArray(type, attributeType);
             if (!Collection.IsNullOrEmpty(array))
             {
                 return array[0] as Attribute;
@@ -33,12 +100,18 @@ namespace Nalarium.Reflection
         //- @ReadTypeAttributeArray -//
         public static Object[] ReadTypeAttributeArray<T>(Object obj)
         {
-            return ReadTypeAttributeArray(obj, typeof(T));
+            return ReadTypeAttributeArray(obj.GetType(), typeof(T));
         }
-
+        public static Object[] ReadTypeAttributeArray<T>(Type type)
+        {
+            return ReadTypeAttributeArray(type, typeof(T));
+        }
         public static Object[] ReadTypeAttributeArray(Object obj, Type attributeType)
         {
-            Type type = obj.GetType();
+            return ReadTypeAttributeArray(obj.GetType(), attributeType);
+        }
+        public static Object[] ReadTypeAttributeArray(Type type, Type attributeType)
+        {
             Object[] objectArray;
             if (attributeType == null)
             {
