@@ -407,6 +407,19 @@ namespace Nalarium
             return v;
         }
 
+        public static Value Raw(Object value)
+        {
+            return Create(value, Modifiers.RetainRawValue);
+        }
+        public static Value Raw(String name, Object value)
+        {
+            return Create(name, value, Modifiers.RetainRawValue);
+        }
+        public static Value Raw(String scope, String name, Object value)
+        {
+            return Create(scope, name, value, Modifiers.RetainRawValue);
+        }
+
         public override string ToString()
         {
             return _value;
