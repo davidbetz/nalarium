@@ -175,6 +175,7 @@
     <Compile Include="Text\TextSplitter.cs" />
     <Compile Include="Value.cs" />
     <Compile Include="Write.cs" />
+    <Compile Include="Xml\XPathProcessor.cs" />
     <Compile Include="_Interface\IFactory.cs" />
     <Compile Include="_Interface\IHasPriority.cs" />
     <Compile Include="Configuration\_AppConfig\_Reporting\SenderFactoryCollection.cs" />
@@ -268,6 +269,6 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-		<Copy SkipUnchangedFiles="true" SourceFiles="$(OutDir)\$(TargetFileName)" DestinationFiles="$(HomeDrive)\_REFERENCE\$(Configuration)\$(TargetFileName)" />
+    <Copy SkipUnchangedFiles="true" SourceFiles="$(OutDir)\$(TargetFileName)" DestinationFiles="$(HomeDrive)\_REFERENCE\$(Configuration)\$(TargetFileName)" />
   </Target>
 </Project>

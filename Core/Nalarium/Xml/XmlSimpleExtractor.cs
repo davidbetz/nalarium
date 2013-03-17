@@ -23,7 +23,7 @@ namespace Nalarium.Xml
         /// <param name="branchName">Name of the branch.</param>
         /// <param name="required">if set to <c>true</c> [required].</param>
         /// <returns></returns>
-        public static List<String> ExtractBranch(XmlNode mailRoot, String branchName, Boolean required)
+        public static List<String> ExtractBranch(XmlNode mailRoot, String branchName, Boolean required = false)
         {
             var list = new List<String>();
             XmlNode result = mailRoot.SelectSingleNode(branchName);
