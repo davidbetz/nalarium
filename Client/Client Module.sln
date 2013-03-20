@@ -1,9 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Client", "Nalarium.Client\Nalarium.Client.csproj", "{297CB31A-C3EF-4834-B7F0-50FAC54B863F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Client.Register", "Nalarium.Client.Register\Nalarium.Client.Register.csproj", "{10985E84-5D4C-41A0-B838-D8113A50E284}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nalarium.Client.Mvc", "Nalarium.Client.Mvc\Nalarium.Client.Mvc.csproj", "{80821F2D-EFB3-4A7A-AD36-F485574D9125}"
 EndProject
@@ -27,16 +25,6 @@ Global
 		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{297CB31A-C3EF-4834-B7F0-50FAC54B863F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|.NET.ActiveCfg = Release|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{10985E84-5D4C-41A0-B838-D8113A50E284}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{80821F2D-EFB3-4A7A-AD36-F485574D9125}.Debug|Any CPU.Build.0 = Debug|Any CPU

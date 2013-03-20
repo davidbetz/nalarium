@@ -9,7 +9,7 @@ using System.Text;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jampad Technology, Inc.")]
 [assembly: AssemblyProduct("Nalarium Pro 3.0 - Core Module")]
-[assembly: AssemblyCopyright("Copyright © Jampad Technology, Inc. 2007-2010")]
+[assembly: AssemblyCopyright("Copyright © Jampad Technology, Inc. 2007-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 //+
@@ -20,8 +20,8 @@ using System.Text;
 [assembly: Guid("6E249E3E-95D3-416C-B9DD-544B08255E43")]
 //+
 
-[assembly: AssemblyVersion("3.0.0.0")]
-[assembly: AssemblyFileVersion("3.0.0.0")]
+[assembly: AssemblyVersion("3.0.1.0")]
+[assembly: AssemblyFileVersion("3.0.1.0")]
 //+
 
 namespace Nalarium
