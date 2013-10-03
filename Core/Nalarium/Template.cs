@@ -1,7 +1,7 @@
 #region Copyright
 
-//+ Nalarium Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2010
+//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
+//+ Copyright © Jampad Technology, Inc. 2007-2013
 
 #endregion
 
@@ -152,7 +152,7 @@ namespace Nalarium
         /// </summary>
         /// <param name="pairArray">The pair array.</param>
         /// <returns>Templated result string.</returns>
-        public String Interpolate(String[] pairArray)
+        public String Interpolate(params String[] pairArray)
         {
             if (pairArray == null)
             {

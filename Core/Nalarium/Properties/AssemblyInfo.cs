@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyTitle("Nalarium Pro 3.0 - Core Module")]
+[assembly: AssemblyTitle("Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module")]
 [assembly: AssemblyDescription(".NET Development Foundation")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jampad Technology, Inc.")]
-[assembly: AssemblyProduct("Nalarium Pro 3.0 - Core Module")]
+[assembly: AssemblyProduct("Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module")]
 [assembly: AssemblyCopyright("Copyright © Jampad Technology, Inc. 2007-2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,8 +20,8 @@ using System.Text;
 [assembly: Guid("6E249E3E-95D3-416C-B9DD-544B08255E43")]
 //+
 
-[assembly: AssemblyVersion("3.0.1.0")]
-[assembly: AssemblyFileVersion("3.0.1.0")]
+[assembly: AssemblyVersion("3.1.0.0")]
+[assembly: AssemblyFileVersion("3.1.0.0")]
 //+
 
 namespace Nalarium

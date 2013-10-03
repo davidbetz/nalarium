@@ -1,7 +1,7 @@
 ﻿#region Copyright
 
-//+ Nalarium Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2010
+//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
+//+ Copyright © Jampad Technology, Inc. 2007-2013
 
 #endregion
 
@@ -36,9 +36,9 @@ namespace Nalarium.Reporting
         //- @Ctor -//
         static ReportController()
         {
-            ReportCreatorFactoryCache.Add("Nalarium.Reporting.CommonReportCreatorFactory, Nalarium", new CommonReportCreatorFactory());
-            SenderFactoryCache.Add("Nalarium.Reporting.CommonSenderFactory, Nalarium", new CommonSenderFactory());
-            FormatterFactoryCache.Add("Nalarium.Reporting.CommonFormatterFactory, Nalarium", new CommonFormatterFactory());
+            ReportCreatorFactoryCache.Add("Jampad Technology, Inc. 2007-2013.Reporting.CommonReportCreatorFactory, Jampad Technology, Inc. 2007-2013", new CommonReportCreatorFactory());
+            SenderFactoryCache.Add("Jampad Technology, Inc. 2007-2013.Reporting.CommonSenderFactory, Jampad Technology, Inc. 2007-2013", new CommonSenderFactory());
+            FormatterFactoryCache.Add("Jampad Technology, Inc. 2007-2013.Reporting.CommonFormatterFactory, Jampad Technology, Inc. 2007-2013", new CommonFormatterFactory());
             //+
             InitFactoryData();
             InitReporterData();

@@ -1,7 +1,7 @@
 #region Copyright
 
-//+ Nalarium Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2010
+//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
+//+ Copyright © Jampad Technology, Inc. 2007-2013
 
 #endregion
 
@@ -18,7 +18,7 @@ namespace Nalarium
     /// </summary>
     /// <typeparam name="T1">The type of the key.</typeparam>
     /// <typeparam name="T2">The type of the value.</typeparam>
-    /// <example>See Nalarium.Map type</example>
+    /// <example>See Jampad Technology, Inc. 2007-2013.Map type</example>
     [DataContract]
     public class Map<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>>
     {

@@ -1,7 +1,7 @@
 #region Copyright
 
-//+ Nalarium Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2010
+//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
+//+ Copyright © Jampad Technology, Inc. 2007-2013
 
 #endregion
 
@@ -18,7 +18,7 @@ namespace Nalarium.Activation
     {
         //- @Load -//
         /// <summary>
-        /// Loads and assembly and reports errors through Nalarium object injection reporting.
+        /// Loads and assembly and reports errors through Jampad Technology, Inc. 2007-2013 object injection reporting.
         /// </summary>
         /// <param name="assemblyName">Name of the assembly.</param>
         /// <returns>Assembly object.</returns>
