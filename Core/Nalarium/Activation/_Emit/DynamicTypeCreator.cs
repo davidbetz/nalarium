@@ -17,13 +17,8 @@ namespace Nalarium.Activation
     /// </summary>
     public static class DynamicTypeCreator
     {
-        private static readonly Type _type = typeof(DynamicTypeCreator);
-        private static readonly Object _lock = new Object();
-        private static readonly Map<String, TypeBuilder> _typeBuilderCache = new Map<String, TypeBuilder>();
+        //private static readonly Map<String, TypeBuilder> _typeBuilderCache = new Map<String, TypeBuilder>();
         //+
-        private static AssemblyName _assemblyName;
-        private static AssemblyBuilder _assemblyBuilder;
-        private static ModuleBuilder _moduleBuilder;
 
         //+
         //- @CreateInstance -//
@@ -113,61 +108,75 @@ namespace Nalarium.Activation
         /// </summary>
         /// <param name="name">Name of the type to be created.</param>
         /// <param name="propertyList">List of all properties to tbe placed in the type.</param>
+        /// <param name="parameterAray">List of all interfaces to be implemented on the type.</param>
         /// <returns>Type builder that may be used to create the type.</returns>
-        public static TypeBuilder DefineTypeBuilder(String name, List<PropertyDataBase> propertyList)
+        public static TypeBuilder DefineTypeBuilder(String name, List<PropertyDataBase> propertyList, params Type[] parameterArray)
         {
             if (propertyList == null)
             {
                 propertyList = new List<PropertyDataBase>();
             }
-            lock (_lock)
+            //if (_typeBuilderCache.ContainsKey(name))
+            //{
+            //    return _typeBuilderCache[name];
+            //}
+            var guid = GuidCreator.GetNewGuid();
+            var assemblyName = new AssemblyName("_Assembly" + guid);
+            var assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
+            var moduleBuilder = assemblyBuilder.DefineDynamicModule("_Module" + guid);
+            var typeBuilder = moduleBuilder.DefineType(name, TypeAttributes.Public | TypeAttributes.Class, typeof(Object));
+            //++ interface
+            if (parameterArray != null)
             {
-                if (_typeBuilderCache.ContainsKey(name))
+                foreach (var interfaceType in parameterArray)
                 {
-                    return _typeBuilderCache[name];
+                    typeBuilder.AddInterfaceImplementation(interfaceType);
+                    var interfacePropertyData = interfaceType.GetProperties();
+                    foreach (var interfaceProperty in interfacePropertyData)
+                    {
+                        CreateProperty(typeBuilder, interfaceProperty.Name, interfaceProperty.PropertyType);
+                    }
                 }
-                if (_assemblyName == null)
-                {
-                    _assemblyName = new AssemblyName("_Assembly" + _type.GetHashCode());
-                    _assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(_assemblyName, AssemblyBuilderAccess.Run);
-                    _moduleBuilder = _assemblyBuilder.DefineDynamicModule("_Module");
-                }
-                //+
-                _typeBuilderCache.Add(name, _moduleBuilder.DefineType(name, TypeAttributes.Public | TypeAttributes.Class | TypeAttributes.AutoClass | TypeAttributes.AnsiClass | TypeAttributes.BeforeFieldInit | TypeAttributes.AutoLayout, typeof(Object)));
-                //+ property series
-                propertyList.ForEach(p => CreateProperty(_typeBuilderCache[name], p.Name, p.Type));
-                //+
-                return _typeBuilderCache[name];
             }
+            //+ property series
+            propertyList.ForEach(p => CreateProperty(typeBuilder, p.Name, p.Type));
+            //+
+            return typeBuilder;
+            ////+
+            //_typeBuilderCache.Add(name, _moduleBuilder.DefineType(name, TypeAttributes.Public | TypeAttributes.Class | TypeAttributes.AutoClass | TypeAttributes.AnsiClass | TypeAttributes.BeforeFieldInit | TypeAttributes.AutoLayout, typeof(Object)));
+            ////+ property series
+            //propertyList.ForEach(p => CreateProperty(_typeBuilderCache[name], p.Name, p.Type));
+            ////+
+            //return _typeBuilderCache[name];
         }
 
-        //- @RemoveTypeBuilderFromCache -//
-        /// <summary>
-        /// Removes a previously created type builder from cache.
-        /// </summary>
-        /// <param name="name">Name of type.</param>
-        public static void RemoveTypeBuilderFromCache(String name)
-        {
-            lock (_lock)
-            {
-                if (_typeBuilderCache.ContainsKey(name))
-                {
-                    _typeBuilderCache.Remove(name);
-                }
-            }
-        }
+        ////- @RemoveTypeBuilderFromCache -//
+        ///// <summary>
+        ///// Removes a previously created type builder from cache.
+        ///// </summary>
+        ///// <param name="name">Name of type.</param>
+        //public static void RemoveTypeBuilderFromCache(String name)
+        //{
+        //    lock (_lock)
+        //    {
+        //        if (_typeBuilderCache.ContainsKey(name))
+        //        {
+        //            _typeBuilderCache.Remove(name);
+        //        }
+        //    }
+        //}
 
-        //- @ResetCache -//
-        /// <summary>
-        /// Removes all previously created type builders from cache.
-        /// </summary>
-        public static void ResetCache()
-        {
-            lock (_lock)
-            {
-                _typeBuilderCache.Clear();
-            }
-        }
+        ////- @ResetCache -//
+        ///// <summary>
+        ///// Removes all previously created type builders from cache.
+        ///// </summary>
+        //public static void ResetCache()
+        //{
+        //    lock (_lock)
+        //    {
+        //        _typeBuilderCache.Clear();
+        //    }
+        //}
 
         //+ private
         //- $CreateInstance -//
@@ -180,7 +189,7 @@ namespace Nalarium.Activation
         private static void CreateProperty(TypeBuilder typeBuilder, String name, Type type)
         {
             PropertyBuilder propertyBuilder = typeBuilder.DefineProperty(name, PropertyAttributes.None, type, null);
-            MethodAttributes methodAttribute = MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig;
+            const MethodAttributes methodAttribute = MethodAttributes.Public | MethodAttributes.Final | MethodAttributes.Virtual;
             FieldBuilder fieldBuilder = typeBuilder.DefineField(name, type, FieldAttributes.Private);
             //+
             MethodBuilder getMethodBuilder = typeBuilder.DefineMethod("get_" + name, methodAttribute, type, Type.EmptyTypes);
