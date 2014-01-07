@@ -28,6 +28,21 @@ namespace Nalarium
         /// Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;"/> class with an optional generic MapEntry parameter array
         /// </summary>
         /// <param name="parameterArray">The parameter array.</param>
+        public Map(IEnumerable<MapEntry<TKey, TValue>> parameterArray)
+        {
+            if (parameterArray != null)
+            {
+                foreach (var mapEntry in parameterArray)
+                {
+                    AddMapEntry(mapEntry);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;"/> class with an optional generic MapEntry parameter array
+        /// </summary>
+        /// <param name="parameterArray">The parameter array.</param>
         public Map(params MapEntry<TKey, TValue>[] parameterArray)
         {
             if (parameterArray != null)
