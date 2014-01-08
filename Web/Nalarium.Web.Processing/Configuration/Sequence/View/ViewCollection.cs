@@ -9,14 +9,14 @@ using System;
 using System.Configuration;
 using Nalarium.Configuration;
 
-namespace Nalarium.Web.Configuration
+namespace Nalarium.Web.Processing.Configuration
 {
-    public class InitializerCollection : CommentableCollection<InitializerElement>
+    public class ViewCollection : CommentableCollection<ViewElement>
     {
         //- #GetElementKey -//
         protected override Object GetElementKey(ConfigurationElement element)
         {
-            return ((InitializerElement)element).InitializerType;
+            return (element as ViewElement).Name;
         }
     }
 }

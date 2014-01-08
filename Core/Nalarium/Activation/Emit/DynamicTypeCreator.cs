@@ -151,7 +151,11 @@ namespace Nalarium.Activation.Emit
                         var interfacePropertyData = interfaceType.GetProperties();
                         foreach (var interfaceProperty in interfacePropertyData)
                         {
-                            CreateProperty(typeBuilder, interfaceProperty.Name, interfaceProperty.PropertyType, interfaceProperty.GetCustomAttributes(false).Select(p => p as Attribute).ToList());
+                            var attributeTypeData = (from a in interfaceProperty.GetCustomAttributes(false)
+                                                     let s = a as EmitMarkerAttribute
+                                                     where s != null && s.AttributeType != null
+                                                     select s.AttributeType).ToList();
+                            CreateProperty(typeBuilder, interfaceProperty.Name, interfaceProperty.PropertyType, attributeTypeData);
                         }
                     }
                 }
@@ -204,12 +208,15 @@ namespace Nalarium.Activation.Emit
         }
 
         //- $CreateProperty -//
-        private static void CreateProperty(TypeBuilder typeBuilder, String name, Type type, List<Attribute> attributeArray)
+        private static void CreateProperty(TypeBuilder typeBuilder, String name, Type type, IEnumerable<Type> attributeTypeArray)
         {
             PropertyBuilder propertyBuilder = typeBuilder.DefineProperty(name, PropertyAttributes.None, type, null);
-            if (attributeArray != null)
+            if (attributeTypeArray != null)
             {
-                //propertyBuilder.SetCustomAttribute(new CustomAttributeBuilder())
+                foreach (var attributeType in attributeTypeArray)
+                {
+                    propertyBuilder.SetCustomAttribute(new CustomAttributeBuilder(attributeType.GetConstructor(new Type[] { }), new object[] { }));
+                }
             }
             const MethodAttributes methodAttribute = MethodAttributes.Public | MethodAttributes.Final | MethodAttributes.Virtual;
             FieldBuilder fieldBuilder = typeBuilder.DefineField(name, type, FieldAttributes.Private);

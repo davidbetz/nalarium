@@ -78,6 +78,7 @@
     <Compile Include="Activation\BasicTypeObjectFactory.cs" />
     <Compile Include="Activation\AssemblyLoader.cs" />
     <Compile Include="Activation\Emit\EmitMarkerAttribute.cs" />
+    <Compile Include="Activation\Emit\XmlIgnoreEmitMarkerAttribute.cs" />
     <Compile Include="Binary.cs" />
     <Compile Include="Checksum.cs" />
     <Compile Include="Configuration\AppConfig\ConfigurationSection.cs" />

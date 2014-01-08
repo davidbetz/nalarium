@@ -6,9 +6,11 @@
 #endregion
 
 using System;
+using System.Diagnostics;
 
 namespace Nalarium.Activation.Emit
 {
+    [DebuggerDisplay("{Name}")]
     public abstract class PropertyDataBase
     {
         //- @Name -//

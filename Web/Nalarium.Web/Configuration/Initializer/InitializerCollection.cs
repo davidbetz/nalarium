@@ -7,16 +7,16 @@
 
 using System;
 using System.Configuration;
-using Nalarium.Configuration;
+using Nalarium.Configuration.AppConfig;
 
-namespace Nalarium.Web.Configuration
+namespace Nalarium.Web.Configuration.Initializer
 {
-    public class ShortcutCollection : CommentableCollection<ShortcutElement>
+    public class InitializerCollection : CommentableCollection<InitializerElement>
     {
         //- #GetElementKey -//
         protected override Object GetElementKey(ConfigurationElement element)
         {
-            return (element as ShortcutElement).Name;
+            return ((InitializerElement)element).InitializerType;
         }
     }
 }
