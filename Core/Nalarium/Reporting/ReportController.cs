@@ -11,6 +11,12 @@ using System.Threading;
 using Nalarium.Activation;
 using Nalarium.Configuration;
 //+
+using Nalarium.Configuration.AppConfig;
+using Nalarium.Configuration.AppConfig.Factory;
+using Nalarium.Configuration.AppConfig.Reporting;
+using Nalarium.Reporting.ReportCreator;
+using Nalarium.Reporting.ReportCreator.Formatter;
+using Nalarium.Reporting.Sender;
 
 namespace Nalarium.Reporting
 {
@@ -20,8 +26,8 @@ namespace Nalarium.Reporting
         private static readonly Object _lock = new Object();
 
         //+
-        internal static Map<String, ReportCreator> ReportCreatorCache = new Map<String, ReportCreator>();
-        internal static Map<String, Sender> SenderCache = new Map<String, Sender>();
+        internal static Map<String, ReportCreator.ReportCreator> ReportCreatorCache = new Map<String, ReportCreator.ReportCreator>();
+        internal static Map<String, Sender.Sender> SenderCache = new Map<String, Sender.Sender>();
         internal static Map<String, Formatter> FormatterCache = new Map<String, Formatter>();
         //+
         internal static Map<String, ReportCreatorFactory> ReportCreatorFactoryCache = new Map<String, ReportCreatorFactory>();
@@ -141,8 +147,8 @@ namespace Nalarium.Reporting
         /// <returns></returns>
         public static Reporter Create(String name, String reportCreatorType, String senderType, String formatterType)
         {
-            ReportCreator creator = CreateReportCreator(reportCreatorType);
-            Sender sender = CreateSender(senderType);
+            ReportCreator.ReportCreator creator = CreateReportCreator(reportCreatorType);
+            Sender.Sender sender = CreateSender(senderType);
             Formatter formatter = CreateFormatter(formatterType);
             //+
             lock (_lock)
@@ -193,12 +199,12 @@ namespace Nalarium.Reporting
         }
 
         //- $CreateReportCreator -//
-        private static ReportCreator CreateReportCreator(String reportCreatorType)
+        private static ReportCreator.ReportCreator CreateReportCreator(String reportCreatorType)
         {
             readerWriterLockSlim.EnterUpgradeableReadLock();
             try
             {
-                ReportCreator creator = null;
+                ReportCreator.ReportCreator creator = null;
                 if (!ReportCreatorCache.ContainsKey(reportCreatorType))
                 {
                     readerWriterLockSlim.EnterWriteLock();
@@ -218,7 +224,7 @@ namespace Nalarium.Reporting
                 }
                 if (creator == null)
                 {
-                    creator = ReportCreatorCache.Get<ReportCreator>(reportCreatorType);
+                    creator = ReportCreatorCache.Get<ReportCreator.ReportCreator>(reportCreatorType);
                 }
                 //+
                 return creator;
@@ -230,12 +236,12 @@ namespace Nalarium.Reporting
         }
 
         //- $CreateSender -//
-        private static Sender CreateSender(String reportCreatorType)
+        private static Sender.Sender CreateSender(String reportCreatorType)
         {
             readerWriterLockSlim.EnterUpgradeableReadLock();
             try
             {
-                Sender sender = null;
+                Sender.Sender sender = null;
                 if (!SenderCache.ContainsKey(reportCreatorType))
                 {
                     readerWriterLockSlim.EnterWriteLock();
@@ -255,7 +261,7 @@ namespace Nalarium.Reporting
                 }
                 if (sender == null)
                 {
-                    sender = SenderCache.Get<Sender>(reportCreatorType);
+                    sender = SenderCache.Get<Sender.Sender>(reportCreatorType);
                 }
                 //+
                 return sender;

@@ -7,6 +7,8 @@
 
 using System;
 using Nalarium.Globalization;
+using Nalarium.Properties;
+using Nalarium.Reporting.ReportCreator.Formatter;
 
 namespace Nalarium.Reporting
 {
@@ -20,14 +22,14 @@ namespace Nalarium.Reporting
         /// Gets or sets the report creator.
         /// </summary>
         /// <value>The report creator.</value>
-        public ReportCreator ReportCreator { get; set; }
+        public ReportCreator.ReportCreator ReportCreator { get; set; }
 
         //- @ReportSender -//
         /// <summary>
         /// Gets or sets the report sender.
         /// </summary>
         /// <value>The report sender.</value>
-        public Sender ReportSender { get; set; }
+        public Sender.Sender ReportSender { get; set; }
 
         //- @Formatter -//
         /// <summary>
@@ -98,7 +100,7 @@ namespace Nalarium.Reporting
         /// <param name="sender">The sender.</param>
         /// <param name="formatter">The formatter.</param>
         /// <returns></returns>
-        internal static Reporter Create(String name, ReportCreator creator, Sender sender, Formatter formatter)
+        internal static Reporter Create(String name, ReportCreator.ReportCreator creator, Sender.Sender sender, Formatter formatter)
         {
             return new Reporter
                    {

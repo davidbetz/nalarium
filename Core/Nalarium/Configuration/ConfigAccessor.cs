@@ -9,6 +9,7 @@ using System;
 using System.Configuration;
 using System.Globalization;
 using Nalarium.Globalization;
+using Nalarium.Properties;
 
 namespace Nalarium.Configuration
 {

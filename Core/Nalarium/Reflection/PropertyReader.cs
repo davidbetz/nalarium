@@ -8,7 +8,7 @@
 using System;
 using System.Reflection;
 
-namespace Nalarium
+namespace Nalarium.Reflection
 {
     public class PropertyReader
     {

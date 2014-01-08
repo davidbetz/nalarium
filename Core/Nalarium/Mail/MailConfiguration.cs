@@ -7,6 +7,7 @@
 
 using System;
 using Nalarium.Configuration;
+using Nalarium.Configuration.AppConfig;
 using Nalarium.Cryptography;
 
 namespace Nalarium.Mail

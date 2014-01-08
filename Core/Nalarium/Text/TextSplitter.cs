@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Nalarium.Globalization;
+using Nalarium.Properties;
 
 namespace Nalarium.Text
 {

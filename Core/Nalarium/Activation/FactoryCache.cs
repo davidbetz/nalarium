@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Nalarium.Configuration;
 //+
+using Nalarium.Configuration.AppConfig;
+using Nalarium.Configuration.AppConfig.Factory;
 
 namespace Nalarium.Activation
 {

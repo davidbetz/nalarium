@@ -3,12 +3,12 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyTitle("Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module (Data.Common)")]
+[assembly: AssemblyTitle("Jampad Technology, Inc. 2007-2014 Pro 3.3 - Core Module (Data.Common)")]
 [assembly: AssemblyDescription(".NET Development Foundation")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jampad Technology, Inc.")]
-[assembly: AssemblyProduct("Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module (Data.Common)")]
-[assembly: AssemblyCopyright("Copyright © Jampad Technology, Inc. 2008-2013")]
+[assembly: AssemblyProduct("Jampad Technology, Inc. 2007-2014 Pro 3.3 - Core Module (Data.Common)")]
+[assembly: AssemblyCopyright("Copyright © Jampad Technology, Inc. 2008-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 //+
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("3.0.0.0")]
 [assembly: AssemblyFileVersion("3.0.0.0")]
 
-namespace Nalarium.Data.Common
+namespace Nalarium.Data.Common.Properties
 {
     [NotDocumented]
     public class AssemblyInfo

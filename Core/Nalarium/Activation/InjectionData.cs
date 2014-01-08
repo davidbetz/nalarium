@@ -7,7 +7,10 @@
 
 using System;
 using Nalarium.Configuration;
+using Nalarium.Configuration.AppConfig;
+using Nalarium.Configuration.AppConfig.Object;
 using Nalarium.Reporting;
+using Nalarium.Reporting.ReportCreator;
 
 namespace Nalarium.Activation
 {

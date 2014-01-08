@@ -8,6 +8,7 @@
 using System;
 using System.Reflection;
 using Nalarium.Configuration;
+using Nalarium.Configuration.AppConfig;
 
 namespace Nalarium.Activation
 {

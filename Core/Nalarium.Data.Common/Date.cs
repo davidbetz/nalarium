@@ -8,6 +8,7 @@
 using System;
 using System.Resources;
 using Nalarium.Data.Cached;
+using Nalarium.Data.Common.Properties;
 using Nalarium.Globalization;
 //+
 

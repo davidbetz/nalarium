@@ -8,6 +8,7 @@
 using System;
 using System.Text;
 using Nalarium.Globalization;
+using Nalarium.Properties;
 
 namespace Nalarium.Data
 {

@@ -11,6 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Nalarium.Globalization;
+using Nalarium.Properties;
 
 namespace Nalarium.CodeParsing
 {
