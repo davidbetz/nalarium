@@ -20,8 +20,8 @@ using System.Text;
 [assembly: Guid("6E249E3E-95D3-416C-B9DD-544B08255E43")]
 //+
 
-[assembly: AssemblyVersion("3.1.0.0")]
-[assembly: AssemblyFileVersion("3.1.0.0")]
+[assembly: AssemblyVersion("3.3.0.0")]
+[assembly: AssemblyFileVersion("3.3.0.0")]
 //+
 
 namespace Nalarium

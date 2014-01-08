@@ -1,0 +1,4 @@
+syntax: glob
+Web/Web Module.v11.suo
+*/Release/*
+*/Debug/*
