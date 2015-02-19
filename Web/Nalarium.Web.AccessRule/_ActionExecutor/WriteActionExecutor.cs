@@ -13,8 +13,8 @@ namespace Nalarium.Web.AccessRule
         //- @Execute -//
         public override void Execute()
         {
-            Http.Response.Write(Value);
-            Http.Response.End();
+            Nalarium.Web.Http.Response.Write(Value);
+            Nalarium.Web.Http.Response.End();
         }
     }
 }

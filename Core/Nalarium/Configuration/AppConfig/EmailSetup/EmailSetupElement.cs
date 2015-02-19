@@ -13,7 +13,7 @@ namespace Nalarium.Configuration.AppConfig.EmailSetup
     public class EmailSetupElement : WithParametersElement
     {
         //- @Server -//
-        [ConfigurationProperty("server", IsRequired = true)]
+        [ConfigurationProperty("server")]
         public String Server
         {
             get
