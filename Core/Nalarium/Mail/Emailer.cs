@@ -71,11 +71,51 @@ namespace Nalarium.Mail
         /// <param name="options">Mail options to tell the system how the e-mail is to be sent</param>
         public static void Send(String from, String to, String subject, String body, DateTime datetime, String cc, String bcc, List<String> attachmentPaths, MailOptions options)
         {
-            InternalSend(from, to, subject, body, datetime, cc, bcc, attachmentPaths, options);
+            Send(from, to, subject, body, datetime, cc, bcc, attachmentPaths, MailConfiguration.Server, MailConfiguration.UserName, MailConfiguration.Password, options);
+        }
+
+        /// <summary>
+        /// Sends an e-mail using a specific date and time.
+        /// </summary>
+        /// <param name="from">From name and address</param>
+        /// <param name="to">To name and address</param>
+        /// <param name="subject">E-mail subject</param>
+        /// <param name="body">E-Mail body text</param>
+        /// <param name="datetime">Date and time to mark on the e-mail</param>
+        /// <param name="cc">Comma separated CC list</param>
+        /// <param name="bcc">Comma separated BCC list</param>
+        /// <param name="attachmentPaths">Attachment paths</param>
+        /// <param name="username">Server username</param>
+        /// <param name="password">Server password</param>
+        /// <param name="options">Mail options to tell the system how the e-mail is to be sent</param>
+        public static void Send(String from, String to, String subject, String body, String username, String password, MailOptions options)
+        {
+            InternalSend(from, to, subject, body, DateTime.Now, null, null, null, MailConfiguration.Server, username, password, options);
+        }
+
+
+        /// <summary>
+        /// Sends an e-mail using a specific date and time.
+        /// </summary>
+        /// <param name="from">From name and address</param>
+        /// <param name="to">To name and address</param>
+        /// <param name="subject">E-mail subject</param>
+        /// <param name="body">E-Mail body text</param>
+        /// <param name="datetime">Date and time to mark on the e-mail</param>
+        /// <param name="cc">Comma separated CC list</param>
+        /// <param name="bcc">Comma separated BCC list</param>
+        /// <param name="attachmentPaths">Attachment paths</param>
+        /// <param name="server">Server path</param>
+        /// <param name="username">Server username</param>
+        /// <param name="password">Server password</param>
+        /// <param name="options">Mail options to tell the system how the e-mail is to be sent</param>
+        public static void Send(String from, String to, String subject, String body, DateTime datetime, String cc, String bcc, List<String> attachmentPaths, String server, String username, String password, MailOptions options)
+        {
+            InternalSend(from, to, subject, body, datetime, cc, bcc, attachmentPaths, server, username, password, options);
         }
 
         //- $InternalSend -//
-        private static void InternalSend(String from, String to, String subject, String body, DateTime datetime, String cc, String bcc, List<String> attachmentPaths, MailOptions mailOptions)
+        private static void InternalSend(String from, String to, String subject, String body, DateTime datetime, String cc, String bcc, List<String> attachmentPaths, String server, String username, String password, MailOptions mailOptions)
         {
             if ((mailOptions & MailOptions.UseGmailConversationBreaker) == MailOptions.UseGmailConversationBreaker)
             {
@@ -92,9 +132,7 @@ namespace Nalarium.Mail
                 AssignAttachments(email, attachmentPaths);
                 //+
                 var mailClient = new SmtpClient();
-                String userName = "agapeton";
-                String password = "mscw0000";
-                var basicAuthenticationInfo = new NetworkCredential(userName, password);
+                var basicAuthenticationInfo = new NetworkCredential(username, password);
                 if ((mailOptions & MailOptions.UseSecureGmail) == MailOptions.UseSecureGmail)
                 {
                     mailClient.Host = "smtp.gmail.com";
@@ -104,7 +142,10 @@ namespace Nalarium.Mail
                 }
                 else
                 {
-                    String server = MailConfiguration.Server;
+                    if (String.IsNullOrEmpty(server))
+                    {
+                        throw new MailConfigurationException("server required");
+                    }
                     mailClient.Host = server;
                     mailClient.UseDefaultCredentials = false;
                     mailClient.Credentials = basicAuthenticationInfo;
