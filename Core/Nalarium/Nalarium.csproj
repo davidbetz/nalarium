@@ -86,7 +86,7 @@
     <Compile Include="Cryptography\QuickHash.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionCatchBlock.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionTryBlock.cs" />
-    <Compile Include="PathCleaner.cs" />
+    <Compile Include="IO\Path.cs" />
     <Compile Include="PairAndSeriesBuilder.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="IValueConverter.cs" />
@@ -180,7 +180,7 @@
     </Compile>
     <Compile Include="Text\QuoteTypes.cs" />
     <Compile Include="Text\TextSplitter.cs" />
-    <Compile Include="UrlCleaner.cs" />
+    <Compile Include="Url.cs" />
     <Compile Include="Value.cs" />
     <Compile Include="Write.cs" />
     <Compile Include="Xml\XPathProcessor.cs" />
