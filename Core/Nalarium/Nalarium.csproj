@@ -181,6 +181,7 @@
     <Compile Include="Text\QuoteTypes.cs" />
     <Compile Include="Text\TextSplitter.cs" />
     <Compile Include="Url.cs" />
+    <Compile Include="MetaString.cs" />
     <Compile Include="Value.cs" />
     <Compile Include="Write.cs" />
     <Compile Include="Xml\XPathProcessor.cs" />
