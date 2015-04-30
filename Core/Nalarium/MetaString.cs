@@ -12,9 +12,12 @@ namespace Nalarium
 
         public Map PropertyData { get; set; }
 
+        public Map<string, object> ObjectPropertyData { get; set; }
+
         public MetaString()
         {
             PropertyData = new Map();
+            ObjectPropertyData = new Map<string, object>();
         }
 
         public static MetaString Create(string @string)

@@ -140,5 +140,37 @@ namespace Nalarium
             //+
             return url.Split('/');
         }
+
+        /// <summary>
+        /// Shifts a URL left; a/b/c/d -> b/c/d
+        /// </summary>
+        /// <param name="url">url</param>
+        /// <param name="count">number of places</param>
+        /// <returns>fixed url</returns>
+        public static string Shift(string url, int count = 1)
+        {
+            if (String.IsNullOrEmpty(url))
+            {
+                return String.Empty;
+            }
+            var partArray = Split(url);
+            return string.Join("/", ArrayModifier.Shift<string>(partArray, count));
+        }
+
+        /// <summary>
+        /// Shifts a URL right; a/b/c/d -> a/b/c
+        /// </summary>
+        /// <param name="url">url</param>
+        /// <param name="count">number of places</param>
+        /// <returns>fixed url</returns>
+        public static string Strip(string url, int count = 1)
+        {
+            if (String.IsNullOrEmpty(url))
+            {
+                return String.Empty;
+            }
+            var partArray = Split(url);
+            return string.Join("/", ArrayModifier.Strip<string>(partArray, count));
+        }
     }
 }
