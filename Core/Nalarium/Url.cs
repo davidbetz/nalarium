@@ -6,6 +6,8 @@
 #endregion
 
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Nalarium
 {
@@ -21,18 +23,14 @@ namespace Nalarium
         /// <param name="path1">The first path.</param>
         /// <param name="path2">The second path.</param>
         /// <returns>The merged path.</returns>
-        public static String Join(String path1, String path2)
+        public static String Join(params String[] parameterArray)
         {
-            if (String.IsNullOrEmpty(path1))
+            if (parameterArray == null)
             {
-                return path2;
-            }
-            if (String.IsNullOrEmpty(path2))
-            {
-                return path1;
+                return string.Empty;
             }
             //+
-            return Clean(path1) + "/" + Clean(path2);
+            return Clean(String.Join("/", new List<string>(parameterArray.Select(p => Clean(p)).Where(p => !String.IsNullOrWhiteSpace(p)))));
         }
 
         //- @FixUrl -//
@@ -58,7 +56,7 @@ namespace Nalarium
             {
                 return String.Empty;
             }
-            if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
+            while (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
             {
                 path = path.Substring(1, path.Length - 1);
             }
@@ -78,7 +76,7 @@ namespace Nalarium
             {
                 return String.Empty;
             }
-            if (path.EndsWith("/", StringComparison.OrdinalIgnoreCase))
+            while (path.EndsWith("/", StringComparison.OrdinalIgnoreCase))
             {
                 path = path.Substring(0, path.Length - 1);
             }
