@@ -132,6 +132,7 @@
     <Compile Include="StateEntity.cs" />
     <Compile Include="StateMode.cs" />
     <Compile Include="StrongBag.cs" />
+    <Compile Include="Text\Process.cs" />
     <Compile Include="Text\Case.cs" />
     <Compile Include="Configuration\AppConfig\Factory\FactoryElement.cs" />
     <Compile Include="Configuration\AppConfig\Object\ObjectCollection.cs" />
