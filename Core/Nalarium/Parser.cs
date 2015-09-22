@@ -333,6 +333,50 @@ namespace Nalarium
             }
         }
 
+        //- @ParseSingle -//
+        /// <summary>
+        /// Parses the single.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <returns>Parsed value or 0F.</returns>
+        public static Single ParseSingle(Object value)
+        {
+            if (value != null)
+            {
+                return ParseSingle(value.ToString());
+            }
+            return 0F;
+        }
+
+        /// <summary>
+        /// Parses the single.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <returns>Parsed value or 0F.</returns>
+        public static Single ParseSingle(String value)
+        {
+            return ParseSingle(value, 0F);
+        }
+
+        /// <summary>
+        /// Parses the single or sets default.
+        /// </summary>
+        /// <param name="value">The value to parse.</param>
+        /// <param name="defaultValue">Default value to return is value is invalid</param>
+        /// <returns>Parsed value or default.</returns>
+        public static Single ParseSingle(String value, Single defaultValue)
+        {
+            Single Single;
+            if (Single.TryParse(value, out Single))
+            {
+                return Single;
+            }
+            else
+            {
+                return defaultValue;
+            }
+        }
+
         //- @ParseDouble -//
         /// <summary>
         /// Parses the double.
