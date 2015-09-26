@@ -101,7 +101,7 @@ namespace Nalarium.Data.Common
             public const String March = "March";
             public const String April = "April";
             public const String May = "May";
-            public const String June = "June;";
+            public const String June = "June";
             public const String July = "July";
             public const String August = "August";
             public const String September = "September";
