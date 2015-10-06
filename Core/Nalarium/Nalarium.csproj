@@ -86,6 +86,7 @@
     <Compile Include="Cryptography\QuickHash.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionCatchBlock.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionTryBlock.cs" />
+    <Compile Include="IO\Compression.cs" />
     <Compile Include="IO\Path.cs" />
     <Compile Include="PairAndSeriesBuilder.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Nalarium
@@ -10,14 +11,14 @@ namespace Nalarium
 
         public string String { get; set; }
 
-        public Map PropertyData { get; set; }
+        public Map<string, string> PropertyData { get; set; }
 
-        public Map<string, object> ObjectPropertyData { get; set; }
+        public Map<string, IEnumerable<MetaString>> ObjectPropertyData { get; set; }
 
         public MetaString()
         {
-            PropertyData = new Map();
-            ObjectPropertyData = new Map<string, object>();
+            PropertyData = new Map<string, string>();
+            ObjectPropertyData = new Map<string, IEnumerable<MetaString>>();
         }
 
         public static MetaString Create(string @string)
@@ -38,7 +39,7 @@ namespace Nalarium
             };
         }
 
-        public static MetaString Create(string guid, string @string, Map map)
+        public static MetaString Create(string guid, string @string, Map<string, string> map)
         {
             return new MetaString()
             {
