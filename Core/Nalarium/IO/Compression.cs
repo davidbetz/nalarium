@@ -24,38 +24,42 @@ namespace Nalarium.IO
         public static byte[] Compress(byte[] input)
         {
             using (var memoryStream = new MemoryStream())
-            using (var gzipStream = new GZipStream(memoryStream, CompressionLevel.Optimal, true))
+            using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
             {
                 gzipStream.Write(input, 0, input.Length);
+                gzipStream.Close();
                 return memoryStream.ToArray();
             }
         }
 
         public static byte[] Decompress(byte[] input)
         {
+            using (var memory = new MemoryStream())
             using (var stream = new GZipStream(new MemoryStream(input), CompressionMode.Decompress))
             {
                 const int size = 4096;
                 byte[] buffer = new byte[size];
-                using (MemoryStream memory = new MemoryStream())
+                int count;
+                do
                 {
-                    int count = 0;
-                    do
+                    count = stream.Read(buffer, 0, size);
+                    if (count > 0)
                     {
-                        count = stream.Read(buffer, 0, size);
-                        if (count > 0)
-                        {
-                            memory.Write(buffer, 0, count);
-                        }
-                    } while (count > 0);
-                    return memory.ToArray();
-                }
+                        memory.Write(buffer, 0, count);
+                    }
+                } while (count > 0);
+                return memory.ToArray();
             }
         }
 
         public static string DecompressToString(byte[] input)
         {
-            return Encoding.UTF8.GetString(Decompress(input));
+            using (var memoryStream = new MemoryStream(input))
+            using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
+            using (var reader = new StreamReader(gzipStream))
+            {
+                return reader.ReadToEnd();
+            }
         }
     }
 }
