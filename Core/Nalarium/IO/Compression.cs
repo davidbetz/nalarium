@@ -1,13 +1,13 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2008-2010
+//+ Copyright © Jampad Technology, Inc. 2008-2015
 
 #endregion
 
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Nalarium.IO
 {
@@ -21,45 +21,78 @@ namespace Nalarium.IO
             return Compress(Encoding.UTF8.GetBytes(input));
         }
 
-        public static byte[] Compress(byte[] input)
+        public static byte[] Compress(byte[] buffer)
         {
-            using (var memoryStream = new MemoryStream())
-            using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
+            using (var output = new MemoryStream())
             {
-                gzipStream.Write(input, 0, input.Length);
-                gzipStream.Close();
-                return memoryStream.ToArray();
+                using (var gzipStream = new GZipStream(output, CompressionMode.Compress))
+                using (var input = new MemoryStream(buffer))
+                {
+                    input.CopyTo(gzipStream);
+                }
+                return output.ToArray();
             }
         }
 
-        public static byte[] Decompress(byte[] input)
+        public static async Task<byte[]> CompressAsyc(byte[] buffer)
         {
+            using (var output = new MemoryStream())
+            {
+                using (var gzipStream = new GZipStream(output, CompressionMode.Compress))
+                using (var input = new MemoryStream(buffer))
+                {
+                    await input.CopyToAsync(gzipStream);
+                }
+                return output.ToArray();
+            }
+        }
+
+        public static byte[] DecompressUsingSegments(byte[] buffer)
+        {
+            using (var input = new MemoryStream(buffer))
             using (var memory = new MemoryStream())
-            using (var stream = new GZipStream(new MemoryStream(input), CompressionMode.Decompress))
+            using (var stream = new GZipStream(input, CompressionMode.Decompress))
             {
                 const int size = 4096;
-                byte[] buffer = new byte[size];
+                byte[] buffer2 = new byte[size];
                 int count;
                 do
                 {
-                    count = stream.Read(buffer, 0, size);
+                    count = stream.Read(buffer2, 0, size);
                     if (count > 0)
                     {
-                        memory.Write(buffer, 0, count);
+                        memory.Write(buffer2, 0, count);
                     }
                 } while (count > 0);
                 return memory.ToArray();
             }
         }
 
+        public static byte[] Decompress(byte[] buffer)
+        {
+            using (var input = new MemoryStream(buffer))
+            using (var gzipStream = new GZipStream(input, CompressionMode.Decompress))
+            using (var output = new MemoryStream())
+            {
+                gzipStream.CopyTo(output);
+                return output.ToArray();
+            }
+        }
+
+        public static async Task<byte[]> DecompressAsync(byte[] buffer)
+        {
+            using (var input = new MemoryStream(buffer))
+            using (var gzipStream = new GZipStream(input, CompressionMode.Decompress))
+            using (var output = new MemoryStream())
+            {
+                await gzipStream.CopyToAsync(output);
+                return output.ToArray();
+            }
+        }
+
         public static string DecompressToString(byte[] input)
         {
-            using (var memoryStream = new MemoryStream(input))
-            using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
-            using (var reader = new StreamReader(gzipStream))
-            {
-                return reader.ReadToEnd();
-            }
+            return Encoding.UTF8.GetString(Decompress(input));
         }
     }
 }
