@@ -88,6 +88,7 @@
     <Compile Include="Cryptography\QuickHash.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionCatchBlock.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionTryBlock.cs" />
+    <Compile Include="LuidCreator.cs" />
     <Compile Include="IO\Compression.cs" />
     <Compile Include="IO\Path.cs" />
     <Compile Include="PairAndSeriesBuilder.cs" />
