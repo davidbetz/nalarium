@@ -86,6 +86,7 @@
     <Compile Include="Configuration\AppConfig\ConfigurationSection.cs" />
     <Compile Include="Cryptography\Rijndael.cs" />
     <Compile Include="Cryptography\QuickHash.cs" />
+    <Compile Include="DelayedAction.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionCatchBlock.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionTryBlock.cs" />
     <Compile Include="LuidCreator.cs" />
