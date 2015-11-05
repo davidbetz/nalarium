@@ -89,6 +89,7 @@
     <Compile Include="DelayedAction.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionCatchBlock.cs" />
     <Compile Include="ExceptionHandling\Retry\ExceptionTryBlock.cs" />
+    <Compile Include="IO\TempFileArea.cs" />
     <Compile Include="LuidCreator.cs" />
     <Compile Include="IO\Compression.cs" />
     <Compile Include="IO\Path.cs" />
