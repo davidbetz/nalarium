@@ -8,6 +8,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Nalarium
 {
@@ -169,6 +170,50 @@ namespace Nalarium
             }
             var partArray = Split(url);
             return string.Join("/", ArrayModifier.Strip<string>(partArray, count));
+        }
+
+        //- @UrlPartArray -//
+        /// <summary>
+        /// Gets the URL part array.
+        /// </summary>
+        public static string[] GetUrlPartArray(string url)
+        {
+            if (String.IsNullOrEmpty(url))
+            {
+                return null;
+            }
+            return url.ToLower(CultureInfo.CurrentCulture).Split('/').Where(p => !String.IsNullOrEmpty(p)).ToArray();
+        }
+
+        /// <summary>
+        /// Gets url part
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public static string GetPart(string url, Position position)
+        {
+            if (String.IsNullOrEmpty(url))
+            {
+                return null;
+            }
+            return Collection.GetArrayPart(GetUrlPartArray(url), position);
+        }
+
+        /// <summary>
+        /// Gets url part
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public static string GetPart(string[] array, Position position)
+        {
+            if(array== null)
+            {
+                return String.Empty;
+            }
+            return Collection.GetArrayPart(array, position);
         }
     }
 }
