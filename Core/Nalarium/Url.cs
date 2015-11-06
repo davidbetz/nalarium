@@ -118,7 +118,7 @@ namespace Nalarium
                 return String.Empty;
             }
             //+
-            return path.Replace("\\", "/");
+            return path.Replace("\\", "/").Replace(":", string.Empty);
         }
 
         /// <summary>
