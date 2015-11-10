@@ -19,8 +19,6 @@ namespace Nalarium.Data.Common
     /// </summary>
     public static class Date
     {
-        //- $Info -//
-
         //+
         //- @Ctor -//
         static Date()
