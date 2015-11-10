@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CECBDBAF-879E-4432-9F8D-969E0E69545B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nalarium</RootNamespace>
+    <AssemblyName>Nalarium</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/General/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Nalarium.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activation\BasicTypeObjectFactory.cs" />
+    <Compile Include="Activation\AssemblyLoader.cs" />
+    <Compile Include="Activation\Emit\EmitMarkerAttribute.cs" />
+    <Compile Include="Activation\Emit\XmlIgnoreEmitMarkerAttribute.cs" />
+    <Compile Include="Binary.cs" />
+    <Compile Include="Checksum.cs" />
+    <Compile Include="Configuration\AppConfig\ConfigurationSection.cs" />
+    <Compile Include="Cryptography\Rijndael.cs" />
+    <Compile Include="Cryptography\QuickHash.cs" />
+    <Compile Include="Data\Common\Date.cs" />
+    <Compile Include="Data\Common\Info.cs" />
+    <Compile Include="Data\Common\Name.cs" />
+    <Compile Include="Data\Common\State.cs" />
+    <Compile Include="DelayedAction.cs" />
+    <Compile Include="ExceptionHandling\Retry\ExceptionCatchBlock.cs" />
+    <Compile Include="ExceptionHandling\Retry\ExceptionTryBlock.cs" />
+    <Compile Include="IO\TempFileArea.cs" />
+    <Compile Include="LuidCreator.cs" />
+    <Compile Include="IO\Compression.cs" />
+    <Compile Include="IO\Path.cs" />
+    <Compile Include="PairAndSeriesBuilder.cs" />
+    <Compile Include="Reflection\PropertyReader.cs" />
+    <Compile Include="IValueConverter.cs" />
+    <Compile Include="IViewObjectContainer.cs" />
+    <Compile Include="SerializerPair.cs" />
+    <Compile Include="Executor.cs" />
+    <Compile Include="PairSplitter.cs" />
+    <Compile Include="MapDuplicateMode.cs" />
+    <Compile Include="Reflection\MethodAttributeInformation.cs" />
+    <Compile Include="Activation\TypeData.cs" />
+    <Compile Include="Activation\Emit\PropertyData.cs" />
+    <Compile Include="Activation\Emit\PropertyDataBase.cs" />
+    <Compile Include="Activation\Emit\PropertyDataCreator.cs" />
+    <Compile Include="Activation\Emit\DynamicTypeCreator.cs" />
+    <Compile Include="Activation\TypeCache.cs" />
+    <Compile Include="Activation\Emit\DynamicObjectActivator.cs" />
+    <Compile Include="Activation\InjectedObjectActivator.cs" />
+    <Compile Include="Activation\TypeFactoryActivator.cs" />
+    <Compile Include="Activation\ObjectInjectionReportController.cs" />
+    <Compile Include="Activation\TypeFactory.cs" />
+    <Compile Include="Configuration\AppConfig\Factory\FactoryCollection.cs" />
+    <Compile Include="Activation\FactoryCache.cs" />
+    <Compile Include="Activation\InjectionData.cs" />
+    <Compile Include="Activation\ExceptionTypeFactory.cs" />
+    <Compile Include="Activation\ObjectFactory.cs" />
+    <Compile Include="Activation\TypeActivationInfo.cs" />
+    <Compile Include="Activation\ObjectCreator.cs" />
+    <Compile Include="Collection.cs" />
+    <Compile Include="CitationAttribute.cs" />
+    <Compile Include="ArrayModifier.cs" />
+    <Compile Include="Configuration\AppConfig\Resource\GlobalizationElement.cs" />
+    <Compile Include="Reflection\AttributeReader.cs" />
+    <Compile Include="NotDocumentedAttribute.cs" />
+    <Compile Include="Mail\MailOptionsCreator.cs" />
+    <Compile Include="Mail\MailOptions.cs" />
+    <Compile Include="Position.cs" />
+    <Compile Include="Globalization\Culture.cs" />
+    <Compile Include="ScopeTranscriber.cs" />
+    <Compile Include="Int32StringKeyValue.cs" />
+    <Compile Include="Reporting\Sender\TraceOutputSender.cs" />
+    <Compile Include="Reporting\Sender\DebugOutputSender.cs" />
+    <Compile Include="Globalization\ResourceAccessor.cs" />
+    <Compile Include="StateEntity.cs" />
+    <Compile Include="StateMode.cs" />
+    <Compile Include="StrongBag.cs" />
+    <Compile Include="Text\Process.cs" />
+    <Compile Include="Text\Case.cs" />
+    <Compile Include="Configuration\AppConfig\Factory\FactoryElement.cs" />
+    <Compile Include="Configuration\AppConfig\Object\ObjectCollection.cs" />
+    <Compile Include="Configuration\AppConfig\Object\ObjectElement.cs" />
+    <Compile Include="Configuration\AppConfig\Reporting\FormatterFactoryCollection.cs" />
+    <Compile Include="Configuration\AppConfig\Reporting\ReporterElement.cs" />
+    <Compile Include="Configuration\AppConfig\Type\TypeParameterCollection.cs" />
+    <Compile Include="Configuration\AppConfig\Type\TypeParameterElement.cs" />
+    <Compile Include="StringKeyValueMap.cs" />
+    <Compile Include="StringKeyValue.cs" />
+    <Compile Include="KeyValue.cs" />
+    <Compile Include="Data\Cached\CachedDataFactory.cs" />
+    <Compile Include="Data\IStorable.cs" />
+    <Compile Include="Data\QueryStringStorableMap.cs" />
+    <Compile Include="Data\SeriesStorableMap.cs" />
+    <Compile Include="Reporting\ReportFacade.cs" />
+    <Compile Include="Reporting\ReportController.cs" />
+    <Compile Include="Reporting\Reporter.cs" />
+    <Compile Include="Reporting\Factory.cs" />
+    <Compile Include="Reporting\ReportCreator\Formatter\CommonFormatterFactory.cs" />
+    <Compile Include="Reporting\ReportCreator\Formatter\FormatterActivator.cs" />
+    <Compile Include="Reporting\ReportCreator\Formatter\FormatterType.cs" />
+    <Compile Include="Reporting\ReportCreator\Formatter\HtmlFormatter.cs" />
+    <Compile Include="Reporting\ReportCreator\Formatter\StyleTypes.cs" />
+    <Compile Include="Reporting\ReportCreator\Formatter\WikiFormatter.cs" />
+    <Compile Include="Reporting\ReportCreator\Formatter\Formatter.cs" />
+    <Compile Include="Reporting\ReportCreator\Formatter\FormatterFactory.cs" />
+    <Compile Include="Reporting\ReportCreator\CommonReportCreatorFactory.cs" />
+    <Compile Include="Reporting\ReportCreator\ExceptionReportCreator.cs" />
+    <Compile Include="Reporting\ReportCreator\MapReportCreator.cs" />
+    <Compile Include="Reporting\ReportCreator\ObjectArrayReportCreator.cs" />
+    <Compile Include="Reporting\ReportCreator\ReportCreatorActivator.cs" />
+    <Compile Include="Reporting\ReportCreator\StringReportCreator.cs" />
+    <Compile Include="Reporting\ReportCreator\ReportCreator.cs" />
+    <Compile Include="Reporting\ReportCreator\ReportCreatorFactory.cs" />
+    <Compile Include="Reporting\Sender\CommonSenderFactory.cs" />
+    <Compile Include="Reporting\Sender\EmailSender.cs" />
+    <Compile Include="Reporting\Sender\EventLogSender.cs" />
+    <Compile Include="Reporting\Sender\SenderActivator.cs" />
+    <Compile Include="Reporting\Sender\Sender.cs" />
+    <Compile Include="Reporting\Sender\SenderFactory.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Text\QuoteTypes.cs" />
+    <Compile Include="Text\TextSplitter.cs" />
+    <Compile Include="Url.cs" />
+    <Compile Include="MetaString.cs" />
+    <Compile Include="Value.cs" />
+    <Compile Include="Write.cs" />
+    <Compile Include="Xml\XPathProcessor.cs" />
+    <Compile Include="IFactory.cs" />
+    <Compile Include="IHasPriority.cs" />
+    <Compile Include="Configuration\AppConfig\Reporting\SenderFactoryCollection.cs" />
+    <Compile Include="Configuration\AppConfig\Reporting\ReporterFactoryCollection.cs" />
+    <Compile Include="Configuration\AppConfig\Reporting\ReporterCollection.cs" />
+    <Compile Include="Configuration\AppConfig\Reporting\ReportingElement.cs" />
+    <Compile Include="Configuration\AppConfig\IProvidesParameters.cs" />
+    <Compile Include="Configuration\AppConfig\CommentableElement.cs" />
+    <Compile Include="Configuration\AppConfig\SystemSection.cs" />
+    <Compile Include="Configuration\AppConfig\AppInfo\AppInfoElement.cs" />
+    <Compile Include="Configuration\AppConfig\CommentableCollection.cs" />
+    <Compile Include="Configuration\AppConfig\WithParametersElement.cs" />
+    <Compile Include="Configuration\AppConfig\WithParameterArrayElement.cs" />
+    <Compile Include="Configuration\AppConfig\EmailSetup\EmailSetupElement.cs" />
+    <Compile Include="Configuration\AppConfig\Parameter\ParameterCollection.cs" />
+    <Compile Include="Configuration\AppConfig\Parameter\ParameterElement.cs" />
+    <Compile Include="IHasParameterMap.cs" />
+    <Compile Include="IHasParameterArray.cs" />
+    <Compile Include="Int32StringMap.cs" />
+    <Compile Include="Int32StringMapEntry.cs" />
+    <Compile Include="Int32MapEntry.cs" />
+    <Compile Include="Int32Map.cs" />
+    <Compile Include="Data\Base64StorableMap.cs" />
+    <Compile Include="IO\NonClosingMemoryStream.cs" />
+    <Compile Include="IO\StreamConverter.cs" />
+    <Compile Include="MapEntry.cs" />
+    <Compile Include="GuidCreator.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="CodeParsing\CodeParserSeries.cs" />
+    <Compile Include="CodeParsing\CodeParser.cs" />
+    <Compile Include="Data\ScopedMap.cs" />
+    <Compile Include="StringObjectMap.cs" />
+    <Compile Include="StringObjectMapEntry.cs" />
+    <Compile Include="Configuration\ConfigAccessor.cs" />
+    <Compile Include="ExceptionHandling\Retry\ExceptionConstraintCollection.cs" />
+    <Compile Include="ExceptionHandling\Retry\ExceptionRetry.cs" />
+    <Compile Include="Template.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="UnixDateTimeConverter.cs" />
+    <Compile Include="Configuration\AppConfig\ICommentElement.cs" />
+    <Compile Include="Mail\MailConfigurationException.cs" />
+    <Compile Include="Mail\Emailer.cs" />
+    <Compile Include="Mail\MailConfiguration.cs" />
+    <Compile Include="Net\HttpAbstractor.cs" />
+    <Compile Include="Xml\XmlSimpleExtractor.cs" />
+    <Compile Include="Xml\XmlFormatter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ISequencedControl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  -->
+  <Target Name="AfterBuild">
+    <Copy SkipUnchangedFiles="true" SourceFiles="$(OutDir)\$(TargetFileName)" DestinationFiles="$(HomeDrive)\_REFERENCE\$(Configuration)\$(TargetFileName)" />
+  </Target>
+</Project>
