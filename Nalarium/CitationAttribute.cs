@@ -1,10 +1,3 @@
-#region Copyright
-
-//+ Nalarium Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
-
-#endregion
-
 using System;
 
 namespace Nalarium
@@ -15,11 +8,15 @@ namespace Nalarium
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface, Inherited = false, AllowMultiple = false)]
     public class CitationAttribute : Attribute
     {
-        private readonly String _source;
+        private readonly string _source;
 
-        public CitationAttribute(String Source)
+        /// <summary>
+        /// Create with source
+        /// </summary>
+        /// <param name="source"></param>
+        public CitationAttribute(string source)
         {
-            _source = Source;
+            _source = source;
             //+
             DateCulture = "en-US";
             License = "Custom";
