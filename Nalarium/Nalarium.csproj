@@ -83,6 +83,7 @@
     <Compile Include="Activation\Emit\XmlIgnoreEmitMarkerAttribute.cs" />
     <Compile Include="Binary.cs" />
     <Compile Include="Checksum.cs" />
+    <Compile Include="CommentAttribute.cs" />
     <Compile Include="Configuration\AppConfig\ConfigurationSection.cs" />
     <Compile Include="Cryptography\Rijndael.cs" />
     <Compile Include="Cryptography\QuickHash.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="IO\Compression.cs" />
     <Compile Include="IO\Path.cs" />
     <Compile Include="PairAndSeriesBuilder.cs" />
+    <Compile Include="ReferenceAttribute.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IViewObjectContainer.cs" />
