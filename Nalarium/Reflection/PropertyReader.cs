@@ -1,23 +1,21 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
 using System;
-using System.Reflection;
 
 namespace Nalarium.Reflection
 {
     public class PropertyReader
     {
-        private readonly Object _object;
+        private readonly object _object;
         private readonly Type _type;
 
         //+
         //- @Ctor -//
-        public PropertyReader(Object obj)
+        public PropertyReader(object obj)
         {
             if (_object == null)
             {
@@ -28,22 +26,22 @@ namespace Nalarium.Reflection
         }
 
         //- @ReadAsString -//
-        public String ReadAsString(String propertyName)
+        public string ReadAsString(string propertyName)
         {
-            return Read(propertyName) as String;
+            return Read(propertyName) as string;
         }
 
         //- @Read -//
-        public Object Read(String propertyName)
+        public object Read(string propertyName)
         {
             if (_type == null)
             {
-                return String.Empty;
+                return string.Empty;
             }
-            PropertyInfo pi = _type.GetProperty(propertyName);
+            var pi = _type.GetProperty(propertyName);
             if (pi == null)
             {
-                return String.Empty;
+                return string.Empty;
             }
             //+
             return pi.GetValue(_object, null);

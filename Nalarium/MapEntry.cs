@@ -1,16 +1,13 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
-
-using System;
 
 namespace Nalarium
 {
     /// <summary>
-    /// A key/value-like structure for use with Map types.
+    ///     A key/value-like structure for use with Map types.
     /// </summary>
     /// <typeparam name="T1">The type of the key.</typeparam>
     /// <typeparam name="T2">The type of the value.</typeparam>
@@ -21,14 +18,14 @@ namespace Nalarium
         //+
         //- @Ctor -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;" /> class.
         /// </summary>
         public MapEntry()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;" /> class.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
@@ -39,21 +36,21 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Gets or sets the key.
+        ///     Gets or sets the key.
         /// </summary>
         /// <value>The key.</value>
         public T1 Key { get; set; }
 
         //- @Target -//
         /// <summary>
-        /// Gets or sets the value.
+        ///     Gets or sets the value.
         /// </summary>
         /// <value>The value.</value>
         public T2 Value { get; set; }
 
         //- @Create -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;" /> class.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
@@ -64,22 +61,22 @@ namespace Nalarium
         }
     }
 
-    public class MapEntry : MapEntry<String, String>
+    public class MapEntry : MapEntry<string, string>
     {
         //- @Ctor -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapEntry"/> class.
+        ///     Initializes a new instance of the <see cref="MapEntry" /> class.
         /// </summary>
         public MapEntry()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapEntry"/> class.
+        ///     Initializes a new instance of the <see cref="MapEntry" /> class.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
-        public MapEntry(String key, String value)
+        public MapEntry(string key, string value)
             : base(key, value)
         {
             //+ blank
@@ -87,12 +84,12 @@ namespace Nalarium
 
         //- @Create -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;"/> class.
+        ///     Initializes a new instance of the <see cref="MapEntry&lt;T1, T2&gt;" /> class.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
         /// <returns>Initialized map entry.</returns>
-        public new static MapEntry Create(String key, String value)
+        public new static MapEntry Create(string key, string value)
         {
             return new MapEntry(key, value);
         }

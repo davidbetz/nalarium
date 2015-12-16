@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Globalization;
 
 namespace Nalarium.Reporting.ReportCreator.Formatter
@@ -14,13 +12,13 @@ namespace Nalarium.Reporting.ReportCreator.Formatter
     {
         //- @Create -//
         /// <summary>
-        /// Creates a formatter based on the specified alias
+        ///     Creates a formatter based on the specified alias
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public override Formatter Create(String name)
+        public override Formatter Create(string name)
         {
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 switch (name.ToLower(CultureInfo.CurrentCulture))
                 {

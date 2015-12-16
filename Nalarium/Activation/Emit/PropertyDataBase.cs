@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -15,13 +14,13 @@ namespace Nalarium.Activation.Emit
     {
         //- @Name -//
         /// <summary>
-        /// Property name.
+        ///     Property name.
         /// </summary>
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         //- @Type -//
         /// <summary>
-        /// Property type.
+        ///     Property type.
         /// </summary>
         public abstract Type Type { get; set; }
     }

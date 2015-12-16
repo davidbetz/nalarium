@@ -7,9 +7,9 @@ using System.Text;
 [assembly: AssemblyTitle("Nalarium Core Module")]
 [assembly: AssemblyDescription(".NET Development Foundation")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jampad Technology, Inc.")]
+[assembly: AssemblyCompany("David Betz")]
 [assembly: AssemblyProduct("Nalarium Core Module")]
-[assembly: AssemblyCopyright("Copyright © Jampad Technology, Inc. 2007-2015")]
+[assembly: AssemblyCopyright("Copyright © David Betz 2007-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 //+
@@ -20,8 +20,8 @@ using System.Text;
 [assembly: Guid("6E249E3E-95D3-416C-B9DD-544B08255E43")]
 //+
 
-[assembly: AssemblyVersion("3.4.0.0")]
-[assembly: AssemblyFileVersion("3.4.0.0")]
+[assembly: AssemblyVersion("3.5.2.2")]
+[assembly: AssemblyFileVersion("3.5.2.2")]
 //+
 
 namespace Nalarium.Properties
@@ -29,11 +29,11 @@ namespace Nalarium.Properties
     [NotDocumented]
     public class AssemblyInfo
     {
-        internal static Assembly _Assembly = typeof(AssemblyInfo).Assembly;
+        internal static Assembly _Assembly = typeof (AssemblyInfo).Assembly;
 
         //+
-        public static String AssemblyName = _Assembly.FullName;
-        public static Byte[] PublicKey = _Assembly.GetName().GetPublicKey();
-        public static String PublicKeyString = Encoding.UTF8.GetString(PublicKey).ToLower();
+        public static string AssemblyName = _Assembly.FullName;
+        public static byte[] PublicKey = _Assembly.GetName().GetPublicKey();
+        public static string PublicKeyString = Encoding.UTF8.GetString(PublicKey).ToLower();
     }
 }

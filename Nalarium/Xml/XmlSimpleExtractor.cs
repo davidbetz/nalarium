@@ -1,11 +1,9 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2008-2013
+//+ Copyright © David Betz 2008-2013
 
 #endregion
 
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
@@ -18,16 +16,16 @@ namespace Nalarium.Xml
     {
         //- @ExtractBranch -//
         /// <summary>
-        /// Extracts the branch.
+        ///     Extracts the branch.
         /// </summary>
         /// <param name="mailRoot">The mail root.</param>
         /// <param name="branchName">Name of the branch.</param>
         /// <param name="required">if set to <c>true</c> [required].</param>
         /// <returns></returns>
-        public static List<String> ExtractBranch(XmlNode mailRoot, String branchName, Boolean required = false)
+        public static List<string> ExtractBranch(XmlNode mailRoot, string branchName, bool required = false)
         {
-            var list = new List<String>();
-            XmlNode result = mailRoot.SelectSingleNode(branchName);
+            var list = new List<string>();
+            var result = mailRoot.SelectSingleNode(branchName);
             if (result != null && result.HasChildNodes)
             {
                 foreach (XmlNode node in result.ChildNodes)
@@ -39,7 +37,7 @@ namespace Nalarium.Xml
             {
                 if (required)
                 {
-                    throw new XmlException(String.Format(CultureInfo.CurrentCulture, ResourceAccessor.GetString("General_MissingElement", AssemblyInfo.AssemblyName, Resource.ResourceManager), branchName));
+                    throw new XmlException(string.Format(CultureInfo.CurrentCulture, ResourceAccessor.GetString("General_MissingElement", AssemblyInfo.AssemblyName, Resource.ResourceManager), branchName));
                 }
             }
             //+
@@ -48,22 +46,19 @@ namespace Nalarium.Xml
 
         //- @ExtractText -//
         /// <summary>
-        /// Extracts the text.
+        ///     Extracts the text.
         /// </summary>
         /// <param name="mailRoot">The mail root.</param>
         /// <param name="nodeName">Name of the node.</param>
         /// <returns></returns>
-        public static String ExtractText(XmlNode mailRoot, String nodeName)
+        public static string ExtractText(XmlNode mailRoot, string nodeName)
         {
-            XmlNode result = mailRoot.SelectSingleNode(nodeName);
+            var result = mailRoot.SelectSingleNode(nodeName);
             if (result != null)
             {
                 return result.InnerText;
             }
-            else
-            {
-                throw new XmlException(String.Format(CultureInfo.CurrentCulture, ResourceAccessor.GetString("General_MissingElement", AssemblyInfo.AssemblyName, Resource.ResourceManager), nodeName));
-            }
+            throw new XmlException(string.Format(CultureInfo.CurrentCulture, ResourceAccessor.GetString("General_MissingElement", AssemblyInfo.AssemblyName, Resource.ResourceManager), nodeName));
         }
     }
 }

@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -14,18 +13,17 @@ using System.Runtime.Serialization;
 namespace Nalarium
 {
     /// <summary>
-    /// A dictionary-like structure with allows for easy interaction.
+    ///     A dictionary-like structure with allows for easy interaction.
     /// </summary>
-    /// <typeparam name="T1">The type of the key.</typeparam>
-    /// <typeparam name="T2">The type of the value.</typeparam>
-    /// <example>See Jampad Technology, Inc. 2007-2013.Map type</example>
+    /// <typeparam name="TKey">The type of the key.</typeparam>
+    /// <typeparam name="TValue">The type of the value.</typeparam>
+    /// <example>See Map type</example>
     [DataContract]
     public class Map<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>>
     {
-        private Dictionary<TKey, TValue> _data = new Dictionary<TKey, TValue>();
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;"/> class with an optional generic MapEntry parameter array
+        ///     Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;" /> class with an optional generic MapEntry
+        ///     parameter array
         /// </summary>
         /// <param name="parameterArray">The parameter array.</param>
         public Map(IEnumerable<MapEntry<TKey, TValue>> parameterArray)
@@ -40,7 +38,8 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;"/> class with an optional generic MapEntry parameter array
+        ///     Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;" /> class with an optional generic MapEntry
+        ///     parameter array
         /// </summary>
         /// <param name="parameterArray">The parameter array.</param>
         public Map(params MapEntry<TKey, TValue>[] parameterArray)
@@ -55,7 +54,7 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;"/> class with another Map instance.
+        ///     Initializes a new instance of the <see cref="Map&lt;T1, T2&gt;" /> class with another Map instance.
         /// </summary>
         /// <param name="initMap">The initialization map.</param>
         public Map(Map<TKey, TValue> initMap)
@@ -64,32 +63,16 @@ namespace Nalarium
         }
 
         [DataMember]
-        protected Dictionary<TKey, TValue> Data
-        {
-            get
-            {
-                return _data;
-            }
-            set
-            {
-                _data = value;
-            }
-        }
+        protected Dictionary<TKey, TValue> Data { get; set; } = new Dictionary<TKey, TValue>();
 
         public ICollection<TKey> Keys
         {
-            get
-            {
-                return Data.Keys;
-            }
+            get { return Data.Keys; }
         }
 
         public ICollection<TValue> Values
         {
-            get
-            {
-                return Data.Values;
-            }
+            get { return Data.Values; }
         }
 
         public virtual TValue this[TKey key]
@@ -103,48 +86,25 @@ namespace Nalarium
                 //+
                 return default(TValue);
             }
-            set
-            {
-                Data[key] = value;
-            }
+            set { Data[key] = value; }
         }
 
-        public Int32 Count
+        public int Count
         {
-            get
-            {
-                return Data.Count;
-            }
+            get { return Data.Count; }
         }
 
         /// <summary>
-        /// The map data as a property (same as the GetDataSource Method)
+        ///     The map data as a property (same as the GetDataSource Method)
         /// </summary>
         public List<MapEntry<TKey, TValue>> DataSource
         {
-            get
-            {
-                return GetDataSource();
-            }
+            get { return GetDataSource(); }
         }
-
-        #region IEnumerable<KeyValuePair<TKey,TValue>> Members
-
-        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-        {
-            return Data.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return Data.GetEnumerator();
-        }
-
-        #endregion
 
         //+
         //-  @IsNotNullOrEmpty -//
-        public static Boolean IsNotNullOrEmpty(Map<TKey, TValue> dictionary)
+        public static bool IsNotNullOrEmpty(Map<TKey, TValue> dictionary)
         {
             if (dictionary == null)
             {
@@ -191,7 +151,7 @@ namespace Nalarium
         }
 
         //- @AddIfNotPresent -//
-        public Boolean AddIfNotPresent(TKey key, TValue value)
+        public bool AddIfNotPresent(TKey key, TValue value)
         {
             if (!Data.ContainsKey(key))
             {
@@ -204,7 +164,7 @@ namespace Nalarium
         }
 
         //- @ContainsKey -//
-        public Boolean ContainsKey(TKey key)
+        public bool ContainsKey(TKey key)
         {
             if (key == null)
             {
@@ -216,13 +176,13 @@ namespace Nalarium
         //- @Keys -//
 
         //- @Remove -//
-        public Boolean Remove(TKey key)
+        public bool Remove(TKey key)
         {
             return Data.Remove(key);
         }
 
         //- @TryGetValue -//
-        public Boolean TryGetValue(TKey key, out TValue value)
+        public bool TryGetValue(TKey key, out TValue value)
         {
             return Data.TryGetValue(key, out value);
         }
@@ -230,10 +190,10 @@ namespace Nalarium
         //- @Values -//
 
         //- @FindKeyForIndex -//
-        public TKey FindKeyForIndex(Int32 index)
+        public TKey FindKeyForIndex(int index)
         {
-            Int32 currentIndex = 0;
-            foreach (TKey key in Data.Keys)
+            var currentIndex = 0;
+            foreach (var key in Data.Keys)
             {
                 if (currentIndex++ == index)
                 {
@@ -256,7 +216,7 @@ namespace Nalarium
 
         //+ static
         //- @IsNullOrEmpty -//
-        public static Boolean IsNullOrEmpty(Map<TKey, TValue> map)
+        public static bool IsNullOrEmpty(Map<TKey, TValue> map)
         {
             if (map == null || map.Count == 0)
             {
@@ -272,7 +232,7 @@ namespace Nalarium
         //+
         //- @AddMapEntry -//
         /// <summary>
-        /// Adds the map entry.
+        ///     Adds the map entry.
         /// </summary>
         /// <param name="mapEntry">The map entry.</param>
         public void AddMapEntry(MapEntry<TKey, TValue> mapEntry)
@@ -285,7 +245,7 @@ namespace Nalarium
 
         //- @GetKeyList -//
         /// <summary>
-        /// Gets the key list.
+        ///     Gets the key list.
         /// </summary>
         /// <returns></returns>
         public List<TKey> GetKeyList()
@@ -295,7 +255,7 @@ namespace Nalarium
 
         //- @GetValueList -//
         /// <summary>
-        /// Gets the value list.
+        ///     Gets the value list.
         /// </summary>
         /// <returns></returns>
         public List<TValue> GetValueList()
@@ -305,7 +265,7 @@ namespace Nalarium
 
         //- @GetValueArray -//
         /// <summary>
-        /// Gets the value array.
+        ///     Gets the value array.
         /// </summary>
         /// <returns></returns>
         public TValue[] GetValueArray()
@@ -315,15 +275,15 @@ namespace Nalarium
 
         //- @ImportMap -//
         /// <summary>
-        /// Appends the specific map to the current one.
+        ///     Appends the specific map to the current one.
         /// </summary>
         /// <param name="map">The map to import</param>
         public void ImportMap(Map<TKey, TValue> map)
         {
             if (map != null)
             {
-                List<TKey> keyList = map.GetKeyList();
-                foreach (TKey key in keyList)
+                var keyList = map.GetKeyList();
+                foreach (var key in keyList)
                 {
                     Add(key, map[key]);
                 }
@@ -332,7 +292,8 @@ namespace Nalarium
 
         //- @PeekSafely -//
         /// <summary>
-        /// Returns a the value associated with a specific key or the default value of the type is the value doens't exist.  It's safe because an exception is not thrown.
+        ///     Returns a the value associated with a specific key or the default value of the type is the value doens't exist.
+        ///     It's safe because an exception is not thrown.
         /// </summary>
         /// <param name="key">The key to look up.</param>
         /// <returns>The associated value of the key or, if there isn't one, the default value of the value generic type.</returns>
@@ -352,7 +313,8 @@ namespace Nalarium
 
         //- @PeekSafely -//
         /// <summary>
-        /// Returns a the value associated with a specific key or the default value of the type is the value doens't exist.  It's safe because an exception is not thrown.
+        ///     Returns a the value associated with a specific key or the default value of the type is the value doens't exist.
+        ///     It's safe because an exception is not thrown.
         /// </summary>
         /// <typeparam name="T">The type to which the returning value should be cast.</typeparam>
         /// <param name="key">The key to look up.</param>
@@ -364,7 +326,7 @@ namespace Nalarium
             {
                 if (ContainsKey(key))
                 {
-                    return (T)this[key];
+                    return (T) this[key];
                 }
             }
             return default(T);
@@ -372,7 +334,8 @@ namespace Nalarium
 
         //- @Get -//
         /// <summary>
-        /// Returns a the value associated with a specific key or the default value of the type is the value doens't exist.  It's safe because an exception is not thrown.
+        ///     Returns a the value associated with a specific key or the default value of the type is the value doens't exist.
+        ///     It's safe because an exception is not thrown.
         /// </summary>
         /// <typeparam name="T">The type to which the returning value should be cast.</typeparam>
         /// <param name="key">The key to look up.</param>
@@ -383,7 +346,7 @@ namespace Nalarium
             {
                 if (ContainsKey(key))
                 {
-                    return (T)this[key];
+                    return (T) this[key];
                 }
             }
             return default(T);
@@ -391,7 +354,7 @@ namespace Nalarium
 
         //- @Pull - //
         /// <summary>
-        /// Pulls the value associated with the key and removes the key/value pair from the map.
+        ///     Pulls the value associated with the key and removes the key/value pair from the map.
         /// </summary>
         /// <param name="key">The key to look up.</param>
         /// <returns>The associated value of the key or, if there isn't one, the default value of the value generic type.</returns>
@@ -401,7 +364,7 @@ namespace Nalarium
             {
                 if (ContainsKey(key))
                 {
-                    TValue value = this[key];
+                    var value = this[key];
                     Remove(key);
                     return value;
                 }
@@ -412,53 +375,65 @@ namespace Nalarium
 
         //- @GetDataSource -//
         /// <summary>
-        /// Gets the datasource from the map as a map entry list.
+        ///     Gets the datasource from the map as a map entry list.
         /// </summary>
         /// <returns></returns>
         public List<MapEntry<TKey, TValue>> GetDataSource()
         {
             var mapEntryList = new List<MapEntry<TKey, TValue>>();
-            List<TKey> keyList = GetKeyList();
-            foreach (TKey key in keyList)
+            var keyList = GetKeyList();
+            foreach (var key in keyList)
             {
                 mapEntryList.Add(new MapEntry<TKey, TValue>(key, this[key]));
             }
             //+
             return mapEntryList;
         }
+
+        #region IEnumerable<KeyValuePair<TKey,TValue>> Members
+
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
+        {
+            return Data.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Data.GetEnumerator();
+        }
+
+        #endregion
     }
 
     //+
     /// <summary>
-    /// A dictionary-like structure with allows for easy interaction for string keys and values.
+    ///     A dictionary-like structure with allows for easy interaction for string keys and values.
     /// </summary>
     /// <example>
-    /// Map map = new Map("FirstName=John", "LastName=Doe");
-    /// 
-    /// //+ add single pair, pair series, and comma-separated series
-    /// map.AddPair("UserName=JohnDoe");
-    /// map.AddPairSeries("Email=johndoe@tempuri.org", "WebSite=www.tempuri.org");
-    /// map.AddCommaSeries("SpouseName=Jane Doe,Birthdate=04/14/1974");
-    /// 
-    /// //+ template with pattern
-    /// Template person = new Template("My name is {FirstName} {LastName}; {Email}; {WebSite}; {UserName}; {SpouseName}; {Birthdate}");
-    /// 
-    /// //+ interpolate with data with string
-    /// Console.WriteLine(person.Interpolate(map));
+    ///     Map map = new Map("FirstName=John", "LastName=Doe");
+    ///     //+ add single pair, pair series, and comma-separated series
+    ///     map.AddPair("UserName=JohnDoe");
+    ///     map.AddPairSeries("Email=johndoe@tempuri.org", "WebSite=www.tempuri.org");
+    ///     map.AddCommaSeries("SpouseName=Jane Doe,Birthdate=04/14/1974");
+    ///     //+ template with pattern
+    ///     Template person = new Template("My name is {FirstName} {LastName}; {Email}; {WebSite}; {UserName}; {SpouseName};
+    ///     {Birthdate}");
+    ///     //+ interpolate with data with string
+    ///     Console.WriteLine(person.Interpolate(map));
     /// </example>
     [DataContract]
-    public class Map : Map<String, String>
+    public class Map : Map<string, string>
     {
         //- @Ctor -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map"/> class.
+        ///     Initializes a new instance of the <see cref="Map" /> class.
         /// </summary>
         public Map()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map"/> class with an optional MapEntry parameter array
+        ///     Initializes a new instance of the <see cref="Map" /> class with an optional MapEntry parameter array
         /// </summary>
         /// <param name="parameterArray">An optional MapEntry parameter array.</param>
         public Map(params MapEntry[] parameterArray)
@@ -467,16 +442,16 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map"/> class with an optional pair parameter array
+        ///     Initializes a new instance of the <see cref="Map" /> class with an optional pair parameter array
         /// </summary>
         /// <param name="parameterArray">An optional pair (i.e. "a=b") parameter array.</param>
-        public Map(params String[] parameterArray)
+        public Map(params string[] parameterArray)
         {
             AddPairSeries(parameterArray);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map"/> class with another Map instance.
+        ///     Initializes a new instance of the <see cref="Map" /> class with another Map instance.
         /// </summary>
         /// <param name="initMap">The init map.</param>
         public Map(Map initMap)
@@ -485,17 +460,17 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map"/> class with an IDictionary instance
+        ///     Initializes a new instance of the <see cref="Map" /> class with an IDictionary instance
         /// </summary>
         /// <param name="dictionary">The IDictionary instance used to initialize the map</param>
         public Map(IDictionary dictionary)
         {
             if (dictionary != null)
             {
-                foreach (String key in dictionary.Keys)
+                foreach (string key in dictionary.Keys)
                 {
-                    String k = key;
-                    var v = dictionary[key] as String;
+                    var k = key;
+                    var v = dictionary[key] as string;
                     //+
                     if (k != null && v != null)
                     {
@@ -508,14 +483,14 @@ namespace Nalarium
         //+
         //- @AddQueryString -//
         /// <summary>
-        /// Adds the pair series (a query string looks like "a=b&c=d&e=f")
+        ///     Adds the pair series (a query string looks like "a=b&c=d&e=f")
         /// </summary>
         /// <param name="seriesMapping">A queryString.</param>
-        public void AddQueryString(String queryString)
+        public void AddQueryString(string queryString)
         {
-            if (!String.IsNullOrEmpty(queryString))
+            if (!string.IsNullOrEmpty(queryString))
             {
-                String[] parts = queryString.Split('&');
+                var parts = queryString.Split('&');
                 if (parts.Length > 0)
                 {
                     AddPairSeries(parts);
@@ -525,14 +500,14 @@ namespace Nalarium
 
         //- @AddMapEntrySeries -//
         /// <summary>
-        /// Adds the map entry series.
+        ///     Adds the map entry series.
         /// </summary>
         /// <param name="mapEntryArray">The map entry array.</param>
         public void AddMapEntrySeries(MapEntry[] mapEntryArray)
         {
             if (mapEntryArray != null)
             {
-                foreach (MapEntry mapEntry in mapEntryArray)
+                foreach (var mapEntry in mapEntryArray)
                 {
                     AddMapEntry(mapEntry);
                 }
@@ -541,14 +516,14 @@ namespace Nalarium
 
         //- @AddPairSeries -//
         /// <summary>
-        /// Adds the pair series (a pair is a "a=b" pattern)
+        ///     Adds the pair series (a pair is a "a=b" pattern)
         /// </summary>
         /// <param name="parameterArray">The parameter array.</param>
-        public void AddPairSeries(params String[] parameterArray)
+        public void AddPairSeries(params string[] parameterArray)
         {
             if (parameterArray != null)
             {
-                foreach (String mapping in parameterArray)
+                foreach (var mapping in parameterArray)
                 {
                     AddPair(mapping);
                 }
@@ -557,14 +532,14 @@ namespace Nalarium
 
         //- @AddPair -//
         /// <summary>
-        /// Adds the pair (a pair is a "a=b" pattern)
+        ///     Adds the pair (a pair is a "a=b" pattern)
         /// </summary>
         /// <param name="singleMapping">The single mapping.</param>
-        public void AddPair(String singleMapping)
+        public void AddPair(string singleMapping)
         {
-            String name = String.Empty;
-            String value = String.Empty;
-            String[] parts = singleMapping.Split('=');
+            var name = string.Empty;
+            var value = string.Empty;
+            var parts = singleMapping.Split('=');
             if (parts.Length == 2)
             {
                 name = parts[0];
@@ -576,54 +551,55 @@ namespace Nalarium
                 value = parts[0];
             }
             //+
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
-                if (!String.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     value = value.Trim();
                 }
                 //+
-                base.Add(name.Trim(), value);
+                Add(name.Trim(), value);
             }
         }
 
         //- @Get -//
         /// <summary>
-        /// Returns a case sensitive value from the map.
+        ///     Returns a case sensitive value from the map.
         /// </summary>
         /// <param name="key">The key to look up.</param>
         /// <returns>The associated value of the key or String.Empty is the key doens't exist</returns>
-        public String Get(String key)
+        public string Get(string key)
         {
             return Get(key, StringComparison.Ordinal);
         }
 
         /// <summary>
-        /// Returns a case insensitive value from the map.
+        ///     Returns a case insensitive value from the map.
         /// </summary>
         /// <param name="key">The key to look up.</param>
         /// <param name="stringComparison">The StringComparison value used to control string comparison.</param>
         /// <returns>The associated value of the key or String.Empty is the key doens't exist</returns>
-        public String Get(String key, StringComparison stringComparison)
+        public string Get(string key, StringComparison stringComparison)
         {
-            Func<KeyValuePair<String, String>, Boolean> keyExists = p => p.Key.Equals(key, stringComparison);
+            Func<KeyValuePair<string, string>, bool> keyExists = p => p.Key.Equals(key, stringComparison);
             if (Data.Any(keyExists))
             {
                 return Data.First(keyExists).Value;
             }
             //+
-            return String.Empty;
+            return string.Empty;
         }
 
         //- @PeekSafely -//
         /// <summary>
-        /// Returns a the value associated with a specific key or the default value of the type is the value doens't exist.  It's safe because an exception is not thrown.
+        ///     Returns a the value associated with a specific key or the default value of the type is the value doens't exist.
+        ///     It's safe because an exception is not thrown.
         /// </summary>
         /// <typeparam name="T">The type to which the returning value should be cast.</typeparam>
         /// <param name="key">The key to look up.</param>
         /// <returns>The associated value of the key or, if there isn't one, the default value of the value generic type.</returns>
         [Obsolete("Use indexer instead.")]
-        public new T PeekSafely<T>(String key)
+        public new T PeekSafely<T>(string key)
         {
             if (key != null)
             {

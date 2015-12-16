@@ -1,12 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using Nalarium.Activation;
 
@@ -17,7 +14,7 @@ namespace Nalarium.Reporting.ReportCreator
     internal static class ReportCreatorActivator
     {
         //- $Create -//
-        internal static ReportCreator Create(String processorType, Map<String, ReportCreatorFactory> processorFactoryMap)
+        internal static ReportCreator Create(string processorType, Map<string, ReportCreatorFactory> processorFactoryMap)
         {
             ReportCreator processor = null;
             if (processorType.Contains(","))
@@ -27,8 +24,8 @@ namespace Nalarium.Reporting.ReportCreator
             //+
             if (processor == null && processorFactoryMap != null)
             {
-                List<ReportCreatorFactory> processorFactoryList = processorFactoryMap.GetValueList();
-                foreach (ReportCreatorFactory factory in processorFactoryList)
+                var processorFactoryList = processorFactoryMap.GetValueList();
+                foreach (var factory in processorFactoryList)
                 {
                     processorType = processorType.ToLower(CultureInfo.CurrentCulture);
                     processor = factory.Create(processorType);

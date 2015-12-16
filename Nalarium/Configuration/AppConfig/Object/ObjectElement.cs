@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Configuration;
 
 namespace Nalarium.Configuration.AppConfig.Object
@@ -14,32 +12,23 @@ namespace Nalarium.Configuration.AppConfig.Object
     {
         //- @Name -//
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
-        public String Name
+        public string Name
         {
-            get
-            {
-                return (String)this["name"];
-            }
+            get { return (string) this["name"]; }
         }
 
         //- @Type -//
         [ConfigurationProperty("type", IsRequired = true)]
-        public String Type
+        public string Type
         {
-            get
-            {
-                return (String)this["type"];
-            }
+            get { return (string) this["type"]; }
         }
 
         //- @Value -//
         [ConfigurationProperty("value")]
-        public String Value
+        public string Value
         {
-            get
-            {
-                return (String)this["value"];
-            }
+            get { return (string) this["value"]; }
         }
     }
 }

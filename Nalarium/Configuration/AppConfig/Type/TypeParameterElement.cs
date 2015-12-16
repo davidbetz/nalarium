@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Configuration;
 
 namespace Nalarium.Configuration.AppConfig.Type
@@ -14,16 +12,10 @@ namespace Nalarium.Configuration.AppConfig.Type
     {
         //- @Value -//
         [ConfigurationProperty("type", IsRequired = true)]
-        public String Type
+        public string Type
         {
-            get
-            {
-                return (String)this["type"];
-            }
-            set
-            {
-                this["type"] = value;
-            }
+            get { return (string) this["type"]; }
+            set { this["type"] = value; }
         }
 
         //- @Priority -//
@@ -31,16 +23,10 @@ namespace Nalarium.Configuration.AppConfig.Type
         #region IHasPriority Members
 
         [ConfigurationProperty("priority", DefaultValue = 5, IsRequired = false)]
-        public Int32 Priority
+        public int Priority
         {
-            get
-            {
-                return (Int32)this["priority"];
-            }
-            set
-            {
-                this["priority"] = value;
-            }
+            get { return (int) this["priority"]; }
+            set { this["priority"] = value; }
         }
 
         #endregion

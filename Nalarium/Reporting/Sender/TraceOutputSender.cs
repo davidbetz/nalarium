@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Diagnostics;
 
 namespace Nalarium.Reporting.Sender
@@ -14,17 +12,17 @@ namespace Nalarium.Reporting.Sender
     {
         //- @SendCore -//
         /// <summary>
-        /// Sends the specified data.
+        ///     Sends the specified data.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="extra">The extra.</param>
         /// <param name="isException">if set to <c>true</c> [is exception].</param>
-        protected override void SendCore(String data, String extra, Boolean isException)
+        protected override void SendCore(string data, string extra, bool isException)
         {
-            if (!String.IsNullOrEmpty(data))
+            if (!string.IsNullOrEmpty(data))
             {
                 Trace.WriteLine(data);
-                if (!String.IsNullOrEmpty(data))
+                if (!string.IsNullOrEmpty(data))
                 {
                     Trace.WriteLine(extra);
                 }

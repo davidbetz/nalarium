@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -14,22 +13,19 @@ namespace Nalarium.Reporting.ReportCreator
     public class ExceptionReportCreator : ReportCreator
     {
         //- @IsException -//
-        public override Boolean IsException
+        public override bool IsException
         {
-            get
-            {
-                return true;
-            }
+            get { return true; }
         }
 
         //+
         //- @CreateCore -//
         /// <summary>
-        /// Generates the report.
+        ///     Generates the report.
         /// </summary>
         /// <param name="map">The map.</param>
         /// <returns></returns>
-        protected override String CreateCore(Object content)
+        protected override string CreateCore(object content)
         {
             var exceptionData = content as Exception;
             if (exceptionData != null)
@@ -38,12 +34,12 @@ namespace Nalarium.Reporting.ReportCreator
             }
             else
             {
-                var data = content as Object[];
+                var data = content as object[];
                 if (data != null)
                 {
                     Write("Information Report", FormatterType.MainHeading);
                     //+
-                    String message;
+                    string message;
                     Exception exception;
                     if (IsValid(data, out message, out exception))
                     {
@@ -56,13 +52,13 @@ namespace Nalarium.Reporting.ReportCreator
         }
 
         //- $Write -//
-        private void Write(String message, Exception exception)
+        private void Write(string message, Exception exception)
         {
             Write("Message", FormatterType.Heading);
             Write(message, FormatterType.Normal);
             Write(FormatterType.Break);
             //+
-            String fullname = WindowsIdentity.GetCurrent().Name;
+            var fullname = WindowsIdentity.GetCurrent().Name;
             Write("User", FormatterType.SubHeading);
             Write(fullname, FormatterType.Normal);
             Write(FormatterType.Break);
@@ -75,7 +71,7 @@ namespace Nalarium.Reporting.ReportCreator
             Write("exception.StackTrace", FormatterType.SubHeading);
             Write(exception.StackTrace, FormatterType.Normal);
             Write(FormatterType.Break);
-            Exception innerException = exception.InnerException;
+            var innerException = exception.InnerException;
             while (innerException != null)
             {
                 Write("innerException.Message", FormatterType.SubHeading);

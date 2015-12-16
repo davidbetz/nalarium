@@ -1,27 +1,22 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using Nalarium.Configuration;
-//+
 using Nalarium.Configuration.AppConfig;
-using Nalarium.Configuration.AppConfig.Factory;
+//+
 
 namespace Nalarium.Activation
 {
     public static class FactoryCache
     {
-        private static readonly Object _lock = new Object();
+        private static readonly object _lock = new object();
 
         //+
-        public static Map<String, IFactory> ObjectFactoryCache = new Map<String, IFactory>();
-        public static Map<String, IFactory> TypeFactoryCache = new Map<String, IFactory>();
+        public static Map<string, IFactory> ObjectFactoryCache = new Map<string, IFactory>();
+        public static Map<string, IFactory> TypeFactoryCache = new Map<string, IFactory>();
 
         //- @Ctor -//
         static FactoryCache()
@@ -33,11 +28,11 @@ namespace Nalarium.Activation
 
         internal static void LoadFactoryData()
         {
-            SystemSection section = SystemSection.GetConfigSection();
+            var section = SystemSection.GetConfigSection();
             if (section != null)
             {
-                List<FactoryElement> elementList = section.Reporting.Factories.OrderBy(p => p.Priority).ToList();
-                foreach (FactoryElement processorData in elementList)
+                var elementList = section.Reporting.Factories.OrderBy(p => p.Priority).ToList();
+                foreach (var processorData in elementList)
                 {
                     RegisterFactory(processorData.FactoryType);
                 }
@@ -45,7 +40,7 @@ namespace Nalarium.Activation
         }
 
         //- @RegisterFactory -//
-        public static void RegisterFactory(String factoryType)
+        public static void RegisterFactory(string factoryType)
         {
             lock (_lock)
             {

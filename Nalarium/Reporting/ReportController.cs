@@ -1,50 +1,45 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Linq;
 using System.Threading;
 using Nalarium.Activation;
-using Nalarium.Configuration;
-//+
 using Nalarium.Configuration.AppConfig;
-using Nalarium.Configuration.AppConfig.Factory;
-using Nalarium.Configuration.AppConfig.Reporting;
 using Nalarium.Reporting.ReportCreator;
 using Nalarium.Reporting.ReportCreator.Formatter;
 using Nalarium.Reporting.Sender;
+//+
 
 namespace Nalarium.Reporting
 {
     public static class ReportController
     {
         private static readonly ReaderWriterLockSlim readerWriterLockSlim = new ReaderWriterLockSlim();
-        private static readonly Object _lock = new Object();
+        private static readonly object _lock = new object();
 
         //+
-        internal static Map<String, ReportCreator.ReportCreator> ReportCreatorCache = new Map<String, ReportCreator.ReportCreator>();
-        internal static Map<String, Sender.Sender> SenderCache = new Map<String, Sender.Sender>();
-        internal static Map<String, Formatter> FormatterCache = new Map<String, Formatter>();
+        internal static Map<string, ReportCreator.ReportCreator> ReportCreatorCache = new Map<string, ReportCreator.ReportCreator>();
+        internal static Map<string, Sender.Sender> SenderCache = new Map<string, Sender.Sender>();
+        internal static Map<string, Formatter> FormatterCache = new Map<string, Formatter>();
         //+
-        internal static Map<String, ReportCreatorFactory> ReportCreatorFactoryCache = new Map<String, ReportCreatorFactory>();
-        internal static Map<String, SenderFactory> SenderFactoryCache = new Map<String, SenderFactory>();
-        internal static Map<String, FormatterFactory> FormatterFactoryCache = new Map<String, FormatterFactory>();
+        internal static Map<string, ReportCreatorFactory> ReportCreatorFactoryCache = new Map<string, ReportCreatorFactory>();
+        internal static Map<string, SenderFactory> SenderFactoryCache = new Map<string, SenderFactory>();
+        internal static Map<string, FormatterFactory> FormatterFactoryCache = new Map<string, FormatterFactory>();
 
         //+
         //- $ReporterMap -//
-        private static readonly Map<String, Reporter> ReporterMap = new Map<String, Reporter>();
+        private static readonly Map<string, Reporter> ReporterMap = new Map<string, Reporter>();
 
         //+
         //- @Ctor -//
         static ReportController()
         {
-            ReportCreatorFactoryCache.Add("Jampad Technology, Inc. 2007-2013.Reporting.CommonReportCreatorFactory, Jampad Technology, Inc. 2007-2013", new CommonReportCreatorFactory());
-            SenderFactoryCache.Add("Jampad Technology, Inc. 2007-2013.Reporting.CommonSenderFactory, Jampad Technology, Inc. 2007-2013", new CommonSenderFactory());
-            FormatterFactoryCache.Add("Jampad Technology, Inc. 2007-2013.Reporting.CommonFormatterFactory, Jampad Technology, Inc. 2007-2013", new CommonFormatterFactory());
+            ReportCreatorFactoryCache.Add("David Betz 2007-2015.Reporting.CommonReportCreatorFactory, David Betz 2007-2015", new CommonReportCreatorFactory());
+            SenderFactoryCache.Add("David Betz 2007-2015.Reporting.CommonSenderFactory, David Betz 2007-2015", new CommonSenderFactory());
+            FormatterFactoryCache.Add("David Betz 2007-2015.Reporting.CommonFormatterFactory, David Betz 2007-2015", new CommonFormatterFactory());
             //+
             InitFactoryData();
             InitReporterData();
@@ -53,17 +48,17 @@ namespace Nalarium.Reporting
         //+
         //- @GetReporter -//
         /// <summary>
-        /// Gets the reporter.
+        ///     Gets the reporter.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public static Reporter GetReporter(String name)
+        public static Reporter GetReporter(string name)
         {
             lock (_lock)
             {
                 if (ReporterMap.ContainsKey(name))
                 {
-                    Reporter reporter = ReporterMap[name];
+                    var reporter = ReporterMap[name];
                     reporter.Initialized = true;
                     //+
                     return reporter;
@@ -75,11 +70,10 @@ namespace Nalarium.Reporting
 
         //- @RegisterFactory -//
         /// <summary>
-        /// Registers the factory.
+        ///     Registers the factory.
         /// </summary>
-        /// <param name="type">The type.</param>
-        /// <param name="factory">The factory.</param>
-        public static void RegisterFactory(String factoryType)
+        /// <param name="factoryType">The type.</param>
+        public static void RegisterFactory(string factoryType)
         {
             try
             {
@@ -99,15 +93,15 @@ namespace Nalarium.Reporting
                             {
                                 if (factory is SenderFactory)
                                 {
-                                    SenderFactoryCache.Add(factoryType, (SenderFactory)factory);
+                                    SenderFactoryCache.Add(factoryType, (SenderFactory) factory);
                                 }
                                 else if (factory is FormatterFactory)
                                 {
-                                    FormatterFactoryCache.Add(factoryType, (FormatterFactory)factory);
+                                    FormatterFactoryCache.Add(factoryType, (FormatterFactory) factory);
                                 }
                                 else if (factory is ReportCreatorFactory)
                                 {
-                                    ReportCreatorFactoryCache.Add(factoryType, (ReportCreatorFactory)factory);
+                                    ReportCreatorFactoryCache.Add(factoryType, (ReportCreatorFactory) factory);
                                 }
                             }
                         }
@@ -126,35 +120,35 @@ namespace Nalarium.Reporting
 
         //- @Create -//
         /// <summary>
-        /// Creates the specified report creator type.
+        ///     Creates the specified report creator type.
         /// </summary>
         /// <param name="reportCreatorType">Type of the report creator.</param>
         /// <param name="senderType">Type of the sender.</param>
         /// <param name="formatterType">Type of the formatter.</param>
         /// <returns></returns>
-        public static Reporter Create(String reportCreatorType, String senderType, String formatterType)
+        public static Reporter Create(string reportCreatorType, string senderType, string formatterType)
         {
-            return Create(String.Empty, reportCreatorType, senderType, formatterType);
+            return Create(string.Empty, reportCreatorType, senderType, formatterType);
         }
 
         /// <summary>
-        /// Creates the specified name.
+        ///     Creates the specified name.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="reportCreatorType">Type of the report creator.</param>
         /// <param name="senderType">Type of the sender.</param>
         /// <param name="formatterType">Type of the formatter.</param>
         /// <returns></returns>
-        public static Reporter Create(String name, String reportCreatorType, String senderType, String formatterType)
+        public static Reporter Create(string name, string reportCreatorType, string senderType, string formatterType)
         {
-            ReportCreator.ReportCreator creator = CreateReportCreator(reportCreatorType);
-            Sender.Sender sender = CreateSender(senderType);
-            Formatter formatter = CreateFormatter(formatterType);
+            var creator = CreateReportCreator(reportCreatorType);
+            var sender = CreateSender(senderType);
+            var formatter = CreateFormatter(formatterType);
             //+
             lock (_lock)
             {
-                Reporter reporter = Reporter.Create(name, creator, sender, formatter);
-                if (!String.IsNullOrEmpty(name))
+                var reporter = Reporter.Create(name, creator, sender, formatter);
+                if (!string.IsNullOrEmpty(name))
                 {
                     ReporterMap.Add(name, reporter);
                 }
@@ -166,11 +160,11 @@ namespace Nalarium.Reporting
         //- $InitFactoryData -//
         private static void InitFactoryData()
         {
-            SystemSection section = SystemSection.GetConfigSection();
+            var section = SystemSection.GetConfigSection();
             if (section != null)
             {
-                FactoryCollection collection = section.Reporting.Factories;
-                foreach (FactoryElement processorData in collection.OrderBy(p => p.Priority))
+                var collection = section.Reporting.Factories;
+                foreach (var processorData in collection.OrderBy(p => p.Priority))
                 {
                     RegisterFactory(processorData.FactoryType);
                 }
@@ -180,14 +174,14 @@ namespace Nalarium.Reporting
         //- $InitReporterData -//
         private static void InitReporterData()
         {
-            SystemSection section = SystemSection.GetConfigSection();
+            var section = SystemSection.GetConfigSection();
             if (section != null)
             {
-                ReportingElement reportingElement = section.Reporting;
+                var reportingElement = section.Reporting;
                 if (reportingElement != null)
                 {
-                    ReporterCollection collection = reportingElement.Reporters;
-                    foreach (ReporterElement reporterData in collection)
+                    var collection = reportingElement.Reporters;
+                    foreach (var reporterData in collection)
                     {
                         if (reporterData.Enabled)
                         {
@@ -199,7 +193,7 @@ namespace Nalarium.Reporting
         }
 
         //- $CreateReportCreator -//
-        private static ReportCreator.ReportCreator CreateReportCreator(String reportCreatorType)
+        private static ReportCreator.ReportCreator CreateReportCreator(string reportCreatorType)
         {
             readerWriterLockSlim.EnterUpgradeableReadLock();
             try
@@ -236,7 +230,7 @@ namespace Nalarium.Reporting
         }
 
         //- $CreateSender -//
-        private static Sender.Sender CreateSender(String reportCreatorType)
+        private static Sender.Sender CreateSender(string reportCreatorType)
         {
             readerWriterLockSlim.EnterUpgradeableReadLock();
             try
@@ -273,7 +267,7 @@ namespace Nalarium.Reporting
         }
 
         //- $CreateFormatter -//
-        private static Formatter CreateFormatter(String reportCreatorType)
+        private static Formatter CreateFormatter(string reportCreatorType)
         {
             readerWriterLockSlim.EnterUpgradeableReadLock();
             try

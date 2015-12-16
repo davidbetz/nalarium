@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -11,31 +10,30 @@
 
 #endregion
 
-using System;
 using System.Collections.Generic;
 
 namespace Nalarium.ExceptionHandling.Retry
 {
     /// <summary>
-    /// For use with ExceptionRetry.
+    ///     For use with ExceptionRetry.
     /// </summary>
-    public class ExceptionConstraintCollection : List<Object>
+    public class ExceptionConstraintCollection : List<object>
     {
         //- @Ctor -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExceptionConstraintCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ExceptionConstraintCollection" /> class.
         /// </summary>
         public ExceptionConstraintCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExceptionConstraintCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ExceptionConstraintCollection" /> class.
         /// </summary>
         /// <param name="constraintSet">The constraint set.</param>
-        public ExceptionConstraintCollection(params Object[] constraintSet)
+        public ExceptionConstraintCollection(params object[] constraintSet)
         {
-            for (Int32 n = 0; n < constraintSet.Length; n++)
+            for (var n = 0; n < constraintSet.Length; n++)
             {
                 Add(constraintSet[n]);
             }

@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Configuration;
 
 namespace Nalarium.Configuration.AppConfig.Reporting
@@ -14,72 +12,42 @@ namespace Nalarium.Configuration.AppConfig.Reporting
     {
         //- @Name -//
         [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
-        public String Name
+        public string Name
         {
-            get
-            {
-                return (String)this["name"];
-            }
-            set
-            {
-                this["name"] = value;
-            }
+            get { return (string) this["name"]; }
+            set { this["name"] = value; }
         }
 
         //- @Creator -//
         [ConfigurationProperty("creator", IsRequired = true)]
-        public String Creator
+        public string Creator
         {
-            get
-            {
-                return (String)this["creator"];
-            }
-            set
-            {
-                this["creator"] = value;
-            }
+            get { return (string) this["creator"]; }
+            set { this["creator"] = value; }
         }
 
         //- @Sender -//
         [ConfigurationProperty("sender", IsRequired = true)]
-        public String Sender
+        public string Sender
         {
-            get
-            {
-                return (String)this["sender"];
-            }
-            set
-            {
-                this["sender"] = value;
-            }
+            get { return (string) this["sender"]; }
+            set { this["sender"] = value; }
         }
 
         //- @Formatter -//
         [ConfigurationProperty("formatter", IsRequired = false, DefaultValue = "wiki")]
-        public String Formatter
+        public string Formatter
         {
-            get
-            {
-                return (String)this["formatter"];
-            }
-            set
-            {
-                this["formatter"] = value;
-            }
+            get { return (string) this["formatter"]; }
+            set { this["formatter"] = value; }
         }
 
         //- @Enabled -//
         [ConfigurationProperty("enable", DefaultValue = true)]
-        public Boolean Enabled
+        public bool Enabled
         {
-            get
-            {
-                return (Boolean)this["enable"];
-            }
-            set
-            {
-                this["enable"] = value;
-            }
+            get { return (bool) this["enable"]; }
+            set { this["enable"] = value; }
         }
     }
 }

@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -13,38 +12,38 @@ using System.Net.Mail;
 namespace Nalarium.Mail
 {
     /// <summary>
-    /// Used to send e-mail.
+    ///     Used to send e-mail.
     /// </summary>
     public static class Emailer
     {
         //- @Send -//
         /// <summary>
-        /// Sends an e-mail using current date and time.
+        ///     Sends an e-mail using current date and time.
         /// </summary>
         /// <param name="from">From name and address</param>
         /// <param name="to">To name and address</param>
         /// <param name="subject">E-mail subject</param>
         /// <param name="body">E-Mail body text</param>
-        public static void Send(String from, String to, String subject, String body)
+        public static void Send(string from, string to, string subject, string body)
         {
             Send(from, to, subject, body, new MailOptions());
         }
 
         /// <summary>
-        /// Sends an e-mail using current date and time.
+        ///     Sends an e-mail using current date and time.
         /// </summary>
         /// <param name="from">From name and address</param>
         /// <param name="to">To name and address</param>
         /// <param name="subject">E-mail subject</param>
         /// <param name="body">E-Mail body text</param>
         /// <param name="options">Mail options to tell the system how the e-mail is to be sent</param>
-        public static void Send(String from, String to, String subject, String body, MailOptions options)
+        public static void Send(string from, string to, string subject, string body, MailOptions options)
         {
             Send(from, to, subject, body, DateTime.Now, options);
         }
 
         /// <summary>
-        /// Sends an e-mail using a specific date and time.
+        ///     Sends an e-mail using a specific date and time.
         /// </summary>
         /// <param name="from">From name and address</param>
         /// <param name="to">To name and address</param>
@@ -52,13 +51,13 @@ namespace Nalarium.Mail
         /// <param name="body">E-Mail body text</param>
         /// <param name="datetime">Date and time to mark on the e-mail</param>
         /// <param name="options">Mail options to tell the system how the e-mail is to be sent</param>
-        public static void Send(String from, String to, String subject, String body, DateTime datetime, MailOptions options)
+        public static void Send(string from, string to, string subject, string body, DateTime datetime, MailOptions options)
         {
             Send(from, to, subject, body, datetime, null, null, null, options);
         }
 
         /// <summary>
-        /// Sends an e-mail using a specific date and time.
+        ///     Sends an e-mail using a specific date and time.
         /// </summary>
         /// <param name="from">From name and address</param>
         /// <param name="to">To name and address</param>
@@ -69,13 +68,13 @@ namespace Nalarium.Mail
         /// <param name="bcc">Comma separated BCC list</param>
         /// <param name="attachmentPaths">Attachment paths</param>
         /// <param name="options">Mail options to tell the system how the e-mail is to be sent</param>
-        public static void Send(String from, String to, String subject, String body, DateTime datetime, String cc, String bcc, List<String> attachmentPaths, MailOptions options)
+        public static void Send(string from, string to, string subject, string body, DateTime datetime, string cc, string bcc, List<string> attachmentPaths, MailOptions options)
         {
             Send(from, to, subject, body, datetime, cc, bcc, attachmentPaths, MailConfiguration.Server, MailConfiguration.UserName, MailConfiguration.Password, options);
         }
 
         /// <summary>
-        /// Sends an e-mail using a specific date and time.
+        ///     Sends an e-mail using a specific date and time.
         /// </summary>
         /// <param name="from">From name and address</param>
         /// <param name="to">To name and address</param>
@@ -88,14 +87,14 @@ namespace Nalarium.Mail
         /// <param name="username">Server username</param>
         /// <param name="password">Server password</param>
         /// <param name="options">Mail options to tell the system how the e-mail is to be sent</param>
-        public static void Send(String from, String to, String subject, String body, String username, String password, MailOptions options)
+        public static void Send(string from, string to, string subject, string body, string username, string password, MailOptions options)
         {
             InternalSend(from, to, subject, body, DateTime.Now, null, null, null, MailConfiguration.Server, username, password, options);
         }
 
 
         /// <summary>
-        /// Sends an e-mail using a specific date and time.
+        ///     Sends an e-mail using a specific date and time.
         /// </summary>
         /// <param name="from">From name and address</param>
         /// <param name="to">To name and address</param>
@@ -109,13 +108,13 @@ namespace Nalarium.Mail
         /// <param name="username">Server username</param>
         /// <param name="password">Server password</param>
         /// <param name="options">Mail options to tell the system how the e-mail is to be sent</param>
-        public static void Send(String from, String to, String subject, String body, DateTime datetime, String cc, String bcc, List<String> attachmentPaths, String server, String username, String password, MailOptions options)
+        public static void Send(string from, string to, string subject, string body, DateTime datetime, string cc, string bcc, List<string> attachmentPaths, string server, string username, string password, MailOptions options)
         {
             InternalSend(from, to, subject, body, datetime, cc, bcc, attachmentPaths, server, username, password, options);
         }
 
         //- $InternalSend -//
-        private static void InternalSend(String from, String to, String subject, String body, DateTime datetime, String cc, String bcc, List<String> attachmentPaths, String server, String username, String password, MailOptions mailOptions)
+        private static void InternalSend(string from, string to, string subject, string body, DateTime datetime, string cc, string bcc, List<string> attachmentPaths, string server, string username, string password, MailOptions mailOptions)
         {
             if ((mailOptions & MailOptions.UseGmailConversationBreaker) == MailOptions.UseGmailConversationBreaker)
             {
@@ -142,7 +141,7 @@ namespace Nalarium.Mail
                 }
                 else
                 {
-                    if (String.IsNullOrEmpty(server))
+                    if (string.IsNullOrEmpty(server))
                     {
                         throw new MailConfigurationException("server required");
                     }
@@ -155,11 +154,11 @@ namespace Nalarium.Mail
         }
 
         //- $AssignBcc -//
-        private static void AssignBcc(MailMessage email, String bcc)
+        private static void AssignBcc(MailMessage email, string bcc)
         {
-            if (!String.IsNullOrEmpty(bcc))
+            if (!string.IsNullOrEmpty(bcc))
             {
-                foreach (String address in bcc.Split(",".ToCharArray()))
+                foreach (var address in bcc.Split(",".ToCharArray()))
                 {
                     email.Bcc.Add(address);
                 }
@@ -167,11 +166,11 @@ namespace Nalarium.Mail
         }
 
         //- $AssignCc -//
-        private static void AssignCc(MailMessage email, String cc)
+        private static void AssignCc(MailMessage email, string cc)
         {
-            if (!String.IsNullOrEmpty(cc))
+            if (!string.IsNullOrEmpty(cc))
             {
-                foreach (String address in cc.Split(",".ToCharArray()))
+                foreach (var address in cc.Split(",".ToCharArray()))
                 {
                     email.CC.Add(address);
                 }
@@ -179,11 +178,11 @@ namespace Nalarium.Mail
         }
 
         //- $AssignAttachments -//
-        private static void AssignAttachments(MailMessage email, List<String> attachmentPaths)
+        private static void AssignAttachments(MailMessage email, List<string> attachmentPaths)
         {
             if (attachmentPaths != null)
             {
-                foreach (String file in attachmentPaths)
+                foreach (var file in attachmentPaths)
                 {
                     email.Attachments.Add(new Attachment(file));
                 }

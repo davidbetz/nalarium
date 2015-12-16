@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Nalarium
@@ -7,6 +6,12 @@ namespace Nalarium
     [DebuggerDisplay("{Guid}, {String}")]
     public class MetaString
     {
+        public MetaString()
+        {
+            PropertyData = new Map<string, string>();
+            ObjectPropertyData = new Map<string, IEnumerable<MetaString>>();
+        }
+
         public string Guid { get; set; }
 
         public string String { get; set; }
@@ -15,15 +20,9 @@ namespace Nalarium
 
         public Map<string, IEnumerable<MetaString>> ObjectPropertyData { get; set; }
 
-        public MetaString()
-        {
-            PropertyData = new Map<string, string>();
-            ObjectPropertyData = new Map<string, IEnumerable<MetaString>>();
-        }
-
         public static MetaString Create(string @string)
         {
-            return new MetaString()
+            return new MetaString
             {
                 Guid = GuidCreator.GetNewGuid(),
                 String = @string
@@ -32,7 +31,7 @@ namespace Nalarium
 
         public static MetaString Create(string guid, string @string)
         {
-            return new MetaString()
+            return new MetaString
             {
                 Guid = guid,
                 String = @string
@@ -41,7 +40,7 @@ namespace Nalarium
 
         public static MetaString Create(string guid, string @string, Map<string, string> map)
         {
-            return new MetaString()
+            return new MetaString
             {
                 Guid = guid,
                 String = @string,

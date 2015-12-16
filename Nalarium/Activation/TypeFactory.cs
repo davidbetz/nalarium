@@ -1,7 +1,6 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -13,10 +12,10 @@ namespace Nalarium.Activation
     {
         //- @CreateObject -//
         /// <summary>
-        /// Creates an Type object based on the specified text.
+        ///     Creates an Type object based on the specified text.
         /// </summary>
         /// <param name="text">The text used to create the object.</param>
         /// <returns>The created Type object.</returns>
-        public abstract Type CreateType(String text);
+        public abstract Type CreateType(string text);
     }
 }

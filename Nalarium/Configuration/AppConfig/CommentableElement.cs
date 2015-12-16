@@ -1,18 +1,16 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.ComponentModel;
 using System.Configuration;
 
 namespace Nalarium.Configuration.AppConfig
 {
     /// <summary>
-    /// Configuration element with a comment property.
+    ///     Configuration element with a comment property.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class CommentableElement : ConfigurationElement, ICommentElement
@@ -22,19 +20,13 @@ namespace Nalarium.Configuration.AppConfig
         #region ICommentElement Members
 
         /// <summary>
-        /// Element comment.
+        ///     Element comment.
         /// </summary>
         [ConfigurationProperty("comment")]
-        public String Comment
+        public string Comment
         {
-            get
-            {
-                return (String)this["comment"];
-            }
-            set
-            {
-                this["comment"] = value;
-            }
+            get { return (string) this["comment"]; }
+            set { this["comment"] = value; }
         }
 
         #endregion

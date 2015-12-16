@@ -1,32 +1,29 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
-
-using System;
 
 namespace Nalarium.CodeParsing
 {
     /// <summary>
-    /// Presents a code parser.
+    ///     Presents a code parser.
     /// </summary>
     public abstract class CodeParser
     {
         //- @Id -//
         /// <summary>
-        /// Gets the id.
+        ///     Gets the id.
         /// </summary>
         /// <value>The id.</value>
-        public abstract String Id { get; }
+        public abstract string Id { get; }
 
         //- @Parse
         /// <summary>
-        /// Parses the code.
+        ///     Parses the code.
         /// </summary>
         /// <param name="code">The code.</param>
         /// <returns></returns>
-        public abstract String ParseCode(String code);
+        public abstract string ParseCode(string code);
     }
 }

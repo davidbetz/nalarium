@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -17,7 +16,7 @@ using System.Text;
 namespace Nalarium
 {
     /// <summary>
-    /// Creates a pattern which allows interpolation with map data to create mass output.
+    ///     Creates a pattern which allows interpolation with map data to create mass output.
     /// </summary>
     public class Template
     {
@@ -26,30 +25,30 @@ namespace Nalarium
         //+
         //- @Ctor -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="Template"/> class.
+        ///     Initializes a new instance of the <see cref="Template" /> class.
         /// </summary>
         public Template()
-            : this(String.Empty)
+            : this(string.Empty)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Template"/> class.
+        ///     Initializes a new instance of the <see cref="Template" /> class.
         /// </summary>
         /// <param name="value">The value.</param>
-        public Template(String value)
+        public Template(string value)
         {
             Value = new StringBuilder(value);
         }
 
         /// <summary>
-        /// Gets or sets the value.
+        ///     Gets or sets the value.
         /// </summary>
         /// <value>The value.</value>
         public StringBuilder Value { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Template"/> class.
+        ///     Initializes a new instance of the <see cref="Template" /> class.
         /// </summary>
         public static Template Create()
         {
@@ -57,10 +56,10 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Template"/> class.
+        ///     Initializes a new instance of the <see cref="Template" /> class.
         /// </summary>
         /// <param name="value">Template text.</param>
-        public static Template Create(String value)
+        public static Template Create(string value)
         {
             return new Template(value);
         }
@@ -68,79 +67,104 @@ namespace Nalarium
         //+
         //- @AppendText -//
         /// <summary>
-        /// Appends the text.
+        ///     Appends the text.
         /// </summary>
-        /// <param name="value">Template text.</param>
-        public void AppendText(String text)
+        /// <param name="text">Template text.</param>
+        public void AppendText(string text)
         {
             Value.Append(text);
         }
 
+        /// <summary>
+        ///     Interpolates a dynamic object with a text template.
+        /// </summary>
+        /// <param name="text">text template</param>
+        /// <param name="obj">dynamic object</param>
+        /// <returns></returns>
+        public static string Interpolate(string text, object obj)
+        {
+            if (String.IsNullOrEmpty(text))
+            {
+                return string.Empty;
+            }
+            if (obj == null)
+            {
+                return text;
+            }
+            var pr = obj.GetType().GetProperties();
+            var map = new Map();
+            foreach (var p in pr)
+            {
+                map.Add(p.Name, p.GetValue(obj).ToString());
+            }
+            return Interpolate(text, map);
+        }
+
         //- @Interpolate -//
         /// <summary>
-        /// Interpolates the specified pair array.
+        ///     Interpolates the specified pair array.
         /// </summary>
-        /// <param name="templateValue">Template text.</param>
+        /// <param name="text">Template text.</param>
         /// <param name="map">The map.</param>
         /// <returns>Templated result string.</returns>
-        public static String Interpolate(String templateValue, Map map)
+        public static string Interpolate(string text, Map map)
         {
+            if (string.IsNullOrEmpty(text))
+            {
+                return string.Empty;
+            }
             if (map == null)
             {
-                return String.Empty;
-            }
-            if (String.IsNullOrEmpty(templateValue))
-            {
-                return String.Empty;
+                return string.Empty;
             }
             //+
-            return Create(templateValue).Interpolate(map);
+            return Create(text).Interpolate(map);
         }
 
         /// <summary>
-        /// Interpolates the specified pair array.
+        ///     Interpolates the specified pair array.
         /// </summary>
-        /// <param name="templateValue">Template text.</param>
-        /// <param name="mapEntryArray">A pair (i.e. "a=b") parameter array.</param>
+        /// <param name="text">Template text.</param>
+        /// <param name="parameterArray">A pair (i.e. "a=b") parameter array.</param>
         /// <returns>Templated result string.</returns>
-        public static String Interpolate(String templateValue, params MapEntry[] parameterArray)
+        public static string Interpolate(string text, params MapEntry[] parameterArray)
         {
+            if (string.IsNullOrEmpty(text))
+            {
+                return string.Empty;
+            }
             if (parameterArray == null)
             {
-                return String.Empty;
-            }
-            if (String.IsNullOrEmpty(templateValue))
-            {
-                return String.Empty;
+                return string.Empty;
             }
             //+
-            return Create(templateValue).Interpolate(new Map(parameterArray));
+            return Create(text).Interpolate(new Map(parameterArray));
         }
 
         /// <summary>
-        /// Interpolates the specified map entry array.
+        ///     Interpolates the specified map entry array.
         /// </summary>
-        /// <param name="mapEntryArray">A MapEntry parameter array.</param>
+        /// <param name="parameterArray">A MapEntry parameter array.</param>
         /// <returns>Templated result string.</returns>
-        public String Interpolate(params MapEntry[] parameterArray)
+        public string Interpolate(params MapEntry[] parameterArray)
         {
             if (parameterArray == null)
             {
-                return String.Empty;
+                return string.Empty;
             }
             //+
             return Interpolate(new Map(parameterArray));
         }
 
         /// <summary>
-        /// Interpolates the specified map.
+        ///     Interpolates the specified map.
         /// </summary>
         /// <param name="map">The map.</param>
         /// <returns>Templated result string.</returns>
-        public String Interpolate(Map map)
+        public string Interpolate(Map map)
         {
-            String result = Value.ToString();
-            foreach (String name in map.GetKeyList())
+            var result = Value.ToString();
+            foreach (var name in map.GetKeyList())
             {
                 result = result.Replace("{" + name + "}", map[name]);
             }
@@ -148,22 +172,22 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Interpolates the specified pair array.
+        ///     Interpolates the specified pair array.
         /// </summary>
         /// <param name="pairArray">The pair array.</param>
         /// <returns>Templated result string.</returns>
-        public String Interpolate(params String[] pairArray)
+        public string Interpolate(params string[] pairArray)
         {
             if (pairArray == null)
             {
-                return String.Empty;
+                return string.Empty;
             }
-            String result = Value.ToString();
-            foreach (String mapping in pairArray)
+            var result = Value.ToString();
+            foreach (var mapping in pairArray)
             {
-                String name = String.Empty;
-                String value = String.Empty;
-                String[] parts = mapping.Split('=');
+                var name = string.Empty;
+                var value = string.Empty;
+                var parts = mapping.Split('=');
                 if (parts.Length == 2)
                 {
                     name = parts[0];
@@ -175,9 +199,9 @@ namespace Nalarium
                     value = parts[0];
                 }
                 //+
-                if (!String.IsNullOrEmpty(name))
+                if (!string.IsNullOrEmpty(name))
                 {
-                    if (!String.IsNullOrEmpty(value))
+                    if (!string.IsNullOrEmpty(value))
                     {
                         value = value.Trim();
                         result = result.Replace("{" + name + "}", value);
@@ -191,12 +215,12 @@ namespace Nalarium
         #region Nested type: Common
 
         /// <summary>
-        /// Contains common templates for quick access
+        ///     Contains common templates for quick access
         /// </summary>
         public class Common
         {
-            public const String Link = @"<a href=""{Link}"">{Text}</a>";
-            public const String Image = @"<img src=""{Source}"" alt=""{Text}"" />";
+            public const string Link = @"<a href=""{Link}"">{Text}</a>";
+            public const string Image = @"<img src=""{Source}"" alt=""{Text}"" />";
 
             //- #Ctor -//
             protected Common()

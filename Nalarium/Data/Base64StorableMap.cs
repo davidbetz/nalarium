@@ -1,7 +1,6 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -13,7 +12,7 @@ using Nalarium.Properties;
 namespace Nalarium.Data
 {
     /// <summary>
-    /// Represents a map that allows loading and saving of its data as base64 data.
+    ///     Represents a map that allows loading and saving of its data as base64 data.
     /// </summary>
     public class Base64StorableMap : SeriesStorableMap
     {
@@ -22,35 +21,26 @@ namespace Nalarium.Data
         {
         }
 
-        public Base64StorableMap(String base64Data)
+        public Base64StorableMap(string base64Data)
         {
             Load(base64Data);
         }
 
-        public override String ScopeSplitter
+        public override string ScopeSplitter
         {
-            get
-            {
-                return "\x02";
-            }
+            get { return "\x02"; }
         }
 
         //- @KeyValueSplitter -//
-        public override Char KeyValueSplitter
+        public override char KeyValueSplitter
         {
-            get
-            {
-                return '\x04';
-            }
+            get { return '\x04'; }
         }
 
         //- @ItemSplitter -//
-        public override Char ItemSplitter
+        public override char ItemSplitter
         {
-            get
-            {
-                return '\x03';
-            }
+            get { return '\x03'; }
         }
 
         //+
@@ -59,15 +49,15 @@ namespace Nalarium.Data
         //+
         //- @Load -//
         /// <summary>
-        /// Loads the specified base64 data.
+        ///     Loads the specified base64 data.
         /// </summary>
         /// <param name="base64Data">The base64 data.</param>
-        public override void Load(String base64Data)
+        public override void Load(string base64Data)
         {
-            String data = String.Empty;
+            var data = string.Empty;
             try
             {
-                Byte[] buffer = Convert.FromBase64String(base64Data);
+                var buffer = Convert.FromBase64String(base64Data);
                 data = Encoding.UTF8.GetString(buffer, 0, buffer.Length);
             }
             catch
@@ -80,12 +70,12 @@ namespace Nalarium.Data
 
         //- @Save -//
         /// <summary>
-        /// Saves this instance.
+        ///     Saves this instance.
         /// </summary>
         /// <returns></returns>
-        public override String Save()
+        public override string Save()
         {
-            String data = base.Save();
+            var data = base.Save();
             //+
             return Convert.ToBase64String(Encoding.UTF8.GetBytes(data));
         }

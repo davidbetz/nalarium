@@ -1,11 +1,9 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2008-2013
+//+ Copyright © David Betz 2008-2013
 
 #endregion
 
-using System;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -16,11 +14,11 @@ namespace Nalarium.Xml
     {
         //- @Format -//
         /// <summary>
-        /// Formats the given XML.
+        ///     Formats the given XML.
         /// </summary>
         /// <param name="input">The input.</param>
         /// <returns></returns>
-        public static String Format(String input)
+        public static string Format(string input)
         {
             var stream = new MemoryStream();
             var doc = new XmlDocument();
@@ -31,9 +29,9 @@ namespace Nalarium.Xml
             writer.Indentation = 2;
             doc.Save(writer);
             //+
-            Byte[] buffer = stream.ToArray();
-            String output = Encoding.UTF8.GetString(buffer);
-            Int32 lastAngle = output.LastIndexOf(">");
+            var buffer = stream.ToArray();
+            var output = Encoding.UTF8.GetString(buffer);
+            var lastAngle = output.LastIndexOf(">");
             output = output.Substring(0, lastAngle + 1);
             //+
             return output;
@@ -41,21 +39,21 @@ namespace Nalarium.Xml
 
         //- @TryFormat -//
         /// <summary>
-        /// Tries to format the given XML.
+        ///     Tries to format the given XML.
         /// </summary>
         /// <param name="input">The input.</param>
         /// <param name="output">The output.</param>
         /// <returns></returns>
-        public static Boolean TryFormat(String input, out String output)
+        public static bool TryFormat(string input, out string output)
         {
-            Boolean result = false;
+            var result = false;
             try
             {
                 output = Format(input);
             }
             catch
             {
-                output = String.Empty;
+                output = string.Empty;
             }
             //+
             return result;

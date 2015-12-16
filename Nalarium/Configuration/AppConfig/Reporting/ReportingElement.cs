@@ -1,7 +1,6 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -16,57 +15,42 @@ namespace Nalarium.Configuration.AppConfig.Reporting
     {
         //- @Factories -//
         [ConfigurationProperty("factories")]
-        [ConfigurationCollection(typeof(TypeParameterElement), AddItemName = "add")]
+        [ConfigurationCollection(typeof (TypeParameterElement), AddItemName = "add")]
         public FactoryCollection Factories
         {
-            get
-            {
-                return (FactoryCollection)this["factories"];
-            }
+            get { return (FactoryCollection) this["factories"]; }
         }
 
         //- @Reporters -//
         [ConfigurationProperty("reporters")]
-        [ConfigurationCollection(typeof(ReporterElement), AddItemName = "add")]
+        [ConfigurationCollection(typeof (ReporterElement), AddItemName = "add")]
         public ReporterCollection Reporters
         {
-            get
-            {
-                return (ReporterCollection)this["reporters"];
-            }
+            get { return (ReporterCollection) this["reporters"]; }
         }
 
         //- @ReporterFactories -//
         [ConfigurationProperty("reporterFactories")]
-        [ConfigurationCollection(typeof(ParameterCollection), AddItemName = "add")]
+        [ConfigurationCollection(typeof (ParameterCollection), AddItemName = "add")]
         public ReporterFactoryCollection ReporterFactories
         {
-            get
-            {
-                return (ReporterFactoryCollection)this["reporterFactories"];
-            }
+            get { return (ReporterFactoryCollection) this["reporterFactories"]; }
         }
 
         //- @SenderFactories -//
         [ConfigurationProperty("senderFactories")]
-        [ConfigurationCollection(typeof(ParameterCollection), AddItemName = "add")]
+        [ConfigurationCollection(typeof (ParameterCollection), AddItemName = "add")]
         public SenderFactoryCollection SenderFactories
         {
-            get
-            {
-                return (SenderFactoryCollection)this["senderFactories"];
-            }
+            get { return (SenderFactoryCollection) this["senderFactories"]; }
         }
 
         //- @FormatterFactories -//
         [ConfigurationProperty("formatterFactories")]
-        [ConfigurationCollection(typeof(ParameterCollection), AddItemName = "add")]
+        [ConfigurationCollection(typeof (ParameterCollection), AddItemName = "add")]
         public FormatterFactoryCollection FormatterFactories
         {
-            get
-            {
-                return (FormatterFactoryCollection)this["formatterFactories"];
-            }
+            get { return (FormatterFactoryCollection) this["formatterFactories"]; }
         }
     }
 }

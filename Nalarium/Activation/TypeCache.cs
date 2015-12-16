@@ -1,7 +1,6 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -14,22 +13,22 @@ namespace Nalarium.Activation
         //- $Info -//
 
         //+ field
-        private static readonly Map<String, Type> data = new Map<string, Type>();
+        private static readonly Map<string, Type> data = new Map<string, Type>();
 
         //+
         //- @Ctor -//
         static TypeCache()
         {
-            Register(Info.Object, typeof(Object));
-            Register(Info.Int32, typeof(Int32));
-            Register(Info.Double, typeof(Double));
-            Register(Info.Boolean, typeof(Boolean));
-            Register(Info.String, typeof(String));
+            Register(Info.Object, typeof (object));
+            Register(Info.Int32, typeof (int));
+            Register(Info.Double, typeof (double));
+            Register(Info.Boolean, typeof (bool));
+            Register(Info.String, typeof (string));
         }
 
         //+
         //- @Exists -//
-        public static Boolean Exists(Type type)
+        public static bool Exists(Type type)
         {
             if (type == null)
             {
@@ -39,7 +38,7 @@ namespace Nalarium.Activation
             return Exists(type.Assembly.FullName + "," + type.Name);
         }
 
-        public static Boolean Exists(String typeName)
+        public static bool Exists(string typeName)
         {
             return data.ContainsKey(typeName);
         }
@@ -47,7 +46,7 @@ namespace Nalarium.Activation
         //- @InlineRegister -//
         public static Type InlineRegister(Type type)
         {
-            String key = type.Assembly.FullName + "," + type.Name;
+            var key = type.Assembly.FullName + "," + type.Name;
             if (!data.ContainsKey(key))
             {
                 data[key] = type;
@@ -57,9 +56,9 @@ namespace Nalarium.Activation
         }
 
         //- @Register -//
-        public static String Register(Type type)
+        public static string Register(Type type)
         {
-            String key = type.Assembly.FullName + "," + type.Name;
+            var key = type.Assembly.FullName + "," + type.Name;
             if (!data.ContainsKey(key))
             {
                 data[key] = type;
@@ -68,7 +67,7 @@ namespace Nalarium.Activation
             return key;
         }
 
-        public static String Register(String typeName, Type type)
+        public static string Register(string typeName, Type type)
         {
             if (!data.ContainsKey(typeName))
             {
@@ -79,7 +78,7 @@ namespace Nalarium.Activation
         }
 
         //- @Get -//
-        public static Type Get(String typeName)
+        public static Type Get(string typeName)
         {
             return data.Get<Type>(typeName);
         }
@@ -88,11 +87,11 @@ namespace Nalarium.Activation
 
         public class Info
         {
-            public const String Object = "Int32";
-            public const String Int32 = "Int32";
-            public const String Double = "Int32";
-            public const String Boolean = "Int32";
-            public const String String = "Int32";
+            public const string Object = "Int32";
+            public const string Int32 = "Int32";
+            public const string Double = "Int32";
+            public const string Boolean = "Int32";
+            public const string String = "Int32";
         }
 
         #endregion

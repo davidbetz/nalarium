@@ -1,41 +1,38 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
-
-using System;
 
 namespace Nalarium.Data
 {
     /// <summary>
-    /// Represents a map with inherent scopes.
+    ///     Represents a map with inherent scopes.
     /// </summary>
     public class ScopedMap : Map
     {
         //- @SetScopedEntry -//
         /// <summary>
-        /// Sets the scoped entry.
+        ///     Sets the scoped entry.
         /// </summary>
         /// <param name="scope">The scope.</param>
         /// <param name="key">The key.</param>
         /// <param name="value">The value.</param>
-        public void SetScopedEntry(String scope, String key, String value)
+        public void SetScopedEntry(string scope, string key, string value)
         {
             Add(scope + "::" + key, value);
         }
 
         //- @GetScopedEntry -//
         /// <summary>
-        /// Gets the scoped entry.
+        ///     Gets the scoped entry.
         /// </summary>
         /// <param name="scope">The scope.</param>
         /// <param name="key">The key.</param>
         /// <returns></returns>
-        public String GetScopedEntry(String scope, String key)
+        public string GetScopedEntry(string scope, string key)
         {
-            return Get(scope + "::" + key) ?? String.Empty;
+            return Get(scope + "::" + key) ?? string.Empty;
         }
     }
 }

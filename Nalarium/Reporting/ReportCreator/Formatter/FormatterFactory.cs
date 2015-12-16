@@ -1,11 +1,8 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
-
-using System;
 
 namespace Nalarium.Reporting.ReportCreator.Formatter
 {
@@ -13,10 +10,10 @@ namespace Nalarium.Reporting.ReportCreator.Formatter
     {
         //- @Create -//
         /// <summary>
-        /// Creates a formatter based on the specified alias
+        ///     Creates a formatter based on the specified alias
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public abstract Formatter Create(String name);
+        public abstract Formatter Create(string name);
     }
 }

@@ -1,27 +1,25 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Collections;
 
 namespace Nalarium
 {
-    public class StringObjectMap : Map<String, Object>
+    public class StringObjectMap : Map<string, object>
     {
         //- @Ctor -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="StringObjectMap"/> class.
+        ///     Initializes a new instance of the <see cref="StringObjectMap" /> class.
         /// </summary>
         public StringObjectMap()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StringObjectMap"/> class.
+        ///     Initializes a new instance of the <see cref="StringObjectMap" /> class.
         /// </summary>
         /// <param name="parameterArray">The parameter array.</param>
         public StringObjectMap(params StringObjectMapEntry[] parameterArray)
@@ -30,7 +28,7 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StringObjectMap"/> class.
+        ///     Initializes a new instance of the <see cref="StringObjectMap" /> class.
         /// </summary>
         /// <param name="initMap">The init map.</param>
         public StringObjectMap(StringObjectMap initMap)
@@ -39,21 +37,21 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StringObjectMap"/> class.
+        ///     Initializes a new instance of the <see cref="StringObjectMap" /> class.
         /// </summary>
         /// <param name="dictionary">The dictionary.</param>
         public StringObjectMap(IDictionary dictionary)
         {
             if (dictionary != null)
             {
-                foreach (String key in dictionary.Keys)
+                foreach (string key in dictionary.Keys)
                 {
-                    String k = key;
-                    Object v = dictionary[key];
+                    var k = key;
+                    var v = dictionary[key];
                     //+
                     if (k != null && v != null)
                     {
-                        base.Add(k, v);
+                        Add(k, v);
                     }
                 }
             }
@@ -61,29 +59,23 @@ namespace Nalarium
 
         //+
         //- Indexer -//
-        public new Object this[String key]
+        public new object this[string key]
         {
-            get
-            {
-                return base[key];
-            }
-            set
-            {
-                base[key] = value;
-            }
+            get { return base[key]; }
+            set { base[key] = value; }
         }
 
         //+
         //- @AddMapEntrySeries -//
         /// <summary>
-        /// Adds the map entry series.
+        ///     Adds the map entry series.
         /// </summary>
         /// <param name="mapEntryArray">The map entry array.</param>
         public void AddMapEntrySeries(StringObjectMapEntry[] mapEntryArray)
         {
             if (mapEntryArray != null)
             {
-                foreach (StringObjectMapEntry mapEntry in mapEntryArray)
+                foreach (var mapEntry in mapEntryArray)
                 {
                     AddMapEntry(mapEntry);
                 }

@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -13,7 +11,7 @@ using System.Configuration;
 namespace Nalarium.Configuration.AppConfig
 {
     /// <summary>
-    /// Presents a configuration collection that has a comment property.
+    ///     Presents a configuration collection that has a comment property.
     /// </summary>
     /// <typeparam name="T">Type of comment element; must be of type CommentableElement.</typeparam>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -22,39 +20,27 @@ namespace Nalarium.Configuration.AppConfig
     {
         //- @Comment -//
         /// <summary>
-        /// Element comment.
+        ///     Element comment.
         /// </summary>
         [ConfigurationProperty("comment")]
-        public String Comment
+        public string Comment
         {
-            get
-            {
-                return (String)this["comment"];
-            }
-            set
-            {
-                this["comment"] = value;
-            }
+            get { return (string) this["comment"]; }
+            set { this["comment"] = value; }
         }
 
         //- @[Indexer] -//
-        public T this[Int32 index]
+        public T this[int index]
         {
-            get
-            {
-                return base.BaseGet(index) as T;
-            }
+            get { return BaseGet(index) as T; }
         }
 
         //- #CreateNewElement -//
 
         //- #ElementName -//
-        protected override String ElementName
+        protected override string ElementName
         {
-            get
-            {
-                return "add";
-            }
+            get { return "add"; }
         }
 
         //- #IsElementName -//
@@ -62,10 +48,7 @@ namespace Nalarium.Configuration.AppConfig
         //- @CollectionType -//
         public override ConfigurationElementCollectionType CollectionType
         {
-            get
-            {
-                return ConfigurationElementCollectionType.BasicMap;
-            }
+            get { return ConfigurationElementCollectionType.BasicMap; }
         }
 
         //- @GetEnumerator -//
@@ -74,7 +57,7 @@ namespace Nalarium.Configuration.AppConfig
 
         public new IEnumerator<T> GetEnumerator()
         {
-            for (Int32 i = 0; i < base.Count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 yield return this[i];
             }
@@ -87,9 +70,9 @@ namespace Nalarium.Configuration.AppConfig
             return new T();
         }
 
-        protected override Boolean IsElementName(String elementName)
+        protected override bool IsElementName(string elementName)
         {
-            return !String.IsNullOrEmpty(elementName) && elementName == ElementName;
+            return !string.IsNullOrEmpty(elementName) && elementName == ElementName;
         }
     }
 }

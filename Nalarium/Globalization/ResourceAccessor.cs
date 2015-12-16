@@ -1,16 +1,14 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Resources;
 using Nalarium.Activation;
+
 //+
 
 namespace Nalarium.Globalization
@@ -20,27 +18,33 @@ namespace Nalarium.Globalization
         //- $ResourceConfig -//
 
         //+
-        public const String DefaultPattern = "{AssemblyName}.{Code}";
-        private static Object _lock = new Object();
-        private static readonly Map<String, ResourceConfig> _resourceManagerWeakReferenceRegistry = new Map<String, ResourceConfig>();
-        private static readonly Map<String, ResourceConfig> _resourceManagerRegistry = new Map<String, ResourceConfig>();
+        public const string DefaultPattern = "{AssemblyName}.{Code}";
+        private static object _lock = new object();
+        private static readonly Map<string, ResourceConfig> _resourceManagerWeakReferenceRegistry = new Map<string, ResourceConfig>();
+        private static readonly Map<string, ResourceConfig> _resourceManagerRegistry = new Map<string, ResourceConfig>();
 
         //+
 
         //+
         /// <summary>
-        /// Loads a registered resource manager for a specific assembly.
+        ///     Loads a registered resource manager for a specific assembly.
         /// </summary>
         /// <param name="baseAssemblyName">Assembly name.</param>
-        /// <param name="defaultResourceManager">Resourcename to use if registered resource manager for specific culture is not found.</param>
-        /// <returns>Resouce manager for assembly or specific default resource manager if registered resource manager was not found.</returns>
-        public static ResourceManager LoadResourceManager(String baseAssemblyName, ResourceManager defaultResourceManager)
+        /// <param name="defaultResourceManager">
+        ///     Resourcename to use if registered resource manager for specific culture is not
+        ///     found.
+        /// </param>
+        /// <returns>
+        ///     Resouce manager for assembly or specific default resource manager if registered resource manager was not
+        ///     found.
+        /// </returns>
+        public static ResourceManager LoadResourceManager(string baseAssemblyName, ResourceManager defaultResourceManager)
         {
             //+ non-gc
-            KeyValuePair<String, ResourceConfig> kvp = _resourceManagerRegistry.SingleOrDefault(p => p.Key == baseAssemblyName);
+            var kvp = _resourceManagerRegistry.SingleOrDefault(p => p.Key == baseAssemblyName);
             if (kvp.Value != null)
             {
-                ResourceConfig resourceConfig = kvp.Value;
+                var resourceConfig = kvp.Value;
                 if (resourceConfig.ResourceManager == null)
                 {
                     if (kvp.Value.BuiltInCultureArray != null && kvp.Value.BuiltInCultureArray.Contains(Culture.TwoCharacterCultureCode))
@@ -79,111 +83,146 @@ namespace Nalarium.Globalization
         }
 
         //- $LoadResourceManagerInternal -//
-        private static ResourceManager LoadResourceManagerInternal(String baseAssemblyName, ResourceManager defaultResourceManager)
+        private static ResourceManager LoadResourceManagerInternal(string baseAssemblyName, ResourceManager defaultResourceManager)
         {
-            String assemblyName = DefaultPattern.Replace("{AssemblyName}", AssemblyLoader.GetShortName(baseAssemblyName)).Replace("{Code}", Culture.TwoCharacterCultureCode);
-            Assembly assembly = AssemblyLoader.Load(assemblyName);
+            var assemblyName = DefaultPattern.Replace("{AssemblyName}", AssemblyLoader.GetShortName(baseAssemblyName)).Replace("{Code}", Culture.TwoCharacterCultureCode);
+            var assembly = AssemblyLoader.Load(assemblyName);
             if (assembly == null)
             {
                 return defaultResourceManager;
             }
-            else
-            {
-                return new ResourceManager(assemblyName + ".Resource", assembly);
-            }
+            return new ResourceManager(assemblyName + ".Resource", assembly);
         }
 
         //- @RegisterResourceManager -//
         /// <summary>
-        /// Registers a resource manager to an assembly.
+        ///     Registers a resource manager to an assembly.
         /// </summary>
         /// <param name="assemblyName">Name of assembly.</param>
-        public static void RegisterResourceManager(String assemblyName)
+        public static void RegisterResourceManager(string assemblyName)
         {
             RegisterResourceManager(assemblyName, DefaultPattern, null, false);
         }
 
         /// <summary>
-        /// Registers a resource manager to an assembly.
+        ///     Registers a resource manager to an assembly.
         /// </summary>
         /// <param name="assemblyName">Name of assembly.</param>
-        /// <param name="allowGC">Allow resource manager to be garbage collected.  Use only when resource manager will rarely be used.</param>
-        public static void RegisterResourceManager(String assemblyName, Boolean allowGC)
+        /// <param name="allowGC">
+        ///     Allow resource manager to be garbage collected.  Use only when resource manager will rarely be
+        ///     used.
+        /// </param>
+        public static void RegisterResourceManager(string assemblyName, bool allowGC)
         {
             RegisterResourceManager(assemblyName, DefaultPattern, null, allowGC);
         }
 
         /// <summary>
-        /// Registers a resource manager to an assembly.
+        ///     Registers a resource manager to an assembly.
         /// </summary>
         /// <param name="assemblyName">Name of assembly.</param>
-        /// <param name="builtInCultureArray">Culture array specifying which cultures the assembly natively supports.  If the current culture is specified in the array, the default resource manager is automatically used and no dependency loading will occur.</param>
-        public static void RegisterResourceManager(String assemblyName, String[] builtInCultureArray)
+        /// <param name="builtInCultureArray">
+        ///     Culture array specifying which cultures the assembly natively supports.  If the
+        ///     current culture is specified in the array, the default resource manager is automatically used and no dependency
+        ///     loading will occur.
+        /// </param>
+        public static void RegisterResourceManager(string assemblyName, string[] builtInCultureArray)
         {
             RegisterResourceManager(assemblyName, DefaultPattern, builtInCultureArray, false);
         }
 
         /// <summary>
-        /// Registers a resource manager to an assembly.
+        ///     Registers a resource manager to an assembly.
         /// </summary>
         /// <param name="assemblyName">Name of assembly.</param>
-        /// <param name="builtInCultureArray">Culture array specifying which cultures the assembly natively supports.  If the current culture is specified in the array, the default resource manager is automatically used and no dependency loading will occur.</param>
-        /// <param name="allowGC">Allow resource manager to be garbage collected.  Use only when resource manager will rarely be used.</param>
-        public static void RegisterResourceManager(String assemblyName, String[] builtInCultureArray, Boolean allowGC)
+        /// <param name="builtInCultureArray">
+        ///     Culture array specifying which cultures the assembly natively supports.  If the
+        ///     current culture is specified in the array, the default resource manager is automatically used and no dependency
+        ///     loading will occur.
+        /// </param>
+        /// <param name="allowGc">
+        ///     Allow resource manager to be garbage collected.  Use only when resource manager will rarely be
+        ///     used.
+        /// </param>
+        public static void RegisterResourceManager(string assemblyName, string[] builtInCultureArray, bool allowGc)
         {
-            RegisterResourceManager(assemblyName, DefaultPattern, builtInCultureArray, allowGC);
+            RegisterResourceManager(assemblyName, DefaultPattern, builtInCultureArray, allowGc);
         }
 
         /// <summary>
-        /// Registers a resource manager to an assembly.
+        ///     Registers a resource manager to an assembly.
         /// </summary>
         /// <param name="assemblyName">Name of assembly.</param>
-        /// <param name="assemblyNamePattern">Pattern to use when searching for localized assembly.  The following example is also the default: {AssemblyName}.{Code}</param>
-        /// <param name="builtInCultureArray">Culture array specifying which cultures the assembly natively supports.  If the current culture is specified in the array, the default resource manager is automatically used and no dependency loading will occur.</param>
-        public static void RegisterResourceManager(String assemblyName, String assemblyNamePattern)
+        /// <param name="assemblyNamePattern">
+        ///     Pattern to use when searching for localized assembly.  The following example is also
+        ///     the default: {AssemblyName}.{Code}
+        /// </param>
+        public static void RegisterResourceManager(string assemblyName, string assemblyNamePattern)
         {
             RegisterResourceManager(assemblyName, assemblyNamePattern, null, false);
         }
 
         /// <summary>
-        /// Registers a resource manager to an assembly.
+        ///     Registers a resource manager to an assembly.
         /// </summary>
         /// <param name="assemblyName">Name of assembly.</param>
-        /// <param name="assemblyNamePattern">Pattern to use when searching for localized assembly.  The following example is also the default: {AssemblyName}.{Code}</param>
-        /// <param name="builtInCultureArray">Culture array specifying which cultures the assembly natively supports.  If the current culture is specified in the array, the default resource manager is automatically used and no dependency loading will occur.</param>
-        /// <param name="allowGC">Allow resource manager to be garbage collected.  Use only when resource manager will rarely be used.</param>
-        public static void RegisterResourceManager(String assemblyName, String assemblyNamePattern, Boolean allowGC)
+        /// <param name="assemblyNamePattern">
+        ///     Pattern to use when searching for localized assembly.  The following example is also
+        ///     the default: {AssemblyName}.{Code}
+        /// </param>
+        /// <param name="allowGc">
+        ///     Allow resource manager to be garbage collected.  Use only when resource manager will rarely be
+        ///     used.
+        /// </param>
+        public static void RegisterResourceManager(string assemblyName, string assemblyNamePattern, bool allowGc)
         {
-            RegisterResourceManager(assemblyName, assemblyNamePattern, null, allowGC);
+            RegisterResourceManager(assemblyName, assemblyNamePattern, null, allowGc);
         }
 
         /// <summary>
-        /// Registers a resource manager to an assembly.
+        ///     Registers a resource manager to an assembly.
         /// </summary>
         /// <param name="assemblyName">Name of assembly.</param>
-        /// <param name="assemblyNamePattern">Pattern to use when searching for localized assembly.  The following example is also the default: {AssemblyName}.{Code}</param>
-        /// <param name="builtInCultureArray">Culture array specifying which cultures the assembly natively supports.  If the current culture is specified in the array, the default resource manager is automatically used and no dependency loading will occur.</param>
-        public static void RegisterResourceManager(String assemblyName, String assemblyNamePattern, String[] builtInCultureArray)
+        /// <param name="assemblyNamePattern">
+        ///     Pattern to use when searching for localized assembly.  The following example is also
+        ///     the default: {AssemblyName}.{Code}
+        /// </param>
+        /// <param name="builtInCultureArray">
+        ///     Culture array specifying which cultures the assembly natively supports.  If the
+        ///     current culture is specified in the array, the default resource manager is automatically used and no dependency
+        ///     loading will occur.
+        /// </param>
+        public static void RegisterResourceManager(string assemblyName, string assemblyNamePattern, string[] builtInCultureArray)
         {
             RegisterResourceManager(assemblyName, assemblyNamePattern, builtInCultureArray, false);
         }
 
         /// <summary>
-        /// Registers a resource manager to an assembly.
+        ///     Registers a resource manager to an assembly.
         /// </summary>
         /// <param name="assemblyName">Name of assembly.</param>
-        /// <param name="assemblyNamePattern">Pattern to use when searching for localized assembly.  The following example is also the default: {AssemblyName}.{Code}</param>
-        /// <param name="builtInCultureArray">Culture array specifying which cultures the assembly natively supports.  If the current culture is specified in the array, the default resource manager is automatically used and no dependency loading will occur.</param>
-        /// <param name="allowGC">Allow resource manager to be garbage collected.  Use only when resource manager will rarely be used.</param>
-        public static void RegisterResourceManager(String assemblyName, String assemblyNamePattern, String[] builtInCultureArray, Boolean allowGC)
+        /// <param name="assemblyNamePattern">
+        ///     Pattern to use when searching for localized assembly.  The following example is also
+        ///     the default: {AssemblyName}.{Code}
+        /// </param>
+        /// <param name="builtInCultureArray">
+        ///     Culture array specifying which cultures the assembly natively supports.  If the
+        ///     current culture is specified in the array, the default resource manager is automatically used and no dependency
+        ///     loading will occur.
+        /// </param>
+        /// <param name="allowGC">
+        ///     Allow resource manager to be garbage collected.  Use only when resource manager will rarely be
+        ///     used.
+        /// </param>
+        public static void RegisterResourceManager(string assemblyName, string assemblyNamePattern, string[] builtInCultureArray, bool allowGC)
         {
             if (allowGC)
             {
                 var resourceConfig = new ResourceConfig
-                                     {
-                                         BuiltInCultureArray = builtInCultureArray,
-                                         WeakReference = new WeakReference(null)
-                                     };
+                {
+                    BuiltInCultureArray = builtInCultureArray,
+                    WeakReference = new WeakReference(null)
+                };
                 if (_resourceManagerWeakReferenceRegistry.ContainsKey(assemblyName))
                 {
                     return;
@@ -193,9 +232,9 @@ namespace Nalarium.Globalization
             else
             {
                 var resourceConfig = new ResourceConfig
-                                     {
-                                         BuiltInCultureArray = builtInCultureArray
-                                     };
+                {
+                    BuiltInCultureArray = builtInCultureArray
+                };
                 if (_resourceManagerRegistry.ContainsKey(assemblyName))
                 {
                     return;
@@ -205,34 +244,34 @@ namespace Nalarium.Globalization
         }
 
         //- @GetString -//
-        public static String GetString(String resourceKey, String baseAssemblyName)
+        public static string GetString(string resourceKey, string baseAssemblyName)
         {
             return GetString(resourceKey, baseAssemblyName, null, null);
         }
 
-        public static String GetString(String resourceKey, String baseAssemblyName, String[] builtInCultureArray)
+        public static string GetString(string resourceKey, string baseAssemblyName, string[] builtInCultureArray)
         {
             return GetString(resourceKey, baseAssemblyName, null, builtInCultureArray);
         }
 
-        public static String GetString(String resourceKey, String baseAssemblyName, ResourceManager defaultResourceManager)
+        public static string GetString(string resourceKey, string baseAssemblyName, ResourceManager defaultResourceManager)
         {
             return GetString(resourceKey, baseAssemblyName, defaultResourceManager, null);
         }
 
-        public static String GetString(String resourceKey, String baseAssemblyName, ResourceManager defaultResourceManager, String[] builtInCultureArray)
+        public static string GetString(string resourceKey, string baseAssemblyName, ResourceManager defaultResourceManager, string[] builtInCultureArray)
         {
             if (!_resourceManagerRegistry.ContainsKey(baseAssemblyName) && !_resourceManagerWeakReferenceRegistry.ContainsKey(baseAssemblyName))
             {
                 RegisterResourceManager(baseAssemblyName, DefaultPattern, builtInCultureArray);
             }
-            ResourceManager resourceManager = LoadResourceManager(baseAssemblyName, defaultResourceManager);
+            var resourceManager = LoadResourceManager(baseAssemblyName, defaultResourceManager);
             if (resourceManager != null)
             {
                 return resourceManager.GetString(resourceKey);
             }
             //+
-            return String.Empty;
+            return string.Empty;
         }
 
         #region Nested type: ResourceConfig
@@ -240,7 +279,7 @@ namespace Nalarium.Globalization
         internal class ResourceConfig
         {
             //- @BuiltInCultureArray -//
-            public String[] BuiltInCultureArray { get; set; }
+            public string[] BuiltInCultureArray { get; set; }
 
             //- @WeakReference -//
             public WeakReference WeakReference { get; set; }

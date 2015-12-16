@@ -1,22 +1,19 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
-
 namespace Nalarium
 {
-    public class Int32StringKeyValue : KeyValue<Int32, String>
+    public class Int32StringKeyValue : KeyValue<int, string>
     {
         //- @Ctor -//
         public Int32StringKeyValue()
         {
         }
 
-        public Int32StringKeyValue(Int32 key, String value)
+        public Int32StringKeyValue(int key, string value)
         {
             Key = key;
             Value = value;

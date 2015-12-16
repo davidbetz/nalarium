@@ -1,11 +1,9 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Globalization;
 
 namespace Nalarium.Reporting.ReportCreator.Formatter
@@ -14,7 +12,7 @@ namespace Nalarium.Reporting.ReportCreator.Formatter
     {
         //- @Ctor -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="WikiFormatter"/> class.
+        ///     Initializes a new instance of the <see cref="WikiFormatter" /> class.
         /// </summary>
         public WikiFormatter()
         {
@@ -24,50 +22,50 @@ namespace Nalarium.Reporting.ReportCreator.Formatter
         //+
         //- @FormatMainHeading -//
         /// <summary>
-        /// Formats the main heading.
+        ///     Formats the main heading.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatMainHeading(String text, StyleTypes styles)
+        protected override string FormatMainHeading(string text, StyleTypes styles)
         {
             return "=" + text + "=" + NewLine;
         }
 
         //- @FormatHeading -//
         /// <summary>
-        /// Formats the heading.
+        ///     Formats the heading.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatHeading(String text, StyleTypes styles)
+        protected override string FormatHeading(string text, StyleTypes styles)
         {
             return "==" + text + "==" + NewLine;
         }
 
         //- @FormatSubHeading -//
         /// <summary>
-        /// Formats the sub heading.
+        ///     Formats the sub heading.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatSubHeading(String text, StyleTypes styles)
+        protected override string FormatSubHeading(string text, StyleTypes styles)
         {
             return "===" + text + "===" + NewLine;
         }
 
         //- @FormatNormal -//
         /// <summary>
-        /// Formats the normal.
+        ///     Formats the normal.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatNormal(String text, StyleTypes styles)
+        protected override string FormatNormal(string text, StyleTypes styles)
         {
-            String result = text;
+            var result = text;
             if ((StyleTypes.Bold & styles) == StyleTypes.Bold)
             {
                 result = "'''" + text + "'''";
@@ -82,126 +80,123 @@ namespace Nalarium.Reporting.ReportCreator.Formatter
 
         //- @FormatBreak -//
         /// <summary>
-        /// Formats the break.
+        ///     Formats the break.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns></returns>
-        protected override String FormatBreak(String text)
+        protected override string FormatBreak(string text)
         {
             return NewLine;
         }
 
         //- @FormatDictionaryBegin -//
-        protected override String FormatDictionaryBegin(string text, StyleTypes styles)
+        protected override string FormatDictionaryBegin(string text, StyleTypes styles)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         //- @FormatDictionaryTerm -//
         /// <summary>
-        /// Formats the dictionary term.
+        ///     Formats the dictionary term.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatDictionaryTerm(string text, StyleTypes styles)
+        protected override string FormatDictionaryTerm(string text, StyleTypes styles)
         {
             return ";" + FormatNormal(text, styles);
         }
 
         //- @FormatDictionaryDefinition -//
         /// <summary>
-        /// Formats the dictionary definition.
+        ///     Formats the dictionary definition.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatDictionaryDefinition(string text, StyleTypes styles)
+        protected override string FormatDictionaryDefinition(string text, StyleTypes styles)
         {
             return ":" + text;
         }
 
         //- @FormatDictionaryEnd -//
         /// <summary>
-        /// Formats the dictionary end.
+        ///     Formats the dictionary end.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatDictionaryEnd(string text, StyleTypes styles)
+        protected override string FormatDictionaryEnd(string text, StyleTypes styles)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         //- @FormatListBegin -//
         /// <summary>
-        /// Formats the list begin.
+        ///     Formats the list begin.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatListBegin(string text, StyleTypes styles)
+        protected override string FormatListBegin(string text, StyleTypes styles)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         //- @FormatListItem -//
         /// <summary>
-        /// Formats the list item.
+        ///     Formats the list item.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatListItem(string text, StyleTypes styles)
+        protected override string FormatListItem(string text, StyleTypes styles)
         {
             return "*" + FormatNormal(text, styles);
         }
 
         //- @FormatListEnd -//
         /// <summary>
-        /// Formats the list end.
+        ///     Formats the list end.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatListEnd(string text, StyleTypes styles)
+        protected override string FormatListEnd(string text, StyleTypes styles)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         //- #FormatLink -//
         /// <summary>
-        /// Formats the link.
+        ///     Formats the link.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="styles">The styles.</param>
         /// <returns></returns>
-        protected override String FormatLink(String text, StyleTypes styles)
+        protected override string FormatLink(string text, StyleTypes styles)
         {
-            if (!String.IsNullOrEmpty(text))
+            if (!string.IsNullOrEmpty(text))
             {
                 if (text.Contains(","))
                 {
-                    String[] partArray = text.Split(',');
+                    var partArray = text.Split(',');
                     //+
-                    return String.Format(CultureInfo.CurrentCulture, "[{0}|{1}]", partArray[0], partArray[1]);
+                    return string.Format(CultureInfo.CurrentCulture, "[{0}|{1}]", partArray[0], partArray[1]);
                 }
-                else
-                {
-                    return "[" + text + "]";
-                }
+                return "[" + text + "]";
             }
             //+
-            return String.Empty;
+            return string.Empty;
         }
 
         //- #FormatPreFormatted -//
         /// <summary>
-        /// Formats the pre formatted text.
+        ///     Formats the pre formatted text.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns></returns>
-        protected override String FormatPreFormatted(String text)
+        protected override string FormatPreFormatted(string text)
         {
             return text;
         }

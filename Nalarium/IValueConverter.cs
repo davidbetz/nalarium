@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -12,7 +11,7 @@ namespace Nalarium
 {
     public interface IValueConverter
     {
-        Object Convert(Object value, Type targetType, Object parameter, CultureInfo culture);
-        Object ConvertBack(Object value, Type targetType, Object parameter, CultureInfo culture);
+        object Convert(object value, Type targetType, object parameter, CultureInfo culture);
+        object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture);
     }
 }

@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -16,15 +15,17 @@ namespace Nalarium.Reflection
         //- @ReadAssemblyAttribute -//
         public static T ReadAssemblyAttribute<T>(Type type) where T : Attribute
         {
-            return ReadAssemblyAttribute(type, typeof(T)) as T;
+            return ReadAssemblyAttribute(type, typeof (T)) as T;
         }
-        public static T ReadAssemblyAttribute<T>(Object obj) where T : Attribute
+
+        public static T ReadAssemblyAttribute<T>(object obj) where T : Attribute
         {
-            return ReadAssemblyAttribute(obj, typeof(T)) as T;
+            return ReadAssemblyAttribute(obj, typeof (T)) as T;
         }
+
         public static Attribute ReadAssemblyAttribute(Type type, Type attributeType)
         {
-            Object[] array = ReadAssemblyAttributeArray(type, attributeType);
+            var array = ReadAssemblyAttributeArray(type, attributeType);
             if (!Collection.IsNullOrEmpty(array))
             {
                 return array[0] as Attribute;
@@ -32,9 +33,10 @@ namespace Nalarium.Reflection
             //+
             return null;
         }
-        public static Attribute ReadAssemblyAttribute(Object obj, Type attributeType)
+
+        public static Attribute ReadAssemblyAttribute(object obj, Type attributeType)
         {
-            Object[] array = ReadAssemblyAttributeArray(obj, attributeType);
+            var array = ReadAssemblyAttributeArray(obj, attributeType);
             if (!Collection.IsNullOrEmpty(array))
             {
                 return array[0] as Attribute;
@@ -44,22 +46,25 @@ namespace Nalarium.Reflection
         }
 
         //- @ReadTypeAttributeArray -//
-        public static Object[] ReadAssemblyAttributeArray<T>(Object obj)
+        public static object[] ReadAssemblyAttributeArray<T>(object obj)
         {
-            return ReadAssemblyAttributeArray(obj, typeof(T));
+            return ReadAssemblyAttributeArray(obj, typeof (T));
         }
-        public static Object[] ReadAssemblyAttributeArray<T>(Type type)
+
+        public static object[] ReadAssemblyAttributeArray<T>(Type type)
         {
-            return ReadAssemblyAttributeArray(type, typeof(T));
+            return ReadAssemblyAttributeArray(type, typeof (T));
         }
-        public static Object[] ReadAssemblyAttributeArray(Object obj, Type attributeType)
+
+        public static object[] ReadAssemblyAttributeArray(object obj, Type attributeType)
         {
             return ReadAssemblyAttributeArray(obj.GetType(), attributeType);
         }
-        public static Object[] ReadAssemblyAttributeArray(Type type, Type attributeType)
+
+        public static object[] ReadAssemblyAttributeArray(Type type, Type attributeType)
         {
             var assembly = type.Assembly;
-            Object[] objectArray;
+            object[] objectArray;
             if (attributeType == null)
             {
                 objectArray = assembly.GetCustomAttributes(true);
@@ -78,17 +83,20 @@ namespace Nalarium.Reflection
         {
             return ReadTypeAttribute(type, type) as T;
         }
-        public static T ReadTypeAttribute<T>(Object obj) where T : Attribute
+
+        public static T ReadTypeAttribute<T>(object obj) where T : Attribute
         {
-            return ReadTypeAttribute(obj, typeof(T)) as T;
+            return ReadTypeAttribute(obj, typeof (T)) as T;
         }
-        public static Attribute ReadTypeAttribute(Object obj, Type attributeType)
+
+        public static Attribute ReadTypeAttribute(object obj, Type attributeType)
         {
             return ReadTypeAttribute(obj.GetType(), attributeType);
         }
+
         public static Attribute ReadTypeAttribute(Type type, Type attributeType)
         {
-            Object[] array = ReadTypeAttributeArray(type, attributeType);
+            var array = ReadTypeAttributeArray(type, attributeType);
             if (!Collection.IsNullOrEmpty(array))
             {
                 return array[0] as Attribute;
@@ -98,21 +106,24 @@ namespace Nalarium.Reflection
         }
 
         //- @ReadTypeAttributeArray -//
-        public static Object[] ReadTypeAttributeArray<T>(Object obj)
+        public static object[] ReadTypeAttributeArray<T>(object obj)
         {
-            return ReadTypeAttributeArray(obj.GetType(), typeof(T));
+            return ReadTypeAttributeArray(obj.GetType(), typeof (T));
         }
-        public static Object[] ReadTypeAttributeArray<T>(Type type)
+
+        public static object[] ReadTypeAttributeArray<T>(Type type)
         {
-            return ReadTypeAttributeArray(type, typeof(T));
+            return ReadTypeAttributeArray(type, typeof (T));
         }
-        public static Object[] ReadTypeAttributeArray(Object obj, Type attributeType)
+
+        public static object[] ReadTypeAttributeArray(object obj, Type attributeType)
         {
             return ReadTypeAttributeArray(obj.GetType(), attributeType);
         }
-        public static Object[] ReadTypeAttributeArray(Type type, Type attributeType)
+
+        public static object[] ReadTypeAttributeArray(Type type, Type attributeType)
         {
-            Object[] objectArray;
+            object[] objectArray;
             if (attributeType == null)
             {
                 objectArray = type.GetCustomAttributes(true);
@@ -126,12 +137,12 @@ namespace Nalarium.Reflection
         }
 
         //- @FindMethodsWithAttribute -//
-        public static List<MethodAttributeInformation<TAttribute>> FindMethodsWithAttribute<TAttribute>(Object obj) where TAttribute : Attribute
+        public static List<MethodAttributeInformation<TAttribute>> FindMethodsWithAttribute<TAttribute>(object obj) where TAttribute : Attribute
         {
-            Type type = obj.GetType();
+            var type = obj.GetType();
             var methodInfoList = new List<MethodAttributeInformation<TAttribute>>();
-            MethodInfo[] methodInfoArray = type.GetMethods();
-            foreach (MethodInfo mi in methodInfoArray)
+            var methodInfoArray = type.GetMethods();
+            foreach (var mi in methodInfoArray)
             {
                 var attribute = ReadMethodAttribute<TAttribute>(mi);
                 if (attribute == null)
@@ -139,10 +150,10 @@ namespace Nalarium.Reflection
                     continue;
                 }
                 methodInfoList.Add(new MethodAttributeInformation<TAttribute>
-                                   {
-                                       MethodInfo = mi,
-                                       Attribute = attribute
-                                   });
+                {
+                    MethodInfo = mi,
+                    Attribute = attribute
+                });
             }
             //+
             return methodInfoList;
@@ -151,12 +162,12 @@ namespace Nalarium.Reflection
         //- @ReadTypeAttribute -//
         public static T ReadMethodAttribute<T>(MethodInfo methodInfo) where T : Attribute
         {
-            return ReadMethodAttribute(methodInfo, typeof(T)) as T;
+            return ReadMethodAttribute(methodInfo, typeof (T)) as T;
         }
 
         public static Attribute ReadMethodAttribute(MethodInfo methodInfo, Type attributeType)
         {
-            Object[] array = ReadMethodAttributeArray(methodInfo, attributeType);
+            var array = ReadMethodAttributeArray(methodInfo, attributeType);
             if (!Collection.IsNullOrEmpty(array))
             {
                 return array[0] as Attribute;
@@ -166,14 +177,14 @@ namespace Nalarium.Reflection
         }
 
         //- @ReadMethodAttributeArray -//
-        public static Object[] ReadMethodAttributeArray<T>(MethodInfo methodInfo)
+        public static object[] ReadMethodAttributeArray<T>(MethodInfo methodInfo)
         {
-            return ReadMethodAttributeArray(methodInfo, typeof(T));
+            return ReadMethodAttributeArray(methodInfo, typeof (T));
         }
 
-        public static Object[] ReadMethodAttributeArray(MethodInfo methodInfo, Type attributeType)
+        public static object[] ReadMethodAttributeArray(MethodInfo methodInfo, Type attributeType)
         {
-            Object[] objectArray;
+            object[] objectArray;
             if (attributeType == null)
             {
                 objectArray = methodInfo.GetCustomAttributes(true);
@@ -187,14 +198,14 @@ namespace Nalarium.Reflection
         }
 
         //- @ReadPropertyAttributeArray -//
-        public static Object[] ReadPropertyAttributeArray<T>(PropertyInfo propertyInfo)
+        public static object[] ReadPropertyAttributeArray<T>(PropertyInfo propertyInfo)
         {
-            return ReadPropertyAttributeArray(propertyInfo, typeof(T));
+            return ReadPropertyAttributeArray(propertyInfo, typeof (T));
         }
 
-        public static Object[] ReadPropertyAttributeArray(PropertyInfo propertyInfo, Type attributeType)
+        public static object[] ReadPropertyAttributeArray(PropertyInfo propertyInfo, Type attributeType)
         {
-            Object[] objectArray;
+            object[] objectArray;
             if (attributeType == null)
             {
                 objectArray = propertyInfo.GetCustomAttributes(true);

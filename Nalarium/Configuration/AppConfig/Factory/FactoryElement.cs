@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Diagnostics;
 
 namespace Nalarium.Configuration.AppConfig.Factory
@@ -9,44 +8,26 @@ namespace Nalarium.Configuration.AppConfig.Factory
     {
         //- @FactoryType -//
         [ConfigurationProperty("type", IsRequired = true)]
-        public String FactoryType
+        public string FactoryType
         {
-            get
-            {
-                return (String)this["type"];
-            }
-            set
-            {
-                this["type"] = value;
-            }
+            get { return (string) this["type"]; }
+            set { this["type"] = value; }
         }
 
         //- @Priority -//
         [ConfigurationProperty("priority", DefaultValue = 5, IsRequired = false)]
-        public Int32 Priority
+        public int Priority
         {
-            get
-            {
-                return (Int32)this["priority"];
-            }
-            set
-            {
-                this["priority"] = value;
-            }
+            get { return (int) this["priority"]; }
+            set { this["priority"] = value; }
         }
 
         //- @Enabled -//
         [ConfigurationProperty("enabled", DefaultValue = true, IsRequired = false)]
-        public Boolean Enabled
+        public bool Enabled
         {
-            get
-            {
-                return (Boolean)this["enabled"];
-            }
-            set
-            {
-                this["enabled"] = value;
-            }
+            get { return (bool) this["enabled"]; }
+            set { this["enabled"] = value; }
         }
     }
 }

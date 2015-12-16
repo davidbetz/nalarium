@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -12,49 +11,46 @@ using System.Threading;
 namespace Nalarium
 {
     /// <summary>
-    /// Parses String, Int32, Double, and Boolean information from an object or string with overloads allowing for providing default if parsing fails.
+    ///     Parses String, Int32, Double, and Boolean information from an object or string with overloads allowing for
+    ///     providing default if parsing fails.
     /// </summary>
     /// <example>
-    /// Int32 int32 = Parser.ParseInt32("wrong", 15);
-    /// 
-    /// System.Console.WriteLine(Int32);
-    /// 
-    /// //+ Output: 15
-    /// 
-    /// //+
-    /// //++ There is also a generic Parse methed for anyone who prefers that style.
-    /// //+
-    /// 
+    ///     Int32 int32 = Parser.ParseInt32("wrong", 15);
+    ///     System.Console.WriteLine(Int32);
+    ///     //+ Output: 15
+    ///     //+
+    ///     //++ There is also a generic Parse methed for anyone who prefers that style.
+    ///     //+
     /// </example>
     public static class Parser
     {
-        private static readonly Type _booleanType = typeof(Boolean);
+        private static readonly Type BooleanType = typeof (bool);
 
         //+
         //- @Parse -//
         /// <summary>
-        /// Parses the string as a generic type
+        ///     Parses the string as a generic type
         /// </summary>
         /// <typeparam name="T">Type of return data</typeparam>
         /// <param name="data"> data to parse</param>
         /// <returns>Parsed value</returns>
-        public static T Parse<T>(String data)
+        public static T Parse<T>(string data)
         {
             return Parse(data, default(T));
         }
 
         /// <summary>
-        /// Parses the string as a generic type
+        ///     Parses the string as a generic type
         /// </summary>
         /// <typeparam name="T">Type of return data</typeparam>
         /// <param name="data"> data to parse</param>
         /// <param name="defaultValue">Parsed default value to return is null or empty</param>
         /// <returns>Parsed value</returns>
-        public static T Parse<T>(String data, T defaultValue)
+        public static T Parse<T>(string data, T defaultValue)
         {
             try
             {
-                if (typeof(T) == _booleanType)
+                if (typeof (T) == BooleanType)
                 {
                     switch (data)
                     {
@@ -71,7 +67,7 @@ namespace Nalarium
                             break;
                     }
                 }
-                return (T)Convert.ChangeType(data, typeof(T), Thread.CurrentThread.CurrentCulture);
+                return (T) Convert.ChangeType(data, typeof (T), Thread.CurrentThread.CurrentCulture);
             }
             catch
             {
@@ -81,17 +77,17 @@ namespace Nalarium
 
         //- @ParseString -//
         /// <summary>
-        /// Parses the string.
+        ///     Parses the string.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value.</returns>
-        public static String ParseString(Object value)
+        public static string ParseString(object value)
         {
             if (value == null)
             {
-                return String.Empty;
+                return string.Empty;
             }
-            var valueString = value as String;
+            var valueString = value as string;
             if (valueString != null)
             {
                 return valueString;
@@ -101,14 +97,14 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the string or sets default.
+        ///     Parses the string or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is null or empty</param>
         /// <returns>Parsed value or default.</returns>
-        public static String ParseString(String value, String defaultValue)
+        public static string ParseString(string value, string defaultValue)
         {
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
                 return defaultValue;
             }
@@ -117,15 +113,15 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the string or, if the string is longer than the max, only returns the portion upto the max.
+        ///     Parses the string or, if the string is longer than the max, only returns the portion upto the max.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is null or empty</param>
         /// <param name="max">The max length of the string.</param>
         /// <returns>Parsed value or default.</returns>
-        public static String ParseMaxString(String value, String defaultValue, Int32 max)
+        public static string ParseMaxString(string value, string defaultValue, int max)
         {
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
                 value = defaultValue;
             }
@@ -139,11 +135,11 @@ namespace Nalarium
 
         //- @ParseByte -//
         /// <summary>
-        /// Parses the Byte.
+        ///     Parses the Byte.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value.</returns>
-        public static Byte ParseByte(Object value)
+        public static byte ParseByte(object value)
         {
             if (value != null)
             {
@@ -154,41 +150,38 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the Byte.
+        ///     Parses the Byte.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0.</returns>
-        public static Byte ParseByte(String value)
+        public static byte ParseByte(string value)
         {
             return ParseByte(value, 0);
         }
 
         /// <summary>
-        /// Parses the Byte or sets default.
+        ///     Parses the Byte or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>Parsed value or default.</returns>
-        public static Byte ParseByte(String value, Byte defaultValue)
+        public static byte ParseByte(string value, byte defaultValue)
         {
-            Byte Byte;
-            if (Byte.TryParse(value, out Byte))
+            byte Byte;
+            if (byte.TryParse(value, out Byte))
             {
                 return Byte;
             }
-            else
-            {
-                return defaultValue;
-            }
+            return defaultValue;
         }
 
         //- @ParseInt32 -//
         /// <summary>
-        /// Parses the int32.
+        ///     Parses the int32.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value.</returns>
-        public static Int32 ParseInt32(Object value)
+        public static int ParseInt32(object value)
         {
             if (value != null)
             {
@@ -199,41 +192,38 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the int32.
+        ///     Parses the int32.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0.</returns>
-        public static Int32 ParseInt32(String value)
+        public static int ParseInt32(string value)
         {
             return ParseInt32(value, 0);
         }
 
         /// <summary>
-        /// Parses the int32 or sets default.
+        ///     Parses the int32 or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>Parsed value or default.</returns>
-        public static Int32 ParseInt32(String value, Int32 defaultValue)
+        public static int ParseInt32(string value, int defaultValue)
         {
-            Int32 int32;
-            if (Int32.TryParse(value, out int32))
+            int int32;
+            if (int.TryParse(value, out int32))
             {
                 return int32;
             }
-            else
-            {
-                return defaultValue;
-            }
+            return defaultValue;
         }
 
         //- @ParseInt64 -//
         /// <summary>
-        /// Parses the int64.
+        ///     Parses the int64.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value.</returns>
-        public static Int64 ParseInt64(Object value)
+        public static long ParseInt64(object value)
         {
             if (value != null)
             {
@@ -244,41 +234,38 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the int64.
+        ///     Parses the int64.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0.</returns>
-        public static Int64 ParseInt64(String value)
+        public static long ParseInt64(string value)
         {
             return ParseInt64(value, 0);
         }
 
         /// <summary>
-        /// Parses the int64 or sets default.
+        ///     Parses the int64 or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>Parsed value or default.</returns>
-        public static Int64 ParseInt64(String value, Int64 defaultValue)
+        public static long ParseInt64(string value, long defaultValue)
         {
-            Int64 int64;
-            if (Int64.TryParse(value, out int64))
+            long int64;
+            if (long.TryParse(value, out int64))
             {
                 return int64;
             }
-            else
-            {
-                return defaultValue;
-            }
+            return defaultValue;
         }
 
         //- @ParseBoolean -//
         /// <summary>
-        /// Parses the boolean.
+        ///     Parses the boolean.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>true if "yes" or 1 (or variant of 1 like "1" or 1.0); otherwise false</returns>
-        public static Boolean ParseBoolean(Object value)
+        public static bool ParseBoolean(object value)
         {
             if (value != null)
             {
@@ -288,58 +275,55 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the boolean.
+        ///     Parses the boolean.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>true if 1; false is not 1</returns>
-        public static Boolean ParseBoolean(Int32 value)
+        public static bool ParseBoolean(int value)
         {
             return value == 1;
         }
 
         /// <summary>
-        /// Parses the boolean.
+        ///     Parses the boolean.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>true if "yes" or 1; otherwise false</returns>
-        public static Boolean ParseBoolean(String value)
+        public static bool ParseBoolean(string value)
         {
             return ParseBoolean(value, false);
         }
 
         /// <summary>
-        /// Parses the boolean or sets default.
+        ///     Parses the boolean or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>true if "yes" or 1; otherwise the specified default</returns>
-        public static Boolean ParseBoolean(String value, Boolean defaultValue)
+        public static bool ParseBoolean(string value, bool defaultValue)
         {
-            Boolean boolean;
-            if (Boolean.TryParse(value, out boolean))
+            bool boolean;
+            if (bool.TryParse(value, out boolean))
             {
                 return boolean;
             }
-            else
+            if (value != null)
             {
-                if (value != null)
+                if (value.ToLower(CultureInfo.CurrentCulture) == "yes" || value == "1" || value == "1.0" || value == "on" || value == "active")
                 {
-                    if (value.ToLower(CultureInfo.CurrentCulture) == "yes" || value == "1" || value == "1.0" || value == "on" || value == "active")
-                    {
-                        return true;
-                    }
+                    return true;
                 }
-                return defaultValue;
             }
+            return defaultValue;
         }
 
         //- @ParseSingle -//
         /// <summary>
-        /// Parses the single.
+        ///     Parses the single.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0F.</returns>
-        public static Single ParseSingle(Object value)
+        public static float ParseSingle(object value)
         {
             if (value != null)
             {
@@ -349,41 +333,38 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the single.
+        ///     Parses the single.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0F.</returns>
-        public static Single ParseSingle(String value)
+        public static float ParseSingle(string value)
         {
             return ParseSingle(value, 0F);
         }
 
         /// <summary>
-        /// Parses the single or sets default.
+        ///     Parses the single or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>Parsed value or default.</returns>
-        public static Single ParseSingle(String value, Single defaultValue)
+        public static float ParseSingle(string value, float defaultValue)
         {
-            Single Single;
-            if (Single.TryParse(value, out Single))
+            float Single;
+            if (float.TryParse(value, out Single))
             {
                 return Single;
             }
-            else
-            {
-                return defaultValue;
-            }
+            return defaultValue;
         }
 
         //- @ParseDouble -//
         /// <summary>
-        /// Parses the double.
+        ///     Parses the double.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0.0.</returns>
-        public static Double ParseDouble(Object value)
+        public static double ParseDouble(object value)
         {
             if (value != null)
             {
@@ -393,41 +374,38 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the double.
+        ///     Parses the double.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0.0.</returns>
-        public static Double ParseDouble(String value)
+        public static double ParseDouble(string value)
         {
             return ParseDouble(value, 0.0);
         }
 
         /// <summary>
-        /// Parses the double or sets default.
+        ///     Parses the double or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>Parsed value or default.</returns>
-        public static Double ParseDouble(String value, Double defaultValue)
+        public static double ParseDouble(string value, double defaultValue)
         {
-            Double Double;
-            if (Double.TryParse(value, out Double))
+            double Double;
+            if (double.TryParse(value, out Double))
             {
                 return Double;
             }
-            else
-            {
-                return defaultValue;
-            }
+            return defaultValue;
         }
 
         //- @ParseDateTime -//
         /// <summary>
-        /// Parses the date time.
+        ///     Parses the date time.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or DateTime.MinValue.</returns>
-        public static DateTime ParseDateTime(Object value)
+        public static DateTime ParseDateTime(object value)
         {
             if (value != null)
             {
@@ -437,42 +415,39 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the date time.
+        ///     Parses the date time.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or DateTime.MinValue.</returns>
-        public static DateTime ParseDateTime(String value)
+        public static DateTime ParseDateTime(string value)
         {
             return ParseDateTime(value, DateTime.MinValue);
         }
 
         /// <summary>
-        /// Parses the date time or sets default.
+        ///     Parses the date time or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>Parsed value or default.</returns>
         /// <returns></returns>
-        public static DateTime ParseDateTime(String value, DateTime defaultValue)
+        public static DateTime ParseDateTime(string value, DateTime defaultValue)
         {
             DateTime DateTime;
             if (DateTime.TryParse(value, out DateTime))
             {
                 return DateTime;
             }
-            else
-            {
-                return defaultValue;
-            }
+            return defaultValue;
         }
 
         //- @ParseUInt16 -//
         /// <summary>
-        /// Parses the UInt16.
+        ///     Parses the UInt16.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value.</returns>
-        public static UInt16 ParseUInt16(Object value)
+        public static ushort ParseUInt16(object value)
         {
             if (value != null)
             {
@@ -483,41 +458,38 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the UInt16.
+        ///     Parses the UInt16.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0.</returns>
-        public static UInt16 ParseUInt16(String value)
+        public static ushort ParseUInt16(string value)
         {
             return ParseUInt16(value, 0);
         }
 
         /// <summary>
-        /// Parses the UInt16 or sets default.
+        ///     Parses the UInt16 or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>Parsed value or default.</returns>
-        public static UInt16 ParseUInt16(String value, UInt16 defaultValue)
+        public static ushort ParseUInt16(string value, ushort defaultValue)
         {
-            UInt16 UInt16;
-            if (UInt16.TryParse(value, out UInt16))
+            ushort UInt16;
+            if (ushort.TryParse(value, out UInt16))
             {
                 return UInt16;
             }
-            else
-            {
-                return defaultValue;
-            }
+            return defaultValue;
         }
 
         //- @ParseUInt32 -//
         /// <summary>
-        /// Parses the UInt32.
+        ///     Parses the UInt32.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value.</returns>
-        public static UInt32 ParseUInt32(Object value)
+        public static uint ParseUInt32(object value)
         {
             if (value != null)
             {
@@ -528,41 +500,38 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the UInt32.
+        ///     Parses the UInt32.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0.</returns>
-        public static UInt32 ParseUInt32(String value)
+        public static uint ParseUInt32(string value)
         {
             return ParseUInt32(value, 0);
         }
 
         /// <summary>
-        /// Parses the UInt32 or sets default.
+        ///     Parses the UInt32 or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>Parsed value or default.</returns>
-        public static UInt32 ParseUInt32(String value, UInt32 defaultValue)
+        public static uint ParseUInt32(string value, uint defaultValue)
         {
-            UInt32 UInt32;
-            if (UInt32.TryParse(value, out UInt32))
+            uint UInt32;
+            if (uint.TryParse(value, out UInt32))
             {
                 return UInt32;
             }
-            else
-            {
-                return defaultValue;
-            }
+            return defaultValue;
         }
 
         //- @ParseUInt64 -//
         /// <summary>
-        /// Parses the UInt64.
+        ///     Parses the UInt64.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value.</returns>
-        public static UInt64 ParseUInt64(Object value)
+        public static ulong ParseUInt64(object value)
         {
             if (value != null)
             {
@@ -573,32 +542,29 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Parses the UInt64.
+        ///     Parses the UInt64.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <returns>Parsed value or 0.</returns>
-        public static UInt64 ParseUInt64(String value)
+        public static ulong ParseUInt64(string value)
         {
             return ParseUInt64(value, 0);
         }
 
         /// <summary>
-        /// Parses the UInt64 or sets default.
+        ///     Parses the UInt64 or sets default.
         /// </summary>
         /// <param name="value">The value to parse.</param>
         /// <param name="defaultValue">Default value to return is value is invalid</param>
         /// <returns>Parsed value or default.</returns>
-        public static UInt64 ParseUInt64(String value, UInt64 defaultValue)
+        public static ulong ParseUInt64(string value, ulong defaultValue)
         {
-            UInt64 UInt64;
-            if (UInt64.TryParse(value, out UInt64))
+            ulong UInt64;
+            if (ulong.TryParse(value, out UInt64))
             {
                 return UInt64;
             }
-            else
-            {
-                return defaultValue;
-            }
+            return defaultValue;
         }
     }
 }

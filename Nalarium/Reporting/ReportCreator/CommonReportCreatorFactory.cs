@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Globalization;
 
 namespace Nalarium.Reporting.ReportCreator
@@ -14,13 +12,13 @@ namespace Nalarium.Reporting.ReportCreator
     {
         //- @Create -//
         /// <summary>
-        /// Generates the report.
+        ///     Generates the report.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public override ReportCreator Create(String name)
+        public override ReportCreator Create(string name)
         {
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 switch (name.ToLower(CultureInfo.CurrentCulture))
                 {

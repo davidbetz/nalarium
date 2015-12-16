@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Configuration;
 
 namespace Nalarium.Configuration.AppConfig.EmailSetup
@@ -14,72 +12,42 @@ namespace Nalarium.Configuration.AppConfig.EmailSetup
     {
         //- @Server -//
         [ConfigurationProperty("server")]
-        public String Server
+        public string Server
         {
-            get
-            {
-                return (String)this["server"];
-            }
-            set
-            {
-                this["server"] = value;
-            }
+            get { return (string) this["server"]; }
+            set { this["server"] = value; }
         }
 
         //- @UserName -//
         [ConfigurationProperty("username")]
-        public String UserName
+        public string UserName
         {
-            get
-            {
-                return (String)this["username"];
-            }
-            set
-            {
-                this["username"] = value;
-            }
+            get { return (string) this["username"]; }
+            set { this["username"] = value; }
         }
 
         //- @Password -//
         [ConfigurationProperty("password")]
-        public String Password
+        public string Password
         {
-            get
-            {
-                return (String)this["password"];
-            }
-            set
-            {
-                this["password"] = value;
-            }
+            get { return (string) this["password"]; }
+            set { this["password"] = value; }
         }
 
         //- @From -//
         [ConfigurationProperty("from")]
-        public String From
+        public string From
         {
-            get
-            {
-                return (String)this["from"];
-            }
-            set
-            {
-                this["from"] = value;
-            }
+            get { return (string) this["from"]; }
+            set { this["from"] = value; }
         }
 
         //- @Enabled -//
         [ConfigurationProperty("to")]
-        public String To
+        public string To
         {
-            get
-            {
-                return (String)this["to"];
-            }
-            set
-            {
-                this["to"] = value;
-            }
+            get { return (string) this["to"]; }
+            set { this["to"] = value; }
         }
     }
 }

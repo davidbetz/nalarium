@@ -1,7 +1,6 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -13,7 +12,7 @@ namespace Nalarium.Configuration.AppConfig
     public interface IProvidesParameters
     {
         //- GetParameterArray -//
-        System.Object[] GetParameterArray();
+        object[] GetParameterArray();
 
         //- GetParameterMap -//
         Map GetParameterMap();

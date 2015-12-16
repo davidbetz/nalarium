@@ -1,18 +1,17 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2008-2013
+//+ Copyright © David Betz 2008-2013
 
 #endregion
 
-using System;
 using Nalarium.Data.Cached;
+
 //+
 
 namespace Nalarium.Data.Common
 {
     /// <summary>
-    /// Provides quick access to US state text.
+    ///     Provides quick access to US state text.
     /// </summary>
     public static class State
     {
@@ -20,7 +19,7 @@ namespace Nalarium.Data.Common
 
         //- @GetUSStateData -//
         /// <summary>
-        /// Gets the state data.
+        ///     Gets the state data.
         /// </summary>
         /// <returns>An Int32StringMap of state data.</returns>
         public static Int32StringMap GetUsStateData()
@@ -88,7 +87,7 @@ namespace Nalarium.Data.Common
 
         //- @GetUSStateCodeData -//
         /// <summary>
-        /// Gets the state code data.
+        ///     Gets the state code data.
         /// </summary>
         /// <returns>A map of state data.</returns>
         public static Map GetUSStateCodeData()
@@ -158,62 +157,62 @@ namespace Nalarium.Data.Common
 
         private static class Info
         {
-            public const String Scope = "State";
+            public const string Scope = "State";
             //+
-            public const String Numeric = "Numeric";
-            public const String TwoCharacter = "TwoCharacter";
+            public const string Numeric = "Numeric";
+            public const string TwoCharacter = "TwoCharacter";
             //+
-            public const String Alabama = "Alabama";
-            public const String Alaska = "Alaska";
-            public const String Arizona = "Arizona";
-            public const String Arkansas = "Arkansas";
-            public const String California = "California";
-            public const String Colorado = "Colorado";
-            public const String Connecticut = "Connecticut";
-            public const String Delaware = "Delaware";
-            public const String Florida = "Florida";
-            public const String Georgia = "Georgia";
-            public const String Hawaii = "Hawaii";
-            public const String Idaho = "Idaho";
-            public const String Illinois = "Illinois";
-            public const String Indiana = "Indiana";
-            public const String Iowa = "Iowa";
-            public const String Kansas = "Kansas";
-            public const String Kentucky = "Kentucky";
-            public const String Louisiana = "Louisiana";
-            public const String Maine = "Maine";
-            public const String Maryland = "Maryland";
-            public const String Massachusetts = "Massachusetts";
-            public const String Michigan = "Michigan";
-            public const String Minnesota = "Minnesota";
-            public const String Mississippi = "Mississippi";
-            public const String Missouri = "Missouri";
-            public const String Montana = "Montana";
-            public const String Nebraska = "Nebraska";
-            public const String Nevada = "Nevada";
-            public const String NewHampshire = "New Hampshire";
-            public const String NewJersey = "New Jersey";
-            public const String NewMexico = "New Mexico";
-            public const String NewYork = "New York";
-            public const String NorthCarolina = "North Carolina";
-            public const String NorthDakota = "North Dakota";
-            public const String Ohio = "Ohio";
-            public const String Oklahoma = "Oklahoma";
-            public const String Oregon = "Oregon";
-            public const String Pennsylvania = "Pennsylvania";
-            public const String RhodeIsland = "Rhode Island";
-            public const String SouthCarolina = "South Carolina";
-            public const String SouthDakota = "South Dakota";
-            public const String Tennessee = "Tennessee";
-            public const String Texas = "Texas";
-            public const String Utah = "Utah";
-            public const String Vermont = "Vermont";
-            public const String Virginia = "Virginia";
-            public const String Washington = "Washington";
-            public const String WashingtonDC = "Washington DC";
-            public const String WestVirginia = "West Virginia";
-            public const String Wisconsin = "Wisconsin";
-            public const String Wyoming = "Wyoming";
+            public const string Alabama = "Alabama";
+            public const string Alaska = "Alaska";
+            public const string Arizona = "Arizona";
+            public const string Arkansas = "Arkansas";
+            public const string California = "California";
+            public const string Colorado = "Colorado";
+            public const string Connecticut = "Connecticut";
+            public const string Delaware = "Delaware";
+            public const string Florida = "Florida";
+            public const string Georgia = "Georgia";
+            public const string Hawaii = "Hawaii";
+            public const string Idaho = "Idaho";
+            public const string Illinois = "Illinois";
+            public const string Indiana = "Indiana";
+            public const string Iowa = "Iowa";
+            public const string Kansas = "Kansas";
+            public const string Kentucky = "Kentucky";
+            public const string Louisiana = "Louisiana";
+            public const string Maine = "Maine";
+            public const string Maryland = "Maryland";
+            public const string Massachusetts = "Massachusetts";
+            public const string Michigan = "Michigan";
+            public const string Minnesota = "Minnesota";
+            public const string Mississippi = "Mississippi";
+            public const string Missouri = "Missouri";
+            public const string Montana = "Montana";
+            public const string Nebraska = "Nebraska";
+            public const string Nevada = "Nevada";
+            public const string NewHampshire = "New Hampshire";
+            public const string NewJersey = "New Jersey";
+            public const string NewMexico = "New Mexico";
+            public const string NewYork = "New York";
+            public const string NorthCarolina = "North Carolina";
+            public const string NorthDakota = "North Dakota";
+            public const string Ohio = "Ohio";
+            public const string Oklahoma = "Oklahoma";
+            public const string Oregon = "Oregon";
+            public const string Pennsylvania = "Pennsylvania";
+            public const string RhodeIsland = "Rhode Island";
+            public const string SouthCarolina = "South Carolina";
+            public const string SouthDakota = "South Dakota";
+            public const string Tennessee = "Tennessee";
+            public const string Texas = "Texas";
+            public const string Utah = "Utah";
+            public const string Vermont = "Vermont";
+            public const string Virginia = "Virginia";
+            public const string Washington = "Washington";
+            public const string WashingtonDC = "Washington DC";
+            public const string WestVirginia = "West Virginia";
+            public const string Wisconsin = "Wisconsin";
+            public const string Wyoming = "Wyoming";
         }
 
         #endregion

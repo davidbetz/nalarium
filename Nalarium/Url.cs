@@ -1,61 +1,59 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Nalarium
 {
     /// <summary>
-    /// Manages a Url
+    ///     Manages a Url
     /// </summary>
     public static class Url
     {
         //- @Join -//
         /// <summary>
-        /// Cleanly joins two paths.
+        ///     Cleanly joins two paths.
         /// </summary>
-        /// <param name="path1">The first path.</param>
-        /// <param name="path2">The second path.</param>
+        /// <param name="parameterArray">Segment array.</param>
         /// <returns>The merged path.</returns>
-        public static String Join(params String[] parameterArray)
+        public static string Join(params string[] parameterArray)
         {
             if (parameterArray == null)
             {
                 return string.Empty;
             }
             //+
-            return Clean(String.Join("/", new List<string>(parameterArray.Select(p => Clean(p)).Where(p => !String.IsNullOrWhiteSpace(p)))));
+            return Clean(string.Join("/", new List<string>(parameterArray.Select(Clean).Where(p => !string.IsNullOrWhiteSpace(p)))));
         }
 
         //- @FixUrl -//
         /// <summary>
-        /// Removes slashes from the beginning and end of a path.
+        ///     Removes slashes from the beginning and end of a path.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <returns>The fixed path.</returns>
-        public static String Clean(String path)
+        public static string Clean(string path)
         {
             return CleanHead(CleanTail(path));
         }
 
         //- @CleanHead -//
         /// <summary>
-        /// Removes slashes from the beginning of a path.
+        ///     Removes slashes from the beginning of a path.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <returns>The fixed path.</returns>
-        public static String CleanHead(String path)
+        public static string CleanHead(string path)
         {
-            if (String.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
-                return String.Empty;
+                return string.Empty;
             }
             while (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
             {
@@ -67,17 +65,17 @@ namespace Nalarium
 
         //- @CleanTail -//
         /// <summary>
-        /// Removes slashes from the end of a path.
+        ///     Removes slashes from the end of a path.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <returns>The fixed path.</returns>
-        public static String CleanTail(String path)
+        public static string CleanTail(string path)
         {
-            if (String.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
-                return String.Empty;
+                return string.Empty;
             }
-            while (path.EndsWith("/", StringComparison.OrdinalIgnoreCase))
+            while (path.EndsWith("/"))
             {
                 path = path.Substring(0, path.Length - 1);
             }
@@ -87,17 +85,17 @@ namespace Nalarium
 
         //- @RemoveEndingQuestionMark -//
         /// <summary>
-        /// Removes the ending question mark of a path.
+        ///     Removes the ending question mark of a path.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <returns> without question mark.</returns>
-        public static String RemoveEndingQuestionMark(String path)
+        public static string RemoveEndingQuestionMark(string path)
         {
-            if (String.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
-                return String.Empty;
+                return string.Empty;
             }
-            Int32 index = path.IndexOf("?");
+            var index = path.IndexOf("?", StringComparison.Ordinal);
             if (index > -1)
             {
                 path = path.Substring(0, index);
@@ -107,31 +105,29 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Converts a \ path into a / relative url.
+        ///     Converts a \ path into a / relative url.
         /// </summary>
         /// <param name="path">Windows-style path</param>
         /// <returns>Internet-style relative url</returns>
-        public static String FromPath(string path)
+        public static string FromPath(string path)
         {
-            if (String.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
-                return String.Empty;
+                return string.Empty;
             }
             //+
-            return path.Replace("\\", "/").Replace(":", string.Empty);
+            return Clean(Path.ToRelative(path).Replace("\\", "/"));
         }
 
         /// <summary>
-        /// Splits a url into a string array; paths are converted into urls.
-        /// 
+        ///     Splits a url into a string array; paths are converted into urls.
         ///     Use Nalarum.Collection.GetArrayPart to get a specific part.
-        ///     
         /// </summary>
         /// <param name="url">Url</param>
         /// <returns>url part array</returns>
         public static string[] Split(string url)
         {
-            if (String.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(url))
             {
                 return new string[] { };
             }
@@ -141,32 +137,32 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Shifts a URL left; a/b/c/d -> b/c/d
+        ///     Shifts a URL left; a/b/c/d -> b/c/d
         /// </summary>
         /// <param name="url">url</param>
         /// <param name="count">number of places</param>
         /// <returns>fixed url</returns>
         public static string Shift(string url, int count = 1)
         {
-            if (String.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(url))
             {
-                return String.Empty;
+                return string.Empty;
             }
             var partArray = Split(url);
             return string.Join("/", ArrayModifier.Shift<string>(partArray, count));
         }
 
         /// <summary>
-        /// Shifts a URL right; a/b/c/d -> a/b/c
+        ///     Shifts a URL right; a/b/c/d -> a/b/c
         /// </summary>
         /// <param name="url">url</param>
         /// <param name="count">number of places</param>
         /// <returns>fixed url</returns>
         public static string Strip(string url, int count = 1)
         {
-            if (String.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(url))
             {
-                return String.Empty;
+                return string.Empty;
             }
             var partArray = Split(url);
             return string.Join("/", ArrayModifier.Strip<string>(partArray, count));
@@ -174,26 +170,26 @@ namespace Nalarium
 
         //- @UrlPartArray -//
         /// <summary>
-        /// Gets the URL part array.
+        ///     Gets the URL part array.
         /// </summary>
         public static string[] GetUrlPartArray(string url)
         {
-            if (String.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(url))
             {
                 return null;
             }
-            return url.ToLower(CultureInfo.CurrentCulture).Split('/').Where(p => !String.IsNullOrEmpty(p)).ToArray();
+            return url.ToLower(CultureInfo.CurrentCulture).Split('/').Where(p => !string.IsNullOrEmpty(p)).ToArray();
         }
 
         /// <summary>
-        /// Gets url part
+        ///     Gets url part
         /// </summary>
         /// <param name="url"></param>
         /// <param name="position"></param>
         /// <returns></returns>
         public static string GetPart(string url, Position position)
         {
-            if (String.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(url))
             {
                 return null;
             }
@@ -201,7 +197,7 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Gets url part
+        ///     Gets url part
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
@@ -209,9 +205,9 @@ namespace Nalarium
         /// <returns></returns>
         public static string GetPart(string[] array, Position position)
         {
-            if(array== null)
+            if (array == null)
             {
-                return String.Empty;
+                return string.Empty;
             }
             return Collection.GetArrayPart(array, position);
         }

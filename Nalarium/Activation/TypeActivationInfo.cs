@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -13,33 +12,33 @@ namespace Nalarium.Activation
     {
         //- @Type -//
         /// <summary>
-        /// Gets or sets the type.
+        ///     Gets or sets the type.
         /// </summary>
         /// <value>The type.</value>
         public Type Type { get; set; }
 
         //- @ParameterArray -//
         /// <summary>
-        /// Gets or sets the parameter array.
+        ///     Gets or sets the parameter array.
         /// </summary>
         /// <value>The parameter array.</value>
-        public Object[] ParameterArray { get; set; }
+        public object[] ParameterArray { get; set; }
 
         //+
         //- @GetInfo -//
         /// <summary>
-        /// Gets the info.
+        ///     Gets the info.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="parameterArray">The parameter array.</param>
         /// <returns>Created TypeInfo object</returns>
-        public static TypeActivationInfo GetInfo(Type type, params Object[] parameterArray)
+        public static TypeActivationInfo GetInfo(Type type, params object[] parameterArray)
         {
             return new TypeActivationInfo
-                   {
-                       Type = type,
-                       ParameterArray = parameterArray
-                   };
+            {
+                Type = type,
+                ParameterArray = parameterArray
+            };
         }
     }
 }

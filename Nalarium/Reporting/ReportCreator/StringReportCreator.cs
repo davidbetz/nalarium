@@ -1,11 +1,9 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using Nalarium.Reporting.ReportCreator.Formatter;
 
 namespace Nalarium.Reporting.ReportCreator
@@ -14,13 +12,13 @@ namespace Nalarium.Reporting.ReportCreator
     {
         //- @CreateCore -//
         /// <summary>
-        /// Generates the report.
+        ///     Generates the report.
         /// </summary>
-        /// <param name="map">The map.</param>
+        /// <param name="content">The map.</param>
         /// <returns></returns>
-        protected override String CreateCore(Object content)
+        protected override string CreateCore(object content)
         {
-            var data = content as String;
+            var data = content as string;
             if (data != null)
             {
                 Write(data, FormatterType.Normal);

@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.ComponentModel;
 using System.Configuration;
 using Nalarium.Configuration.AppConfig.Parameter;
@@ -17,21 +15,15 @@ namespace Nalarium.Configuration.AppConfig
     {
         //- @Parameters -//
         [ConfigurationProperty("parameters")]
-        [ConfigurationCollection(typeof(ParameterCollection), AddItemName = "add")]
+        [ConfigurationCollection(typeof (ParameterCollection), AddItemName = "add")]
         public ParameterCollection Parameters
         {
-            get
-            {
-                return (ParameterCollection)this["parameters"];
-            }
-            set
-            {
-                this["parameters"] = value;
-            }
+            get { return (ParameterCollection) this["parameters"]; }
+            set { this["parameters"] = value; }
         }
 
         //- @GetParameterValue -//
-        public String GetParameterValue(String name)
+        public string GetParameterValue(string name)
         {
             return Parameters.GetValue(name);
         }

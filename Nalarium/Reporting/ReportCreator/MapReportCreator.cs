@@ -1,12 +1,9 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using Nalarium.Reporting.ReportCreator.Formatter;
 
 namespace Nalarium.Reporting.ReportCreator
@@ -15,7 +12,7 @@ namespace Nalarium.Reporting.ReportCreator
     {
         //- @CreateHeader -//
         /// <summary>
-        /// Creates the report header.
+        ///     Creates the report header.
         /// </summary>
         protected override void CreateHeader()
         {
@@ -25,18 +22,18 @@ namespace Nalarium.Reporting.ReportCreator
 
         //- #CreateCore -//
         /// <summary>
-        /// Generates the report.
+        ///     Generates the report.
         /// </summary>
         /// <param name="map">The map.</param>
         /// <returns></returns>
-        protected override String CreateCore(Object content)
+        protected override string CreateCore(object content)
         {
             var data = content as Map;
             if (data != null)
             {
                 Write("Item", FormatterType.SubHeading);
-                List<String> keyList = data.GetKeyList();
-                foreach (String key in keyList)
+                var keyList = data.GetKeyList();
+                foreach (var key in keyList)
                 {
                     Write(key + ": " + data[key], FormatterType.Normal);
                     Write(FormatterType.Break);

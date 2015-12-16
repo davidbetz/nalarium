@@ -1,11 +1,10 @@
 #region Copyright
 
-//+ Nalarium Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2008-2013
+
+//+ Copyright © David Betz 2008-2013
 
 #endregion
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,30 +14,32 @@ namespace Nalarium.Xml
 {
     public static class XPathProcessor
     {
-        public static XmlNode GetNode(String xml, String xpath)
+        public static XmlNode GetNode(string xml, string xpath)
         {
             var doc = new XmlDocument();
             doc.Load(new StringReader(xml));
             return GetNode(doc, xpath);
         }
-        public static XmlNode GetNode(XmlDocument doc, String xpath)
+
+        public static XmlNode GetNode(XmlDocument doc, string xpath)
         {
             if (doc != null && doc.DocumentElement != null)
             {
-                XmlNode node = doc.DocumentElement.SelectSingleNode(xpath);
+                var node = doc.DocumentElement.SelectSingleNode(xpath);
                 return node;
             }
             //+
             return null;
         }
 
-        public static List<XmlNode> GetAllNodeData(String xml, String xpath)
+        public static List<XmlNode> GetAllNodeData(string xml, string xpath)
         {
             var doc = new XmlDocument();
             doc.Load(new StringReader(xml));
             return GetAllNodeData(doc, xpath);
         }
-        public static List<XmlNode> GetAllNodeData(XmlDocument doc, String xpath)
+
+        public static List<XmlNode> GetAllNodeData(XmlDocument doc, string xpath)
         {
             var list = new List<XmlNode>();
             if (doc != null && doc.DocumentElement != null)
@@ -55,24 +56,25 @@ namespace Nalarium.Xml
             return null;
         }
 
-        public static String GetString(String xml, String xpath)
+        public static string GetString(string xml, string xpath)
         {
             var doc = new XmlDocument();
             doc.Load(new StringReader(xml));
             return GetString(doc, xpath);
         }
-        public static String GetString(XmlDocument doc, String xpath)
+
+        public static string GetString(XmlDocument doc, string xpath)
         {
             if (doc != null && doc.DocumentElement != null)
             {
-                XmlNode node = doc.DocumentElement.SelectSingleNode(xpath);
+                var node = doc.DocumentElement.SelectSingleNode(xpath);
                 if (node != null)
                 {
                     return node.InnerXml;
                 }
             }
             //+
-            return String.Empty;
+            return string.Empty;
         }
     }
 }

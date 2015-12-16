@@ -1,14 +1,11 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
 using System;
-using Nalarium.Configuration;
 using Nalarium.Configuration.AppConfig;
-using Nalarium.Configuration.AppConfig.Object;
 using Nalarium.Reporting;
 using Nalarium.Reporting.ReportCreator;
 
@@ -16,13 +13,13 @@ namespace Nalarium.Activation
 {
     public static class InjectionData
     {
-        private static readonly Object _lock = new Object();
+        private static readonly object _lock = new object();
 
         //+
-        private static readonly Type _int32Type = typeof(Int32);
-        private static readonly Type _doubleType = typeof(Double);
-        private static readonly Type _booleanType = typeof(Boolean);
-        private static readonly Type _stringType = typeof(String);
+        private static readonly Type _int32Type = typeof (int);
+        private static readonly Type _doubleType = typeof (double);
+        private static readonly Type _booleanType = typeof (bool);
+        private static readonly Type _stringType = typeof (string);
 
         //- $Map -//
 
@@ -30,7 +27,7 @@ namespace Nalarium.Activation
         //- @Ctor -//
         static InjectionData()
         {
-            Reporter reporter = ReportController.GetReporter(ObjectInjectionReportController.CoreInjectionDebugReporter);
+            var reporter = ReportController.GetReporter(ObjectInjectionReportController.CoreInjectionDebugReporter);
             if (reporter.Initialized)
             {
                 reporter.ReportCreator = new MapReportCreator();
@@ -42,7 +39,7 @@ namespace Nalarium.Activation
         private static StringObjectMap Map { get; set; }
 
         //- @GetObject -//
-        public static Object GetObject(String name)
+        public static object GetObject(string name)
         {
             lock (_lock)
             {
@@ -55,13 +52,13 @@ namespace Nalarium.Activation
             }
         }
 
-        public static T GetObject<T>(String name)
+        public static T GetObject<T>(string name)
         {
             lock (_lock)
             {
                 if (Map.ContainsKey(name) && Map[name] is T)
                 {
-                    return (T)Map[name];
+                    return (T) Map[name];
                 }
                 //+
                 return default(T);
@@ -73,16 +70,16 @@ namespace Nalarium.Activation
         private static void InitObjectMap()
         {
             Map = new StringObjectMap();
-            foreach (ObjectElement element in SystemSection.GetConfigSection().Objects)
+            foreach (var element in SystemSection.GetConfigSection().Objects)
             {
                 try
                 {
                     lock (_lock)
                     {
-                        Object obj = InjectedObjectActivator.Create(element.Type, FactoryCache.ObjectFactoryCache);
+                        var obj = InjectedObjectActivator.Create(element.Type, FactoryCache.ObjectFactoryCache);
                         if (obj != null)
                         {
-                            String name = GetShorterName(obj.GetType(), element.Name);
+                            var name = GetShorterName(obj.GetType(), element.Name);
                             Map.Add(name, obj);
                         }
                     }
@@ -104,11 +101,11 @@ namespace Nalarium.Activation
             //+ first send
             if (ObjectInjectionReportController.Reporter.Initialized)
             {
-                Boolean hasDataToSend = ObjectInjectionReportController.Reporter.HasDataToSend;
+                var hasDataToSend = ObjectInjectionReportController.Reporter.HasDataToSend;
                 if (hasDataToSend)
                 {
-                    String name = SystemSection.GetConfigSection().AppInfo.Name;
-                    if (!String.IsNullOrEmpty(name))
+                    var name = SystemSection.GetConfigSection().AppInfo.Name;
+                    if (!string.IsNullOrEmpty(name))
                     {
                         var map = new Map();
                         map.Add("App Name", name);
@@ -121,21 +118,21 @@ namespace Nalarium.Activation
         }
 
         //- $GetShorterName -//
-        private static string GetShorterName(Type objType, String name)
+        private static string GetShorterName(Type objType, string name)
         {
             if (objType == _int32Type)
             {
                 return "Int32";
             }
-            else if (objType == _doubleType)
+            if (objType == _doubleType)
             {
                 return "Double";
             }
-            else if (objType == _booleanType)
+            if (objType == _booleanType)
             {
                 return "Boolean";
             }
-            else if (objType == _stringType)
+            if (objType == _stringType)
             {
                 return "String";
             }

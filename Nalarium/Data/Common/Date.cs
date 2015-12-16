@@ -1,13 +1,11 @@
-﻿using System;
-using System.Resources;
-using Nalarium.Data.Cached;
+﻿using Nalarium.Data.Cached;
 using Nalarium.Globalization;
 using Nalarium.Properties;
 
 namespace Nalarium.Data.Common
 {
     /// <summary>
-    /// Provides quick access to month and day text.
+    ///     Provides quick access to month and day text.
     /// </summary>
     public static class Date
     {
@@ -16,15 +14,15 @@ namespace Nalarium.Data.Common
         static Date()
         {
             ResourceAccessor.RegisterResourceManager(AssemblyInfo.AssemblyName, new[]
-                                                                                {
-                                                                                    "en"
-                                                                                });
+            {
+                "en"
+            });
         }
 
         //+
         //- @GetMonthData -//
         /// <summary>
-        /// Gets the month data.
+        ///     Gets the month data.
         /// </summary>
         /// <returns>An Int32StringMap of the month data.</returns>
         public static Int32StringMap GetMonthData()
@@ -32,7 +30,7 @@ namespace Nalarium.Data.Common
             if (!CachedDataFactory.Exists(Info.Scope, Culture.TwoCharacterCultureCode, Info.Month))
             {
                 var map = new Int32StringMap();
-                ResourceManager resourceManager = ResourceAccessor.LoadResourceManager(AssemblyInfo.AssemblyName, Resource.ResourceManager);
+                var resourceManager = ResourceAccessor.LoadResourceManager(AssemblyInfo.AssemblyName, Resource.ResourceManager);
                 map.Add(1, resourceManager.GetString(Info.Month + "_" + Info.January));
                 map.Add(2, resourceManager.GetString(Info.Month + "_" + Info.February));
                 map.Add(3, resourceManager.GetString(Info.Month + "_" + Info.March));
@@ -54,7 +52,7 @@ namespace Nalarium.Data.Common
 
         //- @GetDayData -//
         /// <summary>
-        /// Gets the day data.
+        ///     Gets the day data.
         /// </summary>
         /// <returns>An Int32StringMap of the day data.</returns>
         public static Int32StringMap GetDayData()
@@ -62,7 +60,7 @@ namespace Nalarium.Data.Common
             if (!CachedDataFactory.Exists(Info.Scope, Culture.TwoCharacterCultureCode, Info.Day))
             {
                 var map = new Int32StringMap();
-                ResourceManager resourceManager = ResourceAccessor.LoadResourceManager(AssemblyInfo.AssemblyName, Resource.ResourceManager);
+                var resourceManager = ResourceAccessor.LoadResourceManager(AssemblyInfo.AssemblyName, Resource.ResourceManager);
                 map.Add(1, resourceManager.GetString(Info.Day + "_" + Info.Sunday));
                 map.Add(2, resourceManager.GetString(Info.Day + "_" + Info.Monday));
                 map.Add(3, resourceManager.GetString(Info.Day + "_" + Info.Tuesday));
@@ -81,31 +79,31 @@ namespace Nalarium.Data.Common
 
         private static class Info
         {
-            public const String Scope = "Date";
+            public const string Scope = "Date";
             //+
-            public const String Day = "Day";
-            public const String Month = "Month";
+            public const string Day = "Day";
+            public const string Month = "Month";
             //+
-            public const String January = "January";
-            public const String February = "February";
-            public const String March = "March";
-            public const String April = "April";
-            public const String May = "May";
-            public const String June = "June";
-            public const String July = "July";
-            public const String August = "August";
-            public const String September = "September";
-            public const String October = "October";
-            public const String November = "November";
-            public const String December = "December";
+            public const string January = "January";
+            public const string February = "February";
+            public const string March = "March";
+            public const string April = "April";
+            public const string May = "May";
+            public const string June = "June";
+            public const string July = "July";
+            public const string August = "August";
+            public const string September = "September";
+            public const string October = "October";
+            public const string November = "November";
+            public const string December = "December";
             //+
-            public const String Sunday = "Sunday";
-            public const String Monday = "Monday";
-            public const String Tuesday = "Tuesday";
-            public const String Wednesday = "Wednesday";
-            public const String Thursday = "Thursday";
-            public const String Friday = "Friday";
-            public const String Saturday = "Saturday";
+            public const string Sunday = "Sunday";
+            public const string Monday = "Monday";
+            public const string Tuesday = "Tuesday";
+            public const string Wednesday = "Wednesday";
+            public const string Thursday = "Thursday";
+            public const string Friday = "Friday";
+            public const string Saturday = "Saturday";
         }
 
         #endregion

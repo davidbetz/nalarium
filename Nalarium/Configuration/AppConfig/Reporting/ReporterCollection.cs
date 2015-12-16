@@ -1,7 +1,6 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -12,9 +11,9 @@ namespace Nalarium.Configuration.AppConfig.Reporting
     public class ReporterCollection : CommentableCollection<ReporterElement>
     {
         //- #GetElementKey -//
-        protected override System.Object GetElementKey(ConfigurationElement element)
+        protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((ReporterElement)element).Name;
+            return ((ReporterElement) element).Name;
         }
     }
 }

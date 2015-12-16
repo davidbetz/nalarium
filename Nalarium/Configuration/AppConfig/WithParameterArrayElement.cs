@@ -1,13 +1,11 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
 using System.Collections.Generic;
 using System.ComponentModel;
-using Nalarium.Configuration.AppConfig.Parameter;
 
 namespace Nalarium.Configuration.AppConfig
 {
@@ -18,10 +16,10 @@ namespace Nalarium.Configuration.AppConfig
 
         #region IProvidesParameters Members
 
-        public System.Object[] GetParameterArray()
+        public object[] GetParameterArray()
         {
             var parameterArray = new List<object>();
-            foreach (ParameterElement element in Parameters)
+            foreach (var element in Parameters)
             {
                 parameterArray.Add(element.Value);
             }
@@ -33,7 +31,7 @@ namespace Nalarium.Configuration.AppConfig
         public Map GetParameterMap()
         {
             var map = new Map();
-            foreach (ParameterElement element in Parameters)
+            foreach (var element in Parameters)
             {
                 map.Add(element.Name, element.Value);
             }

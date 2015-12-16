@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Configuration;
 
 namespace Nalarium.Configuration.AppConfig.Resource
@@ -14,44 +12,26 @@ namespace Nalarium.Configuration.AppConfig.Resource
     {
         //- @Path -//
         [ConfigurationProperty("resourcePath", IsRequired = true, IsKey = true)]
-        public String ResourcePath
+        public string ResourcePath
         {
-            get
-            {
-                return (String)this["resourcePath"];
-            }
-            set
-            {
-                this["resourcePath"] = value;
-            }
+            get { return (string) this["resourcePath"]; }
+            set { this["resourcePath"] = value; }
         }
 
         //- @AssemblyNamePattern -//
         [ConfigurationProperty("assemblyNamePattern", IsRequired = true)]
-        public String AssemblyNamePattern
+        public string AssemblyNamePattern
         {
-            get
-            {
-                return (String)this["assemblyNamePattern"];
-            }
-            set
-            {
-                this["assemblyNamePattern"] = value;
-            }
+            get { return (string) this["assemblyNamePattern"]; }
+            set { this["assemblyNamePattern"] = value; }
         }
 
         //- @Enabled -//
         [ConfigurationProperty("enable", DefaultValue = false)]
-        public Boolean Enabled
+        public bool Enabled
         {
-            get
-            {
-                return (Boolean)this["enable"];
-            }
-            set
-            {
-                this["enable"] = value;
-            }
+            get { return (bool) this["enable"]; }
+            set { this["enable"] = value; }
         }
     }
 }

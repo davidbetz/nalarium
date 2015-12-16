@@ -1,4 +1,10 @@
-﻿using System;
+﻿#region Copyright
+
+//+ Copyright © David Betz 2007-2015
+
+#endregion
+
+using System;
 using System.Diagnostics;
 
 namespace Nalarium
@@ -19,26 +25,26 @@ namespace Nalarium
 
         #endregion
 
-        private String _fullName;
-        private Boolean _hasChanged;
+        private string _fullName;
+        private bool _hasChanged;
         private Modifiers _modifier = Modifiers.Normal;
 
-        private Object _nonBasicValue;
-        private String _value;
-        private Boolean _valueBoolean;
-        private Byte _valueByte;
+        private object _nonBasicValue;
+        private string _value;
+        private bool _valueBoolean;
+        private byte _valueByte;
         private DateTime _valueDateTime;
-        private Double _valueDouble;
-        private Int32 _valueInt32;
-        private Int64 _valueInt64;
+        private double _valueDouble;
+        private int _valueInt32;
+        private long _valueInt64;
 
         private Value()
         {
         }
 
-        public Boolean IsBasicType { get; set; }
+        public bool IsBasicType { get; set; }
 
-        public String Scope
+        public string Scope
         {
             get
             {
@@ -50,7 +56,7 @@ namespace Nalarium
             }
         }
 
-        public String Name
+        public string Name
         {
             get
             {
@@ -62,34 +68,31 @@ namespace Nalarium
             }
         }
 
-        public Boolean IsScoped
+        public bool IsScoped
         {
-            get
-            {
-                return _fullName.Contains(":");
-            }
+            get { return _fullName.Contains(":"); }
         }
 
         public static Value Blank
         {
             get
             {
-                Value v = Create(String.Empty);
+                var v = Create(string.Empty);
                 v._modifier = Modifiers.IsDefault;
                 //+
                 return v;
             }
         }
 
-        public String AsString
+        public string AsString
         {
             get
             {
                 if ((_modifier & Modifiers.IsDefault) == Modifiers.IsDefault)
                 {
-                    return String.Empty;
+                    return string.Empty;
                 }
-                else if (!IsBasicType)
+                if (!IsBasicType)
                 {
                     return Parser.ParseString(_nonBasicValue);
                 }
@@ -104,7 +107,7 @@ namespace Nalarium
             }
         }
 
-        public Int32 AsInt32
+        public int AsInt32
         {
             get
             {
@@ -112,7 +115,7 @@ namespace Nalarium
                 {
                     return 0;
                 }
-                else if (!IsBasicType)
+                if (!IsBasicType)
                 {
                     return Parser.ParseInt32(_nonBasicValue);
                 }
@@ -133,7 +136,7 @@ namespace Nalarium
             }
         }
 
-        public Int64 AsInt64
+        public long AsInt64
         {
             get
             {
@@ -141,7 +144,7 @@ namespace Nalarium
                 {
                     return 0;
                 }
-                else if (!IsBasicType)
+                if (!IsBasicType)
                 {
                     return Parser.ParseInt64(_nonBasicValue);
                 }
@@ -162,7 +165,7 @@ namespace Nalarium
             }
         }
 
-        public Byte AsByte
+        public byte AsByte
         {
             get
             {
@@ -170,7 +173,7 @@ namespace Nalarium
                 {
                     return 0;
                 }
-                else if (!IsBasicType)
+                if (!IsBasicType)
                 {
                     return Parser.ParseByte(_nonBasicValue);
                 }
@@ -191,7 +194,7 @@ namespace Nalarium
             }
         }
 
-        public Boolean AsBoolean
+        public bool AsBoolean
         {
             get
             {
@@ -199,7 +202,7 @@ namespace Nalarium
                 {
                     return false;
                 }
-                else if (!IsBasicType)
+                if (!IsBasicType)
                 {
                     return Parser.ParseBoolean(_nonBasicValue);
                 }
@@ -220,7 +223,7 @@ namespace Nalarium
             }
         }
 
-        public Double AsDouble
+        public double AsDouble
         {
             get
             {
@@ -228,7 +231,7 @@ namespace Nalarium
                 {
                     return 0;
                 }
-                else if (!IsBasicType)
+                if (!IsBasicType)
                 {
                     return Parser.ParseDouble(_nonBasicValue);
                 }
@@ -257,7 +260,7 @@ namespace Nalarium
                 {
                     return default(DateTime);
                 }
-                else if (!IsBasicType)
+                if (!IsBasicType)
                 {
                     return Parser.ParseDateTime(_nonBasicValue);
                 }
@@ -278,7 +281,7 @@ namespace Nalarium
             }
         }
 
-        public Object AsObject
+        public object AsObject
         {
             get
             {
@@ -286,7 +289,7 @@ namespace Nalarium
                 {
                     return null;
                 }
-                else if (!IsBasicType)
+                if (!IsBasicType)
                 {
                     return _nonBasicValue;
                 }
@@ -300,14 +303,14 @@ namespace Nalarium
                     _nonBasicValue = value;
                     _hasChanged = true;
                 }
-                else if (value is Int16 ||
-                         value is Int32 ||
-                         value is Int64 ||
-                         value is String ||
-                         value is Double ||
-                         value is Single ||
-                         value is Byte ||
-                         value is Decimal)
+                else if (value is short ||
+                         value is int ||
+                         value is long ||
+                         value is string ||
+                         value is double ||
+                         value is float ||
+                         value is byte ||
+                         value is decimal)
                 {
                     if (value != null)
                     {
@@ -315,7 +318,7 @@ namespace Nalarium
                     }
                     else
                     {
-                        _value = String.Empty;
+                        _value = string.Empty;
                     }
                     _hasChanged = true;
                     _modifier = Modifiers.Normal;
@@ -335,65 +338,65 @@ namespace Nalarium
             {
                 if (_nonBasicValue == null)
                 {
-                    return typeof(object);
+                    return typeof (object);
                 }
                 return _nonBasicValue.GetType();
             }
         }
 
-        public static Value Create(Object value)
+        public static Value Create(object value)
         {
-            return Create(String.Empty, value, Modifiers.None);
+            return Create(string.Empty, value, Modifiers.None);
         }
 
-        public static Value Create(Object value, Modifiers mode)
+        public static Value Create(object value, Modifiers mode)
         {
-            return Create(String.Empty, value, mode);
+            return Create(string.Empty, value, mode);
         }
 
-        public static Value Create(String name, Object value)
+        public static Value Create(string name, object value)
         {
             return Create(name, value, Modifiers.None);
         }
 
-        public static Value Create(String name, Object value, Modifiers mode)
+        public static Value Create(string name, object value, Modifiers mode)
         {
-            String scope = String.Empty;
+            var scope = string.Empty;
             if (name.Contains(":"))
             {
-                string[] partArray = name.Split(':');
+                var partArray = name.Split(':');
                 scope = name.Split(':')[0];
                 name = name.Split(':')[1];
             }
             return Create(scope, name, value, mode);
         }
 
-        public static Value Create(String scope, String name, Object value, Modifiers mode)
+        public static Value Create(string scope, string name, object value, Modifiers mode)
         {
             if (scope.Contains(":") || name.Contains(":"))
             {
                 throw new InvalidOperationException(Resource.General_ColonNotAllowed);
             }
-            if (!String.IsNullOrEmpty(scope))
+            if (!string.IsNullOrEmpty(scope))
             {
                 name = scope + ":" + name;
             }
             var v = new Value
-                    {
-                        _fullName = name
-                    };
+            {
+                _fullName = name
+            };
             if ((mode & Modifiers.RetainRawValue) == Modifiers.RetainRawValue)
             {
                 v._nonBasicValue = value;
             }
-            else if (value is Int16 ||
-                     value is Int32 ||
-                     value is Int64 ||
-                     value is String ||
-                     value is Double ||
-                     value is Single ||
-                     value is Byte ||
-                     value is Decimal)
+            else if (value is short ||
+                     value is int ||
+                     value is long ||
+                     value is string ||
+                     value is double ||
+                     value is float ||
+                     value is byte ||
+                     value is decimal)
             {
                 v._value = value.ToString();
                 v.IsBasicType = true;
@@ -407,15 +410,17 @@ namespace Nalarium
             return v;
         }
 
-        public static Value Raw(Object value)
+        public static Value Raw(object value)
         {
             return Create(value, Modifiers.RetainRawValue);
         }
-        public static Value Raw(String name, Object value)
+
+        public static Value Raw(string name, object value)
         {
             return Create(name, value, Modifiers.RetainRawValue);
         }
-        public static Value Raw(String scope, String name, Object value)
+
+        public static Value Raw(string scope, string name, object value)
         {
             return Create(scope, name, value, Modifiers.RetainRawValue);
         }
@@ -425,9 +430,9 @@ namespace Nalarium
             return _value;
         }
 
-        public static Map<String, Value> ConvertObjectArrayToValueList(Object[] objectArray)
+        public static Map<string, Value> ConvertObjectArrayToValueList(object[] objectArray)
         {
-            var list = new Map<String, Value>();
+            var list = new Map<string, Value>();
             if (objectArray != null)
             {
                 if (objectArray.Length == 1)
@@ -442,12 +447,12 @@ namespace Nalarium
                         v = new Value();
                         v.AsObject = objectArray[0];
                         //+
-                        list.Add(String.Empty, v);
+                        list.Add(string.Empty, v);
                     }
                 }
                 else
                 {
-                    foreach (Object item in objectArray)
+                    foreach (var item in objectArray)
                     {
                         var v = item as Value;
                         if (v != null)
@@ -461,8 +466,8 @@ namespace Nalarium
                                 continue;
                             }
                             var itemAsValue = item as Value;
-                            String name;
-                            if (itemAsValue != null && !String.IsNullOrEmpty(itemAsValue.Name))
+                            string name;
+                            if (itemAsValue != null && !string.IsNullOrEmpty(itemAsValue.Name))
                             {
                                 name = itemAsValue.Name;
                             }

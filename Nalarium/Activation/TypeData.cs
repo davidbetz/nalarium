@@ -1,11 +1,9 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Reflection;
 
 namespace Nalarium.Activation
@@ -14,26 +12,26 @@ namespace Nalarium.Activation
     {
         //- @Name -//
         /// <summary>
-        /// Name of the type.
+        ///     Name of the type.
         /// </summary>
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         //- @AssemblyName -//
         /// <summary>
-        /// Strongly typed name of the assembly.
+        ///     Strongly typed name of the assembly.
         /// </summary>
         public AssemblyName AssemblyName { get; set; }
 
         //+
         //- @ToString -//
-        public override String ToString()
+        public override string ToString()
         {
             if (AssemblyName != null)
             {
                 return Name + ", " + AssemblyName;
             }
             //+
-            return String.Empty;
+            return string.Empty;
         }
     }
 }

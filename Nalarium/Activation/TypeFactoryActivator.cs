@@ -1,12 +1,10 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 //+
@@ -18,24 +16,24 @@ namespace Nalarium.Activation
     {
         //- @Create -//
         /// <summary>
-        /// Used to create a type factory from the type factory cache.
+        ///     Used to create a type factory from the type factory cache.
         /// </summary>
         /// <typeparam name="T">The type of the type factory.</typeparam>
         /// <param name="objectType">The name of the type to be created</param>
         /// <returns>A created type factory of type T; null if the appropriate type factory was not found</returns>
-        public static Type Create(String objectType)
+        public static Type Create(string objectType)
         {
             return Create(objectType, FactoryCache.TypeFactoryCache);
         }
 
         /// <summary>
-        /// Used to create a type factory from a specified factory map.
+        ///     Used to create a type factory from a specified factory map.
         /// </summary>
         /// <typeparam name="T">The type of the type factory.</typeparam>
         /// <param name="objectType">The name of the type to be created</param>
         /// <param name="objectFactoryMap">The specified factory map</param>
         /// <returns>A created type factory of type T; null if the appropriate type factory was not found</returns>
-        public static Type Create(String objectType, Map<String, IFactory> objectFactoryMap)
+        public static Type Create(string objectType, Map<string, IFactory> objectFactoryMap)
         {
             Type processor = null;
             if (objectType.Contains(","))
@@ -45,11 +43,11 @@ namespace Nalarium.Activation
             //+
             if (processor == null && objectFactoryMap != null)
             {
-                List<IFactory> processorFactoryList = objectFactoryMap.GetValueList();
-                foreach (IFactory factory in processorFactoryList)
+                var processorFactoryList = objectFactoryMap.GetValueList();
+                foreach (var factory in processorFactoryList)
                 {
                     objectType = objectType.ToLower(CultureInfo.CurrentCulture);
-                    processor = ((TypeFactory)factory).CreateType(objectType);
+                    processor = ((TypeFactory) factory).CreateType(objectType);
                     if (processor != null)
                     {
                         break;

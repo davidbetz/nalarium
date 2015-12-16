@@ -1,11 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Configuration;
 
 namespace Nalarium.Configuration.AppConfig.AppInfo
@@ -14,16 +12,10 @@ namespace Nalarium.Configuration.AppConfig.AppInfo
     {
         //- @Name -//
         [ConfigurationProperty("name", DefaultValue = "")]
-        public String Name
+        public string Name
         {
-            get
-            {
-                return (String)this["name"];
-            }
-            set
-            {
-                this["name"] = value;
-            }
+            get { return (string) this["name"]; }
+            set { this["name"] = value; }
         }
     }
 }

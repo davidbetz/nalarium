@@ -1,71 +1,59 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
-
-using System;
 
 namespace Nalarium.Data
 {
     /// <summary>
-    /// Represents a map that allows loading and saving of its data as query string-like data (i.e. A=B&C=D&E=F)
+    ///     Represents a map that allows loading and saving of its data as query string-like data (i.e. A=B&C=D&E=F)
     /// </summary>
     public class QueryStringStorableMap : SeriesStorableMap
     {
         //- @ScopeSplitter -//
-        public override String ScopeSplitter
+        public override string ScopeSplitter
         {
-            get
-            {
-                return "::";
-            }
+            get { return "::"; }
         }
 
         //- @KeyValueSplitter -//
-        public override Char KeyValueSplitter
+        public override char KeyValueSplitter
         {
-            get
-            {
-                return '=';
-            }
+            get { return '='; }
         }
 
         //- @ItemSplitter -//
-        public override Char ItemSplitter
+        public override char ItemSplitter
         {
-            get
-            {
-                return '&';
-            }
+            get { return '&'; }
         }
 
         //+
         //- #DecodeValue -//
-        protected override String DecodeValue(String data)
+        protected override string DecodeValue(string data)
         {
-            if (!String.IsNullOrEmpty(data))
+            if (!string.IsNullOrEmpty(data))
             {
                 data = data.Replace("&", "&#38;");
                 data = data.Replace("::", "&#58;&#58;");
                 return data.Replace("=", "&#61;");
             }
             //+
-            return String.Empty;
+            return string.Empty;
         }
 
         //- #EncodeValue -//
-        protected override String EncodeValue(String data)
+        protected override string EncodeValue(string data)
         {
-            if (!String.IsNullOrEmpty(data))
+            if (!string.IsNullOrEmpty(data))
             {
                 data = data.Replace("&#38;", "&");
                 data = data.Replace("&#58;&#58;", "::");
                 return data.Replace("&#61;", "=");
             }
             //+
-            return String.Empty;
+            return string.Empty;
         }
     }
 }

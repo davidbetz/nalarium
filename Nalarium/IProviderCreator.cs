@@ -6,9 +6,8 @@
 
 namespace Nalarium
 {
-    public enum StateMode
+    public interface IProviderCreator<T>
     {
-        None,
-        Persist
+        T Create(params string[] parameterArray);
     }
 }

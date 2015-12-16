@@ -1,6 +1,6 @@
 ﻿#region Copyright
 
-//+ Copyright © Jampad Technology, Inc. 2008-2015
+//+ Copyright © David Betz 2008-2015
 
 #endregion
 
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Nalarium.IO
 {
     /// <summary>
-    /// Compresses and decompresses.
+    ///     Compresses and decompresses.
     /// </summary>
     public static class Compression
     {
@@ -54,7 +54,7 @@ namespace Nalarium.IO
             using (var stream = new GZipStream(input, CompressionMode.Decompress))
             {
                 const int size = 4096;
-                byte[] buffer2 = new byte[size];
+                var buffer2 = new byte[size];
                 int count;
                 do
                 {

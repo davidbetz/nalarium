@@ -1,7 +1,6 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -11,23 +10,23 @@ using System;
 namespace Nalarium.Data.Cached
 {
     /// <summary>
-    /// Handles all common data caching.
+    ///     Handles all common data caching.
     /// </summary>
     public static class CachedDataFactory
     {
         //+ field
-        private static readonly Object _lock = new Object();
-        private static readonly Map<String, Object> cache = new Map<String, Object>();
+        private static readonly object _lock = new object();
+        private static readonly Map<string, object> cache = new Map<string, object>();
 
         //+
         //- @Exists -//
         /// <summary>
-        /// Checks to see if a particular set of data is cached.
+        ///     Checks to see if a particular set of data is cached.
         /// </summary>
         /// <param name="scope">Scope of data set.</param>
         /// <param name="name">Name of data set.</param>
         /// <returns></returns>
-        public static Boolean Exists(String scope, String name)
+        public static bool Exists(string scope, string name)
         {
             lock (_lock)
             {
@@ -36,13 +35,13 @@ namespace Nalarium.Data.Cached
         }
 
         /// <summary>
-        /// Checks to see if a particular set of data is cached.
+        ///     Checks to see if a particular set of data is cached.
         /// </summary>
         /// <param name="scope">Scope of data set.</param>
         /// <param name="culture">Two letter culture code.</param>
         /// <param name="name">Name of data set.</param>
         /// <returns></returns>
-        public static Boolean Exists(String scope, String culture, String name)
+        public static bool Exists(string scope, string culture, string name)
         {
             lock (_lock)
             {
@@ -52,20 +51,20 @@ namespace Nalarium.Data.Cached
 
         //- @Register -//
         /// <summary>
-        /// Registers a particular set of data is cached.
+        ///     Registers a particular set of data is cached.
         /// </summary>
         /// <typeparam name="T">Type of data.</typeparam>
         /// <param name="scope">Scope of data.</param>
         /// <param name="name">Name of data.</param>
         /// <param name="data">Data to cache.</param>
         /// <returns>True if added, false if it was already present.</returns>
-        public static Boolean Register<T>(String scope, String name, T data)
+        public static bool Register<T>(string scope, string name, T data)
         {
             return Register(ScopeTranscriber.Construct(scope, name), data);
         }
 
         /// <summary>
-        /// Registers a particular set of data is cached.
+        ///     Registers a particular set of data is cached.
         /// </summary>
         /// <typeparam name="T">Type of data.</typeparam>
         /// <param name="scope">Scope of data.</param>
@@ -73,13 +72,13 @@ namespace Nalarium.Data.Cached
         /// <param name="name">Name of data.</param>
         /// <param name="data">Data to cache.</param>
         /// <returns>True if added, false if it was already present.</returns>
-        public static Boolean Register<T>(String scope, String culture, String name, T data)
+        public static bool Register<T>(string scope, string culture, string name, T data)
         {
             return Register(ScopeTranscriber.Construct(scope, culture, name), data);
         }
 
         /// <summary>
-        /// Registers a particular set of data is cached.
+        ///     Registers a particular set of data is cached.
         /// </summary>
         /// <typeparam name="T">Type of data.</typeparam>
         /// <param name="scope">Scope of data.</param>
@@ -87,13 +86,13 @@ namespace Nalarium.Data.Cached
         /// <param name="data">Data to cache.</param>
         /// <param name="runner">Delegate to run to create data.</param>
         /// <returns>True if added, false if it was already present.</returns>
-        public static Boolean Register<T>(String scope, String name, Func<T> runner)
+        public static bool Register<T>(string scope, string name, Func<T> runner)
         {
             return Register(ScopeTranscriber.Construct(scope, name), runner);
         }
 
         /// <summary>
-        /// Registers a particular set of data is cached.
+        ///     Registers a particular set of data is cached.
         /// </summary>
         /// <typeparam name="T">Type of data.</typeparam>
         /// <param name="scope">Scope of data.</param>
@@ -102,18 +101,18 @@ namespace Nalarium.Data.Cached
         /// <param name="data">Data to cache.</param>
         /// <param name="runner">Delegate to run to create data.</param>
         /// <returns>True if added, false if it was already present.</returns>
-        public static Boolean Register<T>(String scope, String culture, String name, Func<T> runner)
+        public static bool Register<T>(string scope, string culture, string name, Func<T> runner)
         {
             return Register(ScopeTranscriber.Construct(scope, culture, name), runner);
         }
 
         //- $Register -//
-        private static Boolean Register<T>(String key, Func<T> runner)
+        private static bool Register<T>(string key, Func<T> runner)
         {
             return Register(key, runner());
         }
 
-        private static Boolean Register<T>(String key, T data)
+        private static bool Register<T>(string key, T data)
         {
             lock (_lock)
             {
@@ -129,13 +128,13 @@ namespace Nalarium.Data.Cached
 
         //- @Get -//
         /// <summary>
-        /// Gets a set of data from cache by scope and name.
+        ///     Gets a set of data from cache by scope and name.
         /// </summary>
         /// <typeparam name="T">Type of data.</typeparam>
         /// <param name="scope">Scope of data.</param>
         /// <param name="name">Name of data.</param>
         /// <returns>Cached data or null if not present.</returns>
-        public static T Get<T>(String scope, String name)
+        public static T Get<T>(string scope, string name)
         {
             lock (_lock)
             {
@@ -144,14 +143,14 @@ namespace Nalarium.Data.Cached
         }
 
         /// <summary>
-        /// Gets a set of data from cache by scope and name.
+        ///     Gets a set of data from cache by scope and name.
         /// </summary>
         /// <typeparam name="T">Type of data.</typeparam>
         /// <param name="scope">Scope of data.</param>
         /// <param name="culture">Two letter culture code.</param>
         /// <param name="name">Name of data.</param>
         /// <returns>Cached data or null if not present.</returns>
-        public static T Get<T>(String scope, String culture, String name)
+        public static T Get<T>(string scope, string culture, string name)
         {
             lock (_lock)
             {

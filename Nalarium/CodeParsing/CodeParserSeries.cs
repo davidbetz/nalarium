@@ -1,7 +1,6 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -16,13 +15,13 @@ using Nalarium.Properties;
 namespace Nalarium.CodeParsing
 {
     /// <summary>
-    /// Holds a series of code parsers to be processed in order.
+    ///     Holds a series of code parsers to be processed in order.
     /// </summary>
     public class CodeParserSeries
     {
         //- @CodeParserId -//
         /// <summary>
-        /// Initializes a new instance of the <see cref="CodeParserSeries"/> class.
+        ///     Initializes a new instance of the <see cref="CodeParserSeries" /> class.
         /// </summary>
         public CodeParserSeries()
         {
@@ -30,14 +29,14 @@ namespace Nalarium.CodeParsing
         }
 
         /// <summary>
-        /// Gets or sets the code parser id.
+        ///     Gets or sets the code parser id.
         /// </summary>
         /// <value>The code parser id.</value>
-        public String CodeParserId { get; set; }
+        public string CodeParserId { get; set; }
 
         //- @CodeParserQueue -//
         /// <summary>
-        /// Gets or sets the code parser list.
+        ///     Gets or sets the code parser list.
         /// </summary>
         /// <value>The code parser list.</value>
         public List<CodeParser> CodeParserList { get; set; }
@@ -48,7 +47,7 @@ namespace Nalarium.CodeParsing
         //+
         //- @Add -//
         /// <summary>
-        /// Adds the specified code parser.
+        ///     Adds the specified code parser.
         /// </summary>
         /// <param name="codeParser">The code parser.</param>
         public void Add(CodeParser codeParser)
@@ -58,33 +57,30 @@ namespace Nalarium.CodeParsing
 
         //- #ParseCode -//
         /// <summary>
-        /// Parses the code.
+        ///     Parses the code.
         /// </summary>
         /// <param name="content">The content.</param>
         /// <returns></returns>
-        public String ParseCode(String content)
+        public string ParseCode(string content)
         {
-            if (String.IsNullOrEmpty(CodeParserId))
+            if (string.IsNullOrEmpty(CodeParserId))
             {
                 throw new ArgumentNullException(ResourceAccessor.GetString("CodeParser_CodeParserIdRequired", AssemblyInfo.AssemblyName, Resource.ResourceManager));
             }
-            String matchPattern = @"{" + CodeParserId + @"{(?<type>[_\-a-z0-9]+){(?<code>[ |;,_\-a-z0-9]+)}}}";
-            MatchCollection matchCollection = Regex.Matches(content, matchPattern, RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+            var matchPattern = @"{" + CodeParserId + @"{(?<type>[_\-a-z0-9]+){(?<code>[ |;,_\-a-z0-9]+)}}}";
+            var matchCollection = Regex.Matches(content, matchPattern, RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
             foreach (Match match in matchCollection)
             {
-                Group typeGroup = match.Groups["type"];
-                Group codeGroup = match.Groups["code"];
+                var typeGroup = match.Groups["type"];
+                var codeGroup = match.Groups["code"];
                 //+
-                CodeParser codeParser = FindCodeParser(typeGroup.Value);
-                if (codeParser != null)
+                var codeParser = FindCodeParser(typeGroup.Value);
+                var parsed = codeParser?.ParseCode(codeGroup.Value);
+                if (parsed != null)
                 {
-                    String parsed = codeParser.ParseCode(codeGroup.Value);
-                    if (parsed != null)
-                    {
-                        String replacementPattern = String.Format(CultureInfo.CurrentCulture, "{{{0}{{{1}{{{2}}}}}}}", CodeParserId, typeGroup.Value, codeGroup.Value);
-                        replacementPattern = replacementPattern.Replace("|", "\\|");
-                        content = Regex.Replace(content, replacementPattern, parsed, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
-                    }
+                    var replacementPattern = string.Format(CultureInfo.CurrentCulture, "{{{0}{{{1}{{{2}}}}}}}", CodeParserId, typeGroup.Value, codeGroup.Value);
+                    replacementPattern = replacementPattern.Replace("|", "\\|");
+                    content = Regex.Replace(content, replacementPattern, parsed, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
                 }
             }
             //+
@@ -92,7 +88,7 @@ namespace Nalarium.CodeParsing
         }
 
         //- $FindCodeParser -//
-        private CodeParser FindCodeParser(String codeParserId)
+        private CodeParser FindCodeParser(string codeParserId)
         {
             return CodeParserList.FirstOrDefault(p => p.Id == codeParserId);
         }

@@ -1,49 +1,44 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.ComponentModel;
 using System.Configuration;
 
 namespace Nalarium.Configuration.AppConfig
 {
     /// <summary>
-    /// Provides access to the configuration section.
+    ///     Provides access to the configuration section.
     /// </summary>
     public class ConfigurationSection : System.Configuration.ConfigurationSection
     {
         //- @Xmlns -//
         /// <summary>
-        /// Provides the ability to provide an XML namespace.
+        ///     Provides the ability to provide an XML namespace.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ConfigurationProperty("xmlns")]
-        public String Xmlns
+        public string Xmlns
         {
-            get
-            {
-                return (String)this["xmlns"];
-            }
+            get { return (string) this["xmlns"]; }
         }
 
         //+
         //- @GetConfigSection -//
         /// <summary>
-        /// Gets the config section.
+        ///     Gets the config section.
         /// </summary>
         /// <returns>Configuration section</returns>
-        public static T GetConfigSection<T>(String location) where T : ConfigurationSection, new()
+        public static T GetConfigSection<T>(string location) where T : ConfigurationSection, new()
         {
-            if (String.IsNullOrEmpty(location))
+            if (string.IsNullOrEmpty(location))
             {
                 return new T();
             }
             //+
-            return (T)ConfigurationManager.GetSection(location) ?? new T();
+            return (T) ConfigurationManager.GetSection(location) ?? new T();
         }
     }
 }

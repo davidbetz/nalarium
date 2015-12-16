@@ -1,27 +1,25 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
 using System.Collections;
 
 namespace Nalarium
 {
     /// <summary>
-    /// Provides testing and interaction of collections.
+    ///     Provides testing and interaction of collections.
     /// </summary>
     public static class Collection
     {
         //- @IsNullOrEmpty -//
         /// <summary>
-        /// Determines whether a list is null or empty.
+        ///     Determines whether a list is null or empty.
         /// </summary>
         /// <param name="list">The list.</param>
         /// <returns>true if the list is null or empty; otherwise, false.</returns>
-        public static Boolean IsNullOrEmpty(IList list)
+        public static bool IsNullOrEmpty(IList list)
         {
             if (list == null || list.Count == 0)
             {
@@ -32,11 +30,11 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Determines whether a collection is null or empty.
+        ///     Determines whether a collection is null or empty.
         /// </summary>
         /// <param name="list">The collection.</param>
         /// <returns>true if the collection is null or empty; otherwise, false.</returns>
-        public static Boolean IsNullOrEmpty(ICollection collection)
+        public static bool IsNullOrEmpty(ICollection collection)
         {
             if (collection == null || collection.Count == 0)
             {
@@ -47,12 +45,12 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Determines whether an array is null or empty.
+        ///     Determines whether an array is null or empty.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="array">The array.</param>
         /// <returns>true if the array is null or empty; otherwise, false.</returns>
-        public static Boolean IsNullOrEmpty<T>(T[] array)
+        public static bool IsNullOrEmpty<T>(T[] array)
         {
             if (array == null || array.Length == 0)
             {
@@ -64,12 +62,12 @@ namespace Nalarium
 
         //- @IsNullOrTooSmall -//
         /// <summary>
-        /// Determines whether a list is null or too small,.
+        ///     Determines whether a list is null or too small,.
         /// </summary>
         /// <param name="list">The list.</param>
         /// <param name="minimum">The minimum.</param>
         /// <returns>true if the list is null or too small; otherwise, false.</returns>
-        public static Boolean IsNullOrTooSmall(IList list, Int32 minimum)
+        public static bool IsNullOrTooSmall(IList list, int minimum)
         {
             if (list == null || list.Count < minimum)
             {
@@ -80,12 +78,12 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Determines whether a collection is null or too small,.
+        ///     Determines whether a collection is null or too small,.
         /// </summary>
         /// <param name="list">The collection.</param>
         /// <param name="minimum">The minimum.</param>
         /// <returns>true if the collection is null or too small; otherwise, false.</returns>
-        public static Boolean IsNullOrTooSmall(ICollection collection, Int32 minimum)
+        public static bool IsNullOrTooSmall(ICollection collection, int minimum)
         {
             if (collection == null || collection.Count < minimum)
             {
@@ -96,13 +94,13 @@ namespace Nalarium
         }
 
         /// <summary>
-        /// Determines whether an array is null or too small,.
+        ///     Determines whether an array is null or too small,.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="array">The array.</param>
         /// <param name="minimum">The minimum.</param>
         /// <returns>true if the collection is null or too small; otherwise, false.</returns>
-        public static Boolean IsNullOrTooSmall<T>(T[] array, Int32 minimum)
+        public static bool IsNullOrTooSmall<T>(T[] array, int minimum)
         {
             if (array == null || array.Length < minimum)
             {
@@ -114,7 +112,7 @@ namespace Nalarium
 
         //- @GetArrayPart -//
         /// <summary>
-        /// Gets a particular part of an array.
+        ///     Gets a particular part of an array.
         /// </summary>
         /// <param name="position">The position.</param>
         /// <returns>The requested part of the URL</returns>

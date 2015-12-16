@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -18,13 +17,13 @@ namespace Nalarium.ExceptionHandling.Retry
 {
     //+
     /// <summary>
-    /// Enabled the use of exception retries.
+    ///     Enabled the use of exception retries.
     /// </summary>
     public static class ExceptionRetry
     {
         //- @TryWithRetryConstraints -//
         /// <summary>
-        /// Tries the exception with retry constraints.
+        ///     Tries the exception with retry constraints.
         /// </summary>
         /// <param name="retryCount">The retry count.</param>
         /// <param name="sleepTime">The sleep time.</param>
@@ -32,13 +31,13 @@ namespace Nalarium.ExceptionHandling.Retry
         /// <param name="tryBlock">The try block.</param>
         /// <param name="catchBlock">The catch block.</param>
         public static void TryWithRetryConstraints(
-            Int32 retryCount,
-            Int32 sleepTime,
+            int retryCount,
+            int sleepTime,
             ExceptionConstraintCollection constraints,
             ExceptionTryBlock tryBlock,
             ExceptionCatchBlock catchBlock)
         {
-            Int32 n = 0;
+            var n = 0;
             while (true)
             {
                 try
@@ -49,16 +48,16 @@ namespace Nalarium.ExceptionHandling.Retry
                 {
                     if (++n < retryCount)
                     {
-                        foreach (Object constraint in constraints)
+                        foreach (var constraint in constraints)
                         {
                             if (constraint is Type)
                             {
-                                Boolean isException = false;
-                                if (((Type)constraint).Name == "Exception")
+                                var isException = false;
+                                if (((Type) constraint).Name == "Exception")
                                 {
                                     isException = true;
                                 }
-                                Type parent = ((Type)constraint).BaseType;
+                                var parent = ((Type) constraint).BaseType;
                                 while (!isException && parent.Name != "Object")
                                 {
                                     if (parent.Name == "Exception")
@@ -69,7 +68,7 @@ namespace Nalarium.ExceptionHandling.Retry
                                 }
                                 if (isException)
                                 {
-                                    Exception thrownException = ex;
+                                    var thrownException = ex;
                                     while (thrownException != null)
                                     {
                                         if (thrownException.GetType().ToString() == constraint.ToString())
@@ -83,9 +82,9 @@ namespace Nalarium.ExceptionHandling.Retry
                                     }
                                 }
                             }
-                            else if (constraint is String)
+                            else if (constraint is string)
                             {
-                                if (ex.Message.Contains((String)constraint))
+                                if (ex.Message.Contains((string) constraint))
                                 {
                                     Thread.Sleep(sleepTime);
                                     //+
@@ -100,7 +99,6 @@ namespace Nalarium.ExceptionHandling.Retry
                     else
                     {
                         catchBlock.DynamicInvoke(ex);
-                        break;
                     }
                 }
                 break;

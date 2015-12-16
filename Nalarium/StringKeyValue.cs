@@ -1,22 +1,19 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
-
 namespace Nalarium
 {
-    public class StringKeyValue : KeyValue<String, String>
+    public class StringKeyValue : KeyValue<string, string>
     {
         //- @Ctor -//
         public StringKeyValue()
         {
         }
 
-        public StringKeyValue(String key, String value)
+        public StringKeyValue(string key, string value)
         {
             Key = key;
             Value = value;

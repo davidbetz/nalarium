@@ -1,12 +1,9 @@
 ﻿#region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using Nalarium.Activation;
 
@@ -17,7 +14,7 @@ namespace Nalarium.Reporting.Sender
     internal static class SenderActivator
     {
         //- $Create -//
-        internal static Sender Create(String processorType, Map<String, SenderFactory> processorFactoryMap)
+        internal static Sender Create(string processorType, Map<string, SenderFactory> processorFactoryMap)
         {
             Sender processor = null;
             if (processorType.Contains(","))
@@ -27,8 +24,8 @@ namespace Nalarium.Reporting.Sender
             //+
             if (processor == null && processorFactoryMap != null)
             {
-                List<SenderFactory> processorFactoryList = processorFactoryMap.GetValueList();
-                foreach (SenderFactory factory in processorFactoryList)
+                var processorFactoryList = processorFactoryMap.GetValueList();
+                foreach (var factory in processorFactoryList)
                 {
                     processorType = processorType.ToLower(CultureInfo.CurrentCulture);
                     processor = factory.Create(processorType);

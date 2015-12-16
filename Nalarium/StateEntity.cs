@@ -5,7 +5,7 @@ namespace Nalarium
     public class StateEntity
     {
         //- @SerializerName -//
-        public String SerializerName { get; set; }
+        public string SerializerName { get; set; }
 
         //- @StateFormatType -//
         public Type StateFormatType { get; set; }

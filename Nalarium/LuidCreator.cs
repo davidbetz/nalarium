@@ -1,6 +1,6 @@
 #region Copyright
 
-//+ Copyright © Jampad Technology, Inc. 2007-2015
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -10,13 +10,13 @@ using System.Text;
 namespace Nalarium
 {
     /// <summary>
-    /// Creates locally unique identifiers
+    ///     Creates locally unique identifiers
     /// </summary>
     public static class LuidCreator
     {
         //- @GetNewLuid -//
         /// <summary>
-        /// Gets a new locally unique identifier as a string
+        ///     Gets a new locally unique identifier as a string
         /// </summary>
         /// <value>The new locally unique identifier as a string</value>
         public static string GetNewLuid()
@@ -26,7 +26,7 @@ namespace Nalarium
 
         //- @GetNewLuidByteArray -//
         /// <summary>
-        /// Gets a new locally unique identifier as a byte array
+        ///     Gets a new locally unique identifier as a byte array
         /// </summary>
         /// <value>The new locally unique identifier as a byte array</value>
         public static byte[] GetNewLuidByteArray()

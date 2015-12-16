@@ -1,7 +1,6 @@
 #region Copyright
 
-//+ Jampad Technology, Inc. 2007-2013 Pro 3.0 - Core Module
-//+ Copyright © Jampad Technology, Inc. 2007-2013
+//+ Copyright © David Betz 2007-2015
 
 #endregion
 
@@ -15,14 +14,14 @@ namespace Nalarium.Activation.Emit
 
         //- @Value -//
         /// <summary>
-        /// Property value.
+        ///     Property value.
         /// </summary>
         public T Value { get; set; }
 
         //+
         //- @Type -//
         /// <summary>
-        /// Property type.
+        ///     Property type.
         /// </summary>
         public override Type Type
         {
@@ -30,7 +29,7 @@ namespace Nalarium.Activation.Emit
             {
                 if (_type == null)
                 {
-                    _type = typeof(T);
+                    _type = typeof (T);
                 }
                 //+
                 return _type;
@@ -48,7 +47,7 @@ namespace Nalarium.Activation.Emit
         }
     }
 
-    public class PropertyData : PropertyData<Object>
+    public class PropertyData : PropertyData<object>
     {
     }
 }
