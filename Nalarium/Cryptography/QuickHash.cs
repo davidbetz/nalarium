@@ -1,6 +1,6 @@
 #region Copyright
 
-//+ Copyright © David Betz 2007-2015
+//+ Copyright © David Betz 2007-2016
 
 #endregion
 
@@ -11,35 +11,52 @@ using System.Text;
 
 namespace Nalarium.Cryptography
 {
-    /// <summary>
-    ///     Used to create quick MD5 hashes.
-    /// </summary>
     public static class QuickHash
     {
-        public static string Hash(string text)
+        public static string Hash(string text, HashMethod method = HashMethod.MD5)
         {
-            using (var md5 = MD5.Create())
+            switch (method)
             {
-                return BitConverter.ToString(md5.ComputeHash(Encoding.UTF8.GetBytes(text))).Replace("-", "");
+                case HashMethod.MD5:
+                    using (var md5 = MD5.Create())
+                        return BitConverter.ToString(md5.ComputeHash(Encoding.UTF8.GetBytes(text))).Replace("-", "");
+                case HashMethod.SHA256:
+                    using (var sha = new SHA256Managed())
+                        return BitConverter.ToString(sha.ComputeHash(Encoding.UTF8.GetBytes(text))).Replace("-", "");
+                default:
+                    return string.Empty;
             }
         }
 
-        public static string HashFile(string filename)
+        public static string HashFile(string filename, HashMethod method = HashMethod.MD5)
         {
-            using (var md5 = MD5.Create())
+            switch (method)
             {
-                using (var stream = File.OpenRead(filename))
-                {
-                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
-                }
+                case HashMethod.MD5:
+                    using (var md5 = MD5.Create())
+                    using (var stream = File.OpenRead(filename))
+                        return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
+                case HashMethod.SHA256:
+                    using (var sha = new SHA256Managed())
+                    using (var stream = File.OpenRead(filename))
+                        return BitConverter.ToString(sha.ComputeHash(stream)).Replace("-", "");
+                default:
+                    return string.Empty;
             }
         }
 
-        public static string Hash(byte[] buffer)
+        public static string Hash(byte[] buffer, HashMethod method = HashMethod.MD5)
         {
-            using (var md5 = MD5.Create())
+            switch (method)
             {
-                return BitConverter.ToString(md5.ComputeHash(buffer)).Replace("-", "");
+                case HashMethod.MD5:
+                    using (var md5 = MD5.Create())
+                        return BitConverter.ToString(md5.ComputeHash(buffer)).Replace("-", "");
+                case HashMethod.SHA256:
+                    using (var sha = new SHA256Managed())
+                        return BitConverter.ToString(sha.ComputeHash(buffer)).Replace("-", "");
+                default:
+                    return string.Empty;
             }
         }
     }

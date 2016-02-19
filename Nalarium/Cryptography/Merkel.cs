@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿#region Copyright
+
+//+ Copyright © David Betz 2007-2016
+
+#endregion
+
+using System.Linq;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System;
-using System.Text;
-using System.IO;
 
 namespace Nalarium.Cryptography
 {

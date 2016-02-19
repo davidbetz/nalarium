@@ -1,6 +1,6 @@
 #region Copyright
 
-//+ Copyright © David Betz 2007-2015
+//+ Copyright © David Betz 2007-2016
 
 #endregion
 
