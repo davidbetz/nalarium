@@ -19,8 +19,8 @@ namespace Nalarium.Cryptography
     {
         public static string Encrypt(string text, SymmetricMethod method = SymmetricMethod.Rijndael)
         {
-            var iv = Convert.FromBase64String(ConfigAccessor.ApplicationSettings("RijndaelIV"));
-            var key = Convert.FromBase64String(ConfigAccessor.ApplicationSettings("RijndaelKey"));
+            var iv = Convert.FromBase64String(ConfigAccessor.ApplicationSettings("SymmetricIV"));
+            var key = Convert.FromBase64String(ConfigAccessor.ApplicationSettings("SymmetricKey"));
             //+
             return Encrypt(text, iv, key, method);
         }
@@ -60,8 +60,8 @@ namespace Nalarium.Cryptography
 
         public static string Decrypt(string text, SymmetricMethod method = SymmetricMethod.Rijndael)
         {
-            var iv = Convert.FromBase64String(ConfigAccessor.ApplicationSettings("RijndaelIV"));
-            var key = Convert.FromBase64String(ConfigAccessor.ApplicationSettings("RijndaelKey"));
+            var iv = Convert.FromBase64String(ConfigAccessor.ApplicationSettings("SymmetricIV"));
+            var key = Convert.FromBase64String(ConfigAccessor.ApplicationSettings("SymmetricKey"));
             //+
             return Decrypt(text, iv, key, method);
         }
