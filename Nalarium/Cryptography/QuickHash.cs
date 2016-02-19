@@ -15,49 +15,74 @@ namespace Nalarium.Cryptography
     {
         public static string Hash(string text, HashMethod method = HashMethod.MD5)
         {
+            byte[] hash;
             switch (method)
             {
                 case HashMethod.MD5:
                     using (var md5 = MD5.Create())
-                        return BitConverter.ToString(md5.ComputeHash(Encoding.UTF8.GetBytes(text))).Replace("-", "");
+                        hash = md5.ComputeHash(Encoding.UTF8.GetBytes(text));
+                    break;
                 case HashMethod.SHA256:
                     using (var sha = new SHA256Managed())
-                        return BitConverter.ToString(sha.ComputeHash(Encoding.UTF8.GetBytes(text))).Replace("-", "");
+                        hash = sha.ComputeHash(Encoding.UTF8.GetBytes(text));
+                    break;
+                case HashMethod.DoubleSHA256:
+                    using (var sha = new SHA256Managed())
+                        hash = sha.ComputeHash(sha.ComputeHash(Encoding.UTF8.GetBytes(text)));
+                    break;
                 default:
                     return string.Empty;
             }
+            return BitConverter.ToString(hash).Replace("-", "");
         }
 
         public static string HashFile(string filename, HashMethod method = HashMethod.MD5)
         {
+            byte[] hash;
             switch (method)
             {
                 case HashMethod.MD5:
                     using (var md5 = MD5.Create())
                     using (var stream = File.OpenRead(filename))
-                        return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
+                        hash = md5.ComputeHash(stream);
+                    break;
                 case HashMethod.SHA256:
                     using (var sha = new SHA256Managed())
                     using (var stream = File.OpenRead(filename))
-                        return BitConverter.ToString(sha.ComputeHash(stream)).Replace("-", "");
+                        hash = sha.ComputeHash(stream);
+                    break;
+                case HashMethod.DoubleSHA256:
+                    using (var sha = new SHA256Managed())
+                    using (var stream = File.OpenRead(filename))
+                        hash = sha.ComputeHash(sha.ComputeHash(stream));
+                    break;
                 default:
                     return string.Empty;
             }
+            return BitConverter.ToString(hash).Replace("-", "");
         }
 
         public static string Hash(byte[] buffer, HashMethod method = HashMethod.MD5)
         {
+            byte[] hash;
             switch (method)
             {
                 case HashMethod.MD5:
                     using (var md5 = MD5.Create())
-                        return BitConverter.ToString(md5.ComputeHash(buffer)).Replace("-", "");
+                        hash = md5.ComputeHash(buffer);
+                    break;
                 case HashMethod.SHA256:
                     using (var sha = new SHA256Managed())
-                        return BitConverter.ToString(sha.ComputeHash(buffer)).Replace("-", "");
+                        hash = sha.ComputeHash(buffer);
+                    break;
+                case HashMethod.DoubleSHA256:
+                    using (var sha = new SHA256Managed())
+                        hash = sha.ComputeHash(sha.ComputeHash(buffer));
+                    break;
                 default:
                     return string.Empty;
             }
+            return BitConverter.ToString(hash).Replace("-", "");
         }
     }
 }

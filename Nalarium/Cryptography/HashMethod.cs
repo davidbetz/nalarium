@@ -9,6 +9,7 @@ namespace Nalarium.Cryptography
     public enum HashMethod
     {
         MD5 = 0,
-        SHA256
+        SHA256,
+        DoubleSHA256
     }
 }
