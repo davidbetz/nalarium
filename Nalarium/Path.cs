@@ -107,9 +107,9 @@ namespace Nalarium
             {
                 return string.Empty;
             }
-            if (!path.Contains(":"))
+            if (path.Contains(":"))
             {
-                return string.Empty;
+                path = path.Substring(path.IndexOf(":") + 1);
             }
             if (path.Length < 3)
             {
