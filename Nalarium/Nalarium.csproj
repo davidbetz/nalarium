@@ -69,6 +69,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -86,6 +87,7 @@
     <Compile Include="Configuration\AppConfig\ConfigurationSection.cs" />
     <Compile Include="Cryptography\HashMethod.cs" />
     <Compile Include="Cryptography\Merkel.cs" />
+    <Compile Include="Cryptography\Random.cs" />
     <Compile Include="Cryptography\SymmetricMethod.cs" />
     <Compile Include="Cryptography\Symmetric.cs" />
     <Compile Include="Cryptography\Rijndael.cs" />

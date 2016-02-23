@@ -22,8 +22,16 @@ namespace Nalarium.Cryptography
                     using (var md5 = MD5.Create())
                         hash = md5.ComputeHash(Encoding.UTF8.GetBytes(text));
                     break;
+                case HashMethod.SHA1:
+                    using (var sha = new SHA1Managed())
+                        hash = sha.ComputeHash(Encoding.UTF8.GetBytes(text));
+                    break;
                 case HashMethod.SHA256:
                     using (var sha = new SHA256Managed())
+                        hash = sha.ComputeHash(Encoding.UTF8.GetBytes(text));
+                    break;
+                case HashMethod.SHA512:
+                    using (var sha = new SHA512Managed())
                         hash = sha.ComputeHash(Encoding.UTF8.GetBytes(text));
                     break;
                 case HashMethod.DoubleSHA256:
@@ -46,8 +54,18 @@ namespace Nalarium.Cryptography
                     using (var stream = File.OpenRead(filename))
                         hash = md5.ComputeHash(stream);
                     break;
+                case HashMethod.SHA1:
+                    using (var sha = new SHA1Managed())
+                    using (var stream = File.OpenRead(filename))
+                        hash = sha.ComputeHash(stream);
+                    break;
                 case HashMethod.SHA256:
                     using (var sha = new SHA256Managed())
+                    using (var stream = File.OpenRead(filename))
+                        hash = sha.ComputeHash(stream);
+                    break;
+                case HashMethod.SHA512:
+                    using (var sha = new SHA512Managed())
                     using (var stream = File.OpenRead(filename))
                         hash = sha.ComputeHash(stream);
                     break;
@@ -71,8 +89,16 @@ namespace Nalarium.Cryptography
                     using (var md5 = MD5.Create())
                         hash = md5.ComputeHash(buffer);
                     break;
+                case HashMethod.SHA1:
+                    using (var sha = new SHA1Managed())
+                        hash = sha.ComputeHash(buffer);
+                    break;
                 case HashMethod.SHA256:
                     using (var sha = new SHA256Managed())
+                        hash = sha.ComputeHash(buffer);
+                    break;
+                case HashMethod.SHA512:
+                    using (var sha = new SHA512Managed())
                         hash = sha.ComputeHash(buffer);
                     break;
                 case HashMethod.DoubleSHA256:
