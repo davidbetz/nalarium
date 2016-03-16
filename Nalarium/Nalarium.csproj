@@ -106,6 +106,8 @@
     <Compile Include="Path.cs" />
     <Compile Include="PairAndSeriesBuilder.cs" />
     <Compile Include="ReferenceAttribute.cs" />
+    <Compile Include="Reflection\PropertyAttributeInformation.cs" />
+    <Compile Include="Reflection\PropertyWriter.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="IValueConverter.cs" />
     <Compile Include="IViewObjectContainer.cs" />

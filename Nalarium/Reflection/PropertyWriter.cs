@@ -8,14 +8,14 @@ using System;
 
 namespace Nalarium.Reflection
 {
-    public class PropertyReader
+    public class PropertyWriter
     {
         private readonly object _object;
         private readonly Type _type;
 
         //+
         //- @Ctor -//
-        public PropertyReader(object obj)
+        public PropertyWriter(object obj)
         {
             if (obj == null)
             {
@@ -25,17 +25,11 @@ namespace Nalarium.Reflection
             _type = _object.GetType();
         }
 
-        //- @ReadAsString -//
-        public string ReadAsString(string propertyName)
-        {
-            return Read(propertyName) as string;
-        }
-
-        //- @Read -//
-        public object Read(string propertyName)
+        //- @Write -//
+        public void Write(string propertyName, string value)
         {
             var pi = _type?.GetProperty(propertyName);
-            return pi?.GetValue(_object, null);
+            pi?.SetValue(_object, value, null);
         }
     }
 }

@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyTitle("Nalarium Core Module")]
+[assembly: AssemblyTitle("Nalarium")]
 [assembly: AssemblyDescription(".NET Development Foundation")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("David Betz")]
-[assembly: AssemblyProduct("Nalarium Core Module")]
-[assembly: AssemblyCopyright("Copyright © David Betz 2007-2015")]
+[assembly: AssemblyProduct("Nalarium")]
+[assembly: AssemblyCopyright("Copyright © David Betz 2007-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 //+
@@ -20,8 +20,8 @@ using System.Text;
 [assembly: Guid("6E249E3E-95D3-416C-B9DD-544B08255E43")]
 //+
 
-[assembly: AssemblyVersion("3.5.6.0")]
-[assembly: AssemblyFileVersion("3.5.6.0")]
+[assembly: AssemblyVersion("3.5.8.0")]
+[assembly: AssemblyFileVersion("3.5.8.0")]
 //+
 
 namespace Nalarium.Properties
