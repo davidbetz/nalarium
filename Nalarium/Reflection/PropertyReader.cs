@@ -5,6 +5,8 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace Nalarium.Reflection
 {
@@ -37,5 +39,25 @@ namespace Nalarium.Reflection
             var pi = _type?.GetProperty(propertyName);
             return pi?.GetValue(_object, null);
         }
+
+        public static List<PropertyInfo> GetPropertyList(Type type, BindingFlags flags = BindingFlags.Public | BindingFlags.Instance)
+        {
+            var fn = type.FullName;
+            lock (Lock)
+            {
+                if (!TypePropertyInfoDictionary.ContainsKey(fn))
+                {
+                    TypePropertyInfoDictionary.Add(fn, new List<PropertyInfo>(type.GetProperties(flags)));
+                }
+                if (TypePropertyInfoDictionary.ContainsKey(fn))
+                {
+                    return TypePropertyInfoDictionary[fn];
+                }
+            }
+            return new List<PropertyInfo>();
+        }
+
+        private static readonly Dictionary<string, List<PropertyInfo>> TypePropertyInfoDictionary = new Dictionary<string, List<PropertyInfo>>();
+        private static readonly object Lock = new object();
     }
 }
