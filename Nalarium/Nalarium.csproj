@@ -80,6 +80,7 @@
     <Compile Include="Activation\AssemblyLoader.cs" />
     <Compile Include="Activation\Emit\EmitMarkerAttribute.cs" />
     <Compile Include="Activation\Emit\XmlIgnoreEmitMarkerAttribute.cs" />
+    <Compile Include="Base64.cs" />
     <Compile Include="Binary.cs" />
     <Compile Include="BuilderCreator.cs" />
     <Compile Include="Checksum.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="PairAndSeriesBuilder.cs" />
     <Compile Include="ReferenceAttribute.cs" />
     <Compile Include="Reflection\PropertyAttributeInformation.cs" />
+    <Compile Include="Reflection\MethodReader.cs" />
     <Compile Include="Reflection\PropertyWriter.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="IValueConverter.cs" />
