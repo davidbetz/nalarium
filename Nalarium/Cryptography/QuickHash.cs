@@ -6,6 +6,7 @@
 
 using System;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -78,6 +79,16 @@ namespace Nalarium.Cryptography
                     return string.Empty;
             }
             return BitConverter.ToString(hash).Replace("-", "");
+        }
+
+        public static string Hash(object obj, HashMethod method = HashMethod.MD5)
+        {
+            using (var stream = new MemoryStream())
+            {
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(stream, obj);
+                return Hash(stream.ToArray(), method);
+            }
         }
 
         public static string Hash(byte[] buffer, HashMethod method = HashMethod.MD5)
