@@ -56,10 +56,10 @@ namespace Nalarium.Test
         [TestMethod]
         public void ParseInt64()
         {
-            Assert.AreEqual(1l, Nalarium.Parser.ParseInt64(1));
-            Assert.AreEqual(1l, Nalarium.Parser.ParseInt64("1"));
-            Assert.AreEqual(0l, Nalarium.Parser.ParseInt64(null));
-            Assert.AreEqual(0d, Nalarium.Parser.ParseInt64("burrito"));
+            Assert.AreEqual(1L, Nalarium.Parser.ParseInt64(1));
+            Assert.AreEqual(1L, Nalarium.Parser.ParseInt64("1"));
+            Assert.AreEqual(0L, Nalarium.Parser.ParseInt64(null));
+            Assert.AreEqual(0L, Nalarium.Parser.ParseInt64("burrito"));
         }
 
         [TestMethod]
