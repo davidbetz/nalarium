@@ -54,7 +54,6 @@
     <Compile Include="Parser.cs" />
     <Compile Include="Cryptography\QuickHash.cs" />
     <Compile Include="Path.cs" />
-    <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="BuilderCreator.cs" />
     <Compile Include="Binary.cs" />
     <Compile Include="Text\Case.cs" />
