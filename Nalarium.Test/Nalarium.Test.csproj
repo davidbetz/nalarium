@@ -56,6 +56,9 @@
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="BuilderCreator.cs" />
     <Compile Include="Binary.cs" />
+    <Compile Include="Text\Case.cs" />
+    <Compile Include="Text\Process.cs" />
+    <Compile Include="Text\TextSplitter.cs" />
     <Compile Include="Url.cs" />
     <Compile Include="Cryptography\Merkel.cs" />
     <Compile Include="Cryptography\Random.cs" />
