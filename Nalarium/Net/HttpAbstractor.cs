@@ -16,24 +16,24 @@ namespace Nalarium.Net
     /// </summary>
     /// <example>
     ///     //+ HTTP GET
-    ///     String getResponse = HttpAbstractor.GetWebText(new Uri("http://www.google.com"));
+    ///     String getResponse = HttpAbstractor.Get(new Uri("http://www.google.com"));
     ///     //+ HTTP POST
-    ///     String postResponse = HttpAbstractor.PostHttpRequest(new Uri("http://www.tempuri.org/service/wcf.svc", "{ data:
+    ///     String postResponse = HttpAbstractor.Post(new Uri("http://www.tempuri.org/service/wcf.svc", "{ data:
     ///     'This is my service data.' }"));
     ///     //+ Binary HTTP GET
-    ///     Byte[] imageData = HttpAbstractor.GetBinaryWebText(new Uri("http://www.tempuri.org/Image/Logo.jpg"));
+    ///     Byte[] imageData = HttpAbstractor.GetBinary(new Uri("http://www.tempuri.org/Image/Logo.jpg"));
     /// </example>
     public static class HttpAbstractor
     {
-        //- @GetWebText -//
+        //- @Get -//
         /// <summary>
         ///     Does an HTTP GET.
         /// </summary>
         /// <param name="uri">The URI.</param>
         /// <returns></returns>
-        public static string GetWebText(Uri uri)
+        public static string Get(Uri uri)
         {
-            return GetWebText(uri, 0);
+            return Get(uri, 0);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Nalarium.Net
         /// <param name="uri">The URI.</param>
         /// <param name="timeout">The timeout of the post.</param>
         /// <returns></returns>
-        public static string GetWebText(Uri uri, int timeout)
+        public static string Get(Uri uri, int timeout)
         {
             var request = (HttpWebRequest) WebRequest.Create(uri);
             if (timeout > 0)
@@ -69,16 +69,16 @@ namespace Nalarium.Net
             return rawResponse.ToString();
         }
 
-        //- @PostHttpRequest -//
+        //- @Post -//
         /// <summary>
         ///     Does an HTTP POST.
         /// </summary>
         /// <param name="uri">The URI.</param>
         /// <param name="text">The text.</param>
         /// <returns></returns>
-        public static string PostHttpRequest(Uri uri, string text)
+        public static string Post(Uri uri, string text)
         {
-            return PostHttpRequest(uri, text, null, string.Empty, 0);
+            return Post(uri, text, null, string.Empty, 0);
         }
 
         /// <summary>
@@ -88,9 +88,9 @@ namespace Nalarium.Net
         /// <param name="text">The text.</param>
         /// <param name="timeout">The timeout of the post.</param>
         /// <returns></returns>
-        public static string PostHttpRequest(Uri uri, string text, int timeout)
+        public static string Post(Uri uri, string text, int timeout)
         {
-            return PostHttpRequest(uri, text, null, string.Empty, timeout);
+            return Post(uri, text, null, string.Empty, timeout);
         }
 
         /// <summary>
@@ -99,9 +99,9 @@ namespace Nalarium.Net
         /// <param name="uri">The URI.</param>
         /// <param name="headerMap">Map of header information to post.</param>
         /// <returns></returns>
-        public static string PostHttpRequest(Uri uri, Map headerMap)
+        public static string Post(Uri uri, Map headerMap)
         {
-            return PostHttpRequest(uri, string.Empty, headerMap, string.Empty, 0);
+            return Post(uri, string.Empty, headerMap, string.Empty, 0);
         }
 
         /// <summary>
@@ -113,11 +113,11 @@ namespace Nalarium.Net
         /// <param name="headerMap">Map of header information to post.</param>
         /// <param name="timeout">The timeout of the post.</param>
         /// <returns></returns>
-        public static string PostHttpRequest(Uri uri, string text, Map headerMap, string contentType, int timeout)
+        public static string Post(Uri uri, string text, Map headerMap, string contentType, int timeout)
         {
             var buffer = Encoding.UTF8.GetBytes(text);
             //+
-            return PostHttpRequest(uri, buffer, headerMap, contentType, timeout);
+            return Post(uri, buffer, headerMap, contentType, timeout);
         }
 
         /// <summary>
@@ -126,9 +126,9 @@ namespace Nalarium.Net
         /// <param name="uri">The URI.</param>
         /// <param name="buffer">The buffer to post.</param>
         /// <returns></returns>
-        public static string PostHttpRequest(Uri uri, byte[] buffer)
+        public static string Post(Uri uri, byte[] buffer)
         {
-            return PostHttpRequest(uri, buffer, null, string.Empty, 0);
+            return Post(uri, buffer, null, string.Empty, 0);
         }
 
         /// <summary>
@@ -138,9 +138,9 @@ namespace Nalarium.Net
         /// <param name="buffer">The buffer to post.</param>
         /// <param name="headerMap">Map of header information to post.</param>
         /// <returns></returns>
-        public static string PostHttpRequest(Uri uri, byte[] buffer, Map headerMap)
+        public static string Post(Uri uri, byte[] buffer, Map headerMap)
         {
-            return PostHttpRequest(uri, buffer, headerMap, string.Empty, 0);
+            return Post(uri, buffer, headerMap, string.Empty, 0);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Nalarium.Net
         /// <param name="headerMap">Map of header information to post.</param>
         /// <param name="timeout">The timeout of the post.</param>
         /// <returns></returns>
-        public static string PostHttpRequest(Uri uri, byte[] buffer, Map headerMap, string contentType, int timeout)
+        public static string Post(Uri uri, byte[] buffer, Map headerMap, string contentType, int timeout)
         {
             var request = (HttpWebRequest) WebRequest.Create(uri);
             request.Method = "POST";
