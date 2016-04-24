@@ -24,7 +24,7 @@ namespace Nalarium
     /// </example>
     public static class Parser
     {
-        private static readonly Type BooleanType = typeof (bool);
+        private static readonly Type BooleanType = typeof(bool);
 
         //+
         //- @Parse -//
@@ -50,7 +50,7 @@ namespace Nalarium
         {
             try
             {
-                if (typeof (T) == BooleanType)
+                if (typeof(T) == BooleanType)
                 {
                     switch (data)
                     {
@@ -67,7 +67,7 @@ namespace Nalarium
                             break;
                     }
                 }
-                return (T) Convert.ChangeType(data, typeof (T), Thread.CurrentThread.CurrentCulture);
+                return (T)Convert.ChangeType(data, typeof(T), Thread.CurrentThread.CurrentCulture);
             }
             catch
             {
@@ -119,15 +119,18 @@ namespace Nalarium
         /// <param name="defaultValue">Default value to return is null or empty</param>
         /// <param name="max">The max length of the string.</param>
         /// <returns>Parsed value or default.</returns>
-        public static string ParseMaxString(string value, string defaultValue, int max)
+        public static string ParseMaxString(string value, string defaultValue = "", int max = 0)
         {
-            if (string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value) && !string.IsNullOrEmpty(defaultValue))
             {
                 value = defaultValue;
             }
-            if (value.Length > max)
+            if (max > 0)
             {
-                value = value.Substring(0, max);
+                if (value.Length > max)
+                {
+                    value = value.Substring(0, max);
+                }
             }
             //+
             return value;
