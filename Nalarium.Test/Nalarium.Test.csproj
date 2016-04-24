@@ -51,9 +51,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Cryptography\QuickHash.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="Reflection\PropertyReader.cs" />
     <Compile Include="BuilderCreator.cs" />
+    <Compile Include="Binary.cs" />
     <Compile Include="Url.cs" />
     <Compile Include="Cryptography\Merkel.cs" />
     <Compile Include="Cryptography\Random.cs" />
