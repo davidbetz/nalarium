@@ -15,8 +15,12 @@ namespace Nalarium
 
         public static void Set<T>(IProviderCreator<T> creator) where T : class
         {
-
             ProviderCreator.Add(typeof(T), creator);
+        }
+
+        public static void Remove<T>() where T : class
+        {
+            ProviderCreator.Remove(typeof(T));
         }
 
         public static T Resolve<T>(params string[] parameterArray) where T : class
