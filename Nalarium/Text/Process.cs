@@ -19,7 +19,7 @@ namespace Nalarium.Text
         /// <param name="useEllipsis"></param>
         /// <param name="useHtmlEllipsis"></param>
         /// <returns></returns>
-        public static string Max(string text, int max, bool useEllipsis = false, bool useHtmlEllipsis = true)
+        public static string Max(string text, int max, bool useEllipsis = false, bool useHtmlEllipsis = false)
         {
             if (string.IsNullOrEmpty(text))
             {
