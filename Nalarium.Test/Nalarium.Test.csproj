@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CodeParsing\CodeParser.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Cryptography\QuickHash.cs" />
     <Compile Include="Path.cs" />

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nalarium</RootNamespace>
     <AssemblyName>Nalarium</AssemblyName>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Nalarium.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -236,8 +236,8 @@
     <Compile Include="MapEntry.cs" />
     <Compile Include="GuidCreator.cs" />
     <Compile Include="Parser.cs" />
-    <Compile Include="CodeParsing\CodeParserSeries.cs" />
     <Compile Include="CodeParsing\CodeParser.cs" />
+    <Compile Include="CodeParsing\CodeParserTemplate.cs" />
     <Compile Include="Data\ScopedMap.cs" />
     <Compile Include="StringObjectMap.cs" />
     <Compile Include="StringObjectMapEntry.cs" />
