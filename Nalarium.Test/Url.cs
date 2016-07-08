@@ -40,5 +40,12 @@ namespace Nalarium.Test
             var result = Nalarium.Url.FromPath(Nalarium.Path.Clean(folder.Substring(baseFolder.Length, folder.Length - baseFolder.Length)).ToLower(CultureInfo.InvariantCulture));
             Assert.AreEqual(result, expected);
         }
+
+        [TestMethod]
+        public void GetUrlPartArray()
+        {
+            var result = Nalarium.Url.GetUrlPartArray(string.Empty);
+            CollectionAssert.AreEquivalent(result, new string[] { });
+        }
     }
 }
