@@ -17,7 +17,7 @@ namespace Nalarium.Test
 
             var result = Nalarium.Url.Join(path, to, item);
 
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace Nalarium.Test
 
             var result = Nalarium.Url.CleanTail(input);
 
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -38,7 +38,16 @@ namespace Nalarium.Test
             var baseFolder = @"E:\Some\Series\Of\Folders\content";
             var folder = @"E:\some\series\of\folders\content\" + expected;
             var result = Nalarium.Url.FromPath(Nalarium.Path.Clean(folder.Substring(baseFolder.Length, folder.Length - baseFolder.Length)).ToLower(CultureInfo.InvariantCulture));
-            Assert.AreEqual(result, expected);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void GetParent()
+        {
+            var expected = "path/to/something/deep/with/lame";
+            var input = "/path/to/something/deep/with/lame/ending/";
+            var result = Nalarium.Url.GetParent(input);
+            Assert.AreEqual(expected, result);
         }
     }
 }

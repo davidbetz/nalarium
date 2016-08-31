@@ -63,6 +63,20 @@ namespace Nalarium
             return path;
         }
 
+        /// <summary>
+        /// Gets a/b/c from /a/b/c/d/, /a/b/c/d, and a/b/c/d
+        /// </summary>
+        /// <param name="path">A url path</param>
+        /// <returns>Parent url to url path</returns>
+        public static object GetParent(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return string.Empty;
+            }
+            return Join(ArrayModifier.Strip<string>(Split(path)));
+        }
+
         //- @CleanTail -//
         /// <summary>
         ///     Removes slashes from the end of a path.
