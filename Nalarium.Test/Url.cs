@@ -49,5 +49,12 @@ namespace Nalarium.Test
             var result = Nalarium.Url.GetParent(input);
             Assert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void GetUrlPartArray()
+        {
+            var result = Nalarium.Url.GetUrlPartArray(string.Empty);
+            CollectionAssert.AreEquivalent(result, new string[] { });
+        }
     }
 }

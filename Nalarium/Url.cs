@@ -190,7 +190,7 @@ namespace Nalarium
         {
             if (string.IsNullOrEmpty(url))
             {
-                return null;
+                return new string[] { };
             }
             return url.ToLower(CultureInfo.CurrentCulture).Split('/').Where(p => !string.IsNullOrEmpty(p)).ToArray();
         }
@@ -205,7 +205,7 @@ namespace Nalarium
         {
             if (string.IsNullOrEmpty(url))
             {
-                return null;
+                return string.Empty;
             }
             return Collection.GetArrayPart(GetUrlPartArray(url), position);
         }
