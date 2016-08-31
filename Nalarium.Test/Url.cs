@@ -51,6 +51,24 @@ namespace Nalarium.Test
         }
 
         [TestMethod]
+        public void GetParent_Single()
+        {
+            var expected = "";
+            var input = "path";
+            var result = Nalarium.Url.GetParent(input);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void GetParent_AlreadyRoot()
+        {
+            var expected = "";
+            var input = "";
+            var result = Nalarium.Url.GetParent(input);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
         public void GetUrlPartArray()
         {
             var result = Nalarium.Url.GetUrlPartArray(string.Empty);
