@@ -68,7 +68,7 @@ namespace Nalarium
         /// </summary>
         /// <param name="path">A url path</param>
         /// <returns>Parent url to url path</returns>
-        public static object GetParent(string path)
+        public static string GetParent(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
