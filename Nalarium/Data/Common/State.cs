@@ -22,7 +22,7 @@ namespace Nalarium.Data.Common
         ///     Gets the state data.
         /// </summary>
         /// <returns>An Int32StringMap of state data.</returns>
-        public static Int32StringMap GetUsStateData()
+        public static Int32StringMap GetUSStateData()
         {
             if (!CachedDataFactory.Exists(Info.Scope, Info.Numeric))
             {
