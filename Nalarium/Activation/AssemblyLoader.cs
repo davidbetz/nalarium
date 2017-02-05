@@ -1,6 +1,6 @@
 #region Copyright
 
-//+ Copyright © David Betz 2007-2015
+//+ Copyright © David Betz 2007-2017
 
 #endregion
 
@@ -17,7 +17,7 @@ namespace Nalarium.Activation
     {
         //- @Load -//
         /// <summary>
-        ///     Loads and assembly and reports errors through David Betz 2007-2015 object injection reporting.
+        ///     Loads and assembly and reports errors through David Betz 2007-2017 object injection reporting.
         /// </summary>
         /// <param name="assemblyName">Name of the assembly.</param>
         /// <returns>Assembly object.</returns>

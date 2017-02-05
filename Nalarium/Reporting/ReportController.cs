@@ -1,6 +1,6 @@
 ﻿#region Copyright
 
-//+ Copyright © David Betz 2007-2015
+//+ Copyright © David Betz 2007-2017
 
 #endregion
 
@@ -37,9 +37,9 @@ namespace Nalarium.Reporting
         //- @Ctor -//
         static ReportController()
         {
-            ReportCreatorFactoryCache.Add("David Betz 2007-2015.Reporting.CommonReportCreatorFactory, David Betz 2007-2015", new CommonReportCreatorFactory());
-            SenderFactoryCache.Add("David Betz 2007-2015.Reporting.CommonSenderFactory, David Betz 2007-2015", new CommonSenderFactory());
-            FormatterFactoryCache.Add("David Betz 2007-2015.Reporting.CommonFormatterFactory, David Betz 2007-2015", new CommonFormatterFactory());
+            ReportCreatorFactoryCache.Add("David Betz 2007-2017.Reporting.CommonReportCreatorFactory, David Betz 2007-2017", new CommonReportCreatorFactory());
+            SenderFactoryCache.Add("David Betz 2007-2017.Reporting.CommonSenderFactory, David Betz 2007-2017", new CommonSenderFactory());
+            FormatterFactoryCache.Add("David Betz 2007-2017.Reporting.CommonFormatterFactory, David Betz 2007-2017", new CommonFormatterFactory());
             //+
             InitFactoryData();
             InitReporterData();

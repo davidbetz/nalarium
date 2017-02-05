@@ -2,6 +2,6 @@
 {
     internal static class Info
     {
-        public const string ResourcePattern = "David Betz 2007-2015.Data.Common.{Code}";
+        public const string ResourcePattern = "David Betz 2007-2017.Data.Common.{Code}";
     }
 }

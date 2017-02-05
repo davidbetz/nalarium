@@ -1,6 +1,6 @@
 You do stuff enough you'll want to stop repeating yourself. You'll want to be DRY. This is my desert.
 
-I add my regularly and common stuff to Nalarium. It's my server-side crutch as much as [understore.js](http://underscorejs.org/) is my JavaScript crutch.
+I add my regularly and common stuff to Nalarium. It's my .NET crutch as much as [understore.js](http://underscorejs.org/) is my crutch in the browser
 
 ### Nuget
 
@@ -14,7 +14,7 @@ I add my regularly and common stuff to Nalarium. It's my server-side crutch as m
 		var ultima = Url.GetPart(context, Position.Penultima);
 		//+ ultimate == 2009
 
-I'm not part of the TDD voodoo cult, but I do like to use unit tests as practical documentation. For example:
+Unit tests act as practical documentation. For example:
 
 
         public void ParseBoolean()

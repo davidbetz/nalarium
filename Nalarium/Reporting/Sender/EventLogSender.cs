@@ -1,6 +1,6 @@
 ﻿#region Copyright
 
-//+ Copyright © David Betz 2007-2015
+//+ Copyright © David Betz 2007-2017
 
 #endregion
 
@@ -49,7 +49,7 @@ namespace Nalarium.Reporting.Sender
 
         internal class Setting
         {
-            public const string Source = "David Betz 2007-2015";
+            public const string Source = "David Betz 2007-2017";
         }
 
         #endregion
