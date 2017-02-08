@@ -1,8 +1,14 @@
+# Nalarium - Extended BCL for .NET
+
+**Copyright (c) 2005-2017 David Betz**
+
+[![Build status](https://ci.appveyor.com/api/projects/status/vxskgug8laoahvbl?svg=true)](https://ci.appveyor.com/project/davidbetz/nalarium)
+
 You do stuff enough you'll want to stop repeating yourself. You'll want to be DRY. This is my desert.
 
 I add my regularly and common stuff to Nalarium. It's my .NET crutch as much as [understore.js](http://underscorejs.org/) is my crutch in the browser
 
-### Nuget
+## Installation
 
 [Get it on Nuget](https://www.nuget.org/packages/Nalarium/)
 
