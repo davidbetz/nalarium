@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace Nalarium.Test
 {
-    [TestClass]
+    [TestFixture]
     public class Binary
     {
-        [TestMethod]
+        [Test]
         public void Decompose()
         {
             var results = Nalarium.Binary.Decompose(12345);

@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace Nalarium.Test
 {
-    [TestClass]
+    [TestFixture]
     public class Random
     {
-        [TestMethod]
+        [Test]
         public void Create()
         {
             var first = Nalarium.Cryptography.Random.Create(2);

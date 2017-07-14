@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 
 namespace Nalarium.Test
 {
-    [TestClass]
+    [TestFixture]
     public class Base64
     {
-        [TestMethod]
+        [Test]
         public void To()
         {
             var input = "hello";
@@ -18,7 +18,7 @@ namespace Nalarium.Test
             Assert.AreEqual(input, plain);
         }
 
-        [TestMethod]
+        [Test]
         public void Bad()
         {
             var bad = Nalarium.Base64.From("base64");
@@ -26,7 +26,7 @@ namespace Nalarium.Test
 
         }
 
-        [TestMethod]
+        [Test]
         public void Merge()
         {
             var merged = Nalarium.Base64.Merge("hello", "there");
@@ -37,7 +37,7 @@ namespace Nalarium.Test
             Assert.AreEqual("hellothere", mergedPlain);
         }
 
-        [TestMethod]
+        [Test]
         public void MergedWithSeparator()
         {
             var mergedWithSeparator = Nalarium.Base64.Merge(':', "hello", "there");

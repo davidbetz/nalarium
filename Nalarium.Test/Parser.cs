@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace Nalarium.Test
 {
-    [TestClass]
+    [TestFixture]
     public class Parser
     {
-        [TestMethod]
+        [Test]
         public void ParseBoolean()
         {
             Assert.IsTrue(Nalarium.Parser.ParseBoolean(1));
@@ -19,7 +19,7 @@ namespace Nalarium.Test
             Assert.IsFalse(Nalarium.Parser.ParseBoolean(12));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseByte()
         {
             Assert.AreEqual((byte)1, Nalarium.Parser.ParseByte(1));
@@ -28,13 +28,13 @@ namespace Nalarium.Test
             Assert.AreEqual((byte)0, Nalarium.Parser.ParseByte("burrito"));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseDateTime()
         {
             Assert.AreEqual("2/3/2010 12:00:00 AM", Nalarium.Parser.ParseDateTime("2010-02-03").ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void ParseDouble()
         {
             Assert.AreEqual(1d, Nalarium.Parser.ParseDouble(1));
@@ -43,7 +43,7 @@ namespace Nalarium.Test
             Assert.AreEqual(0d, Nalarium.Parser.ParseDouble("burrito"));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseInt32()
         {
             Assert.AreEqual(1, Nalarium.Parser.ParseInt32(1));
@@ -53,7 +53,7 @@ namespace Nalarium.Test
         }
 
 
-        [TestMethod]
+        [Test]
         public void ParseInt64()
         {
             Assert.AreEqual(1L, Nalarium.Parser.ParseInt64(1));
@@ -62,7 +62,7 @@ namespace Nalarium.Test
             Assert.AreEqual(0L, Nalarium.Parser.ParseInt64("burrito"));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseSingle()
         {
             Assert.AreEqual(1f, Nalarium.Parser.ParseSingle(1));
@@ -71,14 +71,14 @@ namespace Nalarium.Test
             Assert.AreEqual(0f, Nalarium.Parser.ParseSingle("burrito"));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseString()
         {
             Assert.AreEqual("1", Nalarium.Parser.ParseString(1));
             Assert.AreEqual(string.Empty, Nalarium.Parser.ParseString(null));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseUInt16()
         {
             Assert.AreEqual((ushort)1, Nalarium.Parser.ParseUInt16(1));
@@ -87,7 +87,7 @@ namespace Nalarium.Test
             Assert.AreEqual((ushort)0, Nalarium.Parser.ParseInt64("burrito"));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseUInt32()
         {
             Assert.AreEqual((uint)1, Nalarium.Parser.ParseUInt32(1));
@@ -96,7 +96,7 @@ namespace Nalarium.Test
             Assert.AreEqual((uint)0, Nalarium.Parser.ParseUInt32("burrito"));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseUInt64()
         {
             Assert.AreEqual((ulong)1, Nalarium.Parser.ParseUInt64(1));
@@ -105,7 +105,7 @@ namespace Nalarium.Test
             Assert.AreEqual((ulong)0, Nalarium.Parser.ParseUInt64("burrito"));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseMaxString()
         {
             Assert.AreEqual("asdfasdfasdf", Nalarium.Parser.ParseMaxString("asdfasdfasdf"));
@@ -113,7 +113,7 @@ namespace Nalarium.Test
             Assert.AreEqual("asdfa", Nalarium.Parser.ParseMaxString("asdfasdfasdf", max: 5));
         }
 
-        [TestMethod]
+        [Test]
         public void ParseGenericInt32()
         {
             Assert.AreEqual(12, Nalarium.Parser.Parse<int>("12"));

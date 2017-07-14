@@ -1,11 +1,11 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Nalarium.Test.Text
 {
-    [TestClass]
+    [TestFixture]
     public class Case
     {
-        [TestMethod]
+        [Test]
         public void GetPascalCase()
         {
             var results = Nalarium.Text.Case.GetPascalCase("TEST");
@@ -13,7 +13,7 @@ namespace Nalarium.Test.Text
             Assert.AreEqual("Test", results);
         }
 
-        [TestMethod]
+        [Test]
         public void GetCamelCase()
         {
             var results = Nalarium.Text.Case.GetCamelCase("TEST");

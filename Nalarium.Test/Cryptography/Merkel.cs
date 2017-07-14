@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace Nalarium.Test
 {
-    [TestClass]
+    [TestFixture]
     public class Merkel
     {
-        [TestMethod]
+        [Test]
         public void Create()
         {
             string[] hashes = {

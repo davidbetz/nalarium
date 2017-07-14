@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Globalization;
 
 namespace Nalarium.Test
 {
-    [TestClass]
+    [TestFixture]
     public class Path
     {
-        [TestMethod]
+        [Test]
         public void Clean()
         {
             var expected = @"E:\some\series\of\folders\content";
@@ -17,7 +17,7 @@ namespace Nalarium.Test
             Assert.AreEqual(result, expected);
         }
 
-        [TestMethod]
+        [Test]
         public void Join()
         {
             var first = @"E:\some\series";

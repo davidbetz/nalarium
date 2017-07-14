@@ -1,12 +1,12 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace Nalarium.Test.Text
 {
-    [TestClass]
+    [TestFixture]
     public class TextSplitter
     {
-        [TestMethod]
+        [Test]
         public void Split()
         {
             var results = Nalarium.Text.TextSplitter.Split(@"""asdf"",""qwerq,wer""", ',');

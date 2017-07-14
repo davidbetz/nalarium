@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Globalization;
 
 namespace Nalarium.Test
 {
-    [TestClass]
+    [TestFixture]
     public class Url
     {
-        [TestMethod]
+        [Test]
         public void Join()
         {
             var expected = "path/to/item";
@@ -20,7 +20,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void CleanTail()
         {
             var expected = "/path/with/useless/ending";
@@ -31,7 +31,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void FromPath()
         {
             var expected = "myfolder";
@@ -41,7 +41,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void GetParent()
         {
             var expected = "path/to/something/deep/with/lame";
@@ -50,7 +50,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void GetParent_Single()
         {
             var expected = "";
@@ -59,7 +59,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void GetParent_AlreadyRoot()
         {
             var expected = "";
@@ -68,7 +68,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void GetUrlPartArray()
         {
             var result = Nalarium.Url.GetUrlPartArray(string.Empty);

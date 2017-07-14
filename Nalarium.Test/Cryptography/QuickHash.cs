@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace Nalarium.Test
 {
-    [TestClass]
+    [TestFixture]
     public class QuickHash
     {
-        [TestMethod]
+        [Test]
         public void Hash_Object_MD5()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(123456789, Cryptography.HashMethod.MD5);
@@ -15,7 +15,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Text_MD5()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash("testtesttest", Cryptography.HashMethod.MD5);
@@ -25,7 +25,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Bytes_MD5()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(System.Text.Encoding.UTF8.GetBytes("testtesttest"), Cryptography.HashMethod.MD5);
@@ -35,7 +35,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Object_SHA1()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(123456789, Cryptography.HashMethod.SHA1);
@@ -45,7 +45,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Text_SHA1()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash("testtesttest", Cryptography.HashMethod.SHA1);
@@ -55,7 +55,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Bytes_SHA1()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(System.Text.Encoding.UTF8.GetBytes("testtesttest"), Cryptography.HashMethod.SHA1);
@@ -65,7 +65,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Object_SHA256()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(123456789, Cryptography.HashMethod.SHA256);
@@ -75,7 +75,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Text_SHA256()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash("testtesttest", Cryptography.HashMethod.SHA256);
@@ -85,7 +85,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Bytes_SHA256()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(System.Text.Encoding.UTF8.GetBytes("testtesttest"), Cryptography.HashMethod.SHA256);
@@ -95,7 +95,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Object_SHA512()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(123456789, Cryptography.HashMethod.SHA512);
@@ -105,7 +105,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Text_SHA512()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash("testtesttest", Cryptography.HashMethod.SHA512);
@@ -115,7 +115,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Bytes_SHA512()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(System.Text.Encoding.UTF8.GetBytes("testtesttest"), Cryptography.HashMethod.SHA512);
@@ -125,7 +125,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Object_DoubleSHA256()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(123456789, Cryptography.HashMethod.DoubleSHA256);
@@ -135,7 +135,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Text_DoubleSHA256()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash("testtesttest", Cryptography.HashMethod.DoubleSHA256);
@@ -145,7 +145,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void Hash_Bytes_DoubleSHA256()
         {
             var results = Nalarium.Cryptography.QuickHash.Hash(System.Text.Encoding.UTF8.GetBytes("testtesttest"), Cryptography.HashMethod.DoubleSHA256);

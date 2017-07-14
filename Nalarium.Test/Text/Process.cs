@@ -1,11 +1,11 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Nalarium.Test.Text
 {
-    [TestClass]
+    [TestFixture]
     public class Process
     {
-        [TestMethod]
+        [Test]
         public void Max()
         {
             var results = Nalarium.Text.Process.Max("asdfasdfasdasdfasfasdff", 10);
@@ -13,7 +13,7 @@ namespace Nalarium.Test.Text
             Assert.AreEqual(results, "asdfasdfas");
         }
 
-        [TestMethod]
+        [Test]
         public void MaxWithEllipsis()
         {
             var results = Nalarium.Text.Process.Max("asdfasdfasdasdfasfasdff", 10, true);
@@ -21,7 +21,7 @@ namespace Nalarium.Test.Text
             Assert.AreEqual(results, "asdfasd...");
         }
 
-        [TestMethod] 
+        [Test] 
         public void MaxWithHtmlEllipsis()
         {
             var results = Nalarium.Text.Process.Max("asdfasdfasdasdfasfasdff", 10, true, true);

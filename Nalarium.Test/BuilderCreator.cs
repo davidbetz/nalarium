@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 
 namespace Nalarium.Test
@@ -71,16 +71,16 @@ namespace Nalarium.Test
         }
     }
 
-    [TestClass]
+    [TestFixture]
     public class BuilderCreator
     {
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
             Nalarium.BuilderCreator.Set(new MockProviderBuilder());
         }
 
-        [TestMethod]
+        [Test]
         public void RunFromConfig()
         {
             var provider = Nalarium.BuilderCreator.Resolve<IMockProvider>();
@@ -89,7 +89,7 @@ namespace Nalarium.Test
             Assert.AreEqual(result, "hellomock provider");
         }
 
-        [TestMethod]
+        [Test]
         public void RunWithOverride()
         {
             var provider = Nalarium.BuilderCreator.Resolve<IMockProvider>("alt", "parameter for alt");
@@ -98,7 +98,7 @@ namespace Nalarium.Test
             Assert.AreEqual(result, "hiparameter for altalternative mock provider");
         }
 
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
             Nalarium.BuilderCreator.Remove<IMockProvider>();

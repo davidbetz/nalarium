@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace Nalarium.Test
 {
@@ -16,10 +16,10 @@ namespace Nalarium.Test
         public override string Template => @"https://www.youtube.com/watch?v={Code}";
     }
 
-    [TestClass]
+    [TestFixture]
     public class CodeParser
     {
-        [TestMethod]
+        [Test]
         public void ParseCode_AmazonAffiliate()
         {
             var series = new Nalarium.CodeParsing.CodeParser();
@@ -34,7 +34,7 @@ namespace Nalarium.Test
             Assert.AreEqual(expected, results);
         }
 
-        [TestMethod]
+        [Test]
         public void ParseCode_YouTube()
         {
             var series = new Nalarium.CodeParsing.CodeParser();
