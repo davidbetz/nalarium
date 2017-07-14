@@ -3,6 +3,7 @@
 **Copyright (c) 2005-2017 David Betz**
 
 [![Build Status](https://travis-ci.org/davidbetz/nalarium.svg?branch=master)](https://travis-ci.org/davidbetz/nalarium)
+[![NuGet Version and Downloads count](https://buildstats.info/nuget/nalarium)](https://www.nuget.org/packages/nalarium)
 
 You do stuff enough you'll want to stop repeating yourself. You'll want to be DRY. This is my desert.
 
