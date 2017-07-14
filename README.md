@@ -2,7 +2,7 @@
 
 **Copyright (c) 2005-2017 David Betz**
 
-[![Build status](https://ci.appveyor.com/api/projects/status/vxskgug8laoahvbl?svg=true)](https://ci.appveyor.com/project/davidbetz/nalarium)
+[![Build Status](https://travis-ci.org/davidbetz/nalarium.svg?branch=master)](https://travis-ci.org/davidbetz/nalarium)
 
 You do stuff enough you'll want to stop repeating yourself. You'll want to be DRY. This is my desert.
 
