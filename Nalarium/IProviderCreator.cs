@@ -6,7 +6,7 @@
 
 namespace Nalarium
 {
-    public interface IProviderCreator<T>
+    public interface IProviderFactory<T>
     {
         T Create(params string[] parameterArray);
     }

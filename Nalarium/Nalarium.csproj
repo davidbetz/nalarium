@@ -82,7 +82,7 @@
     <Compile Include="Activation\Emit\XmlIgnoreEmitMarkerAttribute.cs" />
     <Compile Include="Base64.cs" />
     <Compile Include="Binary.cs" />
-    <Compile Include="BuilderCreator.cs" />
+    <Compile Include="AbstractFactory.cs" />
     <Compile Include="Checksum.cs" />
     <Compile Include="CommentAttribute.cs" />
     <Compile Include="Configuration\AppConfig\ConfigurationSection.cs" />

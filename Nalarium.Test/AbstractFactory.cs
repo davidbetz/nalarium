@@ -29,7 +29,7 @@ namespace Nalarium.Test
         }
     }
 
-    public class MockProviderBuilder : IProviderCreator<IMockProvider>
+    public class MockProviderFactory : IProviderFactory<IMockProvider>
     {
         public IMockProvider Create(params string[] parameterArray)
         {
@@ -72,18 +72,18 @@ namespace Nalarium.Test
     }
 
     [TestFixture]
-    public class BuilderCreator
+    public class AbstractFactory
     {
         [SetUp]
         public void Setup()
         {
-            Nalarium.BuilderCreator.Set(new MockProviderBuilder());
+            Nalarium.AbstractFactory.Set(new MockProviderFactory());
         }
 
         [Test]
         public void RunFromConfig()
         {
-            var provider = Nalarium.BuilderCreator.Resolve<IMockProvider>();
+            var provider = Nalarium.AbstractFactory.Resolve<IMockProvider>();
             var result = provider.Execute("hello");
 
             Assert.AreEqual(result, "hellomock provider");
@@ -92,7 +92,7 @@ namespace Nalarium.Test
         [Test]
         public void RunWithOverride()
         {
-            var provider = Nalarium.BuilderCreator.Resolve<IMockProvider>("alt", "parameter for alt");
+            var provider = Nalarium.AbstractFactory.Resolve<IMockProvider>("alt", "parameter for alt");
             var result = provider.Execute("hi");
 
             Assert.AreEqual(result, "hiparameter for altalternative mock provider");
@@ -101,7 +101,7 @@ namespace Nalarium.Test
         [TearDown]
         public void Cleanup()
         {
-            Nalarium.BuilderCreator.Remove<IMockProvider>();
+            Nalarium.AbstractFactory.Remove<IMockProvider>();
         }
     }
 }
