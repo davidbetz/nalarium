@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Nalarium</id>
+    <version>3.6.0</version>
+    <title>Nalarium</title>
+    <authors>David Betz</authors>
+    <owners>David Betz</owners>
+    <projectUrl>https://github.com/davidbetz/nalarium</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Utilities are extended BCL for .NET with ZERO dependencies</description>
+    <copyright>Copyright (c) David Betz 2007-2017</copyright>
+    <tags>bcl</tags>
+  </metadata>
+</package>
